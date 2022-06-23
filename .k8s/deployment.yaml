@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coleman-access
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coleman-access
+  template:
+    metadata:
+      labels:
+        app: coleman-access
+    spec:
+      containers:
+        - name: coleman-access
+          image: inseefr/coleman-access:0.10.1
