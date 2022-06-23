@@ -1,0 +1,457 @@
+$yellow-insee: #ffc400;
+$blue-insee: #0f417a;
+
+.centered {
+  text-align: center;
+}
+
+#idec {
+  width: 8em;
+}
+
+.wrap-loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba($color: grey, $alpha: 0.3);
+  z-index: 2000;
+  cursor: default;
+}
+.wrap-loader h3 {
+  position: fixed;
+  top: 60%;
+  right: 50%;
+}
+.loader {
+  position: fixed;
+  width: 150px;
+  top: 50%;
+  right: 50%;
+}
+
+.error {
+  color: red;
+  background-color: white;
+  border-color: red;
+  border-width: 3px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.valid {
+  color: green;
+  background-color: white;
+  border-color: green;
+  border-width: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: arial;
+  background: white;
+}
+
+section {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  background-color: white;
+  padding: 20px;
+  margin: 10px;
+}
+
+.banner-top a {
+  color: inherit;
+}
+#main {
+  padding-bottom: 70px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+}
+
+.surveyOver {
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.btn-group {
+  float: right;
+  //Beurk
+  margin-top: -20px;
+}
+.btn-md {
+  margin-right: 10px;
+}
+#menuItemRepondre,
+#boutonRepondre,
+#boutonMailConfirm,
+#boutonMailModif,
+#formSend,
+#formCancel {
+  background-color: $blue-insee;
+  color: $yellow-insee;
+}
+#menuItemRepondre:hover,
+#boutonRepondre:hover,
+#boutonMailConfirm:hover,
+#boutonMailModif:hover,
+#menuItemRepondre:focus,
+#boutonRepondre:focus,
+#boutonMailConfirm:focus,
+#boutonMailModif:focus,
+#formSend:hover,
+#formCancel:hover,
+#formSend:focus,
+#formCancel:focus {
+  background-color: $yellow-insee;
+  color: $blue-insee;
+}
+.button-disabled {
+  color: grey;
+}
+
+.nav > li.disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+//styles boutons menu et footer
+.navbar-default .navbar-nav > li > a {
+  color: #646363;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #2d363f;
+  background-color: #e8e8e8;
+}
+
+.navbar-default .navbar-nav > .active > a,
+a:hover {
+  color: #2d363f;
+  background-color: #bebebe;
+}
+
+.navbar-default .navbar-nav > .active > a:hover {
+  color: #2d363f;
+  background-color: #bebebe;
+}
+
+div.banner-top h1:hover {
+  background-color: transparent;
+}
+
+.survey-title > a:hover {
+  background-color: transparent;
+}
+
+.img-right > a:hover {
+  background-color: transparent;
+}
+
+#boutonMailConfirm,
+#boutonMailModif,
+#boutonMailConfirm:hover,
+#boutonMailModif:hover {
+  width: auto;
+  height: auto;
+}
+
+.important-info {
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #ff9800;
+  padding: 6px 16px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+
+  .heading {
+    margin-top: 0;
+  }
+  .body p {
+    margin: 0;
+  }
+}
+.mail-content {
+  margin-right: 8%;
+  margin-left: 8%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.mail-heading {
+  padding: 10px 15px;
+  border: 1px solid #e7e7e7;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: #dbdbdb;
+  background-image: linear-gradient(180deg, #ffffffd7 0, #dbdbdb);
+}
+
+.mail-body {
+  padding: 10px 15px;
+  border-top: none;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.mail-info {
+  display: inline-block;
+  vertical-align: top;
+  width: 48%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  background-color: white;
+}
+
+.mail-form {
+  display: inline-block;
+  vertical-align: top;
+  width: 48%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  background-color: white;
+}
+
+.adress {
+  text-align: center;
+}
+.adressLines {
+  text-align: center;
+  font-style: italic;
+}
+
+input[name='currentMail'] {
+  background-color: lightgray;
+}
+
+.form-control {
+  width: 60%;
+}
+
+.control-error {
+  width: 60%;
+  border: 1px solid red;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 4px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.validation-error {
+  color: red;
+}
+
+/* Centrer le bandeau horizontalement */
+.img-responsive {
+  margin: auto;
+}
+/* Les blocs d'image de droite et de gauche prennent
+* 20% de la largeur de l'écran
+* et on aligne le contenu au centre
+*/
+div.banner-top .img-right,
+div.banner-top .img-left {
+  text-align: center;
+  width: 20%;
+}
+/* Les images de droite ont une hauteur maximale de 9em
+* pour ne pas dépasser du bandeau
+* chacune des images prends comme largeur au maximum 30% du bloc d'image
+* on met une marge de 1em autour de l'image
+*/
+div.banner-top .img-right img {
+  max-width: 30%;
+  max-height: 9em;
+  margin: 1em;
+}
+/* Les images de gauche ont une hauteur maximale de 9em
+* pour ne pas dépasser du bandeau
+* l'images adapte sa largeur automatiquement son contrainte de
+* sa hauteur
+* on met une marge de 1em autour de l'image
+*/
+div.banner-top .img-left img {
+  width: auto;
+  max-height: 9em;
+  margin: 1em;
+}
+
+/* Le bandeau */
+div.banner-top {
+  vertical-align: middle; // aligner au milieur verticalement
+  background: white; //couleur du fond
+  display: flex; // permet de prendre en compte l'affichage flex
+  justify-content: space-between; // laisse de l'espace entre tous éléments
+  height: 12em; // hauteur fixe du bandeau
+}
+
+div.banner-top h1 {
+  text-align: center;
+  margin: 1em;
+  display: inline-block;
+  width: auto;
+  font-size: 2.5em;
+}
+
+/* survey item */
+.surveys-list {
+  text-align: center;
+}
+.survey-item {
+  text-align: center;
+  margin: 5px;
+  display: inline-block;
+  border-radius: 7px;
+  width: auto;
+  background-color: $blue-insee;
+  color: $yellow-insee;
+
+  a:hover,
+  a:focus {
+    background-color: $yellow-insee;
+    color: $blue-insee;
+    font-style: normal;
+    text-decoration: none;
+  }
+  span {
+    font-size: 2em;
+  }
+}
+
+/*images de la rubrique courrier enquêtés*/
+.images-wrapper {
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+/* Particularité pour les écrans de moins de 1000px de large*/
+@media (max-width: 1000px) {
+  div.banner-top h1 {
+    font-size: 2em;
+  }
+  /* Ajustement auto de la hauteur du bandeau
+  * et donc en fonction de son contenu ie les images
+  */
+  div.banner-top {
+    height: auto;
+  }
+  div.banner-top .img-right img {
+    max-width: 100%; //permet de reduire l'image lorsqu'on réduit l'écran
+    height: auto;
+    width: 32%;
+    margin: 5px;
+  }
+  div.banner-top .img-left img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin: 1em;
+  }
+}
+
+/*Affichage du bouton "acces questionnaire" en haut sur smartphone (actuellement en bas)*/
+/* 992px : c'est à cette largeur d'écran qu'on a une bascule horizontal / vertical */
+@media (max-width: 992px) {
+  div.row {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .mail-content > div {
+    width: 96%;
+    margin-bottom: 10px;
+  }
+
+  .mail-form {
+    order: -1;
+  }
+}
+
+/* menu du haut : prendre toute la largeur de l'écran */
+/* boostrap ? : à 767px et moins on passe à un petit menu  */
+@media (min-width: 767px) {
+  div.container-fluid div.navbar-header {
+    width: 2%;
+  }
+  div.container-fluid div.navbar-collapse.collapse {
+    width: 100%;
+  }
+
+  div.container-fluid div.navbar-collapse.collapse .navbar-nav {
+    margin-left: 5px;
+    width: 98%;
+  }
+
+  div.container-fluid div.navbar-collapse.collapse .navbar-nav li {
+    width: 16.333%; // 6 items -> 98/6
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  div.footer div.navbar-collapse.collapse,
+  div.col-md-8 div.navbar-collapse.collapse {
+    display: inline;
+
+    li > a {
+      margin: auto;
+      width: max-content;
+    }
+  }
+  #main {
+    padding-bottom: 0;
+  }
+}
+
+/* Particularité pour les écrans de moins de 700px de large*/
+@media (max-width: 700px) {
+  div.banner-top {
+    height: auto;
+  }
+  div.banner-top h1 {
+    font-size: 1.5em;
+    margin: 0.5em;
+    margin-left: 1em;
+  }
+  /* on laisse 35% de largeur du bandeau pour les images*/
+  div.banner-top .img-right,
+  div.banner-top .img-left {
+    width: 35%;
+  }
+}
