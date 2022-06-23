@@ -38,7 +38,7 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
       // including 410 status - no habilitation found
       setError('technique');
     }
-  }, [history, id, urlBackEnd]);
+  }, [history, id, urlBackEnd, keycloakAuth]);
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
