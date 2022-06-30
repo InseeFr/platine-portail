@@ -30,10 +30,10 @@ function downloadContentAndUnZip(){
     echo "Unzip orbeon"
 	mkdir contentDir
     unzip content.zip -d contentDir
-    cd contentDir
-	ls
-	cd ..
-	ls
+	cp contentDir/content.json src/resources/content.json
+	cp -r contentDir/img public
+	ls src/resources
+	ls public/img
 }
 
 
