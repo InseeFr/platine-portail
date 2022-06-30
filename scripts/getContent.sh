@@ -8,8 +8,6 @@ set -e
 
 CONTENT_URL="$1"
 USE_INSEE_PROXY="$2"
-CONTENT_FILE_NAME=$(basename -s .zip $CONTENT_URL)
-ORBEON_SOURCE_FOLDER=orbeon-source
 
 
 
@@ -30,10 +28,12 @@ function downloadContentAndUnZip(){
     echo "Download content zip from GitHub"
     curl -L $CONTENT_URL -o content.zip 
     echo "Unzip orbeon"
-    unzip content.zip $CONTENT_FILE_NAME/orbeon.war
-    rm -rf content.zip
-    mkdir $ORBEON_SOURCE_FOLDER && unzip $ORBEON_FILE_NAME/orbeon.war -d $ORBEON_SOURCE_FOLDER
-    rm -rf $ORBEON_FILE_NAME
+	mkdir contentDir
+    unzip content.zip -d contentDir
+    cd contentDir
+	ls
+	cd ..
+	ls
 }
 
 
