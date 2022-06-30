@@ -34,7 +34,7 @@ function downloadContentAndUnZip(){
 	cp contentDir/content.json src/resources/content.json
 	rm -rf public/img
 	cp -r contentDir/img public
-	find contentDir -type f \( -iname "*.png" -o \) -exec cp '{}' /public \;
+	find contentDir -type f \( -iname "*.png" \) -exec cp '{}' /public \;
 }
 
 
