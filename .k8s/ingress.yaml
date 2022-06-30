@@ -7,9 +7,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - particuliers.dev.insee.io
+        - enquetes.dev.insee.io
   rules:
-    - host: particuliers.dev.insee.io
+    - host: enquetes.dev.insee.io
       http:
         paths:
           - path: /
