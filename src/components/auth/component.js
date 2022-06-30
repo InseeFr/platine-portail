@@ -45,7 +45,7 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
 
   const redirectToQuestionnaire = useCallback(() => {
     redirectToUrl('https://mes-enquetes.dev.insee.io');
-  }, [history, id, urlBackEnd, keycloakAuth]);
+  }, []);
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
