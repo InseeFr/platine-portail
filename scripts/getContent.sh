@@ -33,7 +33,6 @@ function downloadContentAndUnZip(){
 	rm src/resources/content.json
 	cp contentDir/content.json src/resources/content.json
 	rm -rf public/img
-	rm public/*.png
 	cp -r contentDir/img public
 	cp contentDir/*.png public/*.png
 }
