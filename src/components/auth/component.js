@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Loading from 'components/loading/loading';
 import ErrorComponent from 'components/template/error-component';
-import { extractQuestionnaireUrl } from 'utils/url-utils';
+/* import { extractQuestionnaireUrl } from 'utils/url-utils';
 import { getSurveyVerifMailById } from 'utils/read-content';
-import { getQuestionnaireUrl } from 'utils/api';
+import { getQuestionnaireUrl } from 'utils/api'; */
 import useAuth from 'utils/hook/auth';
 import NoSurveyPage from 'components/content/ineligible';
 
@@ -17,7 +17,7 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
     window.location = url;
   };
 
-  const redirectToQuestionnaire = useCallback(async () => {
+  /* const redirectToQuestionnaire = useCallback(async () => {
     try {
       const response = await getQuestionnaireUrl(urlBackEnd, keycloakAuth);
       if (response.data && response.data.length) {
@@ -38,7 +38,11 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
       // including 410 status - no habilitation found
       setError('technique');
     }
-  }, [history, id, urlBackEnd, keycloakAuth]);
+  }, [history, id, urlBackEnd, keycloakAuth]); */
+
+  const redirectToQuestionnaire = () => {
+    redirectToUrl('https://mes-enquetes.dev.insee.io');
+  };
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
