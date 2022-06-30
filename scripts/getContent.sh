@@ -27,14 +27,14 @@ function setUp(){
 function downloadContentAndUnZip(){
     echo "Download content zip from GitHub"
     curl -L $CONTENT_URL -o content.zip 
-    echo "Unzip orbeon"
+    echo "Unzip content"
 	mkdir contentDir
     unzip content.zip -d contentDir
 	rm src/resources/content.json
 	cp contentDir/content.json src/resources/content.json
 	rm -rf public/img
 	cp -r contentDir/img public
-	cp contentDir/*.png public/*.png
+	find contentDir -type f \( -iname "*.png" -o \) -exec cp '{}' /public \;
 }
 
 
