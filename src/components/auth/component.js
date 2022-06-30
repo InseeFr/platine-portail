@@ -42,14 +42,14 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
     }
   }, [history, id, urlBackEnd, keycloakAuth]); */
 
-  const redirectToQuestionnaire = useCallback(() => {
+  const redirectToQuestionnaire = () => {
     redirectToUrl('https://mes-enquetes.dev.insee.io');
-  });
+  };
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
     if (!authenticated && !loading && authError) setError('authentification');
-  }, [authenticated, loading, authError, redirectToQuestionnaire]);
+  }, [authenticated, loading, authError /* , redirectToQuestionnaire */]);
 
   return (
     <>
