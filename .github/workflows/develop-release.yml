@@ -26,8 +26,8 @@ jobs:
           node-version: 14
       - name: script download and install access-content
         run: |
-         chmod +x ./script/getContent.sh
-         ./script/getContent.sh $ACCESS_CONTENT_URL
+         chmod +x ./scripts/getContent.sh
+         ./scripts/getContent.sh $ACCESS_CONTENT_URL
         shell: bash
         env:
           ACCESS_CONTENT_URL: https://github.com/InseeFr/Coleman-Access-Content/releases/download/0.0.1/content.zip     
