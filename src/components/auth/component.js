@@ -1,5 +1,4 @@
-// import React, { useCallback, useEffect, useState } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Loading from 'components/loading/loading';
 import ErrorComponent from 'components/template/error-component';
@@ -12,7 +11,9 @@ import NoSurveyPage from 'components/content/ineligible';
 const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
   const { loading, authenticated, authError } = useAuth(keycloakAuth);
   const [error, setError] = useState(null);
-  const [ineligible, setIneligible] = useState(false);
+  // const [ineligible, setIneligible] = useState(false);
+
+  const ineligible = false;
 
   const redirectToUrl = url => {
     window.location = url;
@@ -41,9 +42,9 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
     }
   }, [history, id, urlBackEnd, keycloakAuth]); */
 
-  const redirectToQuestionnaire = () => {
+  const redirectToQuestionnaire = useCallback(() => {
     redirectToUrl('https://mes-enquetes.dev.insee.io');
-  };
+  });
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
