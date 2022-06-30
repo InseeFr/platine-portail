@@ -1,5 +1,5 @@
 // import React, { useCallback, useEffect, useState } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Loading from 'components/loading/loading';
 import ErrorComponent from 'components/template/error-component';
@@ -43,14 +43,14 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
     }
   }, [history, id, urlBackEnd, keycloakAuth]); */
 
-  const redirectToQuestionnaire = () => {
+  const redirectToQuestionnaire = useCallback(() => {
     redirectToUrl('https://mes-enquetes.dev.insee.io');
-  };
+  }, [history, id, urlBackEnd, keycloakAuth]);
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
     if (!authenticated && !loading && authError) setError('authentification');
-  }, [authenticated, loading, authError /* , redirectToQuestionnaire */]);
+  }, [authenticated, loading, authError, redirectToQuestionnaire]);
 
   return (
     <>
