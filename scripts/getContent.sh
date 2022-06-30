@@ -36,6 +36,7 @@ function downloadContentAndUnZip(){
 	cp -r contentDir/img public
 	find contentDir -type f \( -iname "*.png" \) -exec cp '{}' public \;
 	ls public
+	ls public/img
 }
 
 
