@@ -1,6 +1,6 @@
 {
   "urlColemanPromotionBack_commentaire": "access portal's api url",
   "urlColemanPromotionBack": "${ACCESS_API_URL}",
-  "mySurveysUrl": "${MY_SURVEYS_URL}",
+  "urlSurveys": "${MY_SURVEYS_URL}",
   "authType": "${AUTHENTICATION_MODE}"
 }
