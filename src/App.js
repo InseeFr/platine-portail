@@ -10,7 +10,12 @@ const apiConfigPath = `${window.location.origin}/configuration.json`;
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { urlBackEnd: null, isConfigLoaded: false, keycloakAuth: null };
+    this.state = {
+      urlBackEnd: null,
+      urlMySurveys: null,
+      isConfigLoaded: false,
+      keycloakAuth: null,
+    };
   }
 
   componentDidMount() {
@@ -19,6 +24,7 @@ class App extends Component {
       .then(data =>
         this.setState({
           urlBackEnd: data.urlColemanPromotionBack,
+          urlMySurveys: data.urlSurveys,
           isConfigLoaded: true,
           keycloakAuth: data.authType === 'keycloak',
         })
@@ -26,7 +32,7 @@ class App extends Component {
   }
 
   render() {
-    const { isConfigLoaded, urlBackEnd, keycloakAuth } = this.state;
+    const { isConfigLoaded, urlBackEnd, urlMySurveys, keycloakAuth } = this.state;
 
     return (
       <>
@@ -45,7 +51,12 @@ class App extends Component {
                 <Route
                   path="/:id"
                   render={routeProps => (
-                    <Main {...routeProps} urlBackEnd={urlBackEnd} keycloakAuth={keycloakAuth} />
+                    <Main
+                      {...routeProps}
+                      urlBackEnd={urlBackEnd}
+                      urlMySurveys={urlMySurveys}
+                      keycloakAuth={keycloakAuth}
+                    />
                   )}
                 />
 

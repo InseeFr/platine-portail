@@ -9,7 +9,7 @@ import { getQuestionnaireUrl } from 'utils/api'; */
 import useAuth from 'utils/hook/auth';
 import NoSurveyPage from 'components/content/ineligible';
 
-const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
+const Auth = ({ urlBackEnd, urlMySurveys, id, history, keycloakAuth }) => {
   const { loading, authenticated, authError } = useAuth(keycloakAuth);
   const [error, setError] = useState(null);
   // const [ineligible, setIneligible] = useState(false);
@@ -44,8 +44,8 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
   }, [history, id, urlBackEnd, keycloakAuth]); */
 
   const redirectToQuestionnaire = useCallback(() => {
-    redirectToUrl('https://mes-enquetes.dev.insee.io');
-  }, []);
+    redirectToUrl(urlMySurveys);
+  }, [urlMySurveys]);
 
   useEffect(() => {
     if (authenticated && !loading) redirectToQuestionnaire();
@@ -63,6 +63,7 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
 
 Auth.propTypes = {
   urlBackEnd: PropTypes.string.isRequired,
+  urlMySurveys: PropTypes.string.isRequired,
   keycloakAuth: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   history: PropTypes.shape({

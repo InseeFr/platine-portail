@@ -71,7 +71,8 @@ class Main extends React.Component {
   };
 
   /* return */ render() {
-    const { urlBackEnd, match, keycloakAuth } = this.props;
+    const { urlBackEnd, match, urlMySurveys, keycloakAuth } = this.props;
+
     const { id, showMenu, showResponseButton, showMinimalFooter } = this.state;
 
     return (
@@ -121,6 +122,7 @@ render={routeProps => <ChangePasswordForm {...routeProps} urlBackEnd={urlBackEnd
                       <Auth
                         {...routeProps}
                         urlBackEnd={urlBackEnd}
+                        urlMySurveys={urlMySurveys}
                         id={id}
                         keycloakAuth={keycloakAuth}
                       />
@@ -230,6 +232,7 @@ render={routeProps => <ChangePasswordForm {...routeProps} urlBackEnd={urlBackEnd
 
 Main.propTypes = {
   urlBackEnd: PropTypes.string.isRequired,
+  urlMySurveys: PropTypes.string.isRequired,
   keycloakAuth: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
