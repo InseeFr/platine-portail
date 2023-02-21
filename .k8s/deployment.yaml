@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: coleman-access
-          image: inseefr/coleman-access:0.10.8
+          image: inseefr/coleman-access:0.10.10
