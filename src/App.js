@@ -26,7 +26,7 @@ class App extends Component {
           urlBackEnd: data.urlColemanPromotionBack,
           urlMySurveys: data.urlSurveys,
           isConfigLoaded: true,
-          keycloakAuth: data.authType === 'keycloak',
+          keycloakAuth: data.authType === 'OIDC',
         })
       );
   }
