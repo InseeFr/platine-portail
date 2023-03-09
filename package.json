@@ -1,6 +1,6 @@
 {
   "name": "colempub",
-  "version": "0.10.10",
+  "version": "0.10.11",
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^3.3.7",
