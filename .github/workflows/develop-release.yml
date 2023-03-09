@@ -30,7 +30,7 @@ jobs:
          ./scripts/getContent.sh $ACCESS_CONTENT_URL
         shell: bash
         env:
-          ACCESS_CONTENT_URL: https://github.com/InseeFr/Coleman-Access-Content/releases/download/0.0.1/content.zip     
+          ACCESS_CONTENT_URL: https://github.com/InseeFr/Coleman-Access-Content/releases/download/0.0.2/content.zip     
       - run: yarn
       - run: yarn build
       - name: Upload build
