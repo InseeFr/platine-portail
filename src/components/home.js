@@ -13,9 +13,11 @@ const Home = () => (
         <section>
           <h2>{`Sélectionnez votre enquête`} </h2>
           <div className="surveys-list">
-            {getSurveys().map(element => (
-              <SurveyItem survey={element} />
-            ))}
+            {getSurveys()
+              .filter(survey => survey.id !== 'qoe')
+              .map(element => (
+                <SurveyItem survey={element} />
+              ))}
           </div>
         </section>
       </div>
