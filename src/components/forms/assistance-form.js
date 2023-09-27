@@ -7,7 +7,7 @@ import ErrorComponent from 'components/template/error-component';
 import validate from 'utils/validate-forms';
 import { getSurveyRootUrl } from 'utils/url-utils';
 import { getListOptionsMailAssitance, getListOptionsSurvey } from 'utils/read-content';
-import { idecLength, pathMail } from 'utils/properties';
+import { idecLengthMin, idecLengthMax, pathMail } from 'utils/properties';
 import Axios from 'axios';
 
 class AssistanceForm extends React.Component {
@@ -258,7 +258,7 @@ class AssistanceForm extends React.Component {
           valid={formControls.mailaddressconfirmation.valid}
           maxLength={200}
         />
-        <label htmlFor="idec">{`Identifiant (7 caractères)`}</label>
+        <label htmlFor="idec">{`Identifiant (entre ${idecLengthMin} et ${idecLengthMax} caractères)`}</label>
         <TextInput
           name="idec"
           placeholder={formControls.idec.placeholder}
@@ -266,7 +266,7 @@ class AssistanceForm extends React.Component {
           onChange={this.changeHandler}
           touched={formControls.idec.touched}
           valid={formControls.idec.valid}
-          maxLength={idecLength}
+          maxLength={idecLengthMax}
         />
         <br />
         <label htmlFor="survey">{`Nom de l'enquête`}</label>
