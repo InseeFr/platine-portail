@@ -5,7 +5,7 @@ import PasswordInput from 'components/form-elements/passwordInput';
 import validate from 'utils/validate-forms';
 import isPasswordCompliant from 'utils/validate-password';
 import { getSurveyRootUrl } from 'utils/url-utils';
-import { idecLength, pathPassword, pathUser } from 'utils/properties';
+import { idecLengthMin, idecLengthMax, pathPassword, pathUser } from 'utils/properties';
 import Axios from 'axios';
 
 class ChangePasswordForm extends React.Component {
@@ -23,8 +23,8 @@ class ChangePasswordForm extends React.Component {
           placeholder: '',
           valid: false,
           validationRules: {
-            minLength: idecLength,
-            maxLength: idecLength,
+            minLength: idecLengthMin,
+            maxLength: idecLengthMax,
             isRequired: true,
           },
           touched: false,
@@ -172,7 +172,7 @@ class ChangePasswordForm extends React.Component {
           <h2>{`Formulaire de changement de mot de passe`}</h2>
           <p>{`(*) Champs obligatoires`}</p>
           <label htmlFor="idec">
-            {`Identifiant (7 caractères)`}
+            {`Identifiant (entre ${idecLengthMin} et ${idecLengthMax} caractères)`}
             <sup>*</sup>
           </label>
           <TextInput
@@ -182,8 +182,8 @@ class ChangePasswordForm extends React.Component {
             onChange={this.changeHandler}
             touched={formControls.idec.touched}
             valid={formControls.idec.valid}
-            maxLength={idecLength}
-            errormessage={`Merci de saisir un identifiant de 7 caractères`}
+            maxLength={idecLengthMax}
+            errormessage={`Merci de saisir un identifiant entre ${idecLengthMin} et ${idecLengthMax} caractères`}
           />
           <br />
           <label htmlFor="password">

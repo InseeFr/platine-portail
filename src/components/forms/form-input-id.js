@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { idecLength } from 'utils/properties';
+import { idecLengthMin, idecLengthMax } from 'utils/properties';
 import TextInput from 'components/form-elements/textInput';
 
 export default class FormInputId extends React.Component {
@@ -40,14 +40,14 @@ export default class FormInputId extends React.Component {
         <label htmlFor="idec">
           {`Identifiant `}
           <sup>*</sup>
-          {` (7 caractères, exemple : N9XCZ3L)`}
+          {` (entre ${idecLengthMin} et ${idecLengthMax} caractères, exemple : N9XCZ3L)`}
         </label>
         <TextInput
           id="idec"
           name="idec"
-          maxLength={idecLength}
-          size={idecLength}
-          width={idecLength}
+          maxLength={idecLengthMax}
+          size={idecLengthMax}
+          width={idecLengthMax}
           value={idec}
           valid
           touched
@@ -56,7 +56,7 @@ export default class FormInputId extends React.Component {
         />
         {disable ? (
           <div className="validation-error">
-            {`Merci de renseigner un identifiant qui doit comporter 7 caractères`}
+            {`Merci de renseigner un identifiant qui doit comporter entre ${idecLengthMin} et ${idecLengthMax} caractères`}
           </div>
         ) : (
           <></>

@@ -1,11 +1,10 @@
 {
   "name": "colempub",
-  "version": "0.10.12",
+  "version": "1.0.0",
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap": "^3.3.7",
     "keycloak-js": "^10.0.2",
-    "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.12.0",
     "react-app-polyfill": "^1.0.3",
@@ -18,7 +17,8 @@
     "react-responsive-carousel": "^3.2.9",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "sass": "^1.68.0"
   },
   "scripts": {
     "start": "react-scripts start",
