@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <>
         <Helmet htmlAttributes={{ lang: 'fr' }}>
-          <title>{`Répondre à une enquête internet de l’Insee auprès des particuliers`}</title>
+          <title>{`Répondre à une enquête internet de l’Insee`}</title>
           <meta
             name="description"
             content={`Sélectionnez votre enquête sur le portail de l’Institut national de la statistique et des études économiques`}
