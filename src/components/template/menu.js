@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { urlInseeFr } from 'utils/properties';
 import logoTwitter from 'img/common/logo-twitter.png';
 import { getResultsMenuTitle, getSurveyDetailLink } from 'utils/read-content';
-import { getIsSurveyOnlineById } from '../../utils/read-content';
+import { isSurveyOnLine } from 'utils/api';
 
 function Menu({ id }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 767);
@@ -40,7 +40,7 @@ function Menu({ id }) {
                 to={`/${id}/login`}
                 eventKey={1}
                 id="menuItemRepondre"
-                disabled={!getIsSurveyOnlineById(id)}
+                disabled={!isSurveyOnLine(id)}
               >
                 {`Accéder au questionnaire`}
               </NavItem>
@@ -66,7 +66,7 @@ function Menu({ id }) {
                   <NavItem eventKey={7} href={`/${id}/faq`}>
                     {`Questions/réponses`}
                   </NavItem>
-                  {getIsSurveyOnlineById(id) && (
+                  {isSurveyOnLine(id) && (
                     <NavItem eventKey={8} href={`/${id}/contacter-assistance`}>
                       {`Contacter l'assistance`}
                     </NavItem>

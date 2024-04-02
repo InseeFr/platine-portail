@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { pathEmail, pathGetUrlQuestionnaire, pathUser } from 'utils/properties';
+import { pathEmail, pathGetUrlQuestionnaire, pathUser, pathIsSurveyOnline } from 'utils/properties';
 import { authentication, getHeader } from './utils';
 
 export const getQuestionnaireUrl = (apiUrl, keycloakAuth) => {
@@ -55,5 +55,15 @@ export const putMailToLdap = apiUrl => mail => {
           .catch(e => reject(e));
       })
       .catch(e => reject(new Error(`Error during refreshToken : ${e.message}`)));
+  });
+};
+
+export const isSurveyOnLine = apiUrl => surveyId => {
+  return new Promise((resolve, reject) => {
+    Axios.get(`${apiUrl}${pathIsSurveyOnline}/${surveyId}`, {
+      responseType: 'text',
+    })
+      .then(res => resolve(res))
+      .catch(e => reject(e));
   });
 };

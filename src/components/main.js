@@ -221,7 +221,9 @@ render={routeProps => <ChangePasswordForm {...routeProps} urlBackEnd={urlBackEnd
                   )}
                 </div>
               </div>
-              <div className="col-md-4">{showResponseButton && <ResponseButton id={id} />}</div>
+              <div className="col-md-4">
+                {showResponseButton && <ResponseButton id={id} urlBackEnd={urlBackEnd} />}
+              </div>
             </div>
           </>
         )}
