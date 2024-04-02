@@ -14,7 +14,9 @@ const ResponseButton = ({ id, urlBackEnd }) => {
     const fetchData = async () => {
       try {
         const response = await isSurveyOnLine(urlBackEnd)(id);
-        if (response.data !== undefined && response.data !== '') {
+        if (response.data && response.data.ongoing === false) {
+          setSurveyOnLine(false);
+        } else {
           setSurveyOnLine(true);
         }
       } catch (error) {
