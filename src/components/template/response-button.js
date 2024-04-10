@@ -14,7 +14,7 @@ const ResponseButton = ({ id, urlBackEnd }) => {
     const fetchData = async () => {
       try {
         const response = await isSurveyOnLine(urlBackEnd)(id);
-        if (response.data && response.data.ongoing === false) {
+        if (response.data && response.data.opened === false) {
           setSurveyOnLine(false);
         } else {
           setSurveyOnLine(true);
