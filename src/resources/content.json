@@ -107,6 +107,71 @@
       }
     },
     {
+      "id": "eacei",
+      "isSurveyOnline": false,
+      "messageSurveyOffline": "L'enquête est terminée",
+      "messageInfoSurveyOffline": "",
+      "title": "Survey about eacei",
+      "titleShort": "eacei survey",
+      "verifmail": true,
+      "content": {
+        "description": {
+          "title": "Survey about eacei 2023",
+          "body": "Présentation des objectifs de l'enquête."
+        },
+        "resultats": {
+          "title": "Résultats 2019",
+          "menu-title": "Résultats de l'enquête 2019",
+          "picture-url": "img/chi_resultats.png",
+          "legende": "L'enquête donne lieu à de nombreuses publications.",
+          "link-url": "https://en.wikipedia.org/wiki/Chicken"
+        },
+        "enquete-en-detail": {
+          "menu-link": "https://en.wikipedia.org/wiki/Chicken"
+        },
+
+        "donnees-personnelles": {
+          "cartouche": "Vos réponses seront conservées pendant cinq ans à compter de la fin de la collecte pour les besoins de l’enquête.",
+          "context": ""
+        },
+        "a-quoi-servent-vos-reponses": {
+          "body": "Vos réponses nous sont fort utiles."
+        },
+        "faq-data": [
+          {
+            "title": "Est-ce obligatoire de répondre ?",
+            "body": "Oui, l’enquête est obligatoire."
+          },
+          {
+            "title": "Pourquoi est-ce important de répondre ?",
+            "body": "Afin de prendre en compte la diversité des situations et d'assurer ainsi la qualité statistique des résultats, il est très important que votre foyer réponde à cette enquête."
+          },
+          {
+            "title": "Quand aura-t-on les résultats de l’enquête ?",
+            "body": "Les données seront exploitées dès la fin de l'enquête."
+          }
+        ]
+      },
+      "configuration": {
+        "listOptionsObjetMailAssistance": [
+          {
+            "auth": true,
+            "value": "affichageQuestionnaire",
+            "displayValue": "Affichage du questionnaire"
+          },
+          {
+            "auth": true,
+            "value": "comprehensionQuestionnaire",
+            "displayValue": "Compréhension du questionnaire"
+          },
+          { "auth": true, "value": "autre", "displayValue": "Autre" },
+          { "auth": false, "value": "perteMotDePasse", "displayValue": "Mot de passe oublié" },
+          { "auth": false, "value": "perteIdentifiant", "displayValue": "Identifiant oublié" },
+          { "auth": false, "value": "autre", "displayValue": "Autre" }
+        ]
+      }
+    },
+    {
       "id": "qoe",
       "isSurveyOnline": false,
       "messageSurveyOffline": "L'enquête est terminée",
@@ -218,6 +283,71 @@
           {
             "title": "Est-ce que je peux remplir le questionnaire en plusieurs fois ?",
             "body": "Oui. Pour cela, il vous suffit de commencer à remplir le questionnaire, d'enregistrer les données en cliquant sur le bouton « Quitter et revenir plus tard » et de fermer le questionnaire.\n\nVous pourrez ensuite vous reconnecter sur ce questionnaire et continuer à compléter le questionnaire, à partir de l'endroit où vous vous étiez interrompu."
+          }
+        ]
+      },
+      "configuration": {
+        "listOptionsObjetMailAssistance": [
+          {
+            "auth": true,
+            "value": "affichageQuestionnaire",
+            "displayValue": "Affichage du questionnaire"
+          },
+          {
+            "auth": true,
+            "value": "comprehensionQuestionnaire",
+            "displayValue": "Compréhension du questionnaire"
+          },
+          { "auth": true, "value": "autre", "displayValue": "Autre" },
+          { "auth": false, "value": "perteMotDePasse", "displayValue": "Mot de passe oublié" },
+          { "auth": false, "value": "perteIdentifiant", "displayValue": "Identifiant oublié" },
+          { "auth": false, "value": "autre", "displayValue": "Autre" }
+        ]
+      }
+    },
+    {
+      "id": "eec",
+      "isSurveyOnline": false,
+      "messageSurveyOffline": "L'enquête est terminée",
+      "messageInfoSurveyOffline": "",
+      "title": "Survey about Chicken",
+      "titleShort": "Chicken survey",
+      "verifmail": true,
+      "content": {
+        "description": {
+          "title": "Survey about Chicken 2023",
+          "body": "Présentation des objectifs de l'enquête."
+        },
+        "resultats": {
+          "title": "Résultats 2019",
+          "menu-title": "Résultats de l'enquête 2019",
+          "picture-url": "img/chi_resultats.png",
+          "legende": "L'enquête donne lieu à de nombreuses publications.",
+          "link-url": "https://en.wikipedia.org/wiki/Chicken"
+        },
+        "enquete-en-detail": {
+          "menu-link": "https://en.wikipedia.org/wiki/Chicken"
+        },
+
+        "donnees-personnelles": {
+          "cartouche": "Vos réponses seront conservées pendant cinq ans à compter de la fin de la collecte pour les besoins de l’enquête.",
+          "context": ""
+        },
+        "a-quoi-servent-vos-reponses": {
+          "body": "Vos réponses nous sont fort utiles."
+        },
+        "faq-data": [
+          {
+            "title": "Est-ce obligatoire de répondre ?",
+            "body": "Oui, l’enquête est obligatoire."
+          },
+          {
+            "title": "Pourquoi est-ce important de répondre ?",
+            "body": "Afin de prendre en compte la diversité des situations et d'assurer ainsi la qualité statistique des résultats, il est très important que votre foyer réponde à cette enquête."
+          },
+          {
+            "title": "Quand aura-t-on les résultats de l’enquête ?",
+            "body": "Les données seront exploitées dès la fin de l'enquête."
           }
         ]
       },
