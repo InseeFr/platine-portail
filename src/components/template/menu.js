@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { urlInseeFr } from 'utils/properties';
 import logoTwitter from 'img/common/logo-twitter.png';
 import { getResultsMenuTitle, getSurveyDetailLink } from 'utils/read-content';
-import { isSurveyOnLine } from 'utils/api';
+import ReactLoading from 'react-loading';
 
-function Menu({ id }) {
+function Menu({ id, isSurveyOnLine }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 767);
   const updateFooterMenu = () => {
     if (window.innerWidth <= 767) {
@@ -35,16 +35,21 @@ function Menu({ id }) {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem
-                href={`/${id}/login`}
-                to={`/${id}/login`}
-                eventKey={1}
-                id="menuItemRepondre"
-                disabled={!isSurveyOnLine(id)}
-              >
-                {`Accéder au questionnaire`}
-              </NavItem>
-
+              {isSurveyOnLine === undefined ? 
+                <NavItem style={{display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <ReactLoading type="spin" color={`#0f417a`} width={"30px"} />
+                </NavItem>
+                : 
+                <NavItem
+                  href={`/${id}/login`}
+                  to={`/${id}/login`}
+                  eventKey={1}
+                  id="menuItemRepondre"
+                  disabled={!isSurveyOnLine}
+                >
+                  {`Accéder au questionnaire`}
+                </NavItem>
+              }
               <LinkContainer to={`/${id}/donnees-personnelles`}>
                 <NavItem eventKey={2}>{`Données personnelles`}</NavItem>
               </LinkContainer>
@@ -66,7 +71,7 @@ function Menu({ id }) {
                   <NavItem eventKey={7} href={`/${id}/faq`}>
                     {`Questions/réponses`}
                   </NavItem>
-                  {isSurveyOnLine(id) && (
+                  {isSurveyOnLine && (
                     <NavItem eventKey={8} href={`/${id}/contacter-assistance`}>
                       {`Contacter l'assistance`}
                     </NavItem>
