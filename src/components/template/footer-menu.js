@@ -4,9 +4,8 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import logoTwitter from 'img/common/logo-twitter.png';
 import { urlInseeFr } from 'utils/properties';
-import { isSurveyOnLine } from 'utils/api';
 
-function FooterMenu({ path, home, id }) {
+function FooterMenu({ path, home, id, isSurveyOnLine }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 767);
   const updateFooterMenu = () => {
     if (window.innerWidth <= 767) {
@@ -44,7 +43,7 @@ function FooterMenu({ path, home, id }) {
               <LinkContainer to={`/${id}/faq`}>
                 <NavItem eventKey={1}>{`Questions/réponses`}</NavItem>
               </LinkContainer>
-              {isSurveyOnLine(id) && (
+              {isSurveyOnLine && (
                 <LinkContainer to={`/${id}/contacter-assistance`}>
                   <NavItem eventKey={2}>{`Contacter l'assistance`}</NavItem>
                 </LinkContainer>
