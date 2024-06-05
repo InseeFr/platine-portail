@@ -14,7 +14,7 @@ const ResponseButton = ({ id }) => (
         <button
           type="button"
           className="btn btn-lg"
-          id="boutonRepondre"
+          id="accessButton"
           disabled={!getIsSurveyOnlineById(id)}
         >
           {'Accéder au questionnaire'}
