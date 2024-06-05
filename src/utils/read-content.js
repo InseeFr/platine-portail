@@ -32,6 +32,7 @@ export const idExists = id => content.specifique.find(e => e.id === id) !== unde
 export const getContentById = id => content.specifique.find(e => e.id === id).content;
 export const getSurveyTitleById = id => content.specifique.find(e => e.id === id).title;
 export const getSurveyTitleShortById = id => content.specifique.find(e => e.id === id).titleShort;
+export const getIsSurveyOnlineById = id => content.specifique.find(e => e.id === id).isSurveyOnline;
 export const getSurveyOfflineMessageById = id =>
   content.specifique.find(e => e.id === id).messageSurveyOffline;
 export const getSurveyOfflineMessageInfoById = id =>
@@ -74,9 +75,9 @@ export const getListOptionsSurvey = id =>
       };
     });
 
-// site enquête non accessible
+  // site enquête non accessible
 
-export const getAccessibleContentById = id => content.specifique.find(e => e.id === id).accessible;
+  export const getAccessibleContentById = id => content.specifique.find(e => e.id === id).accessible;
 
 // faq
 export const getFaqData = id =>

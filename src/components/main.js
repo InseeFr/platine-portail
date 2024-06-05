@@ -18,7 +18,7 @@ import AssistanceForm from 'components/forms/assistance-form';
 import AssistanceRouter from 'components/forms/assistance-router';
 import ControlEmailForm from 'components/forms/mail-modif';
 import DonneesPersonnelles from './content/donnees-personnelles';
-import { isSurveyOnLine } from 'utils/api';
+
 import {
   idExists,
   getSurveyTitleById,
@@ -40,9 +40,6 @@ class Main extends React.Component {
       showResponseButton: true,
       showMinimalFooter: false,
       id: match.params.id,
-      isSurveyOnLine: undefined,
-      messageSurveyOffline: "",
-      messageInfoSurveyOffline: ""
     };
   }
 
@@ -73,31 +70,10 @@ class Main extends React.Component {
     }
   };
 
-  fetchData = async () => {
-    try {
-      const response = await isSurveyOnLine(this.props.urlBackEnd)(this.state.id);
-      if (response.data && response.data.opened === false) {
-        this.setState({isSurveyOnLine: false})
-        this.setState({messageSurveyOffline: response.data.messageSurveyOffline})
-        this.setState({messageInfoSurveyOffline: response.data.messageInfoSurveyOffline})
-      } else {
-        this.setState({isSurveyOnLine: true})
-      }
-    } catch (error) {
-      console.error('Error checking survey online:', error);
-      this.setState({isSurveyOnLine: false})
-    }
-  };
-
-  componentDidMount = () => {
-    this.fetchData();
-  }
-
-
   /* return */ render() {
     const { urlBackEnd, match, urlMySurveys, keycloakAuth } = this.props;
 
-    const { id, showMenu, showResponseButton, showMinimalFooter , isSurveyOnLine, messageSurveyOffline,  messageInfoSurveyOffline} = this.state;
+    const { id, showMenu, showResponseButton, showMinimalFooter } = this.state;
 
     return (
       <>
@@ -129,7 +105,7 @@ class Main extends React.Component {
               )}
             />
 
-            {showMenu && <Menu id={id} link={urlBackEnd} isSurveyOnLine={isSurveyOnLine} />}
+            {showMenu && <Menu id={id} link={urlBackEnd} />}
             <div className="row">
               <div className="col-md-8 text-justify">
                 {/* <Route
@@ -239,22 +215,13 @@ render={routeProps => <ChangePasswordForm {...routeProps} urlBackEnd={urlBackEnd
                     component={routeProps => <Faq {...routeProps} enquete={id} />}
                   />
                   {!showMinimalFooter ? (
-                    <FooterMenu home={false} path={match.url} id={id} isSurveyOnLine={isSurveyOnLine} />
+                    <FooterMenu home={false} path={match.url} id={id} />
                   ) : (
-                    <FooterMenu home path={match.url} id={id} isSurveyOnLine={isSurveyOnLine}/>
+                    <FooterMenu home path={match.url} id={id} />
                   )}
                 </div>
               </div>
-              <div className="col-md-4">
-                {showResponseButton && 
-                  <ResponseButton 
-                    id={id} 
-                    isSurveyOnLine={isSurveyOnLine} 
-                    messageSurveyOffline={messageSurveyOffline} 
-                    messageInfoSurveyOffline={messageInfoSurveyOffline} 
-                  />
-                }
-              </div>
+              <div className="col-md-4">{showResponseButton && <ResponseButton id={id} />}</div>
             </div>
           </>
         )}

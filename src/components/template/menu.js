@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { urlInseeFr } from 'utils/properties';
 import logoTwitter from 'img/common/logo-twitter.png';
 import { getResultsMenuTitle, getSurveyDetailLink } from 'utils/read-content';
-import ReactLoading from 'react-loading';
+import { getIsSurveyOnlineById } from '../../utils/read-content';
 
-function Menu({ id, isSurveyOnLine }) {
+function Menu({ id }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 767);
   const updateFooterMenu = () => {
     if (window.innerWidth <= 767) {
@@ -35,21 +35,16 @@ function Menu({ id, isSurveyOnLine }) {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              {isSurveyOnLine === undefined ? 
-                <NavItem style={{display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <ReactLoading type="spin" color={`#0f417a`} width={"30px"} />
-                </NavItem>
-                : 
-                <NavItem
-                  href={`/${id}/login`}
-                  to={`/${id}/login`}
-                  eventKey={1}
-                  id="menuItemRepondre"
-                  disabled={!isSurveyOnLine}
-                >
-                  {`Accéder au questionnaire`}
-                </NavItem>
-              }
+              <NavItem
+                href={`/${id}/login`}
+                to={`/${id}/login`}
+                eventKey={1}
+                id="menuItemRepondre"
+                disabled={!getIsSurveyOnlineById(id)}
+              >
+                {`Accéder au questionnaire`}
+              </NavItem>
+
               <LinkContainer to={`/${id}/donnees-personnelles`}>
                 <NavItem eventKey={2}>{`Données personnelles`}</NavItem>
               </LinkContainer>
@@ -71,7 +66,7 @@ function Menu({ id, isSurveyOnLine }) {
                   <NavItem eventKey={7} href={`/${id}/faq`}>
                     {`Questions/réponses`}
                   </NavItem>
-                  {isSurveyOnLine && (
+                  {getIsSurveyOnlineById(id) && (
                     <NavItem eventKey={8} href={`/${id}/contacter-assistance`}>
                       {`Contacter l'assistance`}
                     </NavItem>

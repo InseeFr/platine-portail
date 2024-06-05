@@ -14,8 +14,6 @@ export const pathUser = '/repondant';
 /* Path send mail */
 export const pathMail = '/e-mail';
 
-export const pathIsSurveyOnline = '/is-survey-online';
-
 /*Path control mail*/
 
 export const pathEmail = '/mail';
