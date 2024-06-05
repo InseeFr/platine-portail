@@ -94,8 +94,27 @@ h2 {
 .btn-md {
   margin-right: 10px;
 }
+
+#survey-item-link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+#boutonRepondre {
+  display: flex;
+  flex-direction: column;
+  white-space: inherit;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+}
+
 #menuItemRepondre,
 #boutonRepondre,
+#accessButton,
 #boutonMailConfirm,
 #boutonMailModif,
 #formSend,
@@ -105,10 +124,12 @@ h2 {
 }
 #menuItemRepondre:hover,
 #boutonRepondre:hover,
+#accessButton:hover,
 #boutonMailConfirm:hover,
 #boutonMailModif:hover,
 #menuItemRepondre:focus,
 #boutonRepondre:focus,
+#accessButton:focus,
 #boutonMailConfirm:focus,
 #boutonMailModif:focus,
 #formSend:hover,
@@ -321,14 +342,18 @@ div.banner-top h1 {
 
 /* survey item */
 .surveys-list {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top:2rem;
 }
+
 .survey-item {
-  text-align: center;
-  margin: 5px;
-  display: inline-block;
+  width: 30%;
+  min-width: 300px;
   border-radius: 7px;
-  width: auto;
   background-color: $blue-insee;
   color: $yellow-insee;
 
@@ -340,7 +365,7 @@ div.banner-top h1 {
     text-decoration: none;
   }
   span {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 }
 

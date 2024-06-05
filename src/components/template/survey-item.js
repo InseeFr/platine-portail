@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const SurveyItem = ({ survey }) => (
   <div className="survey-item">
-    <Link to={`/${survey.id}`} tabIndex="-1">
-      <button type="button" className="btn btn-lg" id="boutonRepondre">
+    <Link to={`/${survey.id}`} tabIndex="-1" className='survey-item-link'>
+      <button type="button" className="btn" id="boutonRepondre">
         <span>{survey.titleShort}</span>
         <br />
         {`${window.location.host}/${survey.id}`}
