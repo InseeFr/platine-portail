@@ -6,7 +6,7 @@ import SurveyItem from 'components/template/survey-item';
 
 const Home = () => (
   <div id="main">
-    <Banner title={`Portail de réponse aux enquêtes de la statistique publique`} />
+    <Banner title={`Portail de réponse\r\n aux enquêtes de la statistique publique`} />
 
     <div className="row">
       <div className="col-md-12 text-justify">

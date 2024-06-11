@@ -31,9 +31,11 @@ class Faq extends Component {
     const { itemDisplayed } = this.state;
     return (
       <section>
-        <h2>{`Questions générales`}</h2>
+        {faqData.filter(f => f.type === 'general' && f.body !== undefined).length > 0 && (
+          <h2>{`Questions générales`}</h2>
+        )}
         {faqData.map(({ id, title, body, type }) =>
-          type === 'general' ? (
+          type === 'general' && body !== undefined ? (
             <FaqItem
               id={id}
               key={`faq-item-${id}`}

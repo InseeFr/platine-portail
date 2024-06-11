@@ -15,6 +15,8 @@ export const getA11yTitle = () => getGenericContent().accessibilite.title;
 
 export const getIneligibleText = () => getGenericContent().ineligible.body;
 
+export const getUnauthorizedText = () => getGenericContent().unauthorized.body;
+
 export const getImportantInfo = () => getGeneric().importantInfo;
 
 export const getSurveys = () =>
@@ -75,21 +77,34 @@ export const getListOptionsSurvey = id =>
       };
     });
 
-  // site enquête non accessible
+// site enquête non accessible
 
-  export const getAccessibleContentById = id => content.specifique.find(e => e.id === id).accessible;
+export const getAccessibleContentById = id => content.specifique.find(e => e.id === id).accessible;
 
 // faq
 export const getFaqData = id =>
-  getContentById(id)
-    ['faq-data'].map(element => {
-      return { ...element, type: 'specific' };
-    })
-    .concat(
-      getGenericContent()['faq-data'].map(element => {
-        return { ...element, type: 'general' };
-      })
-    )
-    .map((element, index) => {
-      return { ...element, id: index + 1 };
-    });
+  getContentById(id)['faq-data-general'] === undefined
+    ? getContentById(id)
+        ['faq-data'].map(element => {
+          return { ...element, type: 'specific' };
+        })
+        .concat(
+          getGenericContent()['faq-data'].map(element => {
+            return { ...element, type: 'general' };
+          })
+        )
+        .map((element, index) => {
+          return { ...element, id: index + 1 };
+        })
+    : getContentById(id)
+        ['faq-data'].map(element => {
+          return { ...element, type: 'specific' };
+        })
+        .concat(
+          getContentById(id)['faq-data-general'].map(element => {
+            return { ...element, type: 'general' };
+          })
+        )
+        .map((element, index) => {
+          return { ...element, id: index + 1 };
+        });
