@@ -37,6 +37,9 @@
       ],
       "ineligible": {
         "body": "Vous n'êtes pas éligible pour répondre à une enquête."
+      },
+      "unauthorized": {
+        "body": "Vous n'êtes pas concerné par une enquête de la statistique publique."
       }
     }
   },
@@ -220,6 +223,151 @@
             "body": "Oui. Pour cela, il vous suffit de commencer à remplir le questionnaire, d'enregistrer les données en cliquant sur le bouton « Quitter et revenir plus tard » et de fermer le questionnaire.\n\nVous pourrez ensuite vous reconnecter sur ce questionnaire et continuer à compléter le questionnaire, à partir de l'endroit où vous vous étiez interrompu."
           }
         ]
+      },
+      "configuration": {
+        "listOptionsObjetMailAssistance": [
+          {
+            "auth": true,
+            "value": "affichageQuestionnaire",
+            "displayValue": "Affichage du questionnaire"
+          },
+          {
+            "auth": true,
+            "value": "comprehensionQuestionnaire",
+            "displayValue": "Compréhension du questionnaire"
+          },
+          { "auth": true, "value": "autre", "displayValue": "Autre" },
+          { "auth": false, "value": "perteMotDePasse", "displayValue": "Mot de passe oublié" },
+          { "auth": false, "value": "perteIdentifiant", "displayValue": "Identifiant oublié" },
+          { "auth": false, "value": "autre", "displayValue": "Autre" }
+        ]
+      }
+    },
+    {
+      "id": "bus",
+      "isSurveyOnline": true,
+      "messageSurveyOffline": "L'enquête est terminée",
+      "messageInfoSurveyOffline": "L'accés au questionnaire est actuellement impossible",
+      "title": "Survey about Armadillos",
+      "titleShort": "Armadillo Survey",
+      "verifmail": false,
+      "content": {
+        "description": {
+          "title": "Survey about Armadillos 2023",
+          "body": "Présentation des objectifs de l'enquête."
+        },
+        "resultats": {
+          "title": "Résultats de l'enquête 2019",
+          "menu-title": "Résultats de l'enquête 2019",
+          "picture-url": "img/arm_resultats.png",
+          "legende": "L'enquête donne lieu à de nombreuses publications.",
+          "link-url": "https://en.wikipedia.org/wiki/Armadillo"
+        },
+        "enquete-en-detail": {
+          "menu-link": "https://en.wikipedia.org/wiki/Armadillo"
+        },
+
+        "donnees-personnelles": {
+          "cartouche": "Vos réponses seront conservées pendant cinq ans à compter de la fin de la collecte pour les besoins de l’enquête.",
+          "context": ""
+        },
+        "a-quoi-servent-vos-reponses": {
+          "body": "Vos réponses nous sont fort utiles."
+        },
+        "faq-data": [
+          {
+            "title": "Comment va se dérouler l'enquête ?",
+            "body": "La période de collecte dure trois semaines. Deux modes de réponse sont proposés : soit Internet sur un site sécurisé, soit le téléphone avec un enquêteur.\n\n* Vous pouvez répondre par Internet en vous connectant au questionnaire en ligne, à l’aide de l’identifiant et du mot de passe figurant sur la lettre de lancement de l'enquête. Le temps moyen de réponse est de moins de 10 minutes par questionnaire individuel. Vous pourrez éventuellement interrompre la saisie du questionnaire et la reprendre là où vous l’aurez arrêtée.\n\n* Si vous n'avez pas répondu sur Internet au bout de quelques jours, un enquêteur de l'Insee vous appellera pour vous proposer de réaliser l'enquête par téléphone. Vous pourrez cependant encore répondre par Internet si vous le préférez."
+          },
+          {
+            "title": "Impossibilité d'accéder au questionnaire - message « Identifiant ou mot de passe erroné »",
+            "body": "L'identifiant et le mot de passe vous permettant d'accéder pour la première fois au questionnaire de l'enquête sont inscrits sur le courriel que vous avez reçu de l'Insee. À la saisie du mot de passe, il faut respecter les minuscules, majuscules et caractères spéciaux.\n\nLors de la première connexion, on vous demandera de changer votre mot de passe. "
+          },
+          {
+            "title": "J'ai fermé le questionnaire Internet en cours de remplissage, que faire ?",
+            "body": "Si le questionnaire s'est fermé alors que vous n'aviez pas terminé de le remplir, les données que vous avez saisies restent accessibles et vous pouvez continuer de répondre à ce questionnaire. Pour cela, connectez-vous à nouveau sur le site de l'enquête avec votre identifiant et votre mot de passe. Vous pourrez retrouver le questionnaire là où vous vous étiez arrêté.\n\nVos données sont automatiquement sauvegardées à chaque fois que vous cliquez sur le bouton « Suivant ».\n\nEn cas d'inactivité prolongée et pour des raisons de sécurité, le questionnaire se ferme automatiquement au bout de 15 minutes. Vous pouvez de nouveau y accéder en vous reconnectant sur le site de l'enquête avec vos identifiants de connexion."
+          },
+          {
+            "title": "Est-ce que je peux remplir le questionnaire en plusieurs fois ?",
+            "body": "Oui. Pour cela, il vous suffit de commencer à remplir le questionnaire, d'enregistrer les données en cliquant sur le bouton « Quitter et revenir plus tard » et de fermer le questionnaire.\n\nVous pourrez ensuite vous reconnecter sur ce questionnaire et continuer à compléter le questionnaire, à partir de l'endroit où vous vous étiez interrompu."
+          }
+        ],
+        "faq-data-general": [
+          {
+            "title": "Puis je mettre du contenu genérique mais spécifique?",
+            "body": "Oui. Pour cela, il vous suffit de  rajouter un vecteur faq-data-general dans le json spécifique de l'enquête"
+          }
+        ]
+      },
+      "configuration": {
+        "listOptionsObjetMailAssistance": [
+          {
+            "auth": true,
+            "value": "affichageQuestionnaire",
+            "displayValue": "Affichage du questionnaire"
+          },
+          {
+            "auth": true,
+            "value": "comprehensionQuestionnaire",
+            "displayValue": "Compréhension du questionnaire"
+          },
+          { "auth": true, "value": "autre", "displayValue": "Autre" },
+          { "auth": false, "value": "perteMotDePasse", "displayValue": "Mot de passe oublié" },
+          { "auth": false, "value": "perteIdentifiant", "displayValue": "Identifiant oublié" },
+          { "auth": false, "value": "autre", "displayValue": "Autre" }
+        ]
+      }
+    },
+    {
+      "id": "nes",
+      "isSurveyOnline": true,
+      "messageSurveyOffline": "L'enquête est terminée",
+      "messageInfoSurveyOffline": "L'accés au questionnaire est actuellement impossible",
+      "title": "Survey about Armadillos",
+      "titleShort": "Armadillo Survey",
+      "verifmail": false,
+      "content": {
+        "description": {
+          "title": "Survey about Armadillos 2023",
+          "body": "Présentation des objectifs de l'enquête."
+        },
+        "resultats": {
+          "title": "Résultats de l'enquête 2019",
+          "menu-title": "Résultats de l'enquête 2019",
+          "picture-url": "img/arm_resultats.png",
+          "legende": "L'enquête donne lieu à de nombreuses publications.",
+          "link-url": "https://en.wikipedia.org/wiki/Armadillo"
+        },
+        "enquete-en-detail": {
+          "menu-link": "https://en.wikipedia.org/wiki/Armadillo"
+        },
+
+        "donnees-personnelles": {
+          "cartouche": "Vos réponses seront conservées pendant cinq ans à compter de la fin de la collecte pour les besoins de l’enquête.",
+          "context": ""
+        },
+        "a-quoi-servent-vos-reponses": {
+          "body": "Vos réponses nous sont fort utiles."
+        },
+        "faq-data": [
+          {
+            "title": "Comment va se dérouler l'enquête ?",
+            "body": "La période de collecte dure trois semaines. Deux modes de réponse sont proposés : soit Internet sur un site sécurisé, soit le téléphone avec un enquêteur.\n\n* Vous pouvez répondre par Internet en vous connectant au questionnaire en ligne, à l’aide de l’identifiant et du mot de passe figurant sur la lettre de lancement de l'enquête. Le temps moyen de réponse est de moins de 10 minutes par questionnaire individuel. Vous pourrez éventuellement interrompre la saisie du questionnaire et la reprendre là où vous l’aurez arrêtée.\n\n* Si vous n'avez pas répondu sur Internet au bout de quelques jours, un enquêteur de l'Insee vous appellera pour vous proposer de réaliser l'enquête par téléphone. Vous pourrez cependant encore répondre par Internet si vous le préférez."
+          },
+          {
+            "title": "Impossibilité d'accéder au questionnaire - message « Identifiant ou mot de passe erroné »",
+            "body": "L'identifiant et le mot de passe vous permettant d'accéder pour la première fois au questionnaire de l'enquête sont inscrits sur le courriel que vous avez reçu de l'Insee. À la saisie du mot de passe, il faut respecter les minuscules, majuscules et caractères spéciaux.\n\nLors de la première connexion, on vous demandera de changer votre mot de passe. "
+          },
+          {
+            "title": "J'ai fermé le questionnaire Internet en cours de remplissage, que faire ?",
+            "body": "Si le questionnaire s'est fermé alors que vous n'aviez pas terminé de le remplir, les données que vous avez saisies restent accessibles et vous pouvez continuer de répondre à ce questionnaire. Pour cela, connectez-vous à nouveau sur le site de l'enquête avec votre identifiant et votre mot de passe. Vous pourrez retrouver le questionnaire là où vous vous étiez arrêté.\n\nVos données sont automatiquement sauvegardées à chaque fois que vous cliquez sur le bouton « Suivant ».\n\nEn cas d'inactivité prolongée et pour des raisons de sécurité, le questionnaire se ferme automatiquement au bout de 15 minutes. Vous pouvez de nouveau y accéder en vous reconnectant sur le site de l'enquête avec vos identifiants de connexion."
+          },
+          {
+            "title": "Est-ce que je peux remplir le questionnaire en plusieurs fois ?",
+            "body": "Oui. Pour cela, il vous suffit de commencer à remplir le questionnaire, d'enregistrer les données en cliquant sur le bouton « Quitter et revenir plus tard » et de fermer le questionnaire.\n\nVous pourrez ensuite vous reconnecter sur ce questionnaire et continuer à compléter le questionnaire, à partir de l'endroit où vous vous étiez interrompu."
+          }
+        ],
+        "faq-data-general": [{}]
       },
       "configuration": {
         "listOptionsObjetMailAssistance": [

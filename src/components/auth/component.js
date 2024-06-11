@@ -7,11 +7,13 @@ import { getSurveyVerifMailById } from 'utils/read-content';
 import { getQuestionnaireUrl } from 'utils/api';
 import useAuth from 'utils/hook/auth';
 import NoSurveyPage from 'components/content/ineligible';
+import UnauthorizedPage from 'components/content/unauthorized';
 
 const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
   const { loading, authenticated, authError } = useAuth(keycloakAuth);
   const [error, setError] = useState(null);
   const [ineligible, setIneligible] = useState(false);
+  const [unauthorized, setUnauthorized] = useState(false);
 
   const redirectToUrl = url => {
     window.location = url;
@@ -35,8 +37,11 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
         setIneligible(true);
       }
     } catch (e) {
-      // including 410 status - no habilitation found
-      setError('technique');
+      if (e.response.status === 401 || e.response.status === 403 || e.response.status === 404) {
+        setUnauthorized(true);
+      } else {
+        setError('technique');
+      }
     }
   }, [history, id, urlBackEnd, keycloakAuth]);
 
@@ -50,6 +55,7 @@ const Auth = ({ urlBackEnd, id, history, keycloakAuth }) => {
       {loading && <Loading id={id} />}
       {error && <ErrorComponent error={error} />}
       {ineligible && <NoSurveyPage id={id} />}
+      {unauthorized && <UnauthorizedPage id={id} />}
     </>
   );
 };
