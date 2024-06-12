@@ -11,19 +11,19 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js 14C
-        uses: actions/setup-node@v1
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 18
       - run: yarn --frozen-lockfile
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 18
       - name: script download and install access-content
         run: |
          chmod +x ./scripts/getContent.sh
@@ -34,7 +34,7 @@ jobs:
       - run: yarn
       - run: yarn build
       - name: Upload build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: build
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Get current version
         id: version
         uses: notiz-dev/github-action-json-property@release
