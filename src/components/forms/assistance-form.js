@@ -146,6 +146,7 @@ class AssistanceForm extends React.Component {
     const formData = {
       auth,
       idue: auth ? params.get('idue') : '',
+      questioningId: auth ? params.get('questioningId') : '',
       name: formControls.name.value,
       idec: formControls.idec.value,
       phonenumber: formControls.phonenumber.value,
