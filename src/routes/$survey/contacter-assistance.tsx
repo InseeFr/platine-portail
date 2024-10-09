@@ -9,7 +9,7 @@ type SupportSearch = {
   questioningId?: string;
 };
 
-export const Route = createFileRoute("/$survey/assistance")({
+export const Route = createFileRoute("/$survey/contacter-assistance")({
   validateSearch: (search: Record<string, unknown>): SupportSearch => {
     return {
       questioningId: (search.questioningId as string) || undefined,
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/$survey/assistance")({
 
 function SupportIndex() {
   const { t } = useTranslation("Support");
-  const search = useSearch({ from: "/$survey/assistance" });
+  const search = useSearch({ from: "/$survey/contacter-assistance" });
   const { survey } = Route.useParams();
   const { isAuthenticated } = useIsAuthenticated();
 

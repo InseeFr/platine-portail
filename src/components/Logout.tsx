@@ -2,9 +2,17 @@ import { declareComponentKeys, useTranslation } from "i18n/i18n";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { fr } from "@codegouvfr/react-dsfr";
 import { PadlockIcon } from "assets/Padlock";
+import { useOidc } from "hooks/useAuth";
 
 export const Logout = () => {
   const { t } = useTranslation("Logout");
+  const { login } = useOidc();
+
+  const onClick = () => {
+    if (login) {
+      login({ doesCurrentHrefRequiresAuth: false });
+    }
+  };
 
   return (
     <section>
@@ -23,13 +31,7 @@ export const Logout = () => {
 
           <p className={fr.cx("fr-text--lead")}>{t("answer saved")}</p>
           <p className={fr.cx("fr-text--lead", "fr-text--bold")}>{t("send message warning")}</p>
-          <Button
-            linkProps={{
-              to: "/connexion",
-            }}
-          >
-            {t("reconnect")}
-          </Button>
+          <Button onClick={onClick}>{t("reconnect")}</Button>
         </div>
         <div className={fr.cx("fr-col-3", "fr-hidden", "fr-unhidden-lg", "fr-col-offset-1")}>
           <PadlockIcon />

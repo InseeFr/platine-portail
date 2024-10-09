@@ -2,6 +2,7 @@ import { declareComponentKeys, useTranslation } from "i18n";
 import { ContentSurvey } from "types/ContentSurvey";
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import { fr } from "@codegouvfr/react-dsfr";
+import { Markdown } from "components/Markdown";
 
 type Props = {
   faqData: ContentSurvey["content"]["faq-data"];
@@ -18,7 +19,7 @@ export const Faq = ({ faqData, generalFaqData }: Props) => {
       <div className={fr.cx("fr-accordions-group", "fr-pb-4w")}>
         {generalFaqData.map(data => (
           <Accordion key={data.title} label={data.title}>
-            {data.body}
+            <Markdown content={data.body} />
           </Accordion>
         ))}
       </div>
@@ -27,7 +28,7 @@ export const Faq = ({ faqData, generalFaqData }: Props) => {
       <div className={fr.cx("fr-accordions-group", "fr-mb-4w", "fr-mb-md-0")}>
         {faqData.map(data => (
           <Accordion key={data.title} label={data.title}>
-            {data.body}
+            <Markdown content={data.body} />
           </Accordion>
         ))}
       </div>

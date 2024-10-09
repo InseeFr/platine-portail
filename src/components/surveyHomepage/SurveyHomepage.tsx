@@ -151,7 +151,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
                     ...sideMenuItems,
                     {
                       linkProps: {
-                        to: "/$survey/assistance",
+                        to: "/$survey/contacter-assistance",
                         params: {
                           survey: survey.id,
                         },

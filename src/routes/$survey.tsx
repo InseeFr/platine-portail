@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Loading } from "components/surveyHomepage/Loading";
 import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
@@ -16,7 +15,7 @@ function Index() {
   const surveyData = content.specifique.find(s => s.id === survey);
 
   if (!surveyData) {
-    return <Loading />;
+    return <>The route is not defined</>;
   }
 
   return (

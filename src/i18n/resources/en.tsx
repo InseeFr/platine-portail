@@ -192,7 +192,7 @@ export const translations: Translations<"en"> = {
     "email": "Email Address*",
     "confirmEmail": "Confirm Email Address*",
     "idec": "Identifier",
-    "idecHintText": "Format: between 7 and 8 characters",
+    "idecHintText": "Format: between 7 and 9 characters",
     "message": "Message*",
     "messageRequired": "Please enter a message",
     "messageInfo": "4000 characters remaining",

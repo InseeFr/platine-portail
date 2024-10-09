@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { createFileRoute } from "@tanstack/react-router";
+import { Markdown } from "components/Markdown";
 import { useTranslation } from "i18n";
 import content from "resources/content.json";
 
@@ -22,7 +23,7 @@ function Results() {
       <h3>{t("some results")}</h3>
       <h4>{results.title}</h4>
       <img src={`/${results["picture-url"]}`} alt={results.legende} width={"100%"} />
-      <p className="fr-text--sm">{results.legende}</p>
+      <Markdown className="fr-text--sm" content={results.legende} />
     </section>
   );
 }

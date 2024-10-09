@@ -50,7 +50,7 @@ export const SurveysList = () => {
                   survey: survey.id,
                 },
               }}
-              endDetail={`${import.meta.env.VITE_PORTAIL_URL}/${survey.id}`}
+              endDetail={`${import.meta.env.VITE_APP_URL}/${survey.id}`}
               title={survey.titleShort}
               titleAs="h5"
             />

@@ -193,7 +193,7 @@ export const translations: Translations<"fr"> = {
     "email": "Adresse de messagerie*",
     "confirmEmail": "Confirmation de l’adresse de messagerie*",
     "idec": "Identifiant",
-    "idecHintText": "Format : entre 7 et 8 caractères",
+    "idecHintText": "Format : entre 7 et 9 caractères",
     "message": "Message*",
     "messageRequired": "Veuillez renseigner un message",
     "messageInfo": "4000 caractères restants",
