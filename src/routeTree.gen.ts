@@ -13,16 +13,18 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as MonCompteImport } from './routes/mon-compte'
 import { Route as MesEnquetesImport } from './routes/mes-enquetes'
-import { Route as EnquetesImport } from './routes/enquetes'
 import { Route as DeconnexionImport } from './routes/deconnexion'
 import { Route as ConnexionImport } from './routes/connexion'
-import { Route as AssistanceImport } from './routes/assistance'
 import { Route as SurveyImport } from './routes/$survey'
 import { Route as IndexImport } from './routes/index'
 import { Route as SurveyIndexImport } from './routes/$survey/index'
 import { Route as SurveyUtilisationReponseImport } from './routes/$survey/utilisation-reponse'
+import { Route as SurveyResultatsImport } from './routes/$survey/resultats'
 import { Route as SurveyIntroductionImport } from './routes/$survey/introduction'
+import { Route as SurveyFaqImport } from './routes/$survey/faq'
+import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
 import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
+import { Route as SurveyAssistanceImport } from './routes/$survey/assistance'
 
 // Create/Update Routes
 
@@ -36,11 +38,6 @@ const MesEnquetesRoute = MesEnquetesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const EnquetesRoute = EnquetesImport.update({
-  path: '/enquetes',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const DeconnexionRoute = DeconnexionImport.update({
   path: '/deconnexion',
   getParentRoute: () => rootRoute,
@@ -48,11 +45,6 @@ const DeconnexionRoute = DeconnexionImport.update({
 
 const ConnexionRoute = ConnexionImport.update({
   path: '/connexion',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AssistanceRoute = AssistanceImport.update({
-  path: '/assistance',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -76,13 +68,33 @@ const SurveyUtilisationReponseRoute = SurveyUtilisationReponseImport.update({
   getParentRoute: () => SurveyRoute,
 } as any)
 
+const SurveyResultatsRoute = SurveyResultatsImport.update({
+  path: '/resultats',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
 const SurveyIntroductionRoute = SurveyIntroductionImport.update({
   path: '/introduction',
   getParentRoute: () => SurveyRoute,
 } as any)
 
+const SurveyFaqRoute = SurveyFaqImport.update({
+  path: '/faq',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
+const SurveyDocumentsRoute = SurveyDocumentsImport.update({
+  path: '/documents',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
 const SurveyCadreJuridiqueRoute = SurveyCadreJuridiqueImport.update({
   path: '/cadre-juridique',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
+const SurveyAssistanceRoute = SurveyAssistanceImport.update({
+  path: '/assistance',
   getParentRoute: () => SurveyRoute,
 } as any)
 
@@ -104,13 +116,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyImport
       parentRoute: typeof rootRoute
     }
-    '/assistance': {
-      id: '/assistance'
-      path: '/assistance'
-      fullPath: '/assistance'
-      preLoaderRoute: typeof AssistanceImport
-      parentRoute: typeof rootRoute
-    }
     '/connexion': {
       id: '/connexion'
       path: '/connexion'
@@ -123,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/deconnexion'
       fullPath: '/deconnexion'
       preLoaderRoute: typeof DeconnexionImport
-      parentRoute: typeof rootRoute
-    }
-    '/enquetes': {
-      id: '/enquetes'
-      path: '/enquetes'
-      fullPath: '/enquetes'
-      preLoaderRoute: typeof EnquetesImport
       parentRoute: typeof rootRoute
     }
     '/mes-enquetes': {
@@ -146,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonCompteImport
       parentRoute: typeof rootRoute
     }
+    '/$survey/assistance': {
+      id: '/$survey/assistance'
+      path: '/assistance'
+      fullPath: '/$survey/assistance'
+      preLoaderRoute: typeof SurveyAssistanceImport
+      parentRoute: typeof SurveyImport
+    }
     '/$survey/cadre-juridique': {
       id: '/$survey/cadre-juridique'
       path: '/cadre-juridique'
@@ -153,11 +158,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyCadreJuridiqueImport
       parentRoute: typeof SurveyImport
     }
+    '/$survey/documents': {
+      id: '/$survey/documents'
+      path: '/documents'
+      fullPath: '/$survey/documents'
+      preLoaderRoute: typeof SurveyDocumentsImport
+      parentRoute: typeof SurveyImport
+    }
+    '/$survey/faq': {
+      id: '/$survey/faq'
+      path: '/faq'
+      fullPath: '/$survey/faq'
+      preLoaderRoute: typeof SurveyFaqImport
+      parentRoute: typeof SurveyImport
+    }
     '/$survey/introduction': {
       id: '/$survey/introduction'
       path: '/introduction'
       fullPath: '/$survey/introduction'
       preLoaderRoute: typeof SurveyIntroductionImport
+      parentRoute: typeof SurveyImport
+    }
+    '/$survey/resultats': {
+      id: '/$survey/resultats'
+      path: '/resultats'
+      fullPath: '/$survey/resultats'
+      preLoaderRoute: typeof SurveyResultatsImport
       parentRoute: typeof SurveyImport
     }
     '/$survey/utilisation-reponse': {
@@ -182,15 +208,17 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SurveyRoute: SurveyRoute.addChildren({
+    SurveyAssistanceRoute,
     SurveyCadreJuridiqueRoute,
+    SurveyDocumentsRoute,
+    SurveyFaqRoute,
     SurveyIntroductionRoute,
+    SurveyResultatsRoute,
     SurveyUtilisationReponseRoute,
     SurveyIndexRoute,
   }),
-  AssistanceRoute,
   ConnexionRoute,
   DeconnexionRoute,
-  EnquetesRoute,
   MesEnquetesRoute,
   MonCompteRoute,
 })
@@ -205,10 +233,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/$survey",
-        "/assistance",
         "/connexion",
         "/deconnexion",
-        "/enquetes",
         "/mes-enquetes",
         "/mon-compte"
       ]
@@ -219,14 +245,15 @@ export const routeTree = rootRoute.addChildren({
     "/$survey": {
       "filePath": "$survey.tsx",
       "children": [
+        "/$survey/assistance",
         "/$survey/cadre-juridique",
+        "/$survey/documents",
+        "/$survey/faq",
         "/$survey/introduction",
+        "/$survey/resultats",
         "/$survey/utilisation-reponse",
         "/$survey/"
       ]
-    },
-    "/assistance": {
-      "filePath": "assistance.tsx"
     },
     "/connexion": {
       "filePath": "connexion.tsx"
@@ -234,21 +261,34 @@ export const routeTree = rootRoute.addChildren({
     "/deconnexion": {
       "filePath": "deconnexion.tsx"
     },
-    "/enquetes": {
-      "filePath": "enquetes.tsx"
-    },
     "/mes-enquetes": {
       "filePath": "mes-enquetes.tsx"
     },
     "/mon-compte": {
       "filePath": "mon-compte.tsx"
     },
+    "/$survey/assistance": {
+      "filePath": "$survey/assistance.tsx",
+      "parent": "/$survey"
+    },
     "/$survey/cadre-juridique": {
       "filePath": "$survey/cadre-juridique.tsx",
       "parent": "/$survey"
     },
+    "/$survey/documents": {
+      "filePath": "$survey/documents.tsx",
+      "parent": "/$survey"
+    },
+    "/$survey/faq": {
+      "filePath": "$survey/faq.tsx",
+      "parent": "/$survey"
+    },
     "/$survey/introduction": {
       "filePath": "$survey/introduction.tsx",
+      "parent": "/$survey"
+    },
+    "/$survey/resultats": {
+      "filePath": "$survey/resultats.tsx",
       "parent": "/$survey"
     },
     "/$survey/utilisation-reponse": {

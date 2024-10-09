@@ -16,7 +16,7 @@ export type ContentSurvey = {
       "menu-title": string;
       "picture-url": string;
       legende: string;
-      "link-url": string;
+      "link-url"?: string;
     };
     "enquete-en-detail": {
       "menu-link": string;
