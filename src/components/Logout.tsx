@@ -15,7 +15,7 @@ export const Logout = () => {
   };
 
   return (
-    <section>
+    <section className="fr-container">
       <div
         className={fr.cx(
           "fr-grid-row",

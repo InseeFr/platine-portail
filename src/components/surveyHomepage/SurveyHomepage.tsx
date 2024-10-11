@@ -76,7 +76,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
         className={"fr-hidden-md fr-mt-3w fr-mx-2w  fr-col-md-3 "}
       />
       <div className="fr-container">
-        <div id="content" className={"fr-grid-row fr-py-md-7w fr-py-2w fr-grid-row--gutters"}>
+        <div id="content" className={"fr-grid-row fr-py-md-7w fr-py-2w "}>
           <SideMenuCustom
             surveyId={survey.id}
             data={data}

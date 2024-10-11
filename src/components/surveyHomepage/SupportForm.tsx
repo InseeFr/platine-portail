@@ -21,7 +21,7 @@ export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }:
 
   const objectOptions = isAuthenticated
     ? ["affichageQuestionnaire", "comprehensionQuestionnaire", "autre"]
-    : ["perteIdentifiant", "perteMotDePasse"];
+    : ["perteIdentifiant", "perteMotDePasse", "autre"];
 
   const { classes, cx } = useStyles();
 

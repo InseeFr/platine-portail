@@ -12,7 +12,7 @@ function DocumentsIndex() {
   const { t: homeTranslation } = useTranslation("SurveyHomepage");
   const { t } = useTranslation("Documents");
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-6")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
       <h3>{homeTranslation("documents to the surveyed")}</h3>
       <div>
         <DocumentTile
