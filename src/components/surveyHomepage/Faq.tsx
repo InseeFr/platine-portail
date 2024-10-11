@@ -13,7 +13,7 @@ export const Faq = ({ faqData, generalFaqData }: Props) => {
   const { t } = useTranslation("Support");
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-5")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-6")}>
       <h3>{t("FAQ")}</h3>
       <h4>{t("generalQuestions")}</h4>
       <div className={fr.cx("fr-accordions-group", "fr-pb-4w")}>

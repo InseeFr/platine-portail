@@ -22,7 +22,7 @@ function LegalFrameworkIndex() {
   }
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-5")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-6")}>
       <h3>{t("legal framework")}</h3>
       <Markdown content={legalFrameworkData} />
     </section>

@@ -147,7 +147,7 @@ export const translations: Translations<"en"> = {
   Support: {
     "contact support": "Contact support",
     "support title": "Hello, how can we help you?",
-    "FAQ": "FAQ",
+    "FAQ": "Answer your questions",
     "FAQ section": "FAQ section",
     "generalQuestions": "General questions",
     "surveyQuestions": "Questions about the survey",

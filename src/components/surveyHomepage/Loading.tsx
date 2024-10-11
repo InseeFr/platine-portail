@@ -2,8 +2,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export const Loading = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <CircularProgress />
+    <div className="fr-container">
+      <div className=" fr-grid-row fr-grid-row--center ">
+        <div className="fr-col-1 fr-my-3w">
+          <CircularProgress />
+        </div>
+      </div>
     </div>
   );
 };

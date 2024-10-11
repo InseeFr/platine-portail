@@ -25,7 +25,7 @@ function SupportIndex() {
   const { isAuthenticated } = useIsAuthenticated();
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-5")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-6")}>
       <h3>{t("contact support")}</h3>
       {isAuthenticated ? (
         <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId} />

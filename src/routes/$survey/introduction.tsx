@@ -20,8 +20,8 @@ function Index() {
   }
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-5")}>
-      <h3>{`${t("survey introduction")} ${data.title}`}</h3>
+    <section className={fr.cx("fr-col-12", "fr-col-md-6")}>
+      <h3>{t("survey introduction")}</h3>
       <Markdown content={data.content.description.body} />
     </section>
   );
