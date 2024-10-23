@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as MonCompteImport } from './routes/mon-compte'
 import { Route as MesEnquetesImport } from './routes/mes-enquetes'
+import { Route as MentionsLegalesImport } from './routes/mentions-legales'
 import { Route as DeconnexionImport } from './routes/deconnexion'
 import { Route as ConnexionImport } from './routes/connexion'
 import { Route as SurveyImport } from './routes/$survey'
@@ -35,6 +36,11 @@ const MonCompteRoute = MonCompteImport.update({
 
 const MesEnquetesRoute = MesEnquetesImport.update({
   path: '/mes-enquetes',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MentionsLegalesRoute = MentionsLegalesImport.update({
+  path: '/mentions-legales',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -130,6 +136,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeconnexionImport
       parentRoute: typeof rootRoute
     }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesImport
+      parentRoute: typeof rootRoute
+    }
     '/mes-enquetes': {
       id: '/mes-enquetes'
       path: '/mes-enquetes'
@@ -219,6 +232,7 @@ export const routeTree = rootRoute.addChildren({
   }),
   ConnexionRoute,
   DeconnexionRoute,
+  MentionsLegalesRoute,
   MesEnquetesRoute,
   MonCompteRoute,
 })
@@ -235,6 +249,7 @@ export const routeTree = rootRoute.addChildren({
         "/$survey",
         "/connexion",
         "/deconnexion",
+        "/mentions-legales",
         "/mes-enquetes",
         "/mon-compte"
       ]
@@ -260,6 +275,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/deconnexion": {
       "filePath": "deconnexion.tsx"
+    },
+    "/mentions-legales": {
+      "filePath": "mentions-legales.tsx"
     },
     "/mes-enquetes": {
       "filePath": "mes-enquetes.tsx"
