@@ -8,7 +8,7 @@ export const Login = ({ surveyData }: { surveyData: ContentSurvey }) => {
   const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
 
   useEffect(() => {
-    if (questioningUrlData && questioningUrlData[0].url && !surveyData.verifmail) {
+    if (questioningUrlData && questioningUrlData[0].url && surveyData.verifmail === false) {
       window.location.href = questioningUrlData[0].url;
     }
   }, [questioningUrlData, surveyData]);
@@ -17,7 +17,7 @@ export const Login = ({ surveyData }: { surveyData: ContentSurvey }) => {
     return <Loading />;
   }
 
-  if (surveyData.verifmail) {
+  if (surveyData.verifmail || surveyData.verifmail === undefined) {
     return <Navigate to={"/$survey/repondant/mail"} params={{ survey: surveyData.id }} />;
   }
 
