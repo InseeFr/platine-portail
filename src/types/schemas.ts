@@ -177,3 +177,25 @@ export const supportSchema = z
       });
     }
   });
+
+export const unknownEmailForm = z
+  .object({
+    mailaddress: z.string().min(1, { message: "emailRequired" }).email({ message: "invalidEmail" }),
+    mailaddressConfirmation: z
+      .string()
+      .min(1, { message: "emailRequired" })
+      .email({ message: "invalidEmail" }),
+  })
+  .superRefine(({ mailaddress, mailaddressConfirmation }, refinementContext) => {
+    if (mailaddress !== mailaddressConfirmation) {
+      refinementContext.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "emailConfirmationFailed",
+        path: ["mailaddressConfirmation"],
+      });
+    }
+  });
+
+export const knownEmailForm = z.object({
+  mailaddress: z.string().min(1, { message: "emailRequired" }).email({ message: "invalidEmail" }),
+});

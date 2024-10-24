@@ -1,4 +1,6 @@
 export type APISchemas = {
+  MailInput: { mail?: string };
+  MailUpdate: { isUpdate?: boolean };
   ReinitPasswordStatusDto: {
     message?: string;
     status?:
@@ -158,6 +160,7 @@ export type APISchemas = {
       | "510 NOT_EXTENDED"
       | "511 NETWORK_AUTHENTICATION_REQUIRED";
   };
+  MailOutput: { mail?: string };
   Ligne: {
     idCampagne?: string;
     idUE?: string;
@@ -183,6 +186,10 @@ export type APISchemas = {
 };
 
 export type APIEndpoints = {
+  "/user/mail": {
+    responses: { get: APISchemas["MailOutput"]; put: null };
+    requests: { method?: "get" } | { method: "put"; body: APISchemas["MailInput"] };
+  };
   "/repondant/mail": {
     responses: { get: null; put: null };
     requests: { method?: "get" } | { method: "put"; body: string };

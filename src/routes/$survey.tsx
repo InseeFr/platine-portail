@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { NotFound } from "components/NotFound";
+import { Outlet, createFileRoute, useRouter } from "@tanstack/react-router";
 import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
@@ -11,14 +11,24 @@ export const Route = createFileRoute("/$survey")({
 
 function Index() {
   const { t: headerTranslation } = useTranslation("Header");
-
   const { survey } = Route.useParams();
   const surveyData = content.specifique.find(s => s.id === survey);
+  const router = useRouter();
+
+  const currentPath = router.history.location.pathname;
+
+  const hasNotSideMenu =
+    currentPath.includes("/repondant/mail") ||
+    currentPath.includes("/assistance") ||
+    currentPath.includes("/login");
 
   if (!surveyData) {
     return <NotFound />;
   }
 
+  if (hasNotSideMenu) {
+    return <Outlet />;
+  }
   return (
     <div>
       <Helmet>

@@ -21,11 +21,13 @@ import { Route as IndexImport } from './routes/index'
 import { Route as SurveyIndexImport } from './routes/$survey/index'
 import { Route as SurveyUtilisationReponseImport } from './routes/$survey/utilisation-reponse'
 import { Route as SurveyResultatsImport } from './routes/$survey/resultats'
+import { Route as SurveyLoginImport } from './routes/$survey/login'
 import { Route as SurveyIntroductionImport } from './routes/$survey/introduction'
 import { Route as SurveyFaqImport } from './routes/$survey/faq'
 import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
 import { Route as SurveyContacterAssistanceImport } from './routes/$survey/contacter-assistance'
 import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
+import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/mail'
 
 // Create/Update Routes
 
@@ -79,6 +81,11 @@ const SurveyResultatsRoute = SurveyResultatsImport.update({
   getParentRoute: () => SurveyRoute,
 } as any)
 
+const SurveyLoginRoute = SurveyLoginImport.update({
+  path: '/login',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
 const SurveyIntroductionRoute = SurveyIntroductionImport.update({
   path: '/introduction',
   getParentRoute: () => SurveyRoute,
@@ -101,6 +108,11 @@ const SurveyContacterAssistanceRoute = SurveyContacterAssistanceImport.update({
 
 const SurveyCadreJuridiqueRoute = SurveyCadreJuridiqueImport.update({
   path: '/cadre-juridique',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
+const SurveyRepondantMailRoute = SurveyRepondantMailImport.update({
+  path: '/repondant/mail',
   getParentRoute: () => SurveyRoute,
 } as any)
 
@@ -192,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyIntroductionImport
       parentRoute: typeof SurveyImport
     }
+    '/$survey/login': {
+      id: '/$survey/login'
+      path: '/login'
+      fullPath: '/$survey/login'
+      preLoaderRoute: typeof SurveyLoginImport
+      parentRoute: typeof SurveyImport
+    }
     '/$survey/resultats': {
       id: '/$survey/resultats'
       path: '/resultats'
@@ -213,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyIndexImport
       parentRoute: typeof SurveyImport
     }
+    '/$survey/repondant/mail': {
+      id: '/$survey/repondant/mail'
+      path: '/repondant/mail'
+      fullPath: '/$survey/repondant/mail'
+      preLoaderRoute: typeof SurveyRepondantMailImport
+      parentRoute: typeof SurveyImport
+    }
   }
 }
 
@@ -226,9 +252,11 @@ export const routeTree = rootRoute.addChildren({
     SurveyDocumentsRoute,
     SurveyFaqRoute,
     SurveyIntroductionRoute,
+    SurveyLoginRoute,
     SurveyResultatsRoute,
     SurveyUtilisationReponseRoute,
     SurveyIndexRoute,
+    SurveyRepondantMailRoute,
   }),
   ConnexionRoute,
   DeconnexionRoute,
@@ -265,9 +293,11 @@ export const routeTree = rootRoute.addChildren({
         "/$survey/documents",
         "/$survey/faq",
         "/$survey/introduction",
+        "/$survey/login",
         "/$survey/resultats",
         "/$survey/utilisation-reponse",
-        "/$survey/"
+        "/$survey/",
+        "/$survey/repondant/mail"
       ]
     },
     "/connexion": {
@@ -305,6 +335,10 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "$survey/introduction.tsx",
       "parent": "/$survey"
     },
+    "/$survey/login": {
+      "filePath": "$survey/login.tsx",
+      "parent": "/$survey"
+    },
     "/$survey/resultats": {
       "filePath": "$survey/resultats.tsx",
       "parent": "/$survey"
@@ -315,6 +349,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/$survey/": {
       "filePath": "$survey/index.tsx",
+      "parent": "/$survey"
+    },
+    "/$survey/repondant/mail": {
+      "filePath": "$survey/repondant/mail.tsx",
       "parent": "/$survey"
     }
   }

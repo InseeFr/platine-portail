@@ -244,6 +244,21 @@ export const translations: Translations<"fr"> = {
       "La page n'est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez consulter notre page d'accueil.",
     "buttonLabel": "Page d'accueil",
   },
-
+  EmailForm: {
+    "connexion": "Connexion",
+    "contactDetailsInformation":
+      "Vos coordonnées, en particulier votre adresse de messagerie (mail), sont  exclusivement utilisées à des fins de contact et pour vous faciliter  l’accès au questionnaire de l’enquête. ",
+    "personalInformations":
+      "Ces informations personnelles sont issues des fichiers administratifs. Elles sont  protégées par la loi ; leur utilisation relève de l’exercice des  missions de service public de l’Insee. ",
+    "link": "En savoir plus",
+    "openNewWindow": "ouvre une nouvelle fenêtre",
+    "unknownEmailFormtitle": "Veuillez renseigner votre adresse de messagerie",
+    "knownEmailFormtitle": "Veuillez confirmer votre adresse de messagerie",
+    "email": "Adresse de messagerie",
+    "confirmEmail": "Confirmer votre adresse de messagerie",
+    "submitUnknownEmailForm": "Valider et accéder à l'enquête",
+    "submitKnownEmailForm": "Confirmer et accéder à l'enquête",
+    "pageTitle": "Authentification",
+  },
   /* spell-checker: enable */
 };

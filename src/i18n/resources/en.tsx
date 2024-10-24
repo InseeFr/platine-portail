@@ -243,5 +243,21 @@ export const translations: Translations<"en"> = {
       "The page may no longer be available. In that case, to continue your visit, you can consult our homepage.",
     "buttonLabel": "Homepage",
   },
+  EmailForm: {
+    "connexion": "Log in",
+    "contactDetailsInformation":
+      "Your contact details, especially your email address, are used exclusively for contact purposes and to facilitate your access to the survey questionnaire.",
+    "personalInformations":
+      "This personal information comes from administrative files. It is protected by law; its use falls under the public service missions of Insee.",
+    "link": "Learn more",
+    "openNewWindow": "opens a new window",
+    "unknownEmailFormtitle": "Please enter your email address",
+    "knownEmailFormtitle": "Please confirm your email address",
+    "email": "Email address",
+    "confirmEmail": "Confirm your email address",
+    "submitUnknownEmailForm": "Validate and access the survey",
+    "submitKnownEmailForm": "Confirm and access the survey",
+    "pageTitle": "Authentication",
+  },
   /* spell-checker: enable */
 };

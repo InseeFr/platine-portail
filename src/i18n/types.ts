@@ -25,7 +25,8 @@ export type ComponentKey =
   | import("../routes/$survey/documents").I18n
   | import("components/surveyHomepage/SupportForm").I18n
   | import("components/LegalInformation").I18n
-  | import("components/NotFound").I18n;
+  | import("components/NotFound").I18n
+  | import("components/EmailForm").I18n;
 
 export type Translations<L extends Language> = GenericTranslations<
   ComponentKey,
