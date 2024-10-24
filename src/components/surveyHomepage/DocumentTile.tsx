@@ -29,7 +29,11 @@ export const DocumentTile = ({ title, description, url, pictogramUrl }: Props) =
           const size = response.headers.get("Content-Length");
           const extension = url.split(".").pop();
 
-          setFile({ extension: extension, size: size ? parseInt(size) : null, isDownloadable: true });
+          setFile({
+            extension: extension,
+            size: size ? parseInt(size) : null,
+            isDownloadable: size ? true : false,
+          });
         } else {
           console.error("Error retrieving file information");
           setFile({ ...file, isDownloadable: false });

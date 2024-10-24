@@ -34,7 +34,7 @@ export const SurveysList = () => {
                 enlargeLink
                 horizontal
                 linkProps={{
-                  to: "/$survey",
+                  to: "/$survey/introduction",
                   params: {
                     survey: survey.id,
                   },

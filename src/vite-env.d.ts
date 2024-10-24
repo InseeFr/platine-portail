@@ -6,6 +6,9 @@ type ImportMetaEnv = {
   VITE_API_URL: string
   VITE_OIDC_ISSUER: string
   VITE_OIDC_CLIENT_ID: string
+  VITE_AUTH_TYPE: string
+  VITE_PORTAIL_URL: string
+  VITE_APP_URL: string
   BASE_URL: string
   MODE: string
   DEV: boolean

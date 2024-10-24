@@ -8,10 +8,16 @@ import { I18nFetchingSuspense } from "i18n";
 import { MuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui";
 import { AuthProvider } from "hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
+import { NotFound } from "components/NotFound";
 
 export const queryClient = new QueryClient();
 
-const router = createRouter({ routeTree, context: { queryClient } });
+const router = createRouter({
+  routeTree,
+  context: { queryClient },
+  notFoundMode: "root",
+  defaultNotFoundComponent: NotFound,
+});
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
   interface Register {

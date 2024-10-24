@@ -235,5 +235,15 @@ export const translations: Translations<"fr"> = {
     "cityInformation": "92541 MONTROUGE CEDEX FRANCE",
     "phone": "Tél. :",
   },
+  NotFound: {
+    "title": "Page non trouvée",
+    "error": "Erreur 404",
+    "notFoundText": "La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.",
+    "verifyUrl": "Si vous avez tapé l'adresse web dans le navigateur, vérifiez qu'elle est correcte.",
+    "goHomeInformation":
+      "La page n'est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez consulter notre page d'accueil.",
+    "buttonLabel": "Page d'accueil",
+  },
+
   /* spell-checker: enable */
 };
