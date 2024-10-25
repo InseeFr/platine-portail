@@ -1,5 +1,6 @@
 import { declareComponentKeys, useTranslation } from "i18n";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import { TitleWithText } from "./commons/TitleWithText";
 
 export const Accessibility = () => {
   const { t } = useTranslation("Accessibility");
@@ -57,20 +58,6 @@ export const Accessibility = () => {
         </ul>
       </div>
     </section>
-  );
-};
-
-type Props = {
-  title?: string;
-  text?: string;
-};
-
-const TitleWithText = ({ title = "", text = "" }: Props) => {
-  return (
-    <div aria-label={title}>
-      <h3 className="fr-mb-2w">{title}</h3>
-      <p>{text}</p>
-    </div>
   );
 };
 
