@@ -151,7 +151,6 @@ export const translations: Translations<"fr"> = {
     "FAQ": "Réponses à vos questions",
     "generalQuestions": "Questions générales",
     "surveyQuestions": "Questions relatives à l'enquête",
-    "FAQ section": "section FAQ",
     "FAQ form section": "formulaire pour nous contacter",
     "FAQ form title": "Vous ne trouvez pas la réponse dans la FAQ ? ",
     "contact us": "Contactez-nous :",
@@ -161,7 +160,7 @@ export const translations: Translations<"fr"> = {
       return (
         <p className="fr-text--sm">
           Avant de faire une demande d'assistance, pensez à regarder si la réponse à votre question
-          figure dans la
+          figure dans la rubrique
           <Button
             className="fr-pl-1v fr-text--sm"
             style={{ padding: 0, display: "inline", textDecoration: "underline", fontWeight: "400" }}
@@ -173,7 +172,7 @@ export const translations: Translations<"fr"> = {
               },
             }}
           >
-            FAQ
+            Réponses à vos questions
           </Button>
         </p>
       );
@@ -196,6 +195,7 @@ export const translations: Translations<"fr"> = {
     "idecHintText": "Format : entre 7 et 9 caractères",
     "message": "Message*",
     "messageRequired": "Veuillez renseigner un message",
+    "messageSizeIdec": "Veuillez renseigner un identifiant comprenant 7 à 9 caractères",
     "messageInfo": "4000 caractères restants",
     "submit": "Envoyer",
     "affichageQuestionnaire": "Affichage du questionnaire",

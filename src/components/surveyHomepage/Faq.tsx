@@ -42,7 +42,6 @@ const { i18n } = declareComponentKeys<
   | "generalQuestions"
   | "surveyQuestions"
   | "FAQ"
-  | "FAQ section"
   | "FAQ form section"
   | "FAQ form title"
   | "contact us"

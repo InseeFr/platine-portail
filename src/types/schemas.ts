@@ -163,8 +163,8 @@ export const supportSchema = z
       .min(1, { message: "emailRequired" })
       .email({ message: "invalidEmail" }),
     idec: z
-      .string()
-      .nullish()
+      .union([z.string().length(0 ,{ message: "messageSizeIdec" }), z.string().min(7,{ message: "messageSizeIdec" }).max(9 ,{ message: "messageSizeIdec" })])
+      .optional()
       .transform(val => (val === null ? "" : val)),
     message: z.string().max(4000).min(1, { message: "messageRequired" }),
   })

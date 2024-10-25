@@ -132,3 +132,32 @@ export function useFetchMutationPortail<
     },
   });
 }
+
+// use only for support and reinit password 
+export function useFetchMutationWithoutAuth<
+  Path extends APIPathsPortail,
+  Method extends APIMethodsPortail<Path>,
+>(
+  path: Path,
+  method: Method,
+  queryOptions?: UseMutationOptions<
+    APIResponsePortail<Path, Method>,
+    APIError,
+    Omit<APIRequestPortail<Path, Method>, "method">
+  >,
+) {
+  return useMutation<
+    APIResponsePortail<Path, Method>,
+    APIError,
+    Omit<APIRequestPortail<Path, Method>, "method">
+  >({
+    ...(queryOptions as any),
+    mutationFn: request => {
+      return fetchPortailAPI(path, { ...request, method });
+    },
+    onError: (err, variables) => {
+      queryOptions?.onError?.(err, variables, undefined);
+      alert(err.message);
+    },
+  });
+}

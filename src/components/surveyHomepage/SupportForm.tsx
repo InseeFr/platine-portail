@@ -136,6 +136,8 @@ export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }:
             id: "idec",
             ...(errors.idec && { "aria-invalid": true, "aria-errormessage": "idec-desc-error" }),
           }}
+          state={errors.idec ? "error" : "default"}
+          stateRelatedMessage={errors.idec?.message && t(errors.idec?.message as keyof typeof t)}
         />
         {!errors.idec && <p className="fr-hidden" id={"idec-desc-error"} />}
         <Input
@@ -184,6 +186,7 @@ const { i18n } = declareComponentKeys<
   | "message"
   | "messageRequired"
   | "messageInfo"
+  | "messageSizeIdec"
   | "emailRequired"
   | "emailConfirmationFailed"
   | "invalidEmail"

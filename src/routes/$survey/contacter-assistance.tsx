@@ -2,7 +2,6 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSupport";
 import { OfflineSupport } from "components/surveyHomepage/OfflineSupport";
-import { useIsAuthenticated } from "hooks/useAuth";
 import { useTranslation } from "i18n";
 
 type SupportSearch = {
@@ -22,12 +21,11 @@ function SupportIndex() {
   const { t } = useTranslation("Support");
   const search = useSearch({ from: "/$survey/contacter-assistance" });
   const { survey } = Route.useParams();
-  const { isAuthenticated } = useIsAuthenticated();
 
   return (
     <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
       <h3>{t("contact support")}</h3>
-      {isAuthenticated ? (
+      {search.questioningId ? (
         <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId} />
       ) : (
         <OfflineSupport surveyId={survey} />

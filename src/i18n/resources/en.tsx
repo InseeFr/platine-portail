@@ -148,7 +148,6 @@ export const translations: Translations<"en"> = {
     "contact support": "Contact support",
     "support title": "Hello, how can we help you?",
     "FAQ": "Answer your questions",
-    "FAQ section": "FAQ section",
     "generalQuestions": "General questions",
     "surveyQuestions": "Questions about the survey",
     "FAQ form section": "form to contact us",
@@ -160,7 +159,7 @@ export const translations: Translations<"en"> = {
       return (
         <p className="fr-text--sm">
           Before submitting a support request, please check if the answer to your question can be found
-          in the
+          in the section
           <Button
             className="fr-pl-1v fr-text--sm"
             style={{ padding: 0, display: "inline", textDecoration: "underline", fontWeight: "400" }}
@@ -172,7 +171,7 @@ export const translations: Translations<"en"> = {
               },
             }}
           >
-            FAQ
+            Answer your questions
           </Button>
         </p>
       );
@@ -196,6 +195,7 @@ export const translations: Translations<"en"> = {
     "message": "Message*",
     "messageRequired": "Please enter a message",
     "messageInfo": "4000 characters remaining",
+    "messageSizeIdec": "Please enter an identifier containing 7 to 9 characters",
     "submit": "Submit",
     "affichageQuestionnaire": "Display of the questionnaire",
     "comprehensionQuestionnaire": "Understanding of the questionnaire",

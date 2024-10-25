@@ -1,12 +1,12 @@
 import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { SupportForm } from "./SupportForm";
-import { useFetchMutationPortail } from "hooks/useFetchQuery";
+import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 
 export const OfflineSupport = ({ surveyId }: { surveyId: string }) => {
   const { register, handleSubmit, errors } = useForm(supportSchema);
 
-  const { mutateAsync, isSuccess } = useFetchMutationPortail("/e-mail", "post");
+  const { mutateAsync, isSuccess } = useFetchMutationWithoutAuth("/e-mail", "post");
 
   const onSubmit = handleSubmit(data =>
     mutateAsync({
