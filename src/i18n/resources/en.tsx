@@ -24,6 +24,7 @@ export const translations: Translations<"en"> = {
     "cookies": "Cookies management",
     "ssp logo alt": "Public statistics",
   },
+
   SurveyHomepage: {
     "title": "Select your survey",
     "openNewWindow": "open in a new window",
@@ -259,5 +260,66 @@ export const translations: Translations<"en"> = {
     "submitKnownEmailForm": "Confirm and access the survey",
     "pageTitle": "Authentication",
   },
+  Accessibility: {
+    "pageTitle": "Accessibility",
+    "accessibilityText":
+      "Insee is committed to making its internet, intranet, extranet sites, and software applications accessible (including mobile applications and digital urban furniture) in accordance with Article 47 of Law No. 2005-102 of February 11, 2005. To this end, it implements the following strategy and actions:",
+
+    "multiYearPlan": "Multi-year accessibility implementation plan 2022-2024",
+    "actionPlans": "Action plans 2023, 2024",
+
+    "accessibilityDocumentsNote": "These documents are available upon request.",
+    "accessibilityStatementLink":
+      "This accessibility statement applies to https://enquetes.stat-publique.fr.",
+
+    "complianceStatusTitle": "Compliance Status",
+    "complianceStatusText":
+      "The online response site service of public statistics surveys is non-compliant with the general accessibility improvement framework (RGAA), version 4, due to a pending compliance audit.",
+
+    "testResultsTitle": "Test Results",
+    "testResultsText":
+      "This statement will be updated as soon as the results of the compliance audit are known.",
+
+    "nonAccessibleContentTitle": "Non-Accessible Content",
+    "nonAccessibleContentText": "Not applicable.",
+
+    "exemptionsTitle": "Disproportionate Burden Exemptions",
+    "exemptionsText": "Not applicable.",
+
+    "nonApplicableContentTitle": "Content Not Subject to Accessibility Obligation",
+    "nonApplicableContentText": "Not applicable.",
+
+    "statementEstablishmentTitle": "Establishment of This Accessibility Statement",
+    "statementEstablishmentText": "?",
+
+    "technologiesUsedTitle": "Technologies Used for the Site",
+    "technology1": "HTML5",
+    "technology2": "CSS",
+    "technology3": "Javascript",
+    "technology4": "React",
+
+    "testEnvironmentTitle": "Test Environment",
+    "testEnvironmentText": "Not applicable.",
+
+    "accessibilityEvaluationToolsTitle": "Accessibility Evaluation Tools",
+    "accessibilityEvaluationToolsText": "Not applicable.",
+
+    "verifiedPagesTitle": "Pages Verified for Compliance",
+    "verifiedPagesText": "Not applicable.",
+
+    "feedbackAndContactTitle": "Feedback and Contact",
+    "feedbackAndContactText":
+      "If you are unable to access content or a service, you may contact support for assistance in finding an accessible alternative or obtaining the content in another format.",
+
+    "appealOptionsTitle": "Appeal Options",
+    "appealOptionsText":
+      "If you find an accessibility barrier preventing you from accessing content or functionality on the site, report it to us, and if you do not receive a response, you are entitled to file a complaint or a request for referral to the Defender of Rights.",
+    "appealOptionsStep1": "Write a message to the Defender of Rights (via the contact form).",
+    "appealOptionsStep2": "Contact the local delegate of the Defender of Rights in your area.",
+    "appealOptionsStep3":
+      "Send a letter by post (free, no stamp required) to: Defender of Rights, Libre réponse 71120, 75342 Paris CEDEX 07.",
+    "appealOptionsStep4": "Contact the Defender of Rights by phone: 09 69 39 00 00.",
+  },
+
   /* spell-checker: enable */
 };
