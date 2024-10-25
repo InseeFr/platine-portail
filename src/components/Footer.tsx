@@ -35,6 +35,7 @@ export function Footer({ className }: { className?: string }) {
         termsLinkProps={{
           to: "/mentions-legales",
         }}
+        accessibilityLinkProps={{ to: "/accessibilite" }}
         domains={["insee.fr", "legifrance.gouv.fr", "service-public.fr", "cnil.fr"]}
         // TODO: change links
         bottomItems={[
