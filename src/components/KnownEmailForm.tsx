@@ -6,12 +6,15 @@ import { useTranslation } from "i18n/i18n";
 import { useEffect } from "react";
 import { knownEmailForm } from "types/schemas";
 import { EmailInput } from "./UnknownEmailForm";
+import { TechnicalError } from "./errorPages/TechnicalError";
 
 export const KnownEmailForm = ({
   questioningUrl,
+  surveyId,
   email,
 }: {
   questioningUrl?: string;
+  surveyId: string;
   email: string;
 }) => {
   const { t } = useTranslation("EmailForm");
@@ -20,7 +23,7 @@ export const KnownEmailForm = ({
   });
   const navigate = useNavigate();
 
-  const { mutateAsync, isSuccess } = useFetchMutationPortail("/repondant/mail", "put");
+  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/repondant/mail", "put");
 
   useEffect(() => {
     if (isSuccess && questioningUrl) {
@@ -40,6 +43,10 @@ export const KnownEmailForm = ({
       questioningUrl ? (window.location.href = questioningUrl) : navigate({ to: "/" });
     }
   });
+
+  if (isError) {
+    return <TechnicalError surveyId={surveyId} />;
+  }
 
   return (
     <div>

@@ -133,7 +133,7 @@ export function useFetchMutationPortail<
   });
 }
 
-// use only for support and reinit password 
+// use only for support and reinit password
 export function useFetchMutationWithoutAuth<
   Path extends APIPathsPortail,
   Method extends APIMethodsPortail<Path>,

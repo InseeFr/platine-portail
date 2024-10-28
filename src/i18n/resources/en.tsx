@@ -244,6 +244,21 @@ export const translations: Translations<"en"> = {
       "The page may no longer be available. In that case, to continue your visit, you can consult our homepage.",
     "buttonLabel": "Homepage",
   },
+  TechnicalError: {
+    "title": "Unexpected Error",
+    "error": "Error 500",
+    "technicalErrorText":
+      "Sorry, the service is experiencing an issue. We are working to resolve it as quickly as possible.",
+    "reloadPageTips": "Try refreshing the page or try again later.",
+    "supportInformation": "If you need immediate assistance, please contact us.",
+    "buttonLabel": "Contact Us",
+  },
+  ErrorPages: {
+    "connexion": "Login",
+    "alertTitle": "Survey Access Unavailable",
+    "contactSupport": "contact support",
+    "alertText": "If you believe this is an error, please",
+  },
   EmailForm: {
     "connexion": "Log in",
     "contactDetailsInformation":

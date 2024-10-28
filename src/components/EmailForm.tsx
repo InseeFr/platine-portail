@@ -53,9 +53,13 @@ export const EmailForm = ({ surveyId }: { surveyId: string }) => {
           <div className="fr-grid-row  fr-grid-row--center fr-py-md-7w fr-py-3w">
             <div className="fr-col-11 fr-col-md-9 ">
               {unknownEmail ? (
-                <UnknownEmailForm questioningUrl={questioningUrl} />
+                <UnknownEmailForm questioningUrl={questioningUrl} surveyId={surveyId} />
               ) : (
-                <KnownEmailForm questioningUrl={questioningUrl} email={emailData.mail!} />
+                <KnownEmailForm
+                  questioningUrl={questioningUrl}
+                  surveyId={surveyId}
+                  email={emailData.mail!}
+                />
               )}
               <Divider orientation="horizontal" variant="fullWidth" className="fr-p-0 fr-my-3w" />
               <p>{t("contactDetailsInformation")}</p>

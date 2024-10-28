@@ -29,6 +29,7 @@ import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
 import { Route as SurveyContacterAssistanceImport } from './routes/$survey/contacter-assistance'
 import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
 import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/mail'
+import { Route as SurveyContacterAssistanceAuthImport } from './routes/$survey/contacter-assistance/auth'
 
 // Create/Update Routes
 
@@ -121,6 +122,12 @@ const SurveyRepondantMailRoute = SurveyRepondantMailImport.update({
   path: '/repondant/mail',
   getParentRoute: () => SurveyRoute,
 } as any)
+
+const SurveyContacterAssistanceAuthRoute =
+  SurveyContacterAssistanceAuthImport.update({
+    path: '/auth',
+    getParentRoute: () => SurveyContacterAssistanceRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -245,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyIndexImport
       parentRoute: typeof SurveyImport
     }
+    '/$survey/contacter-assistance/auth': {
+      id: '/$survey/contacter-assistance/auth'
+      path: '/auth'
+      fullPath: '/$survey/contacter-assistance/auth'
+      preLoaderRoute: typeof SurveyContacterAssistanceAuthImport
+      parentRoute: typeof SurveyContacterAssistanceImport
+    }
     '/$survey/repondant/mail': {
       id: '/$survey/repondant/mail'
       path: '/repondant/mail'
@@ -261,7 +275,9 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SurveyRoute: SurveyRoute.addChildren({
     SurveyCadreJuridiqueRoute,
-    SurveyContacterAssistanceRoute,
+    SurveyContacterAssistanceRoute: SurveyContacterAssistanceRoute.addChildren({
+      SurveyContacterAssistanceAuthRoute,
+    }),
     SurveyDocumentsRoute,
     SurveyFaqRoute,
     SurveyIntroductionRoute,
@@ -339,7 +355,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/$survey/contacter-assistance": {
       "filePath": "$survey/contacter-assistance.tsx",
-      "parent": "/$survey"
+      "parent": "/$survey",
+      "children": [
+        "/$survey/contacter-assistance/auth"
+      ]
     },
     "/$survey/documents": {
       "filePath": "$survey/documents.tsx",
@@ -368,6 +387,10 @@ export const routeTree = rootRoute.addChildren({
     "/$survey/": {
       "filePath": "$survey/index.tsx",
       "parent": "/$survey"
+    },
+    "/$survey/contacter-assistance/auth": {
+      "filePath": "$survey/contacter-assistance/auth.tsx",
+      "parent": "/$survey/contacter-assistance"
     },
     "/$survey/repondant/mail": {
       "filePath": "$survey/repondant/mail.tsx",

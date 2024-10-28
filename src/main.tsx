@@ -8,7 +8,7 @@ import { I18nFetchingSuspense } from "i18n";
 import { MuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui";
 import { AuthProvider } from "hooks/useAuth";
 import { HelmetProvider } from "react-helmet-async";
-import { NotFound } from "components/NotFound";
+import { NotFound } from "components/errorPages/NotFound";
 
 export const queryClient = new QueryClient();
 

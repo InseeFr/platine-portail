@@ -1,4 +1,4 @@
-import { NotFound } from "components/NotFound";
+import { NotFound } from "components/errorPages/NotFound";
 import { Outlet, createFileRoute, useRouter } from "@tanstack/react-router";
 import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";

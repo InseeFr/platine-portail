@@ -25,7 +25,9 @@ export type ComponentKey =
   | import("../routes/$survey/documents").I18n
   | import("components/surveyHomepage/SupportForm").I18n
   | import("components/LegalInformation").I18n
-  | import("components/NotFound").I18n
+  | import("components/errorPages/NotFound").I18n
+  | import("components/errorPages/TechnicalError").I18n
+  | import("components/errorPages/ErrorPages").I18n
   | import("components/EmailForm").I18n
   | import("components/Accessibility").I18n;
 

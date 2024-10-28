@@ -8,14 +8,21 @@ import { useEffect } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { unknownEmailForm } from "types/schemas";
 import { Schema, z } from "zod";
+import { TechnicalError } from "./errorPages/TechnicalError";
 
-export const UnknownEmailForm = ({ questioningUrl }: { questioningUrl?: string }) => {
+export const UnknownEmailForm = ({
+  questioningUrl,
+  surveyId,
+}: {
+  questioningUrl?: string;
+  surveyId: string;
+}) => {
   const { t } = useTranslation("EmailForm");
   const navigate = useNavigate();
   const { t: supportFormTranslation } = useTranslation("SupportForm");
   const { register, errors, handleSubmit } = useForm(unknownEmailForm);
 
-  const { mutateAsync, isSuccess } = useFetchMutationPortail("/repondant/mail", "put");
+  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/repondant/mail", "put");
 
   useEffect(() => {
     if (isSuccess && questioningUrl) {
@@ -31,6 +38,10 @@ export const UnknownEmailForm = ({ questioningUrl }: { questioningUrl?: string }
       body: data.mailaddress,
     });
   });
+
+  if (isError) {
+    return <TechnicalError surveyId={surveyId} />;
+  }
 
   return (
     <div>

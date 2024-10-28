@@ -244,6 +244,21 @@ export const translations: Translations<"fr"> = {
       "La page n'est peut-être plus disponible. Dans ce cas, pour continuer votre visite vous pouvez consulter notre page d'accueil.",
     "buttonLabel": "Page d'accueil",
   },
+  TechnicalError: {
+    "title": "Erreur inattendue",
+    "error": "Erreur 500",
+    "technicalErrorText":
+      "Désolé, le service rencontre un problème, nous travaillons pour le résoudre le plus rapidement possible.",
+    "reloadPageTips": "Essayez de rafraîchir la page ou bien ressayez plus tard.",
+    "supportInformation": "Si vous avez besoin d’une aide immédiate, merci de nous contacter.",
+    "buttonLabel": "Contactez-nous",
+  },
+  ErrorPages: {
+    "connexion": "Connexion",
+    "alertTitle": "Accès à l'enquête impossible",
+    "contactSupport": "contacter l'assistance",
+    "alertText": " Si vous pensez qu'il s'agit d'une erreur, veuillez",
+  },
   EmailForm: {
     "connexion": "Connexion",
     "contactDetailsInformation":

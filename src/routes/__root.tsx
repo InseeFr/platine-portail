@@ -5,7 +5,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { AutoLogoutCountdown } from "components/AutoLogoutCountdown";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { useTranslation } from "i18n";
-import { NotFound } from "components/NotFound";
+import { NotFound } from "components/errorPages/NotFound";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: RootComponent,
