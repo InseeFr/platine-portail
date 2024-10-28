@@ -15,6 +15,8 @@ export function Security() {
         }}
         segments={[]}
       />
+      <h2>{t("pageTitle")}</h2>
+      <p>{t("securityText", {})}</p>
     </section>
   );
 }
