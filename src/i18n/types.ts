@@ -30,7 +30,8 @@ export type ComponentKey =
   | import("components/errorPages/ErrorPages").I18n
   | import("components/EmailForm").I18n
   | import("components/Accessibility").I18n
-  | import("components/Security").I18n;
+  | import("components/Security").I18n
+  | import("components/PersonalData").I18n;
 
 export type Translations<L extends Language> = GenericTranslations<
   ComponentKey,
