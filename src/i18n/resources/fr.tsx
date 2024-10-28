@@ -23,6 +23,7 @@ export const translations: Translations<"fr"> = {
     "personal data": "Données personnelles",
     "cookies": "Gestion des cookies",
     "ssp logo alt": "Statistique publique",
+    "security": "Securité",
   },
   SurveyHomepage: {
     "title": "Sélectionnez votre enquête",
@@ -317,6 +318,11 @@ export const translations: Translations<"fr"> = {
     "appealOptionsStep3":
       "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l'adresse suivante : Défenseur des droits, Libre réponse 71120, 75342 Paris CEDEX 07.",
     "appealOptionsStep4": "Contacter le Défenseur des droits par téléphone : 09 69 39 00 00.",
+  },
+  Security: {
+    "pageTitle": "Securité",
+    "securityText":
+      "Le site https://enquetes.stat-publique.fr/ a fait l'objet d'une décision d'homologation prononcée par l'autorité d'homologation pour le compte de l'autorité qualifiée de la sécurité du système d'information.",
   },
 
   /* spell-checker: enable */

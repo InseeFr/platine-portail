@@ -23,6 +23,7 @@ export const translations: Translations<"en"> = {
     "personal data": "Personal data",
     "cookies": "Cookies management",
     "ssp logo alt": "Public statistics",
+    "security": "Security",
   },
 
   SurveyHomepage: {
@@ -320,6 +321,10 @@ export const translations: Translations<"en"> = {
       "Send a letter by post (free, no stamp required) to: Defender of Rights, Libre réponse 71120, 75342 Paris CEDEX 07.",
     "appealOptionsStep4": "Contact the Defender of Rights by phone: 09 69 39 00 00.",
   },
-
+  Security: {
+    "pageTitle": "Security",
+    "securityText":
+      "The https://enquetes.stat-publique.fr/ website has been approved by the approval authority on behalf of the qualified authority for information system security.",
+  },
   /* spell-checker: enable */
 };
