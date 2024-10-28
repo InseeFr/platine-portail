@@ -260,5 +260,64 @@ export const translations: Translations<"fr"> = {
     "submitKnownEmailForm": "Confirmer et accéder à l'enquête",
     "pageTitle": "Authentification",
   },
+  Accessibility: {
+    "pageTitle": "Accessibilité",
+    "accessibilityText":
+      "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005. À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
+    "multiYearPlan": "Schéma pluriannuel de mise en accessibilité 2022-2024",
+    "actionPlans": "Plans d’actions 2023, 2024",
+    "accessibilityDocumentsNote": "Ces documents sont communicables à la demande.",
+    "accessibilityStatementLink":
+      "Cette déclaration d’accessibilité s’applique à https://enquetes.stat-publique.fr.",
+
+    "complianceStatusTitle": "État de conformité",
+    "complianceStatusText":
+      "Le service d'accès au site de réponse en ligne des enquêtes de la statistique publique est non conforme avec le référentiel général d’amélioration de l’accessibilité (RGAA), version 4 en raison d'une absence d'audit de conformité en cours de réalisation.",
+
+    "testResultsTitle": "Résultats des tests",
+    "testResultsText":
+      "La présente déclaration sera mise à jour dès que les résultats de l'audit de conformité seront connus.",
+
+    "nonAccessibleContentTitle": "Contenus non accessibles",
+    "nonAccessibleContentText": "Sans objet.",
+
+    "exemptionsTitle": "Dérogations pour charge disproportionnée",
+    "exemptionsText": "Sans objet.",
+
+    "nonApplicableContentTitle": "Contenus non soumis à l’obligation d’accessibilité",
+    "nonApplicableContentText": "Sans objet.",
+
+    "statementEstablishmentTitle": "Établissement de cette déclaration d’accessibilité",
+    "statementEstablishmentText": "?",
+
+    "technologiesUsedTitle": "Technologies utilisées pour la réalisation du site",
+    "technology1": "HTML5",
+    "technology2": "CSS",
+    "technology3": "Javascript",
+    "technology4": "React",
+
+    "testEnvironmentTitle": "Environnement de test",
+    "testEnvironmentText": "Sans objet.",
+
+    "accessibilityEvaluationToolsTitle": "Outils pour évaluer l’accessibilité",
+    "accessibilityEvaluationToolsText": "Sans objet.",
+
+    "verifiedPagesTitle": "Pages du site ayant fait l’objet de la vérification de conformité",
+    "verifiedPagesText": "Sans objet.",
+
+    "feedbackAndContactTitle": "Retour d’information et contact",
+    "feedbackAndContactText":
+      "Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter l'assistance, pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.",
+
+    "appealOptionsTitle": "Voies de recours",
+    "appealOptionsText":
+      "Si vous constatez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, que vous nous le signalez et que vous ne parvenez pas à obtenir une réponse de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au Défenseur des droits.",
+    "appealOptionsStep1": "Écrire un message au Défenseur des droits (via le formulaire de contact).",
+    "appealOptionsStep2": "Contacter le délégué du Défenseur des droits dans votre région.",
+    "appealOptionsStep3":
+      "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l'adresse suivante : Défenseur des droits, Libre réponse 71120, 75342 Paris CEDEX 07.",
+    "appealOptionsStep4": "Contacter le Défenseur des droits par téléphone : 09 69 39 00 00.",
+  },
+
   /* spell-checker: enable */
 };

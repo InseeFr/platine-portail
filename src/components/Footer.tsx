@@ -5,7 +5,7 @@ import sspLogo from "assets/logo-ssp.jpg";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { Follow } from "@codegouvfr/react-dsfr/Follow";
 
-export function Footer({ className }: { className?: string }) {
+export function Footer({ className }: Readonly<{ className?: string }>) {
   const { t } = useTranslation("Footer");
 
   return (
@@ -35,6 +35,7 @@ export function Footer({ className }: { className?: string }) {
         termsLinkProps={{
           to: "/mentions-legales",
         }}
+        accessibilityLinkProps={{ to: "/accessibilite" }}
         domains={["insee.fr", "legifrance.gouv.fr", "service-public.fr", "cnil.fr"]}
         // TODO: change links
         bottomItems={[

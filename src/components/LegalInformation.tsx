@@ -1,6 +1,7 @@
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import { TitleWithText } from "./commons/TitleWithText";
 
 export function LegalInformation() {
   const { t } = useTranslation("LegalInformation");
@@ -31,20 +32,6 @@ export function LegalInformation() {
     </section>
   );
 }
-
-type Props = {
-  title: string;
-  text: string;
-};
-
-export const TitleWithText = ({ title, text }: Props) => {
-  return (
-    <div aria-label={title}>
-      <h3 className="fr-mb-2w">{title}</h3>
-      <p>{text}</p>
-    </div>
-  );
-};
 
 const { i18n } = declareComponentKeys<
   | "pageTitle"
