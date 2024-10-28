@@ -19,6 +19,13 @@ export function Security() {
   );
 }
 
-const { i18n } = declareComponentKeys<"pageTitle" | "securityText">()("Security");
+const { i18n } = declareComponentKeys<
+  | "pageTitle"
+  | {
+      K: "securityText";
+      P: {};
+      R: JSX.Element;
+    }
+>()("Security");
 
 export type I18n = typeof i18n;

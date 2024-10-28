@@ -326,8 +326,16 @@ export const translations: Translations<"fr"> = {
   },
   Security: {
     "pageTitle": "Securité",
-    "securityText":
-      "Le site https://enquetes.stat-publique.fr/ a fait l'objet d'une décision d'homologation prononcée par l'autorité d'homologation pour le compte de l'autorité qualifiée de la sécurité du système d'information.",
+    securityText: () => (
+      <p>
+        Le site{" "}
+        <a href="https://enquetes.stat-publique.fr" target="_blank">
+          https://enquetes.stat-publique.fr
+        </a>{" "}
+        a fait l'objet d'une décision d'homologation prononcée par l'autorité d'homologation pour le
+        compte de l'autorité qualifiée de la sécurité du système d'information.
+      </p>
+    ),
   },
 
   /* spell-checker: enable */

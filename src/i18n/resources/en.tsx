@@ -331,8 +331,16 @@ export const translations: Translations<"en"> = {
   },
   Security: {
     "pageTitle": "Security",
-    "securityText":
-      "The https://enquetes.stat-publique.fr/ website has been approved by the approval authority on behalf of the qualified authority for information system security.",
+    securityText: ({}: {}) => (
+      <p>
+        The site{" "}
+        <a href="https://enquetes.stat-publique.fr" target="_blank">
+          https://enquetes.stat-publique.fr
+        </a>{" "}
+        has been granted an approval decision issued by the accreditation authority on behalf of the
+        qualified information system security authority.
+      </p>
+    ),
   },
   /* spell-checker: enable */
 };
