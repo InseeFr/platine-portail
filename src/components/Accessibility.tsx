@@ -25,7 +25,7 @@ export const Accessibility = () => {
         </ul>
       </div>
       <p>{t("accessibilityDocumentsNote")}</p>
-      <p>{t("accessibilityStatementLink")}</p>
+      <p>{t("accessibilityStatementLink", {})}</p>
 
       <TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
       <TitleWithText title={t("testResultsTitle")} text={t("testResultsText")} />
@@ -70,7 +70,11 @@ const { i18n } = declareComponentKeys<
   | "multiYearPlan"
   | "actionPlans"
   | "accessibilityDocumentsNote"
-  | "accessibilityStatementLink"
+  | {
+      K: "accessibilityStatementLink";
+      P: {};
+      R: JSX.Element;
+    }
   | "complianceStatusTitle"
   | "complianceStatusText"
   | "testResultsTitle"

@@ -268,8 +268,13 @@ export const translations: Translations<"fr"> = {
     "multiYearPlan": "Schéma pluriannuel de mise en accessibilité 2022-2024",
     "actionPlans": "Plans d’actions 2023, 2024",
     "accessibilityDocumentsNote": "Ces documents sont communicables à la demande.",
-    "accessibilityStatementLink":
-      "Cette déclaration d’accessibilité s’applique à https://enquetes.stat-publique.fr.",
+
+    accessibilityStatementLink: () => (
+      <p>
+        Cette déclaration d’accessibilité s’applique à
+        <a href="https://enquetes.stat-publique.fr">https://enquetes.stat-publique.fr</a>.
+      </p>
+    ),
 
     "complianceStatusTitle": "État de conformité",
     "complianceStatusText":

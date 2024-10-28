@@ -270,8 +270,16 @@ export const translations: Translations<"en"> = {
     "actionPlans": "Action plans 2023, 2024",
 
     "accessibilityDocumentsNote": "These documents are available upon request.",
-    "accessibilityStatementLink":
-      "This accessibility statement applies to https://enquetes.stat-publique.fr.",
+
+    accessibilityStatementLink: () => (
+      <p>
+        This accessibility statement applies to{" "}
+        <a href="https://enquetes.stat-publique.fr" target="_blank">
+          https://enquetes.stat-publique.fr
+        </a>{" "}
+        .
+      </p>
+    ),
 
     "complianceStatusTitle": "Compliance Status",
     "complianceStatusText":
