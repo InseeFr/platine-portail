@@ -274,7 +274,12 @@ export const translations: Translations<"fr"> = {
     accessibilityStatementLink: () => (
       <p>
         Cette déclaration d’accessibilité s’applique à{" "}
-        <a className="fr-link" href="https://enquetes.stat-publique.fr" target="_blank">
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - ouvre une nouvelle fenêtre"
+        >
           https://enquetes.stat-publique.fr
         </a>
         {""}.
@@ -334,7 +339,12 @@ export const translations: Translations<"fr"> = {
     securityText: () => (
       <p>
         Le site{" "}
-        <a className="fr-link" href="https://enquetes.stat-publique.fr" target="_blank">
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - ouvrir dans un nouvel onglet"
+        >
           https://enquetes.stat-publique.fr
         </a>{" "}
         a fait l'objet d'une décision d'homologation prononcée par l'autorité d'homologation pour le
