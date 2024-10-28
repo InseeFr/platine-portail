@@ -16,7 +16,8 @@ export const Accessibility = () => {
         segments={[]}
       />
       <h2>{t("pageTitle")}</h2>
-      <TitleWithText text={t("accessibilityText")} title={""} />
+      <p>{t("accessibilityText")}</p>
+      <p>{t("complianceStatusText")}</p>
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("multiYearPlan")}</li>
@@ -32,8 +33,8 @@ export const Accessibility = () => {
       <TitleWithText title={t("exemptionsTitle")} text={t("exemptionsText")} />
       <TitleWithText title={t("nonApplicableContentTitle")} text={t("nonApplicableContentText")} />
       <TitleWithText title={t("statementEstablishmentTitle")} text={t("statementEstablishmentText")} />
-      <p>{t("technologiesUsedTitle")}</p>
 
+      <h3 className="fr-mb-2w">{t("technologiesUsedTitle")}</h3>
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("technology1")}</li>
@@ -42,6 +43,7 @@ export const Accessibility = () => {
           <li>{t("technology4")}</li>
         </ul>
       </div>
+
       <TitleWithText title={t("testEnvironmentTitle")} text={t("testEnvironmentText")} />
       <TitleWithText
         title={t("accessibilityEvaluationToolsTitle")}
