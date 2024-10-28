@@ -331,7 +331,7 @@ export const translations: Translations<"en"> = {
   },
   Security: {
     "pageTitle": "Security",
-    securityText: ({}: {}) => (
+    securityText: () => (
       <p>
         The site{" "}
         <a href="https://enquetes.stat-publique.fr" target="_blank">

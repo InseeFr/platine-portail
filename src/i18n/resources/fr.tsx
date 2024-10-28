@@ -271,7 +271,7 @@ export const translations: Translations<"fr"> = {
 
     accessibilityStatementLink: () => (
       <p>
-        Cette déclaration d’accessibilité s’applique à
+        Cette déclaration d’accessibilité s’applique à{" "}
         <a href="https://enquetes.stat-publique.fr">https://enquetes.stat-publique.fr</a>.
       </p>
     ),
