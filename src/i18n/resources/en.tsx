@@ -23,6 +23,7 @@ export const translations: Translations<"en"> = {
     "personal data": "Personal data",
     "cookies": "Cookies management",
     "ssp logo alt": "Public statistics",
+    "security": "Security",
   },
 
   SurveyHomepage: {
@@ -278,14 +279,27 @@ export const translations: Translations<"en"> = {
   Accessibility: {
     "pageTitle": "Accessibility",
     "accessibilityText":
-      "Insee is committed to making its internet, intranet, extranet sites, and software applications accessible (including mobile applications and digital urban furniture) in accordance with Article 47 of Law No. 2005-102 of February 11, 2005. To this end, it implements the following strategy and actions:",
-
-    "multiYearPlan": "Multi-year accessibility implementation plan 2022-2024",
+      "Insee is committed to making its internet, intranet, extranet sites, and software applications accessible (including mobile applications and digital urban furniture) in accordance with Article 47 of Law No. 2005-102 of February 11, 2005.",
+    "multiYearPlan": " To this end, it implements the following strategy and actions:",
+    "accessibilityPlan": "Multi-year accessibility implementation plan 2022-2024",
     "actionPlans": "Action plans 2023, 2024",
 
     "accessibilityDocumentsNote": "These documents are available upon request.",
-    "accessibilityStatementLink":
-      "This accessibility statement applies to https://enquetes.stat-publique.fr.",
+
+    accessibilityStatementLink: () => (
+      <p>
+        This accessibility statement applies to{" "}
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - open link in a new tab"
+        >
+          https://enquetes.stat-publique.fr
+        </a>
+        {""}.
+      </p>
+    ),
 
     "complianceStatusTitle": "Compliance Status",
     "complianceStatusText":
@@ -335,6 +349,23 @@ export const translations: Translations<"en"> = {
       "Send a letter by post (free, no stamp required) to: Defender of Rights, Libre réponse 71120, 75342 Paris CEDEX 07.",
     "appealOptionsStep4": "Contact the Defender of Rights by phone: 09 69 39 00 00.",
   },
-
+  Security: {
+    "pageTitle": "Security",
+    securityText: () => (
+      <p>
+        The site{" "}
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - open link in a new tab"
+        >
+          https://enquetes.stat-publique.fr
+        </a>{" "}
+        has been granted an approval decision issued by the accreditation authority on behalf of the
+        qualified information system security authority.
+      </p>
+    ),
+  },
   /* spell-checker: enable */
 };

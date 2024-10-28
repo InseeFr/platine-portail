@@ -17,7 +17,7 @@ export const Accessibility = () => {
       />
       <h2>{t("pageTitle")}</h2>
       <p>{t("accessibilityText")}</p>
-      <p>{t("complianceStatusText")}</p>
+      <p>{t("accessibilityPlan")}</p>
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("multiYearPlan")}</li>
@@ -25,7 +25,7 @@ export const Accessibility = () => {
         </ul>
       </div>
       <p>{t("accessibilityDocumentsNote")}</p>
-      <p>{t("accessibilityStatementLink")}</p>
+      <p>{t("accessibilityStatementLink", {})}</p>
 
       <TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
       <TitleWithText title={t("testResultsTitle")} text={t("testResultsText")} />
@@ -67,10 +67,15 @@ export const Accessibility = () => {
 const { i18n } = declareComponentKeys<
   | "pageTitle"
   | "accessibilityText"
+  | "accessibilityPlan"
   | "multiYearPlan"
   | "actionPlans"
   | "accessibilityDocumentsNote"
-  | "accessibilityStatementLink"
+  | {
+      K: "accessibilityStatementLink";
+      P: {};
+      R: JSX.Element;
+    }
   | "complianceStatusTitle"
   | "complianceStatusText"
   | "testResultsTitle"

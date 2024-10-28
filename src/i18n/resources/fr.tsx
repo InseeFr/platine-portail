@@ -23,6 +23,7 @@ export const translations: Translations<"fr"> = {
     "personal data": "Données personnelles",
     "cookies": "Gestion des cookies",
     "ssp logo alt": "Statistique publique",
+    "security": "Securité",
   },
   SurveyHomepage: {
     "title": "Sélectionnez votre enquête",
@@ -278,12 +279,27 @@ export const translations: Translations<"fr"> = {
   Accessibility: {
     "pageTitle": "Accessibilité",
     "accessibilityText":
-      "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005. À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
+      "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005.",
+    "accessibilityPlan": "À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
+
     "multiYearPlan": "Schéma pluriannuel de mise en accessibilité 2022-2024",
     "actionPlans": "Plans d’actions 2023, 2024",
     "accessibilityDocumentsNote": "Ces documents sont communicables à la demande.",
-    "accessibilityStatementLink":
-      "Cette déclaration d’accessibilité s’applique à https://enquetes.stat-publique.fr.",
+
+    accessibilityStatementLink: () => (
+      <p>
+        Cette déclaration d’accessibilité s’applique à{" "}
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - ouvre une nouvelle fenêtre"
+        >
+          https://enquetes.stat-publique.fr
+        </a>
+        {""}.
+      </p>
+    ),
 
     "complianceStatusTitle": "État de conformité",
     "complianceStatusText":
@@ -332,6 +348,24 @@ export const translations: Translations<"fr"> = {
     "appealOptionsStep3":
       "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l'adresse suivante : Défenseur des droits, Libre réponse 71120, 75342 Paris CEDEX 07.",
     "appealOptionsStep4": "Contacter le Défenseur des droits par téléphone : 09 69 39 00 00.",
+  },
+  Security: {
+    "pageTitle": "Securité",
+    securityText: () => (
+      <p>
+        Le site{" "}
+        <a
+          className="fr-link"
+          href="https://enquetes.stat-publique.fr"
+          target="_blank"
+          title="enquetes.stat-publique.fr - ouvrir dans un nouvel onglet"
+        >
+          https://enquetes.stat-publique.fr
+        </a>{" "}
+        a fait l'objet d'une décision d'homologation prononcée par l'autorité d'homologation pour le
+        compte de l'autorité qualifiée de la sécurité du système d'information.
+      </p>
+    ),
   },
 
   /* spell-checker: enable */
