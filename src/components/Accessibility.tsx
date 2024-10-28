@@ -23,8 +23,8 @@ export const Accessibility = () => {
           <li>{t("actionPlans")}</li>
         </ul>
       </div>
-      <TitleWithText text={t("accessibilityDocumentsNote")} />
-      <TitleWithText text={t("accessibilityStatementLink")} />
+      <p>{t("accessibilityDocumentsNote")}</p>
+      <p>{t("accessibilityStatementLink")}</p>
 
       <TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
       <TitleWithText title={t("testResultsTitle")} text={t("testResultsText")} />
@@ -32,7 +32,8 @@ export const Accessibility = () => {
       <TitleWithText title={t("exemptionsTitle")} text={t("exemptionsText")} />
       <TitleWithText title={t("nonApplicableContentTitle")} text={t("nonApplicableContentText")} />
       <TitleWithText title={t("statementEstablishmentTitle")} text={t("statementEstablishmentText")} />
-      <TitleWithText title={t("technologiesUsedTitle")} />
+      <p>{t("technologiesUsedTitle")}</p>
+
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("technology1")}</li>
