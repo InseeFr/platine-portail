@@ -274,7 +274,7 @@ export const translations: Translations<"en"> = {
     accessibilityStatementLink: () => (
       <p>
         This accessibility statement applies to{" "}
-        <a href="https://enquetes.stat-publique.fr" target="_blank">
+        <a className="fr-link" href="https://enquetes.stat-publique.fr" target="_blank">
           https://enquetes.stat-publique.fr
         </a>
         {""}.
@@ -334,7 +334,7 @@ export const translations: Translations<"en"> = {
     securityText: () => (
       <p>
         The site{" "}
-        <a href="https://enquetes.stat-publique.fr" target="_blank">
+        <a className="fr-link" href="https://enquetes.stat-publique.fr" target="_blank">
           https://enquetes.stat-publique.fr
         </a>{" "}
         has been granted an approval decision issued by the accreditation authority on behalf of the
