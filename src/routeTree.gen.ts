@@ -47,6 +47,11 @@ const MentionsLegalesRoute = MentionsLegalesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SecurityRoute = SecurityRouteImport.update({
+  path: '/securite',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DeconnexionRoute = DeconnexionImport.update({
   path: '/deconnexion',
   getParentRoute: () => rootRoute,
