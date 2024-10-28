@@ -46,6 +46,12 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
             },
           },
           {
+            text: t("security"),
+            linkProps: {
+              to: "/securite",
+            },
+          },
+          {
             text: t("cookies"),
             linkProps: {
               to: "/",
@@ -65,7 +71,7 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
 }
 
 const { i18n } = declareComponentKeys<
-  "operator logo alt" | "ssp logo alt" | "personal data" | "cookies"
+  "operator logo alt" | "ssp logo alt" | "personal data" | "cookies" | "security"
 >()("Footer");
 
 export type I18n = typeof i18n;

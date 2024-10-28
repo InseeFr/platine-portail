@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SecuriteImport } from './routes/securite'
 import { Route as MonCompteImport } from './routes/mon-compte'
 import { Route as MesEnquetesImport } from './routes/mes-enquetes'
 import { Route as MentionsLegalesImport } from './routes/mentions-legales'
@@ -32,6 +33,11 @@ import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/m
 
 // Create/Update Routes
 
+const SecuriteRoute = SecuriteImport.update({
+  path: '/securite',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const MonCompteRoute = MonCompteImport.update({
   path: '/mon-compte',
   getParentRoute: () => rootRoute,
@@ -44,11 +50,6 @@ const MesEnquetesRoute = MesEnquetesImport.update({
 
 const MentionsLegalesRoute = MentionsLegalesImport.update({
   path: '/mentions-legales',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SecurityRoute = SecurityRouteImport.update({
-  path: '/securite',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -187,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonCompteImport
       parentRoute: typeof rootRoute
     }
+    '/securite': {
+      id: '/securite'
+      path: '/securite'
+      fullPath: '/securite'
+      preLoaderRoute: typeof SecuriteImport
+      parentRoute: typeof rootRoute
+    }
     '/$survey/cadre-juridique': {
       id: '/$survey/cadre-juridique'
       path: '/cadre-juridique'
@@ -282,6 +290,7 @@ export const routeTree = rootRoute.addChildren({
   MentionsLegalesRoute,
   MesEnquetesRoute,
   MonCompteRoute,
+  SecuriteRoute,
 })
 
 /* prettier-ignore-end */
@@ -299,7 +308,8 @@ export const routeTree = rootRoute.addChildren({
         "/deconnexion",
         "/mentions-legales",
         "/mes-enquetes",
-        "/mon-compte"
+        "/mon-compte",
+        "/securite"
       ]
     },
     "/": {
@@ -337,6 +347,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/mon-compte": {
       "filePath": "mon-compte.tsx"
+    },
+    "/securite": {
+      "filePath": "securite.tsx"
     },
     "/$survey/cadre-juridique": {
       "filePath": "$survey/cadre-juridique.tsx",

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Accessibility } from "components/Accessibility";
+import { Security } from "components/Security";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 
@@ -16,7 +16,7 @@ function Index() {
       <Helmet>
         <title>{`${t("pageTitle")} - ${headerTranslation("service tagline")}`} </title>
       </Helmet>
-      <Accessibility />
+      <Security />
     </div>
   );
 }
