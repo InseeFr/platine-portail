@@ -264,9 +264,9 @@ export const translations: Translations<"en"> = {
   Accessibility: {
     "pageTitle": "Accessibility",
     "accessibilityText":
-      "Insee is committed to making its internet, intranet, extranet sites, and software applications accessible (including mobile applications and digital urban furniture) in accordance with Article 47 of Law No. 2005-102 of February 11, 2005. To this end, it implements the following strategy and actions:",
-
-    "multiYearPlan": "Multi-year accessibility implementation plan 2022-2024",
+      "Insee is committed to making its internet, intranet, extranet sites, and software applications accessible (including mobile applications and digital urban furniture) in accordance with Article 47 of Law No. 2005-102 of February 11, 2005.",
+    "multiYearPlan": " To this end, it implements the following strategy and actions:",
+    "accessibilityPlan": "Multi-year accessibility implementation plan 2022-2024",
     "actionPlans": "Action plans 2023, 2024",
 
     "accessibilityDocumentsNote": "These documents are available upon request.",
@@ -276,8 +276,8 @@ export const translations: Translations<"en"> = {
         This accessibility statement applies to{" "}
         <a href="https://enquetes.stat-publique.fr" target="_blank">
           https://enquetes.stat-publique.fr
-        </a>{" "}
-        .
+        </a>
+        {""}.
       </p>
     ),
 

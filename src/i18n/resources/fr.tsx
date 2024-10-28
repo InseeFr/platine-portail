@@ -264,7 +264,9 @@ export const translations: Translations<"fr"> = {
   Accessibility: {
     "pageTitle": "Accessibilité",
     "accessibilityText":
-      "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005. À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
+      "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005.",
+    "accessibilityPlan": "À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
+
     "multiYearPlan": "Schéma pluriannuel de mise en accessibilité 2022-2024",
     "actionPlans": "Plans d’actions 2023, 2024",
     "accessibilityDocumentsNote": "Ces documents sont communicables à la demande.",
@@ -272,7 +274,10 @@ export const translations: Translations<"fr"> = {
     accessibilityStatementLink: () => (
       <p>
         Cette déclaration d’accessibilité s’applique à{" "}
-        <a href="https://enquetes.stat-publique.fr">https://enquetes.stat-publique.fr</a>.
+        <a href="https://enquetes.stat-publique.fr" target="_blank">
+          https://enquetes.stat-publique.fr
+        </a>
+        {""}.
       </p>
     ),
 

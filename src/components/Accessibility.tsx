@@ -17,7 +17,7 @@ export const Accessibility = () => {
       />
       <h2>{t("pageTitle")}</h2>
       <p>{t("accessibilityText")}</p>
-      <p>{t("complianceStatusText")}</p>
+      <p>{t("accessibilityPlan")}</p>
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("multiYearPlan")}</li>
@@ -67,6 +67,7 @@ export const Accessibility = () => {
 const { i18n } = declareComponentKeys<
   | "pageTitle"
   | "accessibilityText"
+  | "accessibilityPlan"
   | "multiYearPlan"
   | "actionPlans"
   | "accessibilityDocumentsNote"
