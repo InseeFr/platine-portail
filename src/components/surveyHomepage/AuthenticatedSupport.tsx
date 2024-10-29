@@ -3,6 +3,7 @@ import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { Loading } from "./Loading";
 import { SupportForm } from "./SupportForm";
+import { Navigate } from "@tanstack/react-router";
 
 export const AuthenticatedSupport = ({
   surveyId,
@@ -15,10 +16,14 @@ export const AuthenticatedSupport = ({
 
   const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
 
-  const { mutateAsync, isSuccess } = useFetchMutationPortail("/e-mail", "post");
+  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/e-mail", "post");
 
   if (!questioningUrlData || isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return <Navigate to={"/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />;
   }
 
   const onSubmit = handleSubmit(data =>

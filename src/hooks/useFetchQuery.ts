@@ -96,7 +96,6 @@ export function useFetchMutationPilotage<Path extends APIPaths, Method extends A
     },
     onError: (err, variables) => {
       queryOptions?.onError?.(err, variables, undefined);
-      alert(err.message);
     },
   });
 }
@@ -128,7 +127,6 @@ export function useFetchMutationPortail<
     },
     onError: (err, variables) => {
       queryOptions?.onError?.(err, variables, undefined);
-      alert(err.message);
     },
   });
 }
@@ -157,7 +155,6 @@ export function useFetchMutationWithoutAuth<
     },
     onError: (err, variables) => {
       queryOptions?.onError?.(err, variables, undefined);
-      alert(err.message);
     },
   });
 }

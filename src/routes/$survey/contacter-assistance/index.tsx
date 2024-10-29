@@ -3,16 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { OfflineSupport } from "components/surveyHomepage/OfflineSupport";
 import { useTranslation } from "i18n";
 
-type SupportSearch = {
-  questioningId?: string;
-};
-
-export const Route = createFileRoute("/$survey/contacter-assistance")({
-  validateSearch: (search: Record<string, unknown>): SupportSearch => {
-    return {
-      questioningId: (search.questioningId as string) || undefined,
-    };
-  },
+export const Route = createFileRoute("/$survey/contacter-assistance/")({
   component: SupportIndex,
 });
 

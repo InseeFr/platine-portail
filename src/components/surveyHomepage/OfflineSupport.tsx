@@ -2,11 +2,16 @@ import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { SupportForm } from "./SupportForm";
 import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
+import { Navigate } from "@tanstack/react-router";
 
 export const OfflineSupport = ({ surveyId }: { surveyId: string }) => {
   const { register, handleSubmit, errors } = useForm(supportSchema);
 
-  const { mutateAsync, isSuccess } = useFetchMutationWithoutAuth("/e-mail", "post");
+  const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
+
+  if (isError) {
+    return <Navigate to={"/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />;
+  }
 
   const onSubmit = handleSubmit(data =>
     mutateAsync({

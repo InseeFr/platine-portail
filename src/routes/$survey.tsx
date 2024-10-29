@@ -20,7 +20,8 @@ function Index() {
   const hasNotSideMenu =
     currentPath.includes("/repondant/mail") ||
     currentPath.includes("/assistance") ||
-    currentPath.includes("/login");
+    currentPath.includes("/login") ||
+    currentPath.includes("/erreur");
 
   if (!surveyData) {
     return <NotFound />;

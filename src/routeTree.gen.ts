@@ -27,9 +27,10 @@ import { Route as SurveyLoginImport } from './routes/$survey/login'
 import { Route as SurveyIntroductionImport } from './routes/$survey/introduction'
 import { Route as SurveyFaqImport } from './routes/$survey/faq'
 import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
-import { Route as SurveyContacterAssistanceImport } from './routes/$survey/contacter-assistance'
 import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
+import { Route as SurveyContacterAssistanceIndexImport } from './routes/$survey/contacter-assistance/index'
 import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/mail'
+import { Route as SurveyContacterAssistanceErreurImport } from './routes/$survey/contacter-assistance/erreur'
 import { Route as SurveyContacterAssistanceAuthImport } from './routes/$survey/contacter-assistance/auth'
 
 // Create/Update Routes
@@ -114,25 +115,32 @@ const SurveyDocumentsRoute = SurveyDocumentsImport.update({
   getParentRoute: () => SurveyRoute,
 } as any)
 
-const SurveyContacterAssistanceRoute = SurveyContacterAssistanceImport.update({
-  path: '/contacter-assistance',
-  getParentRoute: () => SurveyRoute,
-} as any)
-
 const SurveyCadreJuridiqueRoute = SurveyCadreJuridiqueImport.update({
   path: '/cadre-juridique',
   getParentRoute: () => SurveyRoute,
 } as any)
+
+const SurveyContacterAssistanceIndexRoute =
+  SurveyContacterAssistanceIndexImport.update({
+    path: '/contacter-assistance/',
+    getParentRoute: () => SurveyRoute,
+  } as any)
 
 const SurveyRepondantMailRoute = SurveyRepondantMailImport.update({
   path: '/repondant/mail',
   getParentRoute: () => SurveyRoute,
 } as any)
 
+const SurveyContacterAssistanceErreurRoute =
+  SurveyContacterAssistanceErreurImport.update({
+    path: '/contacter-assistance/erreur',
+    getParentRoute: () => SurveyRoute,
+  } as any)
+
 const SurveyContacterAssistanceAuthRoute =
   SurveyContacterAssistanceAuthImport.update({
-    path: '/auth',
-    getParentRoute: () => SurveyContacterAssistanceRoute,
+    path: '/contacter-assistance/auth',
+    getParentRoute: () => SurveyRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -209,13 +217,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SurveyCadreJuridiqueImport
       parentRoute: typeof SurveyImport
     }
-    '/$survey/contacter-assistance': {
-      id: '/$survey/contacter-assistance'
-      path: '/contacter-assistance'
-      fullPath: '/$survey/contacter-assistance'
-      preLoaderRoute: typeof SurveyContacterAssistanceImport
-      parentRoute: typeof SurveyImport
-    }
     '/$survey/documents': {
       id: '/$survey/documents'
       path: '/documents'
@@ -267,16 +268,30 @@ declare module '@tanstack/react-router' {
     }
     '/$survey/contacter-assistance/auth': {
       id: '/$survey/contacter-assistance/auth'
-      path: '/auth'
+      path: '/contacter-assistance/auth'
       fullPath: '/$survey/contacter-assistance/auth'
       preLoaderRoute: typeof SurveyContacterAssistanceAuthImport
-      parentRoute: typeof SurveyContacterAssistanceImport
+      parentRoute: typeof SurveyImport
+    }
+    '/$survey/contacter-assistance/erreur': {
+      id: '/$survey/contacter-assistance/erreur'
+      path: '/contacter-assistance/erreur'
+      fullPath: '/$survey/contacter-assistance/erreur'
+      preLoaderRoute: typeof SurveyContacterAssistanceErreurImport
+      parentRoute: typeof SurveyImport
     }
     '/$survey/repondant/mail': {
       id: '/$survey/repondant/mail'
       path: '/repondant/mail'
       fullPath: '/$survey/repondant/mail'
       preLoaderRoute: typeof SurveyRepondantMailImport
+      parentRoute: typeof SurveyImport
+    }
+    '/$survey/contacter-assistance/': {
+      id: '/$survey/contacter-assistance/'
+      path: '/contacter-assistance'
+      fullPath: '/$survey/contacter-assistance'
+      preLoaderRoute: typeof SurveyContacterAssistanceIndexImport
       parentRoute: typeof SurveyImport
     }
   }
@@ -288,9 +303,6 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SurveyRoute: SurveyRoute.addChildren({
     SurveyCadreJuridiqueRoute,
-    SurveyContacterAssistanceRoute: SurveyContacterAssistanceRoute.addChildren({
-      SurveyContacterAssistanceAuthRoute,
-    }),
     SurveyDocumentsRoute,
     SurveyFaqRoute,
     SurveyIntroductionRoute,
@@ -298,7 +310,10 @@ export const routeTree = rootRoute.addChildren({
     SurveyResultatsRoute,
     SurveyUtilisationReponseRoute,
     SurveyIndexRoute,
+    SurveyContacterAssistanceAuthRoute,
+    SurveyContacterAssistanceErreurRoute,
     SurveyRepondantMailRoute,
+    SurveyContacterAssistanceIndexRoute,
   }),
   AccessibiliteRoute,
   ConnexionRoute,
@@ -335,7 +350,6 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "$survey.tsx",
       "children": [
         "/$survey/cadre-juridique",
-        "/$survey/contacter-assistance",
         "/$survey/documents",
         "/$survey/faq",
         "/$survey/introduction",
@@ -343,7 +357,10 @@ export const routeTree = rootRoute.addChildren({
         "/$survey/resultats",
         "/$survey/utilisation-reponse",
         "/$survey/",
-        "/$survey/repondant/mail"
+        "/$survey/contacter-assistance/auth",
+        "/$survey/contacter-assistance/erreur",
+        "/$survey/repondant/mail",
+        "/$survey/contacter-assistance/"
       ]
     },
     "/accessibilite": {
@@ -370,13 +387,6 @@ export const routeTree = rootRoute.addChildren({
     "/$survey/cadre-juridique": {
       "filePath": "$survey/cadre-juridique.tsx",
       "parent": "/$survey"
-    },
-    "/$survey/contacter-assistance": {
-      "filePath": "$survey/contacter-assistance.tsx",
-      "parent": "/$survey",
-      "children": [
-        "/$survey/contacter-assistance/auth"
-      ]
     },
     "/$survey/documents": {
       "filePath": "$survey/documents.tsx",
@@ -408,10 +418,18 @@ export const routeTree = rootRoute.addChildren({
     },
     "/$survey/contacter-assistance/auth": {
       "filePath": "$survey/contacter-assistance/auth.tsx",
-      "parent": "/$survey/contacter-assistance"
+      "parent": "/$survey"
+    },
+    "/$survey/contacter-assistance/erreur": {
+      "filePath": "$survey/contacter-assistance/erreur.tsx",
+      "parent": "/$survey"
     },
     "/$survey/repondant/mail": {
       "filePath": "$survey/repondant/mail.tsx",
+      "parent": "/$survey"
+    },
+    "/$survey/contacter-assistance/": {
+      "filePath": "$survey/contacter-assistance/index.tsx",
       "parent": "/$survey"
     }
   }
