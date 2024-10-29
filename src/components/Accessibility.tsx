@@ -73,7 +73,7 @@ const { i18n } = declareComponentKeys<
   | "accessibilityDocumentsNote"
   | {
       K: "accessibilityStatementLink";
-      P: {};
+      P: Record<string, never>;
       R: JSX.Element;
     }
   | "complianceStatusTitle"

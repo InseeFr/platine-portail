@@ -25,7 +25,7 @@ const { i18n } = declareComponentKeys<
   | "pageTitle"
   | {
       K: "personalDataText";
-      P: {};
+      P: Record<string, never>;
       R: JSX.Element;
     }
 >()("PersonalData");
