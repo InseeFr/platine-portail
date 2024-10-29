@@ -376,7 +376,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://www.insee.fr/fr/information/3719162"
           target="_blank"
-          title="https://www.insee.fr/fr/information/3719162 - ouvrir dans un nouvel onglet"
+          title="https://www.insee.fr/fr/information/3719162 - open link in a new tab"
         >
           Personal Data
         </a>{" "}
@@ -385,7 +385,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679"
           target="_blank"
-          title="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679 - ouvrir dans un nouvel onglet"
+          title="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679 - open link in a new tab"
         >
           General Data Protection Regulation (GDPR)
         </a>{" "}
@@ -394,7 +394,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460"
           target="_blank"
-          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - ouvrir dans un nouvel onglet"
+          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - open link in a new tab"
         >
           French Data Protection Act
         </a>
