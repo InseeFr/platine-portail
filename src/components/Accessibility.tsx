@@ -1,21 +1,12 @@
 import { declareComponentKeys, useTranslation } from "i18n";
-import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { TitleWithText } from "./commons/TitleWithText";
+import { FooterPageLayout } from "./commons/FooterPageLayout";
 
 export const Accessibility = () => {
   const { t } = useTranslation("Accessibility");
 
   return (
-    <section id="content" className="fr-container">
-      <Breadcrumb
-        currentPageLabel={t("pageTitle")}
-        className="fr-mb-1w"
-        homeLinkProps={{
-          to: "/",
-        }}
-        segments={[]}
-      />
-      <h2>{t("pageTitle")}</h2>
+    <FooterPageLayout t={t}>
       <p>{t("accessibilityText")}</p>
       <p>{t("accessibilityPlan")}</p>
       <div className="fr-col fr-mb-2w">
@@ -24,6 +15,7 @@ export const Accessibility = () => {
           <li>{t("actionPlans")}</li>
         </ul>
       </div>
+
       <p>{t("accessibilityDocumentsNote")}</p>
       <p>{t("accessibilityStatementLink", {})}</p>
 
@@ -60,7 +52,7 @@ export const Accessibility = () => {
           <li>{t("appealOptionsStep4")}</li>
         </ul>
       </div>
-    </section>
+    </FooterPageLayout>
   );
 };
 

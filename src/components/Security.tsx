@@ -1,23 +1,14 @@
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
-import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import { FooterPageLayout } from "./commons/FooterPageLayout";
 
 export function Security() {
   const { t } = useTranslation("Security");
 
   return (
-    <section id="content" className="fr-container">
-      <Breadcrumb
-        currentPageLabel={t("pageTitle")}
-        className="fr-mb-1w"
-        homeLinkProps={{
-          to: "/",
-        }}
-        segments={[]}
-      />
-      <h2>{t("pageTitle")}</h2>
+    <FooterPageLayout t={t}>
       <p>{t("securityText", {})}</p>
-    </section>
+    </FooterPageLayout>
   );
 }
 
