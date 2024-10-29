@@ -41,7 +41,7 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
           {
             text: t("personal data"),
             linkProps: {
-              to: "/",
+              to: "/donnees-personnelles",
             },
           },
           {

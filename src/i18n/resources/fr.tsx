@@ -367,6 +367,41 @@ export const translations: Translations<"fr"> = {
       </p>
     ),
   },
+  PersonalData: {
+    "pageTitle": "Données personnelles",
+    personalDataText: () => (
+      <p>
+        L’Insee s'engage à ce que les traitements de{" "}
+        <a
+          className="fr-link"
+          href="https://www.insee.fr/fr/information/3719162"
+          target="_blank"
+          title="https://www.insee.fr/fr/information/3719162 - ouvrir dans un nouvel onglet"
+        >
+          Données à caractère personnel
+        </a>{" "}
+        qu’il met en œuvre à des fins statistiques soient conformes au{" "}
+        <a
+          className="fr-link"
+          href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679"
+          target="_blank"
+          title="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679- ouvrir dans un nouvel onglet"
+        >
+          Règlement général sur la protection des données (RGPD)
+        </a>{" "}
+        et à la{" "}
+        <a
+          className="fr-link"
+          href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460"
+          target="_blank"
+          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - ouvrir dans un nouvel onglet"
+        >
+          loi Informatique et Libertés
+        </a>
+        {""}.
+      </p>
+    ),
+  },
 
   /* spell-checker: enable */
 };

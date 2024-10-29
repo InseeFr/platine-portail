@@ -15,6 +15,7 @@ import { Route as SecuriteImport } from './routes/securite'
 import { Route as MonCompteImport } from './routes/mon-compte'
 import { Route as MesEnquetesImport } from './routes/mes-enquetes'
 import { Route as MentionsLegalesImport } from './routes/mentions-legales'
+import { Route as DonneesPersonnellesImport } from './routes/donnees-personnelles'
 import { Route as DeconnexionImport } from './routes/deconnexion'
 import { Route as ConnexionImport } from './routes/connexion'
 import { Route as AccessibiliteImport } from './routes/accessibilite'
@@ -52,6 +53,11 @@ const MesEnquetesRoute = MesEnquetesImport.update({
 
 const MentionsLegalesRoute = MentionsLegalesImport.update({
   path: '/mentions-legales',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DonneesPersonnellesRoute = DonneesPersonnellesImport.update({
+  path: '/donnees-personnelles',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -180,6 +186,13 @@ declare module '@tanstack/react-router' {
       path: '/deconnexion'
       fullPath: '/deconnexion'
       preLoaderRoute: typeof DeconnexionImport
+      parentRoute: typeof rootRoute
+    }
+    '/donnees-personnelles': {
+      id: '/donnees-personnelles'
+      path: '/donnees-personnelles'
+      fullPath: '/donnees-personnelles'
+      preLoaderRoute: typeof DonneesPersonnellesImport
       parentRoute: typeof rootRoute
     }
     '/mentions-legales': {
@@ -318,6 +331,7 @@ export const routeTree = rootRoute.addChildren({
   AccessibiliteRoute,
   ConnexionRoute,
   DeconnexionRoute,
+  DonneesPersonnellesRoute,
   MentionsLegalesRoute,
   MesEnquetesRoute,
   MonCompteRoute,
@@ -337,6 +351,7 @@ export const routeTree = rootRoute.addChildren({
         "/accessibilite",
         "/connexion",
         "/deconnexion",
+        "/donnees-personnelles",
         "/mentions-legales",
         "/mes-enquetes",
         "/mon-compte",
@@ -371,6 +386,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/deconnexion": {
       "filePath": "deconnexion.tsx"
+    },
+    "/donnees-personnelles": {
+      "filePath": "donnees-personnelles.tsx"
     },
     "/mentions-legales": {
       "filePath": "mentions-legales.tsx"

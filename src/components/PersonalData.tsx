@@ -2,12 +2,12 @@ import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
 import { FooterPageLayout } from "./commons/FooterPageLayout";
 
-export function Security() {
-  const { t } = useTranslation("Security");
+export function PersonalData() {
+  const { t } = useTranslation("PersonalData");
 
   return (
     <FooterPageLayout t={t}>
-      <p>{t("securityText", {})}</p>
+      <p>{t("personalDataText", {})}</p>
     </FooterPageLayout>
   );
 }
@@ -15,10 +15,10 @@ export function Security() {
 const { i18n } = declareComponentKeys<
   | "pageTitle"
   | {
-      K: "securityText";
+      K: "personalDataText";
       P: Record<string, never>;
       R: JSX.Element;
     }
->()("Security");
+>()("PersonalData");
 
 export type I18n = typeof i18n;

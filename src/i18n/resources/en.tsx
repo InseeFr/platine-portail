@@ -367,5 +367,40 @@ export const translations: Translations<"en"> = {
       </p>
     ),
   },
+  PersonalData: {
+    "pageTitle": "Personal Data",
+    personalDataText: () => (
+      <p>
+        Insee undertakes to ensure that the processing of{" "}
+        <a
+          className="fr-link"
+          href="https://www.insee.fr/fr/information/3719162"
+          target="_blank"
+          title="https://www.insee.fr/fr/information/3719162 - open link in a new tab"
+        >
+          Personal Data
+        </a>{" "}
+        for statistical purposes comply with the requirements of the{" "}
+        <a
+          className="fr-link"
+          href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679"
+          target="_blank"
+          title="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679 - open link in a new tab"
+        >
+          General Data Protection Regulation (GDPR)
+        </a>{" "}
+        and{" "}
+        <a
+          className="fr-link"
+          href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460"
+          target="_blank"
+          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - open link in a new tab"
+        >
+          French Data Protection Act
+        </a>
+        {""}.
+      </p>
+    ),
+  },
   /* spell-checker: enable */
 };
