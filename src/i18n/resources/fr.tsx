@@ -276,6 +276,23 @@ export const translations: Translations<"fr"> = {
     "submitKnownEmailForm": "Confirmer et accéder à l'enquête",
     "pageTitle": "Authentification",
   },
+  ForgotPassword: {
+    "pageTitleForgotPassword": "Mot de passe oublié",
+    "sectionTitle": "Récupération du mot de passe",
+    "information":
+      "Pour obtenir un nouveau mot de passe, veuillez renseigner votre identifiant que vous avez reçu par mail et/ou par courrier.",
+    "idecHintText": "Format attendu : lettres et chiffres en majuscules",
+    "submitButton": "Envoyer",
+    "forgotPasswordHelpTitle": "Aide à la récupération du mot de passe",
+    "contactSupport": "contacter l'assistance.",
+    "forgotPasswordHelp": "Si vous n’avez pas votre identifiant, veuillez",
+    "alertText":
+      "Si votre compte existe, un nouveau mot de passe vous parviendra par mail dans quelques instants, ou par courrier dans les prochains jours. En cas de difficultés, vous pouvez",
+    "alertTextEEC":
+      "Si votre compte existe, un nouveau mot de passe vous parviendra par mail dans quelques instants.",
+    "goBackToConnexion": "Retour à la connexion",
+    "modifyIdentifier": "Modifier l'identifiant",
+  },
   Accessibility: {
     "pageTitle": "Accessibilité",
     "accessibilityText":

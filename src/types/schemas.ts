@@ -202,3 +202,7 @@ export const unknownEmailForm = z
 export const knownEmailForm = z.object({
   mailaddress: z.string().min(1, { message: "emailRequired" }).email({ message: "invalidEmail" }),
 });
+
+export const forgotPasswordForm = z.object({
+  idec: z.string().min(7, { message: "messageSizeIdec" }).max(9, { message: "messageSizeIdec" }),
+});

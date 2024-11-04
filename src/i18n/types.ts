@@ -28,6 +28,7 @@ export type ComponentKey =
   | import("components/errorPages/NotFound").I18n
   | import("components/errorPages/TechnicalError").I18n
   | import("components/errorPages/ErrorPages").I18n
+  | import("components/forgotPassword/ForgotPassword").I18n
   | import("components/EmailForm").I18n
   | import("components/Accessibility").I18n
   | import("components/Security").I18n

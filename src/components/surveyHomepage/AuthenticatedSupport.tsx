@@ -1,4 +1,4 @@
-import { useFetchMutationPortail, useFetchQueryPortail } from "hooks/useFetchQuery";
+import { useFetchMutationWithoutAuth, useFetchQueryPortail } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { Loading } from "./Loading";
@@ -16,7 +16,7 @@ export const AuthenticatedSupport = ({
 
   const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
 
-  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/e-mail", "post");
+  const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
 
   if (!questioningUrlData || isLoading) {
     return <Loading />;

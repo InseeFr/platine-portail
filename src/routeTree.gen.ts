@@ -29,6 +29,7 @@ import { Route as SurveyIntroductionImport } from './routes/$survey/introduction
 import { Route as SurveyFaqImport } from './routes/$survey/faq'
 import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
 import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
+import { Route as SurveyAssistanceImport } from './routes/$survey/assistance'
 import { Route as SurveyContacterAssistanceIndexImport } from './routes/$survey/contacter-assistance/index'
 import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/mail'
 import { Route as SurveyContacterAssistanceErreurImport } from './routes/$survey/contacter-assistance/erreur'
@@ -123,6 +124,11 @@ const SurveyDocumentsRoute = SurveyDocumentsImport.update({
 
 const SurveyCadreJuridiqueRoute = SurveyCadreJuridiqueImport.update({
   path: '/cadre-juridique',
+  getParentRoute: () => SurveyRoute,
+} as any)
+
+const SurveyAssistanceRoute = SurveyAssistanceImport.update({
+  path: '/assistance',
   getParentRoute: () => SurveyRoute,
 } as any)
 
@@ -223,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecuriteImport
       parentRoute: typeof rootRoute
     }
+    '/$survey/assistance': {
+      id: '/$survey/assistance'
+      path: '/assistance'
+      fullPath: '/$survey/assistance'
+      preLoaderRoute: typeof SurveyAssistanceImport
+      parentRoute: typeof SurveyImport
+    }
     '/$survey/cadre-juridique': {
       id: '/$survey/cadre-juridique'
       path: '/cadre-juridique'
@@ -315,6 +328,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SurveyRoute: SurveyRoute.addChildren({
+    SurveyAssistanceRoute,
     SurveyCadreJuridiqueRoute,
     SurveyDocumentsRoute,
     SurveyFaqRoute,
@@ -364,6 +378,7 @@ export const routeTree = rootRoute.addChildren({
     "/$survey": {
       "filePath": "$survey.tsx",
       "children": [
+        "/$survey/assistance",
         "/$survey/cadre-juridique",
         "/$survey/documents",
         "/$survey/faq",
@@ -401,6 +416,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/securite": {
       "filePath": "securite.tsx"
+    },
+    "/$survey/assistance": {
+      "filePath": "$survey/assistance.tsx",
+      "parent": "/$survey"
     },
     "/$survey/cadre-juridique": {
       "filePath": "$survey/cadre-juridique.tsx",

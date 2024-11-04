@@ -276,6 +276,22 @@ export const translations: Translations<"en"> = {
     "submitKnownEmailForm": "Confirm and access the survey",
     "pageTitle": "Authentication",
   },
+  ForgotPassword: {
+    "pageTitleForgotPassword": "Forgot Password",
+    "sectionTitle": "Password Recovery",
+    "information":
+      "To obtain a new password, please enter your identifier that you received by email and/or mail.",
+    "idecHintText": "Expected format: uppercase letters and numbers",
+    "submitButton": "Submit",
+    "forgotPasswordHelpTitle": "Password Recovery Help",
+    "contactSupport": "contact support.",
+    "forgotPasswordHelp": "If you do not have your identifier, please",
+    "alertText":
+      "If your account exists, a new password will be sent to you by email shortly, or by mail in the coming days. If you encounter any issues, you can",
+    "alertTextEEC": "If your account exists, a new password will be sent to you by email shortly.",
+    "goBackToConnexion": "Back to Login",
+    "modifyIdentifier": "Modify Identifier",
+  },
   Accessibility: {
     "pageTitle": "Accessibility",
     "accessibilityText":
