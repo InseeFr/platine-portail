@@ -50,20 +50,22 @@ export const DocumentTile = ({ title, description, url, pictogramUrl }: Props) =
     const link = document.createElement("a");
     link.setAttribute("data-fr-assess-file", "bytes");
     link.href = url;
-    link.download = `ressources.${file.extension}`;
+    link.download = getFileName(url, file.extension);
     link.click();
   };
+
+  if (!file.isDownloadable) {
+    return <></>;
+  }
 
   return (
     <div className="container">
       <Tile
-        disabled={!file.isDownloadable}
         desc={description}
         className="fr-mb-3w"
         detail={
           <p style={{ "color": fr.colors.decisions.text.mention.grey.default }} className="fr-text--xs">
-            {file.isDownloadable &&
-              `${file.extension && `${file.extension.toLocaleUpperCase()} - `} ${file.size && (file.size / 1024).toFixed(0)} Ko`}
+            {`${file.extension && `${file.extension.toLocaleUpperCase()} - `} ${file.size && (file.size / 1024).toFixed(0)} Ko`}
           </p>
         }
         imageSvg
@@ -78,4 +80,21 @@ export const DocumentTile = ({ title, description, url, pictogramUrl }: Props) =
       />
     </div>
   );
+};
+
+const getFileName = (url: string, extension?: string) => {
+  if (url.includes("courrier")) {
+    return `courrier.${extension}`;
+  }
+  if (url.includes("mail")) {
+    return `mail.${extension}`;
+  }
+  if (url.includes("questionnaire")) {
+    return `questionnaire.${extension}`;
+  }
+  if (url.includes("notice")) {
+    return `notice.${extension}`;
+  }
+
+  return `ressource.${extension}`;
 };

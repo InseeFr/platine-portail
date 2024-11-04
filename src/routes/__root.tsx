@@ -1,4 +1,4 @@
-import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet, ScrollRestoration } from "@tanstack/react-router";
 import { Footer } from "components/Footer";
 import { Header } from "components/Header";
 import { QueryClient } from "@tanstack/react-query";
@@ -35,6 +35,7 @@ function RootComponent() {
       />
       <Header />
       <main>
+        <ScrollRestoration />
         <Outlet />
       </main>
       <AutoLogoutCountdown />
