@@ -4,9 +4,23 @@ import logoInsee from "assets/logo-insee.png";
 import sspLogo from "assets/logo-ssp.jpg";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { Follow } from "@codegouvfr/react-dsfr/Follow";
+import { useEffect } from "react";
 
 export function Footer({ className }: Readonly<{ className?: string }>) {
   const { t } = useTranslation("Footer");
+
+  // useEffect used for updating HTML contents from third-party library (DSFR)
+  useEffect(() => {
+    const linksMapping = {
+      "www.cnis.fr": "cnis.fr",
+      "ec.europa.eu/eurostat/fr": "ec.europa.eu",
+    };
+
+    Object.keys(linksMapping).forEach(link => {
+      const element = document.querySelector(`a[href="https://${link}"]`);
+      if (element) element.innerHTML = linksMapping[link as keyof typeof linksMapping];
+    });
+  }, []);
 
   return (
     <>
@@ -36,7 +50,7 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
           to: "/mentions-legales",
         }}
         accessibilityLinkProps={{ to: "/accessibilite" }}
-        domains={["insee.fr", "cnis.fr", "ec.europa.eu", "service-publique.fr"]}
+        domains={["insee.fr", "www.cnis.fr", "ec.europa.eu/eurostat/fr", "service-public.fr"]}
         bottomItems={[
           {
             text: t("personal data"),
