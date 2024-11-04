@@ -50,7 +50,10 @@ export function useFetchQueryPortail<
 >(
   path: Path,
   options?: Options & { headers?: Record<string, string> },
-  queryOptions?: UseQueryOptions<unknown, APIError, APIResponsePortail<Path, Options["method"]>>,
+  queryOptions?: Omit<
+    UseQueryOptions<unknown, APIError, APIResponsePortail<Path, Options["method"]>>,
+    "queryKey" | "queryFn"
+  >,
 ) {
   const key = [path, options];
   const token = useAccessToken();

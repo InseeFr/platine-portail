@@ -6,7 +6,11 @@ import { TechnicalError } from "./errorPages/TechnicalError";
 import { Ineligible, Unauthorized } from "./errorPages/ErrorPages";
 
 export const Login = ({ surveyData }: { surveyData: ContentSurvey }) => {
-  const { data: questioningUrlData, isLoading, error } = useFetchQueryPortail("/questionnaires-url");
+  const {
+    data: questioningUrlData,
+    isLoading,
+    error,
+  } = useFetchQueryPortail("/questionnaires-url", {}, { refetchOnWindowFocus: false });
 
   if (isLoading) {
     return <Loading />;
