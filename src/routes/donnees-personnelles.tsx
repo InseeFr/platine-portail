@@ -9,7 +9,7 @@ export const Route = createFileRoute("/donnees-personnelles")({
 
 function Index() {
   const { t: headerTranslation } = useTranslation("Header");
-  const { t } = useTranslation("Security");
+  const { t } = useTranslation("PersonalData");
 
   return (
     <div>
