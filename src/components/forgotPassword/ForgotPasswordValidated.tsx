@@ -30,6 +30,9 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
                 params: {
                   survey: surveyId,
                 },
+                search: {
+                  "mot-de-passe-oublie": true,
+                },
               }}
             >
               {t("contactSupport")}
