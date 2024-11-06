@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tile } from "@codegouvfr/react-dsfr/Tile";
 import { fr } from "@codegouvfr/react-dsfr";
-import { useTranslation } from "i18n";
 
 type Props = {
   title: string;
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export const DocumentTile = ({ title, description, url, pictogramUrl }: Props) => {
-  const { t } = useTranslation("NotFound");
   const [file, setFile] = useState<{
     extension: string | undefined;
     size: number | null;
@@ -29,16 +27,10 @@ export const DocumentTile = ({ title, description, url, pictogramUrl }: Props) =
 
         if (response.ok) {
           const size = response.headers.get("Content-Length");
+          const mimeType = response.headers.get("Content-Type");
           const extension = url.split(".").pop();
 
-          const blob = await response.blob();
-          const textContent = await blob.text();
-
-          if (
-            textContent.includes(t("title")) &&
-            textContent.includes(t("error")) &&
-            textContent.includes(t("notFoundText"))
-          ) {
+          if (mimeType !== "application/pdf" && mimeType !== "image/png") {
             setFile({
               extension: extension,
               size: null,
