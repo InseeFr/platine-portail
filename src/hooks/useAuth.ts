@@ -34,7 +34,10 @@ export const protectedLoader = async () => {
     return null;
   }
 
+  const surveyTitleElement = document.querySelector(`#survey-label`);
+
   await oidc.login({
     doesCurrentHrefRequiresAuth: true,
+    extraQueryParams: { label: surveyTitleElement?.ariaLabel ?? "N/A Survey" },
   });
 };
