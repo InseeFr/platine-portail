@@ -14,7 +14,7 @@ export const ForgotPassword = ({ surveyId }: { surveyId: string }) => {
   const { t } = useTranslation("ForgotPassword");
   const titleShort = content.specifique.find(s => s.id === surveyId)?.titleShort;
 
-  const { mutateAsync, isError } = useFetchMutationWithoutAuth("/reinit-password", "post");
+  const { mutateAsync, isError, error } = useFetchMutationWithoutAuth("/reinit-password", "post");
 
   const [isSuccessPage, setIsSuccessPage] = useState(false);
   const { register, errors, handleSubmit } = useForm(forgotPasswordForm);
@@ -24,7 +24,7 @@ export const ForgotPassword = ({ surveyId }: { surveyId: string }) => {
     setIsSuccessPage(true);
   });
 
-  if (isError) {
+  if (isError && error.status === 500) {
     return <TechnicalError surveyId={surveyId} />;
   }
 
