@@ -38,6 +38,6 @@ export const protectedLoader = async () => {
 
   await oidc.login({
     doesCurrentHrefRequiresAuth: true,
-    extraQueryParams: { label: surveyTitleElement?.ariaLabel ?? "N/A Survey" },
+    extraQueryParams: { label: surveyTitleElement?.ariaLabel ?? "N/A" },
   });
 };
