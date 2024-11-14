@@ -27,17 +27,15 @@ export function useIsAuthenticated() {
 
 export const AuthProvider = OidcProvider;
 
-export const protectedLoader = async () => {
+export const protectedLoader = async (titleShort?: string) => {
   const oidc = await prOidc;
 
   if (oidc.isUserLoggedIn) {
     return null;
   }
 
-  const surveyTitleElement = document.querySelector(`#survey-label`);
-
   await oidc.login({
     doesCurrentHrefRequiresAuth: true,
-    extraQueryParams: { label: surveyTitleElement?.ariaLabel ?? "N/A" },
+    extraQueryParams: { label: titleShort ?? "N/A" },
   });
 };

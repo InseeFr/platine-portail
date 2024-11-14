@@ -26,9 +26,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
           className="fr-mb-1w"
           segments={[]}
         />
-        <h2 id="survey-label" aria-label={survey?.titleShort} className="fr-mb-2w">
-          {survey?.title}
-        </h2>
+        <h2 className="fr-mb-2w">{survey?.title}</h2>
         <a
           className="fr-link"
           title={`${t("surveyLink")} - ${t("openNewWindow")}`}
