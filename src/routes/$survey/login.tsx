@@ -8,7 +8,10 @@ import { useTranslation } from "i18n/i18n";
 
 export const Route = createFileRoute("/$survey/login")({
   component: LoginPage,
-  beforeLoad: protectedLoader,
+  beforeLoad: async ({ params }) => {
+    const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
+    await protectedLoader(titleShort);
+  },
 });
 
 function LoginPage() {

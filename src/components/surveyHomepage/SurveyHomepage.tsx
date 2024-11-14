@@ -23,7 +23,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
           homeLinkProps={{
             to: "/",
           }}
-          className="fr-mb-1w "
+          className="fr-mb-1w"
           segments={[]}
         />
         <h2 className="fr-mb-2w">{survey?.title}</h2>
