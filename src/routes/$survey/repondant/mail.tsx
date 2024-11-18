@@ -2,11 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { EmailForm } from "components/EmailForm";
 import { protectedLoader } from "hooks/useAuth";
 import { useTranslation } from "i18n/i18n";
+import content from "resources/content.json";
 import { Helmet } from "react-helmet-async";
 
 export const Route = createFileRoute("/$survey/repondant/mail")({
   component: MailPage,
-  beforeLoad: protectedLoader,
+  beforeLoad: async ({ params }) => {
+    const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
+    await protectedLoader(titleShort);
+  },
 });
 
 function MailPage() {
