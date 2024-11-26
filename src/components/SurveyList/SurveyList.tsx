@@ -7,9 +7,15 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 export const SurveysList = () => {
   const { t } = useTranslation("SurveyHomepage");
 
-  const surveys = content.specifique.map(survey => {
-    return { titleShort: survey.titleShort, id: survey.id };
-  });
+  const surveys = content.specifique
+    .map(survey => {
+      return {
+        titleShort: survey.titleShort,
+        id: survey.id,
+        disabledOnWelcomePage: survey.disabledOnWelcomePage,
+      };
+    })
+    .filter(survey => survey.disabledOnWelcomePage !== true);
 
   return (
     <div>

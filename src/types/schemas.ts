@@ -204,5 +204,5 @@ export const knownEmailForm = z.object({
 });
 
 export const forgotPasswordForm = z.object({
-  idec: z.string().min(7, { message: "messageSizeIdec" }).max(9, { message: "messageSizeIdec" }),
+  idec: z.string().min(7, { message: "idecHintText" }).max(9, { message: "idecHintText" }),
 });

@@ -281,7 +281,8 @@ export const translations: Translations<"en"> = {
     "sectionTitle": "Password Recovery",
     "information":
       "To obtain a new password, please enter your identifier that you received by email and/or mail.",
-    "idecHintText": "Expected format: uppercase letters and numbers",
+    "idecHintText":
+      "Expected format: an identifier comprising 7 to 9 characters, upper-case letters and numbers.",
     "submitButton": "Submit",
     "forgotPasswordHelpTitle": "Password Recovery Help",
     "contactSupport": "contact support.",

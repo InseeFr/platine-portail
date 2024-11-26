@@ -64,12 +64,6 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
               to: "/securite",
             },
           },
-          {
-            text: t("cookies"),
-            linkProps: {
-              to: "/",
-            },
-          },
           headerFooterDisplayItem,
         ]}
         partnersLogos={{

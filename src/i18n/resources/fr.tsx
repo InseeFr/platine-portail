@@ -281,7 +281,8 @@ export const translations: Translations<"fr"> = {
     "sectionTitle": "Récupération du mot de passe",
     "information":
       "Pour obtenir un nouveau mot de passe, veuillez renseigner votre identifiant que vous avez reçu par mail et/ou par courrier.",
-    "idecHintText": "Format attendu : lettres et chiffres en majuscules",
+    "idecHintText":
+      "Format attendu : un identifiant comprenant 7 à 9 caractères, lettres et chiffres en majuscules",
     "submitButton": "Envoyer",
     "forgotPasswordHelpTitle": "Aide à la récupération du mot de passe",
     "contactSupport": "contacter l'assistance.",

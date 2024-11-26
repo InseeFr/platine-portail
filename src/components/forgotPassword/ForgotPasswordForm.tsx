@@ -31,9 +31,7 @@ export const ForgotPasswordForm = ({ surveyId, onSubmit, register, errors }: Pro
             ...(errors.idec && { "aria-invalid": true, "aria-errormessage": "idec-desc-error" }),
           }}
           state={errors.idec ? "error" : "default"}
-          stateRelatedMessage={
-            errors.idec?.message && supportFormTranslation(errors.idec?.message as keyof typeof t)
-          }
+          stateRelatedMessage={errors.idec?.message && t(errors.idec?.message as keyof typeof t)}
         />
         {!errors.idec && <p className="fr-hidden" id={"idec-desc-error"} />}
         <Button style={{ width: "100%" }} className="fr-grid-row fr-grid-row--center" type="submit">
