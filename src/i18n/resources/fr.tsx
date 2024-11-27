@@ -13,7 +13,6 @@ export const translations: Translations<"fr"> = {
     "operator logo alt": "Insee, mesurer pour comprendre",
     "page title surveys": "Mes enquêtes",
     "contact support": "Contacter l'assistance",
-    "header": "Menu",
     "content": "Contenu",
     "footer": "Pied de page",
     "my surveys": "Mes enquêtes",
@@ -33,6 +32,8 @@ export const translations: Translations<"fr"> = {
     "survey introduction": "Introduction à l'enquête",
     "homepage": "Accueil",
     "in this section": "Dans cette rubrique",
+    "contact support": "Contacter l'assistance",
+    "FAQ": "Réponses à vos questions",
     "legal framework": "Cadre juridique",
     "what are your answers for?": "À quoi servent vos réponses ?",
     "documents to the surveyed": "Documents aux enquêtés",
@@ -394,7 +395,7 @@ export const translations: Translations<"fr"> = {
           className="fr-link"
           href="https://www.insee.fr/fr/information/3719162"
           target="_blank"
-          title="https://www.insee.fr/fr/information/3719162 - ouvrir dans un nouvel onglet"
+          title="Données à caractère personnel - ouvre une nouvelle fenêtre"
         >
           Données à caractère personnel
         </a>{" "}
@@ -403,7 +404,7 @@ export const translations: Translations<"fr"> = {
           className="fr-link"
           href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679"
           target="_blank"
-          title="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32016R0679- ouvrir dans un nouvel onglet"
+          title="Règlement général sur la protection des données- ouvre une nouvelle fenêtre"
         >
           Règlement général sur la protection des données (RGPD)
         </a>{" "}
@@ -412,7 +413,7 @@ export const translations: Translations<"fr"> = {
           className="fr-link"
           href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460"
           target="_blank"
-          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - ouvrir dans un nouvel onglet"
+          title="loi Informatique et Libertés - ouvre une nouvelle fenêtre"
         >
           loi Informatique et Libertés
         </a>

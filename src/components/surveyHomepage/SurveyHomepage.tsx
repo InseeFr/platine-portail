@@ -244,6 +244,8 @@ const { i18n } = declareComponentKeys<
   | "homepage"
   | "sideMenuTitle"
   | "in this section"
+  | "contact support"
+  | "FAQ"
   | "legal framework"
   | "what are your answers for?"
   | "documents to the surveyed"

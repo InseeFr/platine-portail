@@ -65,7 +65,6 @@ const { i18n } = declareComponentKeys<
   | "operator logo alt"
   | "page title surveys"
   | "contact support"
-  | "header"
   | "content"
   | "footer"
   | "my surveys"

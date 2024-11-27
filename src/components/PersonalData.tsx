@@ -7,7 +7,7 @@ export function PersonalData() {
 
   return (
     <FooterPageLayout t={t}>
-      <p>{t("personalDataText", {})}</p>
+      <div>{t("personalDataText", {})}</div>
     </FooterPageLayout>
   );
 }

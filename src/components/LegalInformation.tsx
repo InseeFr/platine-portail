@@ -22,7 +22,7 @@ export function LegalInformation() {
       <TitleWithText title={t("cookiesTitle")} text={t("cookiesText")} />
       <TitleWithText title={t("copyrightTitle")} text={t("copyrightText")} />
 
-      <div aria-label={t("publisherInformationTitle")} className="fr-pb-3w">
+      <div className="fr-pb-3w">
         <h3 className="fr-mb-2w">{t("publisherInformationTitle")}</h3>
         <p className="fr-mb-1w">{t("address")}</p>
         <p className="fr-mb-1w">{t("streetInformation")}</p>

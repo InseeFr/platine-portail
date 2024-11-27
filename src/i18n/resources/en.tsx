@@ -13,7 +13,6 @@ export const translations: Translations<"en"> = {
     "operator logo alt": "Insee, measure to understand",
     "page title surveys": "My surveys",
     "contact support": "Contact support",
-    "header": "Header",
     "content": "Content",
     "footer": "Footer",
     "my surveys": "My surveys",
@@ -34,6 +33,8 @@ export const translations: Translations<"en"> = {
     "survey introduction": "Survey introduction",
     "homepage": "Homepage",
     "in this section": "In this section",
+    "contact support": "Contact support",
+    "FAQ": "Answer your questions",
     "legal framework": "Legal framework",
     "what are your answers for?": "What are your answers for?",
     "documents to the surveyed": "Documents to the surveyed",
@@ -393,7 +394,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://www.insee.fr/fr/information/3719162"
           target="_blank"
-          title="https://www.insee.fr/fr/information/3719162 - open link in a new tab"
+          title="Personal Data - open a new window"
         >
           Personal Data
         </a>{" "}
@@ -402,7 +403,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679"
           target="_blank"
-          title="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679 - open link in a new tab"
+          title="General Data Protection Regulation - open a new window"
         >
           General Data Protection Regulation (GDPR)
         </a>{" "}
@@ -411,7 +412,7 @@ export const translations: Translations<"en"> = {
           className="fr-link"
           href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460"
           target="_blank"
-          title="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000886460 - open link in a new tab"
+          title="French Data Protection Act - open a new window"
         >
           French Data Protection Act
         </a>

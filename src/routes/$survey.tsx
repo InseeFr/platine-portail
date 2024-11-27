@@ -4,6 +4,7 @@ import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 import content from "resources/content.json";
+import { getPageTitle } from "functions/getPageTitle";
 
 export const Route = createFileRoute("/$survey")({
   component: Index,
@@ -11,6 +12,7 @@ export const Route = createFileRoute("/$survey")({
 
 function Index() {
   const { t: headerTranslation } = useTranslation("Header");
+  const { t } = useTranslation("SurveyHomepage");
   const { survey } = Route.useParams();
   const surveyData = content.specifique.find(s => s.id === survey);
   const router = useRouter();
@@ -30,10 +32,12 @@ function Index() {
   if (hasNotSideMenu) {
     return <Outlet />;
   }
+
+  const sectionTitle = getPageTitle(currentPath);
   return (
     <div>
       <Helmet>
-        <title>{`${surveyData?.titleShort} - ${headerTranslation("service tagline")}`}</title>
+        <title>{`${t(sectionTitle)} - ${surveyData?.titleShort} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
       <SurveyHomepage survey={surveyData} />
     </div>
