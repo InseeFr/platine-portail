@@ -10,7 +10,8 @@ export const Route = createFileRoute("/$survey/login")({
   component: LoginPage,
   beforeLoad: async ({ params }) => {
     const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
-    await protectedLoader(titleShort);
+    const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
+    await protectedLoader(theme, titleShort);
   },
 });
 
