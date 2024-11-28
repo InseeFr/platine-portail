@@ -27,8 +27,9 @@ export function useIsAuthenticated() {
 
 export const AuthProvider = OidcProvider;
 
-export const protectedLoader = async (titleShort?: string) => {
+export const protectedLoader = async (theme: string, titleShort?: string) => {
   const oidc = await prOidc;
+  console.log(theme);
 
   if (oidc.isUserLoggedIn) {
     return null;
@@ -36,6 +37,6 @@ export const protectedLoader = async (titleShort?: string) => {
 
   await oidc.login({
     doesCurrentHrefRequiresAuth: true,
-    extraQueryParams: { label: titleShort ?? "N/A" },
+    extraQueryParams: { label: titleShort ?? "N/A", theme: theme },
   });
 };
