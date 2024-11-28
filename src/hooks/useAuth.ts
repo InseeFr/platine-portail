@@ -29,7 +29,6 @@ export const AuthProvider = OidcProvider;
 
 export const protectedLoader = async (theme: string, titleShort?: string) => {
   const oidc = await prOidc;
-  console.log(theme);
 
   if (oidc.isUserLoggedIn) {
     return null;
