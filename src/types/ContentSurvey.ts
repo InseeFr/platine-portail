@@ -1,6 +1,7 @@
 export type ContentSurvey = {
   id: string;
   isSurveyOnline: boolean;
+  disabledOnWelcomePage?: boolean
   messageSurveyOffline: string;
   messageInfoSurveyOffline: string;
   title: string;
@@ -14,7 +15,7 @@ export type ContentSurvey = {
     resultats: {
       title: string;
       "menu-title": string;
-      "picture-url": string;
+      "picture-url"?: string;
       legende: string;
       "link-url"?: string;
     };

@@ -4,19 +4,14 @@ import { fr } from "@codegouvfr/react-dsfr";
 import content from "resources/content.json";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { List } from "@mui/material";
+import { ContentSurvey } from "types/ContentSurvey";
 
 export const SurveysList = () => {
   const { t } = useTranslation("SurveyHomepage");
 
-  const surveys = content.specifique
-    .map(survey => {
-      return {
-        titleShort: survey.titleShort,
-        id: survey.id,
-        disabledOnWelcomePage: survey.disabledOnWelcomePage,
-      };
-    })
-    .filter(survey => survey.disabledOnWelcomePage !== true);
+  const surveys: ContentSurvey[] = content.specifique.filter(
+    survey => survey.disabledOnWelcomePage !== true,
+  );
 
   return (
     <div>

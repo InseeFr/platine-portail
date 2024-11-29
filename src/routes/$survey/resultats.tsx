@@ -22,7 +22,9 @@ function Results() {
     <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
       <h3>{t("some results")}</h3>
       <h4>{results.title}</h4>
-      <img src={`/${results["picture-url"]}`} alt={results.legende} width={"100%"} />
+      {results["picture-url"] && (
+        <img src={`/${results["picture-url"]}`} alt={results.legende} width={"100%"} />
+      )}
       <Markdown className="fr-text--sm" content={results.legende} />
     </section>
   );
