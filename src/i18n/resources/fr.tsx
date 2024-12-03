@@ -207,6 +207,7 @@ export const translations: Translations<"fr"> = {
     "perteMotDePasse": "Perte de mot de passe",
     "successAlert":
       "Votre demande d'assistance a bien été prise en compte. Vous recevrez une réponse par mail prochainement.",
+    "contact support": "Contacter l'assistance",
   },
   Documents: {
     "downloadEMail": "Télécharger le mail",

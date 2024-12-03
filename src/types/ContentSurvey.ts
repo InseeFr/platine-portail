@@ -1,7 +1,7 @@
 export type ContentSurvey = {
   id: string;
   isSurveyOnline: boolean;
-  disabledOnWelcomePage?: boolean
+  disabledOnWelcomePage?: boolean;
   messageSurveyOffline: string;
   messageInfoSurveyOffline: string;
   title: string;

@@ -207,6 +207,7 @@ export const translations: Translations<"en"> = {
     "perteMotDePasse": "Lost password",
     "successAlert":
       "Your support request has been successfully submitted. You will receive a response by email soon.",
+    "contact support": "Contact support",
   },
   Documents: {
     "downloadEMail": "Download the email",
