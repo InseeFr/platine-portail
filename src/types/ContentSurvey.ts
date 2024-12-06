@@ -34,11 +34,4 @@ export type ContentSurvey = {
       body: string;
     }[];
   };
-  configuration: {
-    listOptionsObjetMailAssistance: {
-      auth: boolean;
-      value: string;
-      displayValue: string;
-    }[];
-  };
 };
