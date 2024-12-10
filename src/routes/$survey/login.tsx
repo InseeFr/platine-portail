@@ -8,10 +8,10 @@ import { useTranslation } from "i18n/i18n";
 
 export const Route = createFileRoute("/$survey/login")({
   component: LoginPage,
-  beforeLoad: async ({ params }) => {
+  beforeLoad: ({ params }) => {
     const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
     const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
-    await protectedLoader(theme, titleShort);
+    protectedLoader(theme, titleShort);
   },
 });
 

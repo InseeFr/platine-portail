@@ -7,10 +7,10 @@ import { Helmet } from "react-helmet-async";
 
 export const Route = createFileRoute("/$survey/repondant/mail")({
   component: MailPage,
-  beforeLoad: async ({ params }) => {
+  beforeLoad: ({ params }) => {
     const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
     const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
-    await protectedLoader(theme, titleShort);
+    protectedLoader(theme, titleShort);
   },
 });
 
