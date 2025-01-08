@@ -300,12 +300,20 @@ export const translations: Translations<"fr"> = {
     "pageTitle": "Accessibilité",
     "accessibilityText":
       "L'Insee s’engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles (et ses applications mobiles et mobilier urbain numérique) conformément à l’article 47 de la loi n°2005-102 du 11 février 2005.",
-    "accessibilityPlan": "À cette fin, elle met en œuvre la stratégie et les actions suivantes :",
-
-    "multiYearPlan": "Schéma pluriannuel de mise en accessibilité 2022-2024",
-    "actionPlans": "Plans d’actions 2023, 2024",
-    "accessibilityDocumentsNote": "Ces documents sont communicables à la demande.",
-
+    accessibilityPlan: () => (
+      <p>
+        A cette fin, il met en œuvre un schéma pluriannuel présentant la politique de l'Insee en matière
+        d'accessibilité numérique (en cours de rédaction) ainsi qu'un plan annuel d'action.{" "}
+        <a
+          className="fr-link"
+          href="https://www.insee.fr/fr/information/7621795"
+          target="_blank"
+          title="Schéma pluriannuel de mise en accessibilité numérique de l’Insee 2023-2025 - ouvre une nouvelle fenêtre"
+        >
+          https://www.insee.fr/fr/information/7621795
+        </a>
+      </p>
+    ),
     accessibilityStatementLink: () => (
       <p>
         Cette déclaration d’accessibilité s’applique à{" "}
@@ -339,7 +347,7 @@ export const translations: Translations<"fr"> = {
     "nonApplicableContentText": "Sans objet.",
 
     "statementEstablishmentTitle": "Établissement de cette déclaration d’accessibilité",
-    "statementEstablishmentText": "?",
+    "statementEstablishmentText": "Cette déclaration a été établie le 07 janvier 2025",
 
     "technologiesUsedTitle": "Technologies utilisées pour la réalisation du site",
     "technology1": "HTML5",

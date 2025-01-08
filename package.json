@@ -1,6 +1,6 @@
 {
   "name": "platine-access",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "private": true,
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.9.14",

@@ -8,15 +8,7 @@ export const Accessibility = () => {
   return (
     <FooterPageLayout t={t}>
       <p>{t("accessibilityText")}</p>
-      <p>{t("accessibilityPlan")}</p>
-      <div className="fr-col fr-mb-2w">
-        <ul>
-          <li>{t("multiYearPlan")}</li>
-          <li>{t("actionPlans")}</li>
-        </ul>
-      </div>
-
-      <p>{t("accessibilityDocumentsNote")}</p>
+      <p>{t("accessibilityPlan", {})}</p>
       <p>{t("accessibilityStatementLink", {})}</p>
 
       <TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
@@ -59,10 +51,11 @@ export const Accessibility = () => {
 const { i18n } = declareComponentKeys<
   | "pageTitle"
   | "accessibilityText"
-  | "accessibilityPlan"
-  | "multiYearPlan"
-  | "actionPlans"
-  | "accessibilityDocumentsNote"
+  | {
+      K: "accessibilityPlan";
+      P: Record<string, never>;
+      R: JSX.Element;
+    }
   | {
       K: "accessibilityStatementLink";
       P: Record<string, never>;
