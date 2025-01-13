@@ -1,28 +1,28 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Navigate, createFileRoute, useSearch } from "@tanstack/react-router";
 import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSupport";
-import { useIsAuthenticated } from "hooks/useAuth";
-
-type SupportSearch = {
-  questioningId?: string;
-};
+import { protectedLoader } from "hooks/useAuth";
+import { z } from "zod";
+import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/contacter-assistance/auth")({
-  validateSearch: (search: Record<string, unknown>): SupportSearch => {
-    return {
-      questioningId: (search.questioningId as string) || undefined,
-    };
-  },
+  validateSearch: z.object({
+    questioningId: z.string().optional(),
+  }),
   component: SupportPage,
+  beforeLoad: ({ params }) => {
+    const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
+    const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
+    protectedLoader(theme, titleShort);
+  },
 });
 
 function SupportPage() {
   const search = useSearch({ from: "/$survey/contacter-assistance/auth" });
   const { survey } = Route.useParams();
-  const { isAuthenticated } = useIsAuthenticated();
 
-  if (!search.questioningId || !isAuthenticated) {
-    return <Navigate to={"/$survey/contacter-assistance"} params={{ survey: survey }} />;
+  if (!search.questioningId) {
+    return <Navigate to={"/$survey/contacter-assistance"} params={{ survey }} />;
   }
 
   return (
