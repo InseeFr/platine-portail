@@ -7,7 +7,7 @@ import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/contacter-assistance/auth")({
   validateSearch: z.object({
-    questioningId: z.string().optional(),
+    questioningId: z.number().optional(),
   }),
   component: SupportPage,
   beforeLoad: ({ params }) => {
@@ -27,7 +27,7 @@ function SupportPage() {
 
   return (
     <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
-      <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId} />
+      <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId.toString()} />
     </section>
   );
 }
