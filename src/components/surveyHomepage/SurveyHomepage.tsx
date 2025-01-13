@@ -19,14 +19,14 @@ export const SurveyHomepage = ({ survey }: Props) => {
     <>
       <div className="fr-container fr-mt-3w">
         <Breadcrumb
-          currentPageLabel={survey?.titleShort}
+          currentPageLabel={survey.titleShort}
           homeLinkProps={{
             to: "/",
           }}
           className="fr-mb-1w"
           segments={[]}
         />
-        <h2 className="fr-mb-2w">{survey?.title}</h2>
+        <h2 className="fr-mb-2w">{survey.title}</h2>
         <a
           className="fr-link"
           title={`${t("surveyLink")} - ${t("openNewWindow")}`}

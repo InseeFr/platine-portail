@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { EmailForm } from "components/EmailForm";
 import { protectedLoader } from "hooks/useAuth";
 import { useTranslation } from "i18n/i18n";
@@ -15,7 +15,8 @@ export const Route = createFileRoute("/$survey/repondant/mail")({
 });
 
 function MailPage() {
-  const { survey } = Route.useParams();
+  const { surveyData } = useLoaderData({ from: "/$survey" });
+
   const { t: headerTranslation } = useTranslation("Header");
   const { t } = useTranslation("EmailForm");
 
@@ -24,7 +25,7 @@ function MailPage() {
       <Helmet>
         <title>{`${t("pageTitle")} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
-      <EmailForm surveyId={survey} />
+      <EmailForm surveyId={surveyData.id} titleShort={surveyData.titleShort} />
     </div>
   );
 }

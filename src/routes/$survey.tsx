@@ -1,21 +1,29 @@
-import { NotFound } from "components/errorPages/NotFound";
-import { Outlet, createFileRoute, useRouter } from "@tanstack/react-router";
+import { Outlet, createFileRoute, notFound, useRouter } from "@tanstack/react-router";
 import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 import content from "resources/content.json";
 import { getPageTitle } from "functions/getPageTitle";
 import { Chatbot } from "components/Chatbot";
+import { Loading } from "components/surveyHomepage/Loading";
 
 export const Route = createFileRoute("/$survey")({
   component: Index,
+  caseSensitive: false,
+  loader: ({ params }) => {
+    const surveyData = content.specifique.find(s => s.id.toLowerCase() === params.survey.toLowerCase());
+    if (!surveyData) {
+      throw notFound();
+    }
+    return { surveyData, genericData: content.generique };
+  },
+  pendingComponent: Loading,
 });
 
 function Index() {
   const { t: headerTranslation } = useTranslation("Header");
   const { t } = useTranslation("SurveyHomepage");
-  const { survey } = Route.useParams();
-  const surveyData = content.specifique.find(s => s.id === survey);
+  const { surveyData } = Route.useLoaderData();
   const router = useRouter();
 
   const currentPath = router.history.location.pathname;
@@ -26,10 +34,6 @@ function Index() {
     currentPath.includes("/login") ||
     currentPath.includes("/erreur");
 
-  if (!surveyData) {
-    return <NotFound />;
-  }
-
   if (hasNotSideMenu) {
     return <Outlet />;
   }
@@ -38,7 +42,7 @@ function Index() {
   return (
     <div>
       <Helmet>
-        <title>{`${t(sectionTitle)} - ${surveyData?.titleShort} - ${headerTranslation("service tagline")}`}</title>
+        <title>{`${t(sectionTitle)} - ${surveyData.titleShort} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
       <SurveyHomepage survey={surveyData} />
       {surveyData.isSurveyOnline && <Chatbot />}

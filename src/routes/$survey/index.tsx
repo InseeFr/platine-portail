@@ -6,5 +6,5 @@ export const Route = createFileRoute("/$survey/")({
 
 function Index() {
   const { survey } = Route.useParams();
-  return <Navigate to={"/$survey/introduction"} params={{ survey: survey }} />;
+  return <Navigate to={"/$survey/introduction"} params={{ survey }} />;
 }

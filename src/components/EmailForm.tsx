@@ -1,16 +1,14 @@
 import { useFetchQueryPortail } from "hooks/useFetchQuery";
 import { useTranslation } from "i18n/i18n";
 import { declareComponentKeys } from "i18nifty";
-import content from "resources/content.json";
 import { UnknownEmailForm } from "./UnknownEmailForm";
 import { KnownEmailForm } from "./KnownEmailForm";
 import Divider from "@mui/material/Divider";
 import { Loading } from "./surveyHomepage/Loading";
 import { PageWithCardContainer } from "./commons/PageWithCardContainer";
 
-export const EmailForm = ({ surveyId }: { surveyId: string }) => {
+export const EmailForm = ({ surveyId, titleShort }: { surveyId: string; titleShort: string }) => {
   const { t } = useTranslation("EmailForm");
-  const titleShort = content.specifique.find(s => s.id === surveyId)?.titleShort;
 
   const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
 
