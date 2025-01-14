@@ -6,14 +6,23 @@ import {
 } from "@tanstack/react-router";
 import { Footer } from "components/Footer";
 import { Header } from "components/Header";
-import { QueryClient } from "@tanstack/react-query";
 import { AutoLogoutCountdown } from "components/AutoLogoutCountdown";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { useTranslation } from "i18n";
 import { NotFound } from "components/errorPages/NotFound";
 import { useEffect, useRef } from "react";
+import type { GenericData, SurveyData } from "types/ContentSurvey";
+import type { QueryClient } from "@tanstack/react-query";
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+type RouterContext = {
+  queryClient: QueryClient;
+  getTitleShort: (params: { surveyId: string }) => string | undefined;
+  getSpecificData: () => SurveyData[];
+  getSurveyData: (params: { surveyId: string }) => SurveyData | undefined;
+  getGenericData: () => GenericData;
+};
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
   notFoundComponent: NotFound,
 });

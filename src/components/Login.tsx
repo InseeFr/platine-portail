@@ -1,11 +1,11 @@
 import { useFetchQueryPortail } from "hooks/useFetchQuery";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 import { Navigate } from "@tanstack/react-router";
 import { Loading } from "./surveyHomepage/Loading";
 import { TechnicalError } from "./errorPages/TechnicalError";
 import { Ineligible, Unauthorized } from "./errorPages/ErrorPages";
 
-export const Login = ({ surveyData }: { surveyData: ContentSurvey }) => {
+export const Login = ({ surveyData }: { surveyData: SurveyData }) => {
   const {
     data: questioningUrlData,
     isLoading,

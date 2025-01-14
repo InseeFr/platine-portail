@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import Divider from "@mui/material/Divider";
 import { useTranslation } from "i18n";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { Schema, z } from "zod";
 
 type Props = {

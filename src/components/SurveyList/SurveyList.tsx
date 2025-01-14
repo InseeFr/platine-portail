@@ -3,9 +3,9 @@ import Banner from "../../assets/banner.svg";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { List } from "@mui/material";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 
-export const SurveysList = ({ surveys }: { surveys: ContentSurvey[] }) => {
+export const SurveysList = ({ surveys }: { surveys: SurveyData[] }) => {
   const { t } = useTranslation("SurveyHomepage");
 
   return (

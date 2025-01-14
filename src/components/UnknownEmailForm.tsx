@@ -5,7 +5,7 @@ import { useFetchMutationPortail } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { useTranslation } from "i18n/i18n";
 import { useEffect } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { unknownEmailForm } from "types/schemas";
 import { Schema, z } from "zod";
 import { TechnicalError } from "./errorPages/TechnicalError";

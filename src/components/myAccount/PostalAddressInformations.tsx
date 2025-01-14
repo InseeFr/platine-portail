@@ -1,5 +1,5 @@
 import { tss } from "tss";
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { InformationWithLabel } from "./PersonalInformations";
 import { declareComponentKeys, useTranslation } from "i18n";
 

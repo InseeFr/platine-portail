@@ -2,20 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SurveysList } from "components/SurveyList/SurveyList";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
-import content from "resources/content.json";
-import { ContentSurvey } from "types/ContentSurvey";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  loader: ({ context }) =>
+    context.getSpecificData().filter(survey => survey.disabledOnWelcomePage !== true),
 });
 
 function Index() {
   const { t } = useTranslation("SurveyHomepage");
   const { t: headerTranslation } = useTranslation("Header");
 
-  const surveys: ContentSurvey[] = content.specifique.filter(
-    survey => survey.disabledOnWelcomePage !== true,
-  );
+  const surveys = Route.useLoaderData();
 
   return (
     <div>

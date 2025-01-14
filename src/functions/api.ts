@@ -1,5 +1,5 @@
-import { APIPaths, APIRequests, APIResponse } from "types/api";
-import {
+import type { APIPaths, APIRequests, APIResponse } from "types/api";
+import type {
   APIPaths as APIPathsPortail,
   APIRequests as APIRequestsPortail,
   APIResponse as APIResponsePortail,

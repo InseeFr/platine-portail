@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { ReactNode } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
 type Props = {
   titleShort?: string;

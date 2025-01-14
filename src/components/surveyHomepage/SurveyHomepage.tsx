@@ -1,15 +1,15 @@
 import { declareComponentKeys, useTranslation } from "i18n";
 import Banner from "../../assets/banner.svg";
-import { SideMenu, SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
+import { SideMenu, type SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
 import { Outlet } from "@tanstack/react-router";
 import { tss } from "tss-react/dsfr";
 import Divider from "@mui/material/Divider";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 
 type Props = {
-  survey: ContentSurvey;
+  survey: SurveyData;
 };
 
 export const SurveyHomepage = ({ survey }: Props) => {
@@ -84,7 +84,7 @@ const LoginSection = ({
   surveyId,
 }: {
   className?: string;
-  data: ContentSurvey;
+  data: SurveyData;
   surveyId: string;
 }) => {
   const { t } = useTranslation("SurveyHomepage");

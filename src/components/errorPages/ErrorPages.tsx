@@ -5,10 +5,10 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { Loading } from "components/surveyHomepage/Loading";
 import { declareComponentKeys, useTranslation } from "i18n/i18n";
 import content from "resources/content.json";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 
 type Props = {
-  data: ContentSurvey;
+  data: SurveyData;
   message: string;
 };
 

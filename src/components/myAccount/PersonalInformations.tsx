@@ -1,5 +1,5 @@
 import { tss } from "tss";
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 

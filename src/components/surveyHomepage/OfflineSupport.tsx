@@ -3,7 +3,7 @@ import { supportSchema } from "types/schemas";
 import { SupportForm } from "./SupportForm";
 import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { Navigate } from "@tanstack/react-router";
-import { SupportSearch } from "routes/$survey/contacter-assistance";
+import type { SupportSearch } from "routes/$survey/contacter-assistance";
 
 export const OfflineSupport = ({
   surveyId,

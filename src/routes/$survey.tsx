@@ -2,7 +2,6 @@ import { Outlet, createFileRoute, notFound, useRouter } from "@tanstack/react-ro
 import { SurveyHomepage } from "components/surveyHomepage/SurveyHomepage";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
-import content from "resources/content.json";
 import { getPageTitle } from "functions/getPageTitle";
 import { Chatbot } from "components/Chatbot";
 import { Loading } from "components/surveyHomepage/Loading";
@@ -10,12 +9,12 @@ import { Loading } from "components/surveyHomepage/Loading";
 export const Route = createFileRoute("/$survey")({
   component: Index,
   caseSensitive: false,
-  loader: ({ params }) => {
-    const surveyData = content.specifique.find(s => s.id.toLowerCase() === params.survey.toLowerCase());
+  loader: ({ params, context }) => {
+    const surveyData = context.getSurveyData({ surveyId: params.survey });
     if (!surveyData) {
       throw notFound();
     }
-    return { surveyData, genericData: content.generique };
+    return { surveyData, genericData: context.getGenericData() };
   },
   pendingComponent: Loading,
 });
