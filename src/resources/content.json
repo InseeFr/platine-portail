@@ -47,6 +47,7 @@
     {
       "id": "chi",
       "isSurveyOnline": false,
+      "disabledOnWelcomePage": false,
       "messageSurveyOffline": "L'enquête est terminée",
       "messageInfoSurveyOffline": "",
       "title": "Survey about Chicken",
