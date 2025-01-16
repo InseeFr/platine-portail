@@ -429,5 +429,8 @@ export const translations: Translations<"en"> = {
       </p>
     ),
   },
+  Chatbot: {
+    "title": "Surveys portal",
+  },
   /* spell-checker: enable */
 };

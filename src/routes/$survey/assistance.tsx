@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Chatbot } from "components/Chatbot";
 import { ForgotPassword } from "components/forgotPassword/ForgotPassword";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
@@ -18,6 +19,7 @@ function ForgotPasswordPage() {
         <title>{`${t("pageTitleForgotPassword")} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
       <ForgotPassword surveyId={survey} />
+      <Chatbot />
     </div>
   );
 }

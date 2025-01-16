@@ -24,6 +24,44 @@
         />
         <link rel="preload" href="/dsfr/fonts/Marianne-Medium.woff2" as="font" crossorigin="anonymous" />
         <link rel="preload" href="/dsfr/fonts/Marianne-Bold.woff2" as="font" crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+        
+        <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+        <script src="https://contact.eloquant.cloud/insee/file/acd/chatbot/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.addEventListener('df-session-ended', () => {
+                const messenger = document.querySelector('df-messenger');
+                messenger.renderCustomText(`*Merci pour votre note de satisfaction*`, /* isBot= */ true);
+                messenger.startNewSession({ retainHistory: false });
+            });
+
+            function forceBorderRadius(){
+                const bubble = document.querySelector('df-messenger-chat-bubble');
+                if( bubble ){
+                var chat = bubble.shadowRoot.querySelector('df-messenger-chat');
+                if(chat){
+                    var messageList = chat.shadowRoot.querySelector('df-messenger-message-list');
+                    if(messageList){
+                    var messageListWrapper = messageList.shadowRoot.querySelector('.message-list-wrapper');
+                    if( !$( messageListWrapper ).find( '> style' ).length )
+                        $( messageListWrapper ).prepend( $( '<style>' ).text( '.message-list-wrapper { border-radius : 0 !important;}' ) );
+                    }
+                }
+                }
+            }
+
+            $(document).ready(function(){
+                const dfMessenger = document.querySelector( 'df-messenger' );
+                if( dfMessenger ){
+                forceBorderRadius()
+                dfMessenger.addEventListener( 'df-chat-open-changed', function( event ){
+                    forceBorderRadius();
+                });
+                }
+            });
+        </script>
     </head>
 
     <body>

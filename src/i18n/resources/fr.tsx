@@ -430,6 +430,9 @@ export const translations: Translations<"fr"> = {
       </p>
     ),
   },
+  Chatbot: {
+    "title": "Portail des enquêtes",
+  },
 
   /* spell-checker: enable */
 };

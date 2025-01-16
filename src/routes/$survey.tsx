@@ -5,6 +5,7 @@ import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 import content from "resources/content.json";
 import { getPageTitle } from "functions/getPageTitle";
+import { Chatbot } from "components/Chatbot";
 
 export const Route = createFileRoute("/$survey")({
   component: Index,
@@ -40,6 +41,7 @@ function Index() {
         <title>{`${t(sectionTitle)} - ${surveyData?.titleShort} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
       <SurveyHomepage survey={surveyData} />
+      {surveyData.isSurveyOnline && <Chatbot />}
     </div>
   );
 }
