@@ -33,11 +33,26 @@ export type SurveyData = {
       title: string;
       body: string;
     }[];
+    "faq-data-general"?: {
+      title: string;
+      body: string;
+    }[];
   };
 };
 
 export type GenericData = {
-  //TODO
+  content: {
+    "faq-data": {
+      title: string;
+      body: string;
+    }[];
+    ineligible: {
+      body: string;
+    };
+    unauthorized: {
+      body: string;
+    };
+  };
 };
 
 export type Content = { generique: GenericData; specifique: SurveyData[] };

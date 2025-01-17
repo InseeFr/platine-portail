@@ -1,21 +1,6 @@
 {
   "generique": {
-    "importantInfo": {
-      "state": true,
-      "message": {
-        "title": "⚠️ Information importante ⚠️",
-        "body": "Selon le moment de la journée, il se peut que des lenteurs soient observées sur le site en cas de forte affluence.\n\n Si tel est le cas nous vous conseillons de vous reconnecter ultérieurement."
-      }
-    },
     "content": {
-      "a-quoi-servent-vos-reponses": {
-        "body": "Les enquêtes servent à alimenter des études qui intéressent un large public.",
-        "information": "Pour toute demande, vous pouvez consulter notre site."
-      },
-      "accessibilite": {
-        "title": "Accessibilité",
-        "body": "Ce site a été conçu dans un souci de conformité avec les critères recommandés."
-      },
       "faq-data": [
         {
           "title": "Je n’arrive pas à me connecter",
@@ -46,7 +31,7 @@
   "specifique": [
     {
       "id": "chi",
-      "isSurveyOnline": false,
+      "isSurveyOnline": true,
       "disabledOnWelcomePage": false,
       "messageSurveyOffline": "L'enquête est terminée",
       "messageInfoSurveyOffline": "",
@@ -368,7 +353,7 @@
             "body": "Oui. Pour cela, il vous suffit de commencer à remplir le questionnaire, d'enregistrer les données en cliquant sur le bouton « Quitter et revenir plus tard » et de fermer le questionnaire.\n\nVous pourrez ensuite vous reconnecter sur ce questionnaire et continuer à compléter le questionnaire, à partir de l'endroit où vous vous étiez interrompu."
           }
         ],
-        "faq-data-general": [{}]
+        "faq-data-general": []
       },
       "configuration": {
         "listOptionsObjetMailAssistance": [

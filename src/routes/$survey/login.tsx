@@ -15,14 +15,14 @@ export const Route = createFileRoute("/$survey/login")({
 function LoginPage() {
   const { t: headerTranslation } = useTranslation("Header");
   const { t: errorPagesTranslation } = useTranslation("ErrorPages");
-  const { surveyData } = useLoaderData({ from: "/$survey" });
+  const { surveyData, genericData } = useLoaderData({ from: "/$survey" });
 
   return (
     <div>
       <Helmet>
         <title>{`${errorPagesTranslation("connexion")} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
-      <Login surveyData={surveyData} />
+      <Login surveyData={surveyData} genericData={genericData} />
     </div>
   );
 }
