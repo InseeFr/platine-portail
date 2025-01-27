@@ -1,11 +1,11 @@
 import { declareComponentKeys, useTranslation } from "i18n";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Markdown } from "components/Markdown";
 
 type Props = {
-  faqData: ContentSurvey["content"]["faq-data"];
+  faqData: SurveyData["content"]["faq-data"];
   generalFaqData: { title: string; body: string }[];
 };
 

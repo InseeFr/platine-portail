@@ -1,24 +1,18 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Markdown } from "components/Markdown";
 import { useTranslation } from "i18n";
-import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/utilisation-reponse")({
   component: AnswersUtilizationIndex,
 });
 
 function AnswersUtilizationIndex() {
-  const { survey } = Route.useParams();
+  const { surveyData } = useLoaderData({ from: "/$survey" });
+
   const { t } = useTranslation("SurveyHomepage");
 
-  const responses = content.specifique.find(s => s.id === survey)?.content[
-    "a-quoi-servent-vos-reponses"
-  ];
-
-  if (!responses) {
-    return <></>;
-  }
+  const responses = surveyData.content["a-quoi-servent-vos-reponses"];
 
   return (
     <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>

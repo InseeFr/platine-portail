@@ -1,22 +1,17 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Markdown } from "components/Markdown";
 import { useTranslation } from "i18n";
-import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/resultats")({
   component: Results,
 });
 
 function Results() {
-  const { survey } = Route.useParams();
   const { t } = useTranslation("SurveyHomepage");
+  const { surveyData } = useLoaderData({ from: "/$survey" });
 
-  const results = content.specifique.find(s => s.id === survey)?.content.resultats;
-
-  if (!results) {
-    return <></>;
-  }
+  const results = surveyData.content.resultats;
 
   return (
     <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>

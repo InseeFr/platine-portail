@@ -1,6 +1,6 @@
 import Breadcrumb from "@codegouvfr/react-dsfr/Breadcrumb";
-import { ComponentKey } from "i18n/types";
-import { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
+import type { ComponentKey } from "i18n/types";
+import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
 
 export function FooterPageLayout({
   children,

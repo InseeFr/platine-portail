@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { ComponentKey } from "i18n/types";
-import { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
+import type { ComponentKey } from "i18n/types";
+import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
 import { tss } from "tss-react/dsfr";
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { SurveysStatus, getSurveysStatus } from "./SurveyStatus";
 import { ActionButton } from "./ActionButton";
 

@@ -1,5 +1,5 @@
-import { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
-import { ComponentKey } from "i18n/types";
+import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
+import type { ComponentKey } from "i18n/types";
 import { Download } from "@codegouvfr/react-dsfr/Download";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { tss } from "tss-react/dsfr";

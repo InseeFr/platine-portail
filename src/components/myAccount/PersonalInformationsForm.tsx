@@ -5,7 +5,7 @@ import { tss } from "tss-react/dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { useForm } from "hooks/useForm";
 import { personnalInformationsSchema } from "types/schemas";
 import { useState } from "react";

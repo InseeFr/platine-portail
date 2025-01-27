@@ -1,10 +1,10 @@
 import { DataGrid } from "@mui/x-data-grid/DataGrid";
-import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
-import { ComponentKey } from "i18n/types";
-import { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
-import { APISchemas } from "types/api";
+import type { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
+import type { ComponentKey } from "i18n/types";
+import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
+import type { APISchemas } from "types/api";
 import { SurveysStatus, getSurveysStatus } from "./SurveyStatus";
-import { GridColumnHeaderParams, GridComparatorFn } from "@mui/x-data-grid";
+import type { GridColumnHeaderParams, GridComparatorFn } from "@mui/x-data-grid";
 import { ActionButton } from "./ActionButton";
 
 export const status = ["unstarted", "closed", "opened"] as const;

@@ -1,24 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Loading } from "components/surveyHomepage/Loading";
+import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Faq } from "components/surveyHomepage/Faq";
-import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/faq")({
   component: Index,
 });
 
 function Index() {
-  const { survey } = Route.useParams();
+  const { surveyData, genericData } = useLoaderData({ from: "/$survey" });
 
-  const specificContent = content.specifique.find(s => s.id === survey);
+  const faqData = surveyData.content["faq-data"];
 
-  const faqData = specificContent?.content["faq-data"];
-
-  const generalFaqDataForCompany = specificContent?.content["faq-data-general"];
-  const generalFaqData = content.generique.content["faq-data"];
-  if (!faqData) {
-    return <Loading />;
-  }
+  const generalFaqDataForCompany = surveyData.content["faq-data-general"];
+  const generalFaqData = genericData.content["faq-data"];
 
   return (
     <Faq

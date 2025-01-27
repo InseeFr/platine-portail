@@ -6,8 +6,8 @@ import {
 } from "@tanstack/react-query";
 import { APIError, fetchPilotageAPI, fetchPortailAPI } from "../functions/api";
 import { useAccessToken } from "./useAuth.ts";
-import { APIMethods, APIPaths, APIRequest, APIRequests, APIResponse } from "types/api.ts";
-import {
+import type { APIMethods, APIPaths, APIRequest, APIRequests, APIResponse } from "types/api.ts";
+import type {
   APIMethods as APIMethodsPortail,
   APIPaths as APIPathsPortail,
   APIRequest as APIRequestPortail,

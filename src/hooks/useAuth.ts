@@ -1,4 +1,5 @@
 import { createAppOidc } from "../functions/oidc.ts";
+import { getIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 
 export const { OidcProvider, prOidc, useOidc } = createAppOidc();
 
@@ -27,15 +28,18 @@ export function useIsAuthenticated() {
 
 export const AuthProvider = OidcProvider;
 
-export const protectedLoader = async (theme: string, titleShort?: string) => {
+export const protectedLoader = async (params: { titleShort?: string }) => {
+  const { titleShort } = params;
   const oidc = await prOidc;
 
   if (oidc.isUserLoggedIn) {
     return null;
   }
 
+  const theme = getIsDark() ? "dark" : "light";
+
   await oidc.login({
     doesCurrentHrefRequiresAuth: true,
-    extraQueryParams: { label: titleShort ?? "N/A", theme: theme },
+    extraQueryParams: { label: titleShort ?? "N/A", theme },
   });
 };

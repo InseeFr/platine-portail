@@ -1,7 +1,7 @@
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
-import { ComponentKey } from "i18n/types";
-import { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
-import { Status } from "./SurveysDatagrid";
+import type { ComponentKey } from "i18n/types";
+import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
+import type { Status } from "./SurveysDatagrid";
 
 type SurveyStatusProps = {
   openingDate?: string;

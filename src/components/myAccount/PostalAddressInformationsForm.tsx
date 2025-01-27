@@ -1,4 +1,4 @@
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { FormButtons, useStylesContactInformationsForm } from "./PersonalInformationsForm";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useForm } from "hooks/useForm";

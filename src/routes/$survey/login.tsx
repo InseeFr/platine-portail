@@ -1,37 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Login } from "components/Login";
-import { Loading } from "components/surveyHomepage/Loading";
 import { protectedLoader } from "hooks/useAuth";
-import content from "resources/content.json";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "i18n/i18n";
 
 export const Route = createFileRoute("/$survey/login")({
   component: LoginPage,
-  beforeLoad: ({ params }) => {
-    const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
-    const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
-    protectedLoader(theme, titleShort);
+  beforeLoad: ({ params, context }) => {
+    const titleShort = context.getTitleShort({ surveyId: params.survey });
+    protectedLoader({ titleShort });
   },
 });
 
 function LoginPage() {
   const { t: headerTranslation } = useTranslation("Header");
   const { t: errorPagesTranslation } = useTranslation("ErrorPages");
-
-  const { survey } = Route.useParams();
-  const surveyData = content.specifique.find(s => s.id === survey);
-
-  if (!surveyData) {
-    return <Loading />;
-  }
+  const { surveyData, genericData } = useLoaderData({ from: "/$survey" });
 
   return (
     <div>
       <Helmet>
         <title>{`${errorPagesTranslation("connexion")} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
-      <Login surveyData={surveyData} />
+      <Login surveyData={surveyData} genericData={genericData} />
     </div>
   );
 }

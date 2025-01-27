@@ -2,16 +2,16 @@ import { tss } from "tss";
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
-import { APISchemas } from "types/api";
+import type { APISchemas } from "types/api";
 import { PersonalInformations } from "./PersonalInformations";
-import Button from "@codegouvfr/react-dsfr/Button";
+import { Button } from "@codegouvfr/react-dsfr/Button";
 import { PostalAddressInformations } from "./PostalAddressInformations";
 import { useToggle } from "react-use";
 import { PersonalInformationsForm } from "./PersonalInformationsForm";
 import { PostalAddressInformationsForm } from "./PostalAddressInformationsForm";
 import { AvatarIcon } from "assets/Avatar";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { MouseEventHandler } from "react";
+import { type MouseEventHandler } from "react";
 
 type Props = {
   contact: APISchemas["ContactDetailsDto"];

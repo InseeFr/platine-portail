@@ -2,13 +2,11 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { Loading } from "components/surveyHomepage/Loading";
 import { declareComponentKeys, useTranslation } from "i18n/i18n";
-import content from "resources/content.json";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 
 type Props = {
-  data: ContentSurvey;
+  data: SurveyData;
   message: string;
 };
 
@@ -76,26 +74,6 @@ export const ErrorPage = ({ data, message }: Props) => {
       </div>
     </div>
   );
-};
-
-export const Ineligible = ({ surveyId }: { surveyId: string }) => {
-  const data = content.specifique.find(s => s.id === surveyId);
-  const message = content.generique.content.ineligible.body;
-  if (!data) {
-    return <Loading />;
-  }
-
-  return <ErrorPage data={data} message={message} />;
-};
-
-export const Unauthorized = ({ surveyId }: { surveyId: string }) => {
-  const data = content.specifique.find(s => s.id === surveyId);
-  const message = content.generique.content.unauthorized.body;
-  if (!data) {
-    return <Loading />;
-  }
-
-  return <ErrorPage data={data} message={message} />;
 };
 
 const { i18n } = declareComponentKeys<"connexion" | "alertTitle" | "contactSupport" | "alertText">()(

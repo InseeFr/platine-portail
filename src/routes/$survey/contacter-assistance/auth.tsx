@@ -3,17 +3,15 @@ import { Navigate, createFileRoute, useSearch } from "@tanstack/react-router";
 import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSupport";
 import { protectedLoader } from "hooks/useAuth";
 import { z } from "zod";
-import content from "resources/content.json";
 
 export const Route = createFileRoute("/$survey/contacter-assistance/auth")({
   validateSearch: z.object({
     questioningId: z.number().optional(),
   }),
   component: SupportPage,
-  beforeLoad: ({ params }) => {
-    const titleShort = content.specifique.find(survey => survey.id === params.survey)?.titleShort;
-    const theme = document.querySelector("html")?.getAttribute("data-fr-scheme") ?? "system";
-    protectedLoader(theme, titleShort);
+  beforeLoad: ({ params, context }) => {
+    const titleShort = context.getTitleShort({ surveyId: params.survey });
+    protectedLoader({ titleShort });
   },
 });
 

@@ -1,4 +1,4 @@
-export type ContentSurvey = {
+export type SurveyData = {
   id: string;
   isSurveyOnline: boolean;
   disabledOnWelcomePage?: boolean;
@@ -33,5 +33,26 @@ export type ContentSurvey = {
       title: string;
       body: string;
     }[];
+    "faq-data-general"?: {
+      title: string;
+      body: string;
+    }[];
   };
 };
+
+export type GenericData = {
+  content: {
+    "faq-data": {
+      title: string;
+      body: string;
+    }[];
+    ineligible: {
+      body: string;
+    };
+    unauthorized: {
+      body: string;
+    };
+  };
+};
+
+export type Content = { generique: GenericData; specifique: SurveyData[] };

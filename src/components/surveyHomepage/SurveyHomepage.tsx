@@ -1,15 +1,15 @@
 import { declareComponentKeys, useTranslation } from "i18n";
 import Banner from "../../assets/banner.svg";
-import { SideMenu, SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
-import { Outlet } from "@tanstack/react-router";
+import { SideMenu, type SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
+import { Outlet, useRouter } from "@tanstack/react-router";
 import { tss } from "tss-react/dsfr";
 import Divider from "@mui/material/Divider";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { ContentSurvey } from "types/ContentSurvey";
+import type { SurveyData } from "types/ContentSurvey";
 
 type Props = {
-  survey: ContentSurvey;
+  survey: SurveyData;
 };
 
 export const SurveyHomepage = ({ survey }: Props) => {
@@ -19,14 +19,14 @@ export const SurveyHomepage = ({ survey }: Props) => {
     <>
       <div className="fr-container fr-mt-3w">
         <Breadcrumb
-          currentPageLabel={survey?.titleShort}
+          currentPageLabel={survey.titleShort}
           homeLinkProps={{
             to: "/",
           }}
           className="fr-mb-1w"
           segments={[]}
         />
-        <h2 className="fr-mb-2w">{survey?.title}</h2>
+        <h2 className="fr-mb-2w">{survey.title}</h2>
         <a
           className="fr-link"
           title={`${t("surveyLink")} - ${t("openNewWindow")}`}
@@ -84,7 +84,7 @@ const LoginSection = ({
   surveyId,
 }: {
   className?: string;
-  data: ContentSurvey;
+  data: SurveyData;
   surveyId: string;
 }) => {
   const { t } = useTranslation("SurveyHomepage");
@@ -144,12 +144,16 @@ const SideMenuCustom = ({
 }) => {
   const { t } = useTranslation("SurveyHomepage");
   const { t: supportTranslation } = useTranslation("Support");
+  const router = useRouter();
+  const currentPath = router.history.location.pathname;
+
   const sideMenuItems: SideMenuProps.Item[] = [
     {
       linkProps: {
         to: "/$survey/introduction",
         params: { survey: surveyId },
       },
+      isActive: currentPath.includes("/introduction"),
       text: t("survey introduction"),
     },
     {
@@ -159,6 +163,7 @@ const SideMenuCustom = ({
           survey: surveyId,
         },
       },
+      isActive: currentPath.includes("/cadre-juridique"),
       text: t("legal framework"),
     },
     {
@@ -168,6 +173,7 @@ const SideMenuCustom = ({
           survey: surveyId,
         },
       },
+      isActive: currentPath.includes("/utilisation-reponse"),
       text: t("what are your answers for?"),
     },
     {
@@ -177,6 +183,7 @@ const SideMenuCustom = ({
           survey: surveyId,
         },
       },
+      isActive: currentPath.includes("/documents"),
       text: t("documents to the surveyed"),
     },
     {
@@ -186,6 +193,7 @@ const SideMenuCustom = ({
           survey: surveyId,
         },
       },
+      isActive: currentPath.includes("/resultats"),
       text: t("some results"),
     },
     {
@@ -195,6 +203,7 @@ const SideMenuCustom = ({
           survey: surveyId,
         },
       },
+      isActive: currentPath.includes("/faq"),
       text: supportTranslation("FAQ"),
     },
   ];

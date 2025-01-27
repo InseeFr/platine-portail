@@ -1,6 +1,5 @@
 import { useTranslation } from "i18n/i18n";
 import { declareComponentKeys } from "i18nifty";
-import content from "resources/content.json";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { useState } from "react";
 import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
@@ -10,9 +9,8 @@ import { TechnicalError } from "components/errorPages/TechnicalError";
 import { ForgotPasswordValidated } from "./ForgotPasswordValidated";
 import { PageWithCardContainer } from "components/commons/PageWithCardContainer";
 
-export const ForgotPassword = ({ surveyId }: { surveyId: string }) => {
+export const ForgotPassword = ({ surveyId, titleShort }: { surveyId: string; titleShort: string }) => {
   const { t } = useTranslation("ForgotPassword");
-  const titleShort = content.specifique.find(s => s.id === surveyId)?.titleShort;
 
   const { mutateAsync, isError, error } = useFetchMutationWithoutAuth("/reinit-password", "post");
 

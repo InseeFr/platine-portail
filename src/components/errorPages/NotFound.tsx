@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { ReactNode } from "@tanstack/react-router";
 import { NotFoundIcon } from "assets/NotFound";
 import { declareComponentKeys, useTranslation } from "i18n";
+import type { ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 
 export const NotFound = () => {

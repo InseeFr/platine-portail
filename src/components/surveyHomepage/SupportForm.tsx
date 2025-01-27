@@ -4,7 +4,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/SelectNext";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Schema, z } from "zod";
-import { UseFormRegister } from "react-hook-form";
+import { type UseFormRegister } from "react-hook-form";
 import { useIsAuthenticated } from "hooks/useAuth";
 import { useEffect, useRef } from "react";
 
