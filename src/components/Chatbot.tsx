@@ -83,10 +83,10 @@ export const Chatbot = () => {
             --df-messenger-message-bot-stack-border-top-left-radius : 1rem;
             --df-messenger-message-bot-stack-border-top-right-radius : 1rem;
 
-            --df-messenger-chat-bubble-background : #000091;
+            --df-messenger-chat-bubble-background : #ffc400;
             /*--df-messenger-chat-bubble-width : 2.875rem;*/
             --df-messenger-chat-bubble-width : 208px;
-            --df-messenger-chat-bubble-icon-color:#ffffff;
+            --df-messenger-chat-bubble-icon-color:#000000;
 
             --df-messenger-button-border-radius : 0.5rem;
             --df-messenger-button-text-wrap : nowrap;
