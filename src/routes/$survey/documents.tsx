@@ -9,6 +9,7 @@ export const Route = createFileRoute("/$survey/documents")({
 
 function DocumentsIndex() {
   const { survey } = Route.useParams();
+  const formattedSurvey = survey.toLowerCase();
   const { t: homeTranslation } = useTranslation("SurveyHomepage");
   const { t } = useTranslation("Documents");
 
@@ -19,49 +20,49 @@ function DocumentsIndex() {
         <DocumentTile
           title={t("downloadEMail")}
           description={t("downloadEMailDescription")}
-          url={`/documents/${survey}/mail.pdf`}
+          url={`/documents/${formattedSurvey}/mail.pdf`}
           pictogramUrl={"/static/img/mail-send.svg"}
         />
         <DocumentTile
           title={t("downloadEMail")}
           description={t("downloadEMailDescription")}
-          url={`/documents/${survey}/mail.png`}
+          url={`/documents/${formattedSurvey}/mail.png`}
           pictogramUrl={"/static/img/mail-send.svg"}
         />
         <DocumentTile
           title={t("downloadInstructions")}
           description={t("downloadInstructionsDescription")}
-          url={`/documents/${survey}/notice.pdf`}
+          url={`/documents/${formattedSurvey}/notice.pdf`}
           pictogramUrl={"/static/img/document-download.svg"}
         />
         <DocumentTile
           title={t("downloadInstructions")}
           description={t("downloadInstructionsDescription")}
-          url={`/documents/${survey}/notice.png`}
+          url={`/documents/${formattedSurvey}/notice.png`}
           pictogramUrl={"/static/img/document-download.svg"}
         />
         <DocumentTile
           title={t("downloadQuestioning")}
           description={t("downloadQuestioningDescription")}
-          url={`/documents/${survey}/questionnaire.pdf`}
+          url={`/documents/${formattedSurvey}/questionnaire.pdf`}
           pictogramUrl={"/static/img/document-signature.svg"}
         />
         <DocumentTile
           title={t("downloadQuestioning")}
           description={t("downloadQuestioningDescription")}
-          url={`/documents/${survey}/questionnaire.png`}
+          url={`/documents/${formattedSurvey}/questionnaire.png`}
           pictogramUrl={"/static/img/document-signature.svg"}
         />
         <DocumentTile
           title={t("downloadMail")}
           description={t("downloadMailDescription")}
-          url={`/documents/${survey}/courrier.pdf`}
+          url={`/documents/${formattedSurvey}/courrier.pdf`}
           pictogramUrl={"/static/img/document.svg"}
         />
         <DocumentTile
           title={t("downloadMail")}
           description={t("downloadMailDescription")}
-          url={`/documents/${survey}/courrier.png`}
+          url={`/documents/${formattedSurvey}/courrier.png`}
           pictogramUrl={"/static/img/document.svg"}
         />
       </div>
