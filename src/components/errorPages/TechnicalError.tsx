@@ -17,7 +17,7 @@ export const TechnicalError = ({ surveyId }: { surveyId: string }) => {
       <p className="fr-text--sm">{t("supportInformation")}</p>
       <Button
         priority="secondary"
-        linkProps={{ to: "/$survey/contacter-assistance", params: { survey: surveyId } }}
+        linkProps={{ to: "/mes-enquetes/$survey/contacter-assistance", params: { survey: surveyId } }}
       >
         {t("buttonLabel")}
       </Button>

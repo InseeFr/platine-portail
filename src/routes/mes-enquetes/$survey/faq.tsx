@@ -1,12 +1,12 @@
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Faq } from "components/surveyHomepage/Faq";
 
-export const Route = createFileRoute("/$survey/faq")({
+export const Route = createFileRoute("/mes-enquetes/$survey/faq")({
   component: Index,
 });
 
 function Index() {
-  const { surveyData, genericData } = useLoaderData({ from: "/$survey" });
+  const { surveyData, genericData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   const faqData = surveyData.content["faq-data"];
 

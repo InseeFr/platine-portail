@@ -4,7 +4,7 @@ import { protectedLoader } from "hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "i18n/i18n";
 
-export const Route = createFileRoute("/$survey/login")({
+export const Route = createFileRoute("/mes-enquetes/$survey/login")({
   component: LoginPage,
   beforeLoad: ({ params, context }) => {
     const titleShort = context.getTitleShort({ surveyId: params.survey });
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/$survey/login")({
 function LoginPage() {
   const { t: headerTranslation } = useTranslation("Header");
   const { t: errorPagesTranslation } = useTranslation("ErrorPages");
-  const { surveyData, genericData } = useLoaderData({ from: "/$survey" });
+  const { surveyData, genericData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   return (
     <div>

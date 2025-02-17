@@ -51,7 +51,7 @@ export const ForgotPasswordForm = ({ surveyId, onSubmit, register, errors }: Pro
           }}
           priority="tertiary no outline"
           linkProps={{
-            to: "/$survey/contacter-assistance",
+            to: "/mes-enquetes/$survey/contacter-assistance",
             params: {
               survey: surveyId,
             },

@@ -1,4 +1,3 @@
-import { tss } from "tss";
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
@@ -19,7 +18,6 @@ type Props = {
 };
 
 export function MyAccount({ contact, onSave }: Props) {
-  const { classes, cx } = useStyles();
   const { t } = useTranslation("MyAccount");
 
   const [editPersonnalInfos, toggleEditPersonnalInfos] = useToggle(false);
@@ -36,7 +34,8 @@ export function MyAccount({ contact, onSave }: Props) {
   };
 
   const handleSave = () => {
-    editPersonnalInfos ? toggleEditPersonnalInfos() : toggleEditPostalAddressInfos();
+    editPersonnalInfos && toggleEditPostalAddressInfos();
+    editPostalAddressInfos && toggleEditPersonnalInfos();
     onSave();
   };
 
@@ -58,8 +57,29 @@ export function MyAccount({ contact, onSave }: Props) {
         <AvatarIcon />
         <h1>{t("title my account")}</h1>
       </div>
-      <section className={cx("fr-mb-10v", "fr-p-3w", classes.informationsCard)}>
-        <h6 className={classes.cardTitle}>{t("my personal information")}</h6>
+      <section
+        className="fr-mb-10v fr-p-3w"
+        style={{ border: `1px solid ${fr.colors.decisions.border.default.grey.default}` }}
+      >
+        {!editPersonnalInfos && (
+          <div className="fr-grid-row fr-grid-row--between fr-grid-row--middle fr-mb-2w">
+            <h3
+              style={{
+                color: fr.colors.decisions.text.title.blueFrance.default,
+              }}
+              className="fr-col fr-mb-1v"
+            >
+              {t("my personal information")}
+            </h3>
+            <Button
+              type="button"
+              className="fr-btn fr-hidden fr-unhidden-sm"
+              onClick={onToggleEditPersonnalInfos}
+            >
+              {t("edit")}
+            </Button>
+          </div>
+        )}
         {editPersonnalInfos ? (
           <PersonalInformationsForm
             contact={contact}
@@ -67,16 +87,41 @@ export function MyAccount({ contact, onSave }: Props) {
             onSave={handleSave}
           />
         ) : (
-          <div className={classes.informationsContainer}>
+          <div className="fr-grid-row">
             <PersonalInformations contact={contact} />
-            <Button type="button" style={{ alignSelf: "end" }} onClick={onToggleEditPersonnalInfos}>
+            <Button
+              type="button"
+              className={"fr-col-12 fr-hidden-sm  fr-grid-row--center "}
+              onClick={onToggleEditPersonnalInfos}
+            >
               {t("edit")}
             </Button>
           </div>
         )}
       </section>
-      <section className={cx("fr-p-3w", classes.informationsCard)}>
-        <h6 className={classes.cardTitle}>{t("postal address")}</h6>
+      <section
+        className="fr-p-3w"
+        style={{ border: `1px solid ${fr.colors.decisions.border.default.grey.default}` }}
+      >
+        {!editPostalAddressInfos && (
+          <div className="fr-grid-row fr-grid-row--between fr-grid-row--middle fr-mb-2w">
+            <h3
+              style={{
+                color: fr.colors.decisions.text.title.blueFrance.default,
+              }}
+              className="fr-col fr-mb-1v"
+            >
+              {t("postal address")}
+            </h3>
+            <Button
+              type="button"
+              className="fr-btn fr-hidden fr-unhidden-sm"
+              onClick={onToggleEditPostalAddressInfos}
+            >
+              {t("edit")}
+            </Button>
+          </div>
+        )}
         {editPostalAddressInfos ? (
           <PostalAddressInformationsForm
             contact={contact}
@@ -84,9 +129,13 @@ export function MyAccount({ contact, onSave }: Props) {
             onSave={handleSave}
           />
         ) : (
-          <div className={classes.informationsContainer}>
+          <div className="fr-grid-row">
             <PostalAddressInformations contact={contact} />
-            <Button type="button" style={{ alignSelf: "end" }} onClick={onToggleEditPostalAddressInfos}>
+            <Button
+              type="button"
+              className={"fr-col-12 fr-hidden-sm  fr-grid-row--center "}
+              onClick={onToggleEditPostalAddressInfos}
+            >
               {t("edit")}
             </Button>
           </div>
@@ -95,20 +144,6 @@ export function MyAccount({ contact, onSave }: Props) {
     </section>
   );
 }
-
-const useStyles = tss.withName({ MyAccount }).create({
-  informationsCard: {
-    border: "1px solid",
-    borderColor: fr.colors.decisions.border.default.grey.default,
-  },
-  informationsContainer: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  cardTitle: {
-    color: fr.colors.decisions.text.title.blueFrance.default,
-  },
-});
 
 const { i18n } = declareComponentKeys<
   "title my account" | "my personal information" | "Female" | "Male" | "edit" | "postal address"

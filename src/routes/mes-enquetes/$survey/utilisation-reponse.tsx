@@ -3,12 +3,12 @@ import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Markdown } from "components/Markdown";
 import { useTranslation } from "i18n";
 
-export const Route = createFileRoute("/$survey/utilisation-reponse")({
+export const Route = createFileRoute("/mes-enquetes/$survey/utilisation-reponse")({
   component: AnswersUtilizationIndex,
 });
 
 function AnswersUtilizationIndex() {
-  const { surveyData } = useLoaderData({ from: "/$survey" });
+  const { surveyData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   const { t } = useTranslation("SurveyHomepage");
 

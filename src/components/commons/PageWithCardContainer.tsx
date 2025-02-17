@@ -22,7 +22,7 @@ export const PageWithCardContainer = ({ children, titleShort, surveyId, currentP
           {
             label: titleShort,
             linkProps: {
-              to: "/$survey/introduction",
+              to: "/mes-enquetes/$survey/introduction",
               params: { survey: surveyId },
             },
           },

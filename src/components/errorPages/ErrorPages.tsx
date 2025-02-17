@@ -25,7 +25,7 @@ export const ErrorPage = ({ data, message }: Props) => {
           {
             label: data.titleShort,
             linkProps: {
-              to: "/$survey/introduction",
+              to: "/mes-enquetes/$survey/introduction",
               params: { survey: data.id },
             },
           },
@@ -56,7 +56,7 @@ export const ErrorPage = ({ data, message }: Props) => {
                     }}
                     priority="tertiary no outline"
                     linkProps={{
-                      to: "/$survey/contacter-assistance",
+                      to: "/mes-enquetes/$survey/contacter-assistance",
                       params: {
                         survey: data.id,
                       },

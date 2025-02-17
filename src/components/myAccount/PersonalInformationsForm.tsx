@@ -1,7 +1,6 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { useTranslation } from "i18n/i18n";
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
-import { tss } from "tss-react/dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
@@ -18,7 +17,6 @@ type Props = {
 };
 
 export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) => {
-  const { classes } = useStylesContactInformationsForm();
   const { t: translationMyAccount } = useTranslation("MyAccount");
   const { t } = useTranslation("PersonalInformationsForm");
   const [civility, setCivility] = useState<APISchemas["ContactDetailsDto"]["civility"]>(
@@ -46,6 +44,30 @@ export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) =>
 
   return (
     <form action="#" onSubmit={onSubmit}>
+      <div className="fr-grid-row fr-grid-row--between fr-grid-row--middle fr-mb-2w">
+        <h3
+          style={{
+            color: fr.colors.decisions.text.title.blueFrance.default,
+          }}
+          className="fr-col fr-mb-1v"
+        >
+          {translationMyAccount("my personal information")}
+        </h3>
+        <div className="fr-hidden fr-unhidden-md">
+          <Button
+            priority="secondary"
+            className="fr-mr-2w"
+            type="reset"
+            onClick={handleClose}
+            disabled={isPending}
+          >
+            {t("cancel")}
+          </Button>
+          <Button type="submit" disabled={!isDirty}>
+            {t("register")}
+          </Button>
+        </div>
+      </div>
       <RadioButtons
         legend={t("civility")}
         small
@@ -67,8 +89,9 @@ export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) =>
         ]}
         orientation="horizontal"
       />
-      <div className={classes.container}>
+      <div className="fr-grid-row fr-grid-row--gutters fr-pb-4w fr-pb-md-1v">
         <Input
+          className="fr-col-md-4 fr-col-12"
           label={t("lastName")}
           nativeInputProps={{
             autoComplete: "family-name",
@@ -79,6 +102,7 @@ export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) =>
           stateRelatedMessage={errors.lastName?.message}
         />
         <Input
+          className="fr-col-md-4 fr-col-12"
           label={t("firstName")}
           nativeInputProps={{
             autoComplete: "given-name",
@@ -87,68 +111,62 @@ export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) =>
           }}
         />
         <Input
+          className="fr-col-md-4 fr-col-12"
           label={t("email")}
           nativeInputProps={{ autoComplete: "email", type: "email", ...register("email") }}
         />
       </div>
-      <div className={classes.container}>
+      <div className="fr-grid-row fr-grid-row--gutters fr-pb-4w fr-pb-md-1v">
         <Input
+          className="fr-col-md-6 fr-col-12"
           label={t("function")}
           nativeInputProps={{ autoComplete: "organization", ...register("function") }}
         />
-        <Input label={t("usual company name")} nativeInputProps={{ ...register("usualCompanyName") }} />
-      </div>
-      <div className={classes.container}>
         <Input
+          className="fr-col-md-6 fr-col-12"
+          label={t("usual company name")}
+          nativeInputProps={{ ...register("usualCompanyName") }}
+        />
+      </div>
+      <div className="fr-grid-row fr-grid-row--gutters fr-pb-4w fr-pb-md-1v">
+        <Input
+          className="fr-col-md-6 fr-col-12"
           label={t("phone")}
           hintText={
-            <div className={classes.hintText}>
-              <span>{t("phone hint text")}</span>
-              <span>{t("phone example")}</span>
+            <div>
+              <p className="fr-mb-1v fr-text--xs">{t("phone hint text")}</p>
+              <p className="fr-mb-1v fr-text--xs">{t("phone example")}</p>
             </div>
           }
           nativeInputProps={{ autoComplete: "tel", type: "tel", ...register("otherPhone") }}
         />
         <Input
+          className="fr-col-md-6 fr-col-12"
           label={t("mobile phone")}
           hintText={
-            <div className={classes.hintText}>
-              <span>{t("phone hint text")}</span>
-              <span>{t("phone example")}</span>
+            <div>
+              <p className="fr-mb-1v fr-text--xs">{t("phone hint text")}</p>
+              <p className="fr-mb-1v fr-text--xs">{t("phone example")}</p>
             </div>
           }
           nativeInputProps={{ autoComplete: "tel", type: "tel", ...register("phone") }}
         />
       </div>
-      <FormButtons
-        classes={classes}
-        onClose={handleClose}
-        isPending={isPending}
-        isNotSubmittable={!isDirty}
-      />
+      <div className="fr-hidden-md fr-mt-3w">
+        <Button
+          priority="secondary"
+          className="fr-mr-2w"
+          type="reset"
+          onClick={handleClose}
+          disabled={isPending}
+        >
+          {t("cancel")}
+        </Button>
+        <Button type="submit" disabled={!isDirty}>
+          {t("register")}
+        </Button>
+      </div>
     </form>
-  );
-};
-
-type FormButtonsProps = {
-  classes: Record<"hintText" | "container" | "buttons", string>;
-  onClose: () => void;
-  isPending: boolean;
-  isNotSubmittable: boolean;
-};
-
-export const FormButtons = ({ classes, onClose, isPending, isNotSubmittable }: FormButtonsProps) => {
-  const { t } = useTranslation("PersonalInformationsForm");
-
-  return (
-    <div className={classes.buttons}>
-      <Button priority="secondary" type="reset" onClick={onClose} disabled={isPending}>
-        {t("cancel")}
-      </Button>
-      <Button type="submit" disabled={isNotSubmittable}>
-        {t("register")}
-      </Button>
-    </div>
   );
 };
 
@@ -168,29 +186,3 @@ const { i18n } = declareComponentKeys<
 >()("PersonalInformationsForm");
 
 export type I18n = typeof i18n;
-
-export const useStylesContactInformationsForm = tss.withName({ PersonalInformationsForm }).create({
-  container: {
-    display: "flex",
-
-    ".fr-input-group": {
-      flexGrow: 1,
-    },
-    [fr.breakpoints.down("sm")]: {
-      flexDirection: "column",
-      paddingBottom: fr.spacing("3w"),
-    },
-    [fr.breakpoints.up("sm")]: {
-      gap: fr.spacing("3w"),
-    },
-  },
-  hintText: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  buttons: {
-    display: "flex",
-    justifyContent: "end",
-    gap: fr.spacing("2w"),
-  },
-});

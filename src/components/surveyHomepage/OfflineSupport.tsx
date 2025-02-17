@@ -3,7 +3,7 @@ import { supportSchema } from "types/schemas";
 import { SupportForm } from "./SupportForm";
 import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { Navigate } from "@tanstack/react-router";
-import type { SupportSearch } from "routes/$survey/contacter-assistance";
+import type { SupportSearch } from "routes/mes-enquetes/$survey/contacter-assistance";
 
 export const OfflineSupport = ({
   surveyId,
@@ -18,7 +18,9 @@ export const OfflineSupport = ({
   const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
 
   if (isError) {
-    return <Navigate to={"/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />;
+    return (
+      <Navigate to={"/mes-enquetes/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />
+    );
   }
 
   const onSubmit = handleSubmit(data =>

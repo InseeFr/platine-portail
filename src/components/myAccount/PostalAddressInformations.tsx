@@ -1,4 +1,3 @@
-import { tss } from "tss";
 import type { APISchemas } from "types/api";
 import { InformationWithLabel } from "./PersonalInformations";
 import { declareComponentKeys, useTranslation } from "i18n";
@@ -8,11 +7,10 @@ type Props = {
 };
 
 export const PostalAddressInformations = ({ contact }: Props) => {
-  const { classes } = useStyles();
   const { t } = useTranslation("PostalAddressInformations");
 
   return (
-    <div className={classes.container}>
+    <div>
       <InformationWithLabel label={t("country name")} information={contact.address?.countryName} />
       <InformationWithLabel label={t("street number")} information={contact.address?.streetNumber} />
       <InformationWithLabel
@@ -38,13 +36,6 @@ export const PostalAddressInformations = ({ contact }: Props) => {
     </div>
   );
 };
-
-const useStyles = tss.withName({ PostalAddressInformations }).create({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-  },
-});
 
 const { i18n } = declareComponentKeys<
   | "country name"

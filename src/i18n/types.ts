@@ -22,7 +22,7 @@ export type ComponentKey =
   | import("components/myAccount/PersonalInformations").I18n
   | import("components/myAccount/PostalAddressInformations").I18n
   | import("components/surveyHomepage/Faq").I18n
-  | import("../routes/$survey/documents").I18n
+  | import("../routes/mes-enquetes/$survey/documents").I18n
   | import("components/surveyHomepage/SupportForm").I18n
   | import("components/LegalInformation").I18n
   | import("components/errorPages/NotFound").I18n

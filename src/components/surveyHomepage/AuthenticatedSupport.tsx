@@ -23,7 +23,9 @@ export const AuthenticatedSupport = ({
   }
 
   if (isError) {
-    return <Navigate to={"/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />;
+    return (
+      <Navigate to={"/mes-enquetes/$survey/contacter-assistance/erreur"} params={{ survey: surveyId }} />
+    );
   }
 
   const onSubmit = handleSubmit(data =>
