@@ -3,13 +3,13 @@ import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Markdown } from "components/Markdown";
 import { useTranslation } from "i18n";
 
-export const Route = createFileRoute("/$survey/resultats")({
+export const Route = createFileRoute("/mes-enquetes/$survey/resultats")({
   component: Results,
 });
 
 function Results() {
   const { t } = useTranslation("SurveyHomepage");
-  const { surveyData } = useLoaderData({ from: "/$survey" });
+  const { surveyData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   const results = surveyData.content.resultats;
 

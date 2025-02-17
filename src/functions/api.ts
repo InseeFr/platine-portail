@@ -1,12 +1,10 @@
+import { VITE_API_URL, VITE_PORTAIL_URL } from "resources/configuration";
 import type { APIPaths, APIRequests, APIResponse } from "types/api";
 import type {
   APIPaths as APIPathsPortail,
   APIRequests as APIRequestsPortail,
   APIResponse as APIResponsePortail,
 } from "types/apiPortail";
-
-const baseURLPortail = import.meta.env.VITE_PORTAIL_URL;
-const baseURLPilotage = import.meta.env.VITE_API_URL;
 
 async function fetchWrapper<Response>(path: string, options: any, baseURL: string): Promise<Response> {
   const fetchOptions: RequestInit = {
@@ -72,14 +70,14 @@ export async function fetchPilotageAPI<
   Path extends APIPaths,
   Options extends APIRequests<Path> & { signal?: AbortSignal; headers?: Record<string, string> },
 >(path: Path, options: Options) {
-  return fetchWrapper<APIResponse<Path, Options["method"]>>(path, options, baseURLPilotage);
+  return fetchWrapper<APIResponse<Path, Options["method"]>>(path, options, VITE_API_URL);
 }
 
 export async function fetchPortailAPI<
   Path extends APIPathsPortail,
   Options extends APIRequestsPortail<Path> & { signal?: AbortSignal; headers?: Record<string, string> },
 >(path: Path, options: Options) {
-  return fetchWrapper<APIResponsePortail<Path, Options["method"]>>(path, options, baseURLPortail);
+  return fetchWrapper<APIResponsePortail<Path, Options["method"]>>(path, options, VITE_PORTAIL_URL);
 }
 
 export class APIError extends Error {

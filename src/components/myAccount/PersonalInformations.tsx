@@ -1,6 +1,4 @@
-import { tss } from "tss";
 import type { APISchemas } from "types/api";
-import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 
 type Props = {
@@ -34,23 +32,13 @@ export const InformationWithLabel = ({
   label: string;
   information?: string;
 }) => {
-  const { classes, cx } = useStyles();
   return (
-    <p className={cx("fr-mb-1w", classes.informationWithLabel)}>
-      {label} <strong>{information && information !== "" ? information : "-"}</strong>
-    </p>
+    <div className="fr-grid-row">
+      <p className="fr-mb-1w fr-mr-1v"> {label}</p>
+      <p className="fr-mb-1w fr-text--bold">{information && information !== "" ? information : "-"}</p>
+    </div>
   );
 };
-
-const useStyles = tss.withName({ PersonalInformations }).create({
-  informationWithLabel: {
-    [fr.breakpoints.down("sm")]: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    color: fr.colors.decisions.text.active.grey.default,
-  },
-});
 
 const { i18n } = declareComponentKeys<
   | "civility"

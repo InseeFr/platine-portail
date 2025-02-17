@@ -4,7 +4,7 @@ import { protectedLoader } from "hooks/useAuth";
 import { useTranslation } from "i18n/i18n";
 import { Helmet } from "react-helmet-async";
 
-export const Route = createFileRoute("/$survey/repondant/mail")({
+export const Route = createFileRoute("/mes-enquetes/$survey/repondant/mail")({
   component: MailPage,
   beforeLoad: ({ params, context }) => {
     const titleShort = context.getTitleShort({ surveyId: params.survey });
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/$survey/repondant/mail")({
 });
 
 function MailPage() {
-  const { surveyData } = useLoaderData({ from: "/$survey" });
+  const { surveyData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   const { t: headerTranslation } = useTranslation("Header");
   const { t } = useTranslation("EmailForm");

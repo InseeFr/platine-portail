@@ -4,7 +4,7 @@ import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSup
 import { protectedLoader } from "hooks/useAuth";
 import { z } from "zod";
 
-export const Route = createFileRoute("/$survey/contacter-assistance/auth")({
+export const Route = createFileRoute("/mes-enquetes/$survey/contacter-assistance/auth")({
   validateSearch: z.object({
     questioningId: z.number().optional(),
   }),
@@ -16,11 +16,11 @@ export const Route = createFileRoute("/$survey/contacter-assistance/auth")({
 });
 
 function SupportPage() {
-  const search = useSearch({ from: "/$survey/contacter-assistance/auth" });
+  const search = useSearch({ from: "/mes-enquetes/$survey/contacter-assistance/auth" });
   const { survey } = Route.useParams();
 
   if (!search.questioningId) {
-    return <Navigate to={"/$survey/contacter-assistance"} params={{ survey }} />;
+    return <Navigate to={"/mes-enquetes/$survey/contacter-assistance"} params={{ survey }} />;
   }
 
   return (

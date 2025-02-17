@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as SecuriteImport } from './routes/securite'
 import { Route as MonCompteImport } from './routes/mon-compte'
-import { Route as MesEnquetesImport } from './routes/mes-enquetes'
+import { Route as MesEnquetesOldImport } from './routes/mes-enquetes-old'
 import { Route as MentionsLegalesImport } from './routes/mentions-legales'
 import { Route as DonneesPersonnellesImport } from './routes/donnees-personnelles'
 import { Route as DeconnexionImport } from './routes/deconnexion'
@@ -21,19 +21,21 @@ import { Route as ConnexionImport } from './routes/connexion'
 import { Route as AccessibiliteImport } from './routes/accessibilite'
 import { Route as SurveyImport } from './routes/$survey'
 import { Route as IndexImport } from './routes/index'
-import { Route as SurveyIndexImport } from './routes/$survey/index'
-import { Route as SurveyUtilisationReponseImport } from './routes/$survey/utilisation-reponse'
-import { Route as SurveyResultatsImport } from './routes/$survey/resultats'
-import { Route as SurveyLoginImport } from './routes/$survey/login'
-import { Route as SurveyIntroductionImport } from './routes/$survey/introduction'
-import { Route as SurveyFaqImport } from './routes/$survey/faq'
-import { Route as SurveyDocumentsImport } from './routes/$survey/documents'
-import { Route as SurveyCadreJuridiqueImport } from './routes/$survey/cadre-juridique'
-import { Route as SurveyAssistanceImport } from './routes/$survey/assistance'
-import { Route as SurveyContacterAssistanceIndexImport } from './routes/$survey/contacter-assistance/index'
-import { Route as SurveyRepondantMailImport } from './routes/$survey/repondant/mail'
-import { Route as SurveyContacterAssistanceErreurImport } from './routes/$survey/contacter-assistance/erreur'
-import { Route as SurveyContacterAssistanceAuthImport } from './routes/$survey/contacter-assistance/auth'
+import { Route as MesEnquetesIndexImport } from './routes/mes-enquetes/index'
+import { Route as MesEnquetesSurveyImport } from './routes/mes-enquetes/$survey'
+import { Route as MesEnquetesSurveyIndexImport } from './routes/mes-enquetes/$survey/index'
+import { Route as MesEnquetesSurveyUtilisationReponseImport } from './routes/mes-enquetes/$survey/utilisation-reponse'
+import { Route as MesEnquetesSurveyResultatsImport } from './routes/mes-enquetes/$survey/resultats'
+import { Route as MesEnquetesSurveyLoginImport } from './routes/mes-enquetes/$survey/login'
+import { Route as MesEnquetesSurveyIntroductionImport } from './routes/mes-enquetes/$survey/introduction'
+import { Route as MesEnquetesSurveyFaqImport } from './routes/mes-enquetes/$survey/faq'
+import { Route as MesEnquetesSurveyDocumentsImport } from './routes/mes-enquetes/$survey/documents'
+import { Route as MesEnquetesSurveyCadreJuridiqueImport } from './routes/mes-enquetes/$survey/cadre-juridique'
+import { Route as MesEnquetesSurveyAssistanceImport } from './routes/mes-enquetes/$survey/assistance'
+import { Route as MesEnquetesSurveyContacterAssistanceIndexImport } from './routes/mes-enquetes/$survey/contacter-assistance/index'
+import { Route as MesEnquetesSurveyRepondantMailImport } from './routes/mes-enquetes/$survey/repondant/mail'
+import { Route as MesEnquetesSurveyContacterAssistanceErreurImport } from './routes/mes-enquetes/$survey/contacter-assistance/erreur'
+import { Route as MesEnquetesSurveyContacterAssistanceAuthImport } from './routes/mes-enquetes/$survey/contacter-assistance/auth'
 
 // Create/Update Routes
 
@@ -47,8 +49,8 @@ const MonCompteRoute = MonCompteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const MesEnquetesRoute = MesEnquetesImport.update({
-  path: '/mes-enquetes',
+const MesEnquetesOldRoute = MesEnquetesOldImport.update({
+  path: '/mes-enquetes-old',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -87,72 +89,91 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const SurveyIndexRoute = SurveyIndexImport.update({
+const MesEnquetesIndexRoute = MesEnquetesIndexImport.update({
+  path: '/mes-enquetes/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MesEnquetesSurveyRoute = MesEnquetesSurveyImport.update({
+  path: '/mes-enquetes/$survey',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MesEnquetesSurveyIndexRoute = MesEnquetesSurveyIndexImport.update({
   path: '/',
-  getParentRoute: () => SurveyRoute,
+  getParentRoute: () => MesEnquetesSurveyRoute,
 } as any)
 
-const SurveyUtilisationReponseRoute = SurveyUtilisationReponseImport.update({
-  path: '/utilisation-reponse',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyUtilisationReponseRoute =
+  MesEnquetesSurveyUtilisationReponseImport.update({
+    path: '/utilisation-reponse',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any)
 
-const SurveyResultatsRoute = SurveyResultatsImport.update({
-  path: '/resultats',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyResultatsRoute = MesEnquetesSurveyResultatsImport.update(
+  {
+    path: '/resultats',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any,
+)
 
-const SurveyLoginRoute = SurveyLoginImport.update({
+const MesEnquetesSurveyLoginRoute = MesEnquetesSurveyLoginImport.update({
   path: '/login',
-  getParentRoute: () => SurveyRoute,
+  getParentRoute: () => MesEnquetesSurveyRoute,
 } as any)
 
-const SurveyIntroductionRoute = SurveyIntroductionImport.update({
-  path: '/introduction',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyIntroductionRoute =
+  MesEnquetesSurveyIntroductionImport.update({
+    path: '/introduction',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any)
 
-const SurveyFaqRoute = SurveyFaqImport.update({
+const MesEnquetesSurveyFaqRoute = MesEnquetesSurveyFaqImport.update({
   path: '/faq',
-  getParentRoute: () => SurveyRoute,
+  getParentRoute: () => MesEnquetesSurveyRoute,
 } as any)
 
-const SurveyDocumentsRoute = SurveyDocumentsImport.update({
-  path: '/documents',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyDocumentsRoute = MesEnquetesSurveyDocumentsImport.update(
+  {
+    path: '/documents',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any,
+)
 
-const SurveyCadreJuridiqueRoute = SurveyCadreJuridiqueImport.update({
-  path: '/cadre-juridique',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyCadreJuridiqueRoute =
+  MesEnquetesSurveyCadreJuridiqueImport.update({
+    path: '/cadre-juridique',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any)
 
-const SurveyAssistanceRoute = SurveyAssistanceImport.update({
-  path: '/assistance',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyAssistanceRoute =
+  MesEnquetesSurveyAssistanceImport.update({
+    path: '/assistance',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any)
 
-const SurveyContacterAssistanceIndexRoute =
-  SurveyContacterAssistanceIndexImport.update({
+const MesEnquetesSurveyContacterAssistanceIndexRoute =
+  MesEnquetesSurveyContacterAssistanceIndexImport.update({
     path: '/contacter-assistance/',
-    getParentRoute: () => SurveyRoute,
+    getParentRoute: () => MesEnquetesSurveyRoute,
   } as any)
 
-const SurveyRepondantMailRoute = SurveyRepondantMailImport.update({
-  path: '/repondant/mail',
-  getParentRoute: () => SurveyRoute,
-} as any)
+const MesEnquetesSurveyRepondantMailRoute =
+  MesEnquetesSurveyRepondantMailImport.update({
+    path: '/repondant/mail',
+    getParentRoute: () => MesEnquetesSurveyRoute,
+  } as any)
 
-const SurveyContacterAssistanceErreurRoute =
-  SurveyContacterAssistanceErreurImport.update({
+const MesEnquetesSurveyContacterAssistanceErreurRoute =
+  MesEnquetesSurveyContacterAssistanceErreurImport.update({
     path: '/contacter-assistance/erreur',
-    getParentRoute: () => SurveyRoute,
+    getParentRoute: () => MesEnquetesSurveyRoute,
   } as any)
 
-const SurveyContacterAssistanceAuthRoute =
-  SurveyContacterAssistanceAuthImport.update({
+const MesEnquetesSurveyContacterAssistanceAuthRoute =
+  MesEnquetesSurveyContacterAssistanceAuthImport.update({
     path: '/contacter-assistance/auth',
-    getParentRoute: () => SurveyRoute,
+    getParentRoute: () => MesEnquetesSurveyRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -208,11 +229,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesImport
       parentRoute: typeof rootRoute
     }
-    '/mes-enquetes': {
-      id: '/mes-enquetes'
-      path: '/mes-enquetes'
-      fullPath: '/mes-enquetes'
-      preLoaderRoute: typeof MesEnquetesImport
+    '/mes-enquetes-old': {
+      id: '/mes-enquetes-old'
+      path: '/mes-enquetes-old'
+      fullPath: '/mes-enquetes-old'
+      preLoaderRoute: typeof MesEnquetesOldImport
       parentRoute: typeof rootRoute
     }
     '/mon-compte': {
@@ -229,96 +250,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecuriteImport
       parentRoute: typeof rootRoute
     }
-    '/$survey/assistance': {
-      id: '/$survey/assistance'
+    '/mes-enquetes/$survey': {
+      id: '/mes-enquetes/$survey'
+      path: '/mes-enquetes/$survey'
+      fullPath: '/mes-enquetes/$survey'
+      preLoaderRoute: typeof MesEnquetesSurveyImport
+      parentRoute: typeof rootRoute
+    }
+    '/mes-enquetes/': {
+      id: '/mes-enquetes/'
+      path: '/mes-enquetes'
+      fullPath: '/mes-enquetes'
+      preLoaderRoute: typeof MesEnquetesIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/mes-enquetes/$survey/assistance': {
+      id: '/mes-enquetes/$survey/assistance'
       path: '/assistance'
-      fullPath: '/$survey/assistance'
-      preLoaderRoute: typeof SurveyAssistanceImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/assistance'
+      preLoaderRoute: typeof MesEnquetesSurveyAssistanceImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/cadre-juridique': {
-      id: '/$survey/cadre-juridique'
+    '/mes-enquetes/$survey/cadre-juridique': {
+      id: '/mes-enquetes/$survey/cadre-juridique'
       path: '/cadre-juridique'
-      fullPath: '/$survey/cadre-juridique'
-      preLoaderRoute: typeof SurveyCadreJuridiqueImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/cadre-juridique'
+      preLoaderRoute: typeof MesEnquetesSurveyCadreJuridiqueImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/documents': {
-      id: '/$survey/documents'
+    '/mes-enquetes/$survey/documents': {
+      id: '/mes-enquetes/$survey/documents'
       path: '/documents'
-      fullPath: '/$survey/documents'
-      preLoaderRoute: typeof SurveyDocumentsImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/documents'
+      preLoaderRoute: typeof MesEnquetesSurveyDocumentsImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/faq': {
-      id: '/$survey/faq'
+    '/mes-enquetes/$survey/faq': {
+      id: '/mes-enquetes/$survey/faq'
       path: '/faq'
-      fullPath: '/$survey/faq'
-      preLoaderRoute: typeof SurveyFaqImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/faq'
+      preLoaderRoute: typeof MesEnquetesSurveyFaqImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/introduction': {
-      id: '/$survey/introduction'
+    '/mes-enquetes/$survey/introduction': {
+      id: '/mes-enquetes/$survey/introduction'
       path: '/introduction'
-      fullPath: '/$survey/introduction'
-      preLoaderRoute: typeof SurveyIntroductionImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/introduction'
+      preLoaderRoute: typeof MesEnquetesSurveyIntroductionImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/login': {
-      id: '/$survey/login'
+    '/mes-enquetes/$survey/login': {
+      id: '/mes-enquetes/$survey/login'
       path: '/login'
-      fullPath: '/$survey/login'
-      preLoaderRoute: typeof SurveyLoginImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/login'
+      preLoaderRoute: typeof MesEnquetesSurveyLoginImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/resultats': {
-      id: '/$survey/resultats'
+    '/mes-enquetes/$survey/resultats': {
+      id: '/mes-enquetes/$survey/resultats'
       path: '/resultats'
-      fullPath: '/$survey/resultats'
-      preLoaderRoute: typeof SurveyResultatsImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/resultats'
+      preLoaderRoute: typeof MesEnquetesSurveyResultatsImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/utilisation-reponse': {
-      id: '/$survey/utilisation-reponse'
+    '/mes-enquetes/$survey/utilisation-reponse': {
+      id: '/mes-enquetes/$survey/utilisation-reponse'
       path: '/utilisation-reponse'
-      fullPath: '/$survey/utilisation-reponse'
-      preLoaderRoute: typeof SurveyUtilisationReponseImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/utilisation-reponse'
+      preLoaderRoute: typeof MesEnquetesSurveyUtilisationReponseImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/': {
-      id: '/$survey/'
+    '/mes-enquetes/$survey/': {
+      id: '/mes-enquetes/$survey/'
       path: '/'
-      fullPath: '/$survey/'
-      preLoaderRoute: typeof SurveyIndexImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/'
+      preLoaderRoute: typeof MesEnquetesSurveyIndexImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/contacter-assistance/auth': {
-      id: '/$survey/contacter-assistance/auth'
+    '/mes-enquetes/$survey/contacter-assistance/auth': {
+      id: '/mes-enquetes/$survey/contacter-assistance/auth'
       path: '/contacter-assistance/auth'
-      fullPath: '/$survey/contacter-assistance/auth'
-      preLoaderRoute: typeof SurveyContacterAssistanceAuthImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/contacter-assistance/auth'
+      preLoaderRoute: typeof MesEnquetesSurveyContacterAssistanceAuthImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/contacter-assistance/erreur': {
-      id: '/$survey/contacter-assistance/erreur'
+    '/mes-enquetes/$survey/contacter-assistance/erreur': {
+      id: '/mes-enquetes/$survey/contacter-assistance/erreur'
       path: '/contacter-assistance/erreur'
-      fullPath: '/$survey/contacter-assistance/erreur'
-      preLoaderRoute: typeof SurveyContacterAssistanceErreurImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/contacter-assistance/erreur'
+      preLoaderRoute: typeof MesEnquetesSurveyContacterAssistanceErreurImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/repondant/mail': {
-      id: '/$survey/repondant/mail'
+    '/mes-enquetes/$survey/repondant/mail': {
+      id: '/mes-enquetes/$survey/repondant/mail'
       path: '/repondant/mail'
-      fullPath: '/$survey/repondant/mail'
-      preLoaderRoute: typeof SurveyRepondantMailImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/repondant/mail'
+      preLoaderRoute: typeof MesEnquetesSurveyRepondantMailImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
-    '/$survey/contacter-assistance/': {
-      id: '/$survey/contacter-assistance/'
+    '/mes-enquetes/$survey/contacter-assistance/': {
+      id: '/mes-enquetes/$survey/contacter-assistance/'
       path: '/contacter-assistance'
-      fullPath: '/$survey/contacter-assistance'
-      preLoaderRoute: typeof SurveyContacterAssistanceIndexImport
-      parentRoute: typeof SurveyImport
+      fullPath: '/mes-enquetes/$survey/contacter-assistance'
+      preLoaderRoute: typeof MesEnquetesSurveyContacterAssistanceIndexImport
+      parentRoute: typeof MesEnquetesSurveyImport
     }
   }
 }
@@ -327,29 +362,31 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  SurveyRoute: SurveyRoute.addChildren({
-    SurveyAssistanceRoute,
-    SurveyCadreJuridiqueRoute,
-    SurveyDocumentsRoute,
-    SurveyFaqRoute,
-    SurveyIntroductionRoute,
-    SurveyLoginRoute,
-    SurveyResultatsRoute,
-    SurveyUtilisationReponseRoute,
-    SurveyIndexRoute,
-    SurveyContacterAssistanceAuthRoute,
-    SurveyContacterAssistanceErreurRoute,
-    SurveyRepondantMailRoute,
-    SurveyContacterAssistanceIndexRoute,
-  }),
+  SurveyRoute,
   AccessibiliteRoute,
   ConnexionRoute,
   DeconnexionRoute,
   DonneesPersonnellesRoute,
   MentionsLegalesRoute,
-  MesEnquetesRoute,
+  MesEnquetesOldRoute,
   MonCompteRoute,
   SecuriteRoute,
+  MesEnquetesSurveyRoute: MesEnquetesSurveyRoute.addChildren({
+    MesEnquetesSurveyAssistanceRoute,
+    MesEnquetesSurveyCadreJuridiqueRoute,
+    MesEnquetesSurveyDocumentsRoute,
+    MesEnquetesSurveyFaqRoute,
+    MesEnquetesSurveyIntroductionRoute,
+    MesEnquetesSurveyLoginRoute,
+    MesEnquetesSurveyResultatsRoute,
+    MesEnquetesSurveyUtilisationReponseRoute,
+    MesEnquetesSurveyIndexRoute,
+    MesEnquetesSurveyContacterAssistanceAuthRoute,
+    MesEnquetesSurveyContacterAssistanceErreurRoute,
+    MesEnquetesSurveyRepondantMailRoute,
+    MesEnquetesSurveyContacterAssistanceIndexRoute,
+  }),
+  MesEnquetesIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -367,31 +404,18 @@ export const routeTree = rootRoute.addChildren({
         "/deconnexion",
         "/donnees-personnelles",
         "/mentions-legales",
-        "/mes-enquetes",
+        "/mes-enquetes-old",
         "/mon-compte",
-        "/securite"
+        "/securite",
+        "/mes-enquetes/$survey",
+        "/mes-enquetes/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
     "/$survey": {
-      "filePath": "$survey.tsx",
-      "children": [
-        "/$survey/assistance",
-        "/$survey/cadre-juridique",
-        "/$survey/documents",
-        "/$survey/faq",
-        "/$survey/introduction",
-        "/$survey/login",
-        "/$survey/resultats",
-        "/$survey/utilisation-reponse",
-        "/$survey/",
-        "/$survey/contacter-assistance/auth",
-        "/$survey/contacter-assistance/erreur",
-        "/$survey/repondant/mail",
-        "/$survey/contacter-assistance/"
-      ]
+      "filePath": "$survey.tsx"
     },
     "/accessibilite": {
       "filePath": "accessibilite.tsx"
@@ -408,8 +432,8 @@ export const routeTree = rootRoute.addChildren({
     "/mentions-legales": {
       "filePath": "mentions-legales.tsx"
     },
-    "/mes-enquetes": {
-      "filePath": "mes-enquetes.tsx"
+    "/mes-enquetes-old": {
+      "filePath": "mes-enquetes-old.tsx"
     },
     "/mon-compte": {
       "filePath": "mon-compte.tsx"
@@ -417,57 +441,78 @@ export const routeTree = rootRoute.addChildren({
     "/securite": {
       "filePath": "securite.tsx"
     },
-    "/$survey/assistance": {
-      "filePath": "$survey/assistance.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey": {
+      "filePath": "mes-enquetes/$survey.tsx",
+      "children": [
+        "/mes-enquetes/$survey/assistance",
+        "/mes-enquetes/$survey/cadre-juridique",
+        "/mes-enquetes/$survey/documents",
+        "/mes-enquetes/$survey/faq",
+        "/mes-enquetes/$survey/introduction",
+        "/mes-enquetes/$survey/login",
+        "/mes-enquetes/$survey/resultats",
+        "/mes-enquetes/$survey/utilisation-reponse",
+        "/mes-enquetes/$survey/",
+        "/mes-enquetes/$survey/contacter-assistance/auth",
+        "/mes-enquetes/$survey/contacter-assistance/erreur",
+        "/mes-enquetes/$survey/repondant/mail",
+        "/mes-enquetes/$survey/contacter-assistance/"
+      ]
     },
-    "/$survey/cadre-juridique": {
-      "filePath": "$survey/cadre-juridique.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/": {
+      "filePath": "mes-enquetes/index.tsx"
     },
-    "/$survey/documents": {
-      "filePath": "$survey/documents.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/assistance": {
+      "filePath": "mes-enquetes/$survey/assistance.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/faq": {
-      "filePath": "$survey/faq.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/cadre-juridique": {
+      "filePath": "mes-enquetes/$survey/cadre-juridique.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/introduction": {
-      "filePath": "$survey/introduction.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/documents": {
+      "filePath": "mes-enquetes/$survey/documents.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/login": {
-      "filePath": "$survey/login.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/faq": {
+      "filePath": "mes-enquetes/$survey/faq.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/resultats": {
-      "filePath": "$survey/resultats.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/introduction": {
+      "filePath": "mes-enquetes/$survey/introduction.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/utilisation-reponse": {
-      "filePath": "$survey/utilisation-reponse.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/login": {
+      "filePath": "mes-enquetes/$survey/login.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/": {
-      "filePath": "$survey/index.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/resultats": {
+      "filePath": "mes-enquetes/$survey/resultats.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/contacter-assistance/auth": {
-      "filePath": "$survey/contacter-assistance/auth.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/utilisation-reponse": {
+      "filePath": "mes-enquetes/$survey/utilisation-reponse.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/contacter-assistance/erreur": {
-      "filePath": "$survey/contacter-assistance/erreur.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/": {
+      "filePath": "mes-enquetes/$survey/index.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/repondant/mail": {
-      "filePath": "$survey/repondant/mail.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/contacter-assistance/auth": {
+      "filePath": "mes-enquetes/$survey/contacter-assistance/auth.tsx",
+      "parent": "/mes-enquetes/$survey"
     },
-    "/$survey/contacter-assistance/": {
-      "filePath": "$survey/contacter-assistance/index.tsx",
-      "parent": "/$survey"
+    "/mes-enquetes/$survey/contacter-assistance/erreur": {
+      "filePath": "mes-enquetes/$survey/contacter-assistance/erreur.tsx",
+      "parent": "/mes-enquetes/$survey"
+    },
+    "/mes-enquetes/$survey/repondant/mail": {
+      "filePath": "mes-enquetes/$survey/repondant/mail.tsx",
+      "parent": "/mes-enquetes/$survey"
+    },
+    "/mes-enquetes/$survey/contacter-assistance/": {
+      "filePath": "mes-enquetes/$survey/contacter-assistance/index.tsx",
+      "parent": "/mes-enquetes/$survey"
     }
   }
 }

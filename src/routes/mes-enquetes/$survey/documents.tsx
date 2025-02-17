@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DocumentTile } from "components/surveyHomepage/DocumentTile";
 import { declareComponentKeys, useTranslation } from "i18n/i18n";
 
-export const Route = createFileRoute("/$survey/documents")({
+export const Route = createFileRoute("/mes-enquetes/$survey/documents")({
   component: DocumentsIndex,
 });
 

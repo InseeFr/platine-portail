@@ -26,7 +26,7 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
               }}
               priority="tertiary no outline"
               linkProps={{
-                to: "/$survey/contacter-assistance",
+                to: "/mes-enquetes/$survey/contacter-assistance",
                 params: {
                   survey: surveyId,
                 },
@@ -47,7 +47,7 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
         style={{ width: "100%" }}
         className="fr-grid-row fr-grid-row--center fr-mb-3w"
         linkProps={{
-          to: "/$survey/login",
+          to: "/mes-enquetes/$survey/login",
           params: {
             survey: surveyId,
           },

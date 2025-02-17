@@ -4,7 +4,7 @@ import { MySurveys } from "components/mySurveys/MySurveys";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 
-export const Route = createFileRoute("/mes-enquetes")({
+export const Route = createFileRoute("/mes-enquetes-old")({
   component: HomepageIndex,
   // TODO: use protectedLoader later
   beforeLoad: async () => {

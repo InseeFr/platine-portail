@@ -6,7 +6,7 @@ export type SupportSearch = {
   "mot-de-passe-oublie"?: boolean;
 };
 
-export const Route = createFileRoute("/$survey/contacter-assistance/")({
+export const Route = createFileRoute("/mes-enquetes/$survey/contacter-assistance/")({
   validateSearch: (search: Record<string, unknown>): SupportSearch => {
     return {
       "mot-de-passe-oublie": (search["mot-de-passe-oublie"] as boolean) || undefined,
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/$survey/contacter-assistance/")({
 });
 
 function SupportIndex() {
-  const search = useSearch({ from: "/$survey/contacter-assistance/" });
+  const search = useSearch({ from: "/mes-enquetes/$survey/contacter-assistance/" });
   const { survey } = Route.useParams();
 
   return (

@@ -141,10 +141,7 @@ export const translations: Translations<"en"> = {
   Logout: {
     "title": "You have been disconnected.",
     "disconnected": "Disconnected",
-    "answer saved":
-      "Your answers have been saved, so you can complete your questionnaire at a later date.",
-    "send message warning":
-      "Don't forget to send in your questionnaire once it has been fully completed.",
+    "logout text": "Please log in again to access your surveys.",
     "reconnect": "Reconnect",
   },
   Support: {
@@ -168,7 +165,7 @@ export const translations: Translations<"en"> = {
             style={{ padding: 0, display: "inline", textDecoration: "underline", fontWeight: "400" }}
             priority="tertiary no outline"
             linkProps={{
-              to: "/$survey/faq",
+              to: "/mes-enquetes/$survey/faq",
               params: {
                 survey: surveyId,
               },

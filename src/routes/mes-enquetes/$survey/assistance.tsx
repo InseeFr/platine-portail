@@ -4,12 +4,12 @@ import { ForgotPassword } from "components/forgotPassword/ForgotPassword";
 import { useTranslation } from "i18n";
 import { Helmet } from "react-helmet-async";
 
-export const Route = createFileRoute("/$survey/assistance")({
+export const Route = createFileRoute("/mes-enquetes/$survey/assistance")({
   component: ForgotPasswordPage,
 });
 
 function ForgotPasswordPage() {
-  const { surveyData } = useLoaderData({ from: "/$survey" });
+  const { surveyData } = useLoaderData({ from: "/mes-enquetes/$survey" });
 
   const { t: headerTranslation } = useTranslation("Header");
   const { t } = useTranslation("ForgotPassword");

@@ -29,8 +29,7 @@ export const Logout = () => {
         <div className={fr.cx("fr-col-md-8")}>
           <h1>{t("title")}</h1>
 
-          <p className={fr.cx("fr-text--lead")}>{t("answer saved")}</p>
-          <p className={fr.cx("fr-text--lead", "fr-text--bold")}>{t("send message warning")}</p>
+          <p className={fr.cx("fr-text--lead")}>{t("logout text")}</p>
           <Button onClick={onClick}>{t("reconnect")}</Button>
         </div>
         <div className={fr.cx("fr-col-3", "fr-hidden", "fr-unhidden-lg", "fr-col-offset-1")}>
@@ -41,8 +40,8 @@ export const Logout = () => {
   );
 };
 
-const { i18n } = declareComponentKeys<
-  "title" | "disconnected" | "answer saved" | "send message warning" | "reconnect"
->()("Logout");
+const { i18n } = declareComponentKeys<"title" | "disconnected" | "logout text" | "reconnect">()(
+  "Logout",
+);
 
 export type I18n = typeof i18n;

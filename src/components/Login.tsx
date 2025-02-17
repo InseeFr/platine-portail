@@ -35,7 +35,7 @@ export const Login = ({
   }
 
   if (surveyData.verifmail || surveyData.verifmail === undefined) {
-    return <Navigate to={"/$survey/repondant/mail"} params={{ survey: surveyData.id }} />;
+    return <Navigate to={"/mes-enquetes/$survey/repondant/mail"} params={{ survey: surveyData.id }} />;
   }
 
   if (surveyData.verifmail === false) {

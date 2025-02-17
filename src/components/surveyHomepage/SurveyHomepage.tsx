@@ -105,7 +105,7 @@ const LoginSection = ({
             <div className="fr-grid-row ">
               <Button
                 linkProps={{
-                  to: "/$survey/login",
+                  to: "/mes-enquetes/$survey/login",
                   params: {
                     survey: surveyId,
                   },
@@ -150,7 +150,7 @@ const SideMenuCustom = ({
   const sideMenuItems: SideMenuProps.Item[] = [
     {
       linkProps: {
-        to: "/$survey/introduction",
+        to: "/mes-enquetes/$survey/introduction",
         params: { survey: surveyId },
       },
       isActive: currentPath.includes("/introduction"),
@@ -158,7 +158,7 @@ const SideMenuCustom = ({
     },
     {
       linkProps: {
-        to: "/$survey/cadre-juridique",
+        to: "/mes-enquetes/$survey/cadre-juridique",
         params: {
           survey: surveyId,
         },
@@ -168,7 +168,7 @@ const SideMenuCustom = ({
     },
     {
       linkProps: {
-        to: "/$survey/utilisation-reponse",
+        to: "/mes-enquetes/$survey/utilisation-reponse",
         params: {
           survey: surveyId,
         },
@@ -178,7 +178,7 @@ const SideMenuCustom = ({
     },
     {
       linkProps: {
-        to: "/$survey/documents",
+        to: "/mes-enquetes/$survey/documents",
         params: {
           survey: surveyId,
         },
@@ -188,7 +188,7 @@ const SideMenuCustom = ({
     },
     {
       linkProps: {
-        to: "/$survey/resultats",
+        to: "/mes-enquetes/$survey/resultats",
         params: {
           survey: surveyId,
         },
@@ -198,7 +198,7 @@ const SideMenuCustom = ({
     },
     {
       linkProps: {
-        to: "/$survey/faq",
+        to: "/mes-enquetes/$survey/faq",
         params: {
           survey: surveyId,
         },
@@ -228,7 +228,7 @@ const SideMenuCustom = ({
                 ...sideMenuItemsWithoutScroll,
                 {
                   linkProps: {
-                    to: "/$survey/contacter-assistance",
+                    to: "/mes-enquetes/$survey/contacter-assistance",
                     params: {
                       survey: surveyId,
                     },
