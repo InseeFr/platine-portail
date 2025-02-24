@@ -1,12 +1,13 @@
 import { declareComponentKeys, useTranslation } from "i18n";
-import { tss } from "tss-react/dsfr";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import { Select } from "@codegouvfr/react-dsfr/SelectNext";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Schema, z } from "zod";
 import { type UseFormRegister } from "react-hook-form";
 import { useIsAuthenticated } from "hooks/useAuth";
 import { useEffect, useRef } from "react";
+import { SupportFormPart } from "components/commons/SupportFormPart";
+import { MailObjectEnum } from "types/mailObjectEnum";
+import { DSFRHide } from "components/commons/DSFRHide";
+import { fr } from "@codegouvfr/react-dsfr";
 
 type Props = {
   surveyId: string;
@@ -22,10 +23,10 @@ export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }:
 
   const containerRef = useRef<HTMLDivElement>(null);
   const objectOptions = isAuthenticated
-    ? ["affichageQuestionnaire", "comprehensionQuestionnaire", "autre"]
-    : ["perteIdentifiant", "perteMotDePasse", "autre"];
-
-  const { classes, cx } = useStyles();
+    ? MailObjectEnum.filter(val =>
+        ["affichageQuestionnaire", "comprehensionQuestionnaire", "autre"].includes(val),
+      )
+    : MailObjectEnum.filter(val => ["perteIdentifiant", "perteMotDePasse", "autre"].includes(val));
 
   useEffect(() => {
     containerRef.current?.scrollIntoView({
@@ -37,7 +38,7 @@ export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }:
     return (
       <div ref={containerRef}>
         <h3>{t("contact support")}</h3>
-        <div className="fr-alert fr-alert--success fr-mb-5w fr-mb-md-0">
+        <div className={fr.cx("fr-alert", "fr-alert--success", "fr-mb-5w", "fr-mb-md-0")}>
           <p>{t("successAlert")}</p>
         </div>
       </div>
@@ -47,146 +48,26 @@ export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }:
   return (
     <div ref={containerRef}>
       <h3>{t("contact support")}</h3>
-      <div className="fr-mb-5w fr-mb-md-0">
+      <div className={fr.cx("fr-mb-5w", "fr-mb-md-0")}>
         {t("FaqSupport", { surveyId })}
-        <p className="fr-text--sm">{t("address usage")}</p>
-        <p className="fr-text--sm">{t("mandatory fields")}</p>
+        <p className={fr.cx("fr-text--sm")}>{t("address usage")}</p>
+        <p className={fr.cx("fr-text--sm")}>{t("mandatory fields")}</p>
         <form action="#" onSubmit={onSubmit}>
-          <Select
-            label={t("object")}
-            nativeSelectProps={{
-              ...register("mailObjet"),
-              id: "object",
-              ...(errors.mailObjet ? { "aria-invalid": true, "aria-errormessage": `object-desc` } : {}),
-            }}
-            options={objectOptions.map(option => {
-              return { value: option, label: t(option as keyof typeof t) };
-            })}
-            placeholder={t("objectPlaceholder")}
-            state={errors.mailObjet ? "error" : "default"}
-            stateRelatedMessage={
-              errors.mailObjet?.message && t(errors.mailObjet?.message as keyof typeof t)
-            }
-          />
-          {!errors.mailObjet && <p className="fr-hidden" id={"object-desc"} />}
-          <Input
-            label={t("lastName")}
-            nativeInputProps={{
-              autoComplete: "family-name",
-              spellCheck: "false",
-              ...register("lastName"),
-              id: "lastName",
-              ...(errors.lastName
-                ? { "aria-invalid": true, "aria-errormessage": `lastName-desc-error` }
-                : {}),
-            }}
-          />
-          {!errors.lastName && <p className="fr-hidden" id={"lastName-desc-error"} />}
-          <Input
-            label={t("firstName")}
-            nativeInputProps={{
-              autoComplete: "given-name",
-              spellCheck: "false",
-              ...register("firstName"),
-              id: "firstName",
-              ...(errors.firstName
-                ? { "aria-invalid": true, "aria-errormessage": `firstName-desc-error` }
-                : {}),
-            }}
-          />
-          {!errors.firstName && <p className="fr-hidden" id={"firstName-desc-error"} />}
-          <Input
-            label={t("phone")}
-            nativeInputProps={{
-              autoComplete: "tel",
-              type: "tel",
-              ...register("phonenumber"),
-              id: "phone",
-              ...(errors.phonenumber
-                ? { "aria-invalid": true, "aria-errormessage": `phone-desc-error` }
-                : {}),
-            }}
-          />
-          {!errors.phonenumber && <p className="fr-hidden" id={"phone-desc-error"} />}
-          <Input
-            label={t("email")}
-            nativeInputProps={{
-              autoComplete: "email",
-              type: "email",
-              ...register("mailaddress"),
-              id: "email",
-              ...(errors.mailaddress && {
-                "aria-invalid": true,
-                "aria-errormessage": "email-desc-error",
-              }),
-            }}
-            state={errors.mailaddress ? "error" : "default"}
-            stateRelatedMessage={
-              errors.mailaddress?.message && t(errors.mailaddress?.message as keyof typeof t)
-            }
-          />
-          {!errors.mailaddress && <p className="fr-hidden" id={"email-desc-error"} />}
-          <Input
-            label={t("confirmEmail")}
-            nativeInputProps={{
-              autoComplete: "email",
-              type: "email",
-              ...register("mailaddressConfirmation"),
-              id: "confirmEmail",
-              ...(errors.mailaddressConfirmation && {
-                "aria-invalid": true,
-                "aria-errormessage": "confirmEmail-desc-error",
-              }),
-            }}
-            state={errors.mailaddressConfirmation ? "error" : "default"}
-            stateRelatedMessage={
-              errors.mailaddressConfirmation?.message &&
-              t(errors.mailaddressConfirmation?.message as keyof typeof t)
-            }
-          />
-          {!errors.mailaddressConfirmation && <p className="fr-hidden" id={"confirmEmail-desc-error"} />}
-          <Input
-            label={t("idec")}
-            hintText={t("idecHintText")}
-            nativeInputProps={{
-              ...register("idec"),
-              id: "idec",
-              ...(errors.idec && { "aria-invalid": true, "aria-errormessage": "idec-desc-error" }),
-            }}
-            state={errors.idec ? "error" : "default"}
-            stateRelatedMessage={errors.idec?.message && t(errors.idec?.message as keyof typeof t)}
-          />
-          {!errors.idec && <p className="fr-hidden" id={"idec-desc-error"} />}
-          <Input
-            label={t("message")}
-            textArea
-            className={classes.inputTextArea}
-            state={errors.message ? "error" : "info"}
-            stateRelatedMessage={
-              errors.message?.message ? t(errors.message?.message as keyof typeof t) : t("messageInfo")
-            }
-            nativeTextAreaProps={register("message")}
-          />
+          <SupportFormPart errors={errors} register={register} objectOptions={objectOptions} />
 
-          <Button className={cx("fr-hidden", "fr-unhidden-md")} type="submit">
-            {t("submit")}
-          </Button>
-          <Button className={cx("fr-hidden-md", "fr-unhidden")} style={{ width: "100%" }} type="submit">
-            {t("submit")}
-          </Button>
+          <DSFRHide hidden unhidden unhiddenScreenSize="md">
+            <Button type="submit">{t("submit")}</Button>
+          </DSFRHide>
+          <DSFRHide hidden unhidden hiddenScreenSize="md">
+            <Button className={fr.cx("fr-grid-row--center")} style={{ width: "100%" }} type="submit">
+              {t("submit")}
+            </Button>
+          </DSFRHide>
         </form>
       </div>
     </div>
   );
 };
-
-const useStyles = tss.withName({ SupportForm }).create({
-  inputTextArea: {
-    textArea: {
-      height: "200px",
-    },
-  },
-});
 
 const { i18n } = declareComponentKeys<
   | "address usage"
@@ -215,6 +96,7 @@ const { i18n } = declareComponentKeys<
   | "perteIdentifiant"
   | "perteMotDePasse"
   | "successAlert"
+  | "surveyRequired"
   | "contact support"
   | { K: "FaqSupport"; P: { surveyId: string }; R: JSX.Element }
 >()("SupportForm");

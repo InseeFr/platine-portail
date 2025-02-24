@@ -79,6 +79,36 @@ export function useFetchQueryPortail<
   };
 }
 
+// use only to get sources
+export function useFetchQueryPortailWithoutAuth<
+  Path extends APIPathsPortail,
+  Options extends APIRequestsPortail<Path>,
+>(
+  path: Path,
+  options?: Options & { headers?: Record<string, string> },
+  queryOptions?: Omit<
+    UseQueryOptions<unknown, APIError, APIResponsePortail<Path, Options["method"]>>,
+    "queryKey" | "queryFn"
+  >,
+) {
+  const key = [path, options];
+
+  const optionsWithHeaders = {
+    ...options,
+    headers: {
+      ...options?.headers,
+    },
+  };
+  return {
+    key,
+    ...useQuery({
+      queryKey: key,
+      queryFn: () => fetchPortailAPI(path, optionsWithHeaders as any as Options),
+      ...queryOptions,
+    }),
+  };
+}
+
 export function useFetchMutationPilotage<Path extends APIPaths, Method extends APIMethods<Path>>(
   path: Path,
   method: Method,

@@ -13,6 +13,7 @@ export const translations: Translations<"en"> = {
     "operator logo alt": "Insee, measure to understand",
     "page title surveys": "My surveys",
     "contact support": "Contact support",
+    "need help": "Need help?",
     "content": "Content",
     "footer": "Footer",
     "my surveys": "My surveys",
@@ -152,7 +153,8 @@ export const translations: Translations<"en"> = {
     "surveyQuestions": "Questions about the survey",
     "FAQ form section": "form to contact us",
     "FAQ form title": "Can't find the answer in the FAQ?",
-    "contact us": "Contact us:",
+    "contact us": "Contact us !",
+    "survey": "Survey name*",
   },
   SupportForm: {
     FaqSupport: ({ surveyId }: { surveyId: string }) => {
@@ -194,6 +196,7 @@ export const translations: Translations<"en"> = {
     "idecHintText": "Format: between 7 and 9 characters",
     "message": "Message*",
     "messageRequired": "Please enter a message",
+    "surveyRequired": "Please enter a survey",
     "messageInfo": "4000 characters remaining",
     "messageSizeIdec": "Please enter an identifier containing 7 to 9 characters",
     "submit": "Submit",

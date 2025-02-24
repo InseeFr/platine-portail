@@ -13,6 +13,7 @@ export const translations: Translations<"fr"> = {
     "operator logo alt": "Insee, mesurer pour comprendre",
     "page title surveys": "Mes enquêtes",
     "contact support": "Contacter l'assistance",
+    "need help": "Besoin d'aide ?",
     "content": "Contenu",
     "footer": "Pied de page",
     "my surveys": "Mes enquêtes",
@@ -152,7 +153,8 @@ export const translations: Translations<"fr"> = {
     "surveyQuestions": "Questions relatives à l'enquête",
     "FAQ form section": "formulaire pour nous contacter",
     "FAQ form title": "Vous ne trouvez pas la réponse dans la FAQ ? ",
-    "contact us": "Contactez-nous :",
+    "contact us": "Contactez-nous !",
+    "survey": "Nom de l'enquête*",
   },
   SupportForm: {
     FaqSupport: ({ surveyId }: { surveyId: string }) => {
@@ -194,6 +196,7 @@ export const translations: Translations<"fr"> = {
     "idecHintText": "Format : entre 7 et 9 caractères",
     "message": "Message*",
     "messageRequired": "Veuillez renseigner un message",
+    "surveyRequired": "Veuillez renseigner une enquête",
     "messageSizeIdec": "Veuillez renseigner un identifiant comprenant 7 à 9 caractères",
     "messageInfo": "4000 caractères restants",
     "submit": "Envoyer",

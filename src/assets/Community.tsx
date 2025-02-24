@@ -1,9 +1,9 @@
 import ArtWorkBackground from "@codegouvfr/react-dsfr/dsfr/artwork/background/ovoid.svg";
 import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
-import Information from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg";
+import Community from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/community.svg";
 import { fr } from "@codegouvfr/react-dsfr";
 
-export const InformationIcon = () => {
+export const CommunityIcon = () => {
   return (
     <svg
       className={fr.cx(
@@ -15,7 +15,7 @@ export const InformationIcon = () => {
         "fr-artwork--green-bourgeon",
       )}
       aria-hidden="true"
-      style={{ width: "120px", height: "160px" }}
+      style={{ width: "280px", height: "320px" }}
       viewBox="0 0 160 200"
     >
       <use className={fr.cx("fr-artwork-motif")} href={`${ArtWorkBackground}#artwork-motif`}></use>
@@ -25,13 +25,13 @@ export const InformationIcon = () => {
         className={fr.cx("fr-artwork-background")}
         href={`${ArtWorkBackground}#artwork-background`}
       ></use>
-      <g transform="translate(10, 20) scale(1.8)">
+      <g transform="translate(40, 60)">
         <use
           className={fr.cx("fr-artwork-decorative")}
-          xlinkHref={`${Information}#artwork-decorative`}
+          xlinkHref={`${Community}#artwork-decorative`}
         ></use>
-        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Information}#artwork-minor`}></use>
-        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Information}#artwork-major`}></use>
+        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Community}#artwork-minor`}></use>
+        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Community}#artwork-major`}></use>
       </g>
     </svg>
   );

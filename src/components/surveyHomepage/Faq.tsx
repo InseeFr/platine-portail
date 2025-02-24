@@ -45,6 +45,7 @@ const { i18n } = declareComponentKeys<
   | "FAQ form section"
   | "FAQ form title"
   | "contact us"
+  | "survey"
 >()("Support");
 
 export type I18n = typeof i18n;

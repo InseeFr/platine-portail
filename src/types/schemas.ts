@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { MailObjectEnum, type MailObjectType } from "./mailObjectEnum";
 
 export const addressSchema = z
   .object({
@@ -144,7 +145,16 @@ export const personnalInformationsSchema = z.object({
 
 export const supportSchema = z
   .object({
-    mailObjet: z.string().min(1, { message: "mailObjetRequired" }),
+    mailObjet: z
+      .string()
+      .trim()
+      .refine(val => val !== "", {
+        message: "mailObjetRequired",
+      })
+      .refine(val => MailObjectEnum.includes(val as MailObjectType), {
+        message: "mailObjetRequired",
+      })
+      .transform(val => val as MailObjectType),
     lastName: z
       .string()
       .nullish()
@@ -180,6 +190,10 @@ export const supportSchema = z
       });
     }
   });
+
+export const extendedSupportSchema = supportSchema._def.schema.extend({
+  survey: z.string().min(1, { message: "surveyRequired" }),
+});
 
 export const unknownEmailForm = z
   .object({
