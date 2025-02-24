@@ -35,7 +35,7 @@ export function Header() {
                 linkProps: {
                   to: "/",
                 },
-                text: t("contact support"),
+                text: t("need help"),
               },
               {
                 iconId: "fr-icon-account-circle-fill",
@@ -61,9 +61,9 @@ export function Header() {
               {
                 iconId: "fr-icon-customer-service-fill",
                 linkProps: {
-                  to: "/",
+                  to: "/assistance",
                 },
-                text: t("contact support"),
+                text: t("need help"),
               },
 
               {
@@ -96,6 +96,7 @@ const { i18n } = declareComponentKeys<
   | "operator logo alt"
   | "page title surveys"
   | "contact support"
+  | "need help"
   | "content"
   | "footer"
   | "my surveys"

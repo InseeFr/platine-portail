@@ -6,7 +6,14 @@ import { fr } from "@codegouvfr/react-dsfr";
 export const AvatarIcon = () => {
   return (
     <svg
-      className={fr.cx("fr-artwork", "fr-responsive-img", "fr-hidden", "fr-unhidden-lg", "fr-mr-3w")}
+      className={fr.cx(
+        "fr-artwork",
+        "fr-responsive-img",
+        "fr-hidden",
+        "fr-unhidden-lg",
+        "fr-mr-3w",
+        "fr-artwork--green-bourgeon",
+      )}
       aria-hidden="true"
       style={{ width: "120px", height: "160px" }}
       viewBox="0 0 160 200"

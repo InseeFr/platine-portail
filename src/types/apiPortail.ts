@@ -161,6 +161,7 @@ export type APISchemas = {
       | "511 NETWORK_AUTHENTICATION_REQUIRED";
   };
   MailOutput: { mail?: string };
+  SourceOngoingDto: { id?: string; label?: string };
   Ligne: {
     idCampagne?: string;
     idUE?: string;
@@ -202,6 +203,10 @@ export type APIEndpoints = {
     responses: { post: null };
     requests: { method: "post"; body: APISchemas["MailAssistanceInputDto"] };
   };
+  "/sources/ongoing": {
+    responses: { get: APISchemas["SourceOngoingDto"][] };
+    requests: { method?: "get" };
+  };
   "/questionnaires-url": {
     responses: { get: APISchemas["Ligne"][] };
     requests: { method?: "get" };
@@ -216,10 +221,6 @@ export type APIEndpoints = {
     requests: { method?: "get" };
   };
   "/actuator/health": { responses: { get: unknown }; requests: { method?: "get" } };
-  "/actuator/health/**": {
-    responses: { get: unknown };
-    requests: { method?: "get" };
-  };
 };
 
 export type APIPaths = keyof APIEndpoints;

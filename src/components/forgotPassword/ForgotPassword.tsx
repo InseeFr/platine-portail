@@ -9,7 +9,7 @@ import { TechnicalError } from "components/errorPages/TechnicalError";
 import { ForgotPasswordValidated } from "./ForgotPasswordValidated";
 import { PageWithCardContainer } from "components/commons/PageWithCardContainer";
 
-export const ForgotPassword = ({ surveyId, titleShort }: { surveyId: string; titleShort: string }) => {
+export const ForgotPassword = () => {
   const { t } = useTranslation("ForgotPassword");
 
   const { mutateAsync, isError, error } = useFetchMutationWithoutAuth("/reinit-password", "post");
@@ -23,25 +23,16 @@ export const ForgotPassword = ({ surveyId, titleShort }: { surveyId: string; tit
   });
 
   if (isError && error.status === 500) {
-    return <TechnicalError surveyId={surveyId} />;
+    return <TechnicalError />;
   }
 
   return (
-    <PageWithCardContainer
-      currentPageLabel={t("pageTitleForgotPassword")}
-      surveyId={surveyId}
-      titleShort={titleShort}
-    >
+    <PageWithCardContainer currentPageLabel={t("pageTitleForgotPassword")}>
       <h4>{t("sectionTitle")}</h4>
       {isSuccessPage ? (
-        <ForgotPasswordValidated surveyId={surveyId} onClickToGoBack={() => setIsSuccessPage(false)} />
+        <ForgotPasswordValidated onClickToGoBack={() => setIsSuccessPage(false)} />
       ) : (
-        <ForgotPasswordForm
-          surveyId={surveyId}
-          register={register}
-          onSubmit={onSubmit}
-          errors={errors}
-        />
+        <ForgotPasswordForm register={register} onSubmit={onSubmit} errors={errors} />
       )}
     </PageWithCardContainer>
   );

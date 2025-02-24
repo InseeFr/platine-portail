@@ -12,12 +12,15 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SecuriteImport } from './routes/securite'
+import { Route as MotDePasseOublieImport } from './routes/mot-de-passe-oublie'
 import { Route as MonCompteImport } from './routes/mon-compte'
 import { Route as MesEnquetesOldImport } from './routes/mes-enquetes-old'
 import { Route as MentionsLegalesImport } from './routes/mentions-legales'
+import { Route as ErreurImport } from './routes/erreur'
 import { Route as DonneesPersonnellesImport } from './routes/donnees-personnelles'
 import { Route as DeconnexionImport } from './routes/deconnexion'
 import { Route as ConnexionImport } from './routes/connexion'
+import { Route as AssistanceImport } from './routes/assistance'
 import { Route as AccessibiliteImport } from './routes/accessibilite'
 import { Route as SurveyImport } from './routes/$survey'
 import { Route as IndexImport } from './routes/index'
@@ -31,7 +34,6 @@ import { Route as MesEnquetesSurveyIntroductionImport } from './routes/mes-enque
 import { Route as MesEnquetesSurveyFaqImport } from './routes/mes-enquetes/$survey/faq'
 import { Route as MesEnquetesSurveyDocumentsImport } from './routes/mes-enquetes/$survey/documents'
 import { Route as MesEnquetesSurveyCadreJuridiqueImport } from './routes/mes-enquetes/$survey/cadre-juridique'
-import { Route as MesEnquetesSurveyAssistanceImport } from './routes/mes-enquetes/$survey/assistance'
 import { Route as MesEnquetesSurveyContacterAssistanceIndexImport } from './routes/mes-enquetes/$survey/contacter-assistance/index'
 import { Route as MesEnquetesSurveyRepondantMailImport } from './routes/mes-enquetes/$survey/repondant/mail'
 import { Route as MesEnquetesSurveyContacterAssistanceErreurImport } from './routes/mes-enquetes/$survey/contacter-assistance/erreur'
@@ -41,6 +43,11 @@ import { Route as MesEnquetesSurveyContacterAssistanceAuthImport } from './route
 
 const SecuriteRoute = SecuriteImport.update({
   path: '/securite',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MotDePasseOublieRoute = MotDePasseOublieImport.update({
+  path: '/mot-de-passe-oublie',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -59,6 +66,11 @@ const MentionsLegalesRoute = MentionsLegalesImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ErreurRoute = ErreurImport.update({
+  path: '/erreur',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DonneesPersonnellesRoute = DonneesPersonnellesImport.update({
   path: '/donnees-personnelles',
   getParentRoute: () => rootRoute,
@@ -71,6 +83,11 @@ const DeconnexionRoute = DeconnexionImport.update({
 
 const ConnexionRoute = ConnexionImport.update({
   path: '/connexion',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AssistanceRoute = AssistanceImport.update({
+  path: '/assistance',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -146,12 +163,6 @@ const MesEnquetesSurveyCadreJuridiqueRoute =
     getParentRoute: () => MesEnquetesSurveyRoute,
   } as any)
 
-const MesEnquetesSurveyAssistanceRoute =
-  MesEnquetesSurveyAssistanceImport.update({
-    path: '/assistance',
-    getParentRoute: () => MesEnquetesSurveyRoute,
-  } as any)
-
 const MesEnquetesSurveyContacterAssistanceIndexRoute =
   MesEnquetesSurveyContacterAssistanceIndexImport.update({
     path: '/contacter-assistance/',
@@ -201,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccessibiliteImport
       parentRoute: typeof rootRoute
     }
+    '/assistance': {
+      id: '/assistance'
+      path: '/assistance'
+      fullPath: '/assistance'
+      preLoaderRoute: typeof AssistanceImport
+      parentRoute: typeof rootRoute
+    }
     '/connexion': {
       id: '/connexion'
       path: '/connexion'
@@ -220,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/donnees-personnelles'
       fullPath: '/donnees-personnelles'
       preLoaderRoute: typeof DonneesPersonnellesImport
+      parentRoute: typeof rootRoute
+    }
+    '/erreur': {
+      id: '/erreur'
+      path: '/erreur'
+      fullPath: '/erreur'
+      preLoaderRoute: typeof ErreurImport
       parentRoute: typeof rootRoute
     }
     '/mentions-legales': {
@@ -243,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MonCompteImport
       parentRoute: typeof rootRoute
     }
+    '/mot-de-passe-oublie': {
+      id: '/mot-de-passe-oublie'
+      path: '/mot-de-passe-oublie'
+      fullPath: '/mot-de-passe-oublie'
+      preLoaderRoute: typeof MotDePasseOublieImport
+      parentRoute: typeof rootRoute
+    }
     '/securite': {
       id: '/securite'
       path: '/securite'
@@ -263,13 +295,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/mes-enquetes'
       preLoaderRoute: typeof MesEnquetesIndexImport
       parentRoute: typeof rootRoute
-    }
-    '/mes-enquetes/$survey/assistance': {
-      id: '/mes-enquetes/$survey/assistance'
-      path: '/assistance'
-      fullPath: '/mes-enquetes/$survey/assistance'
-      preLoaderRoute: typeof MesEnquetesSurveyAssistanceImport
-      parentRoute: typeof MesEnquetesSurveyImport
     }
     '/mes-enquetes/$survey/cadre-juridique': {
       id: '/mes-enquetes/$survey/cadre-juridique'
@@ -364,15 +389,17 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SurveyRoute,
   AccessibiliteRoute,
+  AssistanceRoute,
   ConnexionRoute,
   DeconnexionRoute,
   DonneesPersonnellesRoute,
+  ErreurRoute,
   MentionsLegalesRoute,
   MesEnquetesOldRoute,
   MonCompteRoute,
+  MotDePasseOublieRoute,
   SecuriteRoute,
   MesEnquetesSurveyRoute: MesEnquetesSurveyRoute.addChildren({
-    MesEnquetesSurveyAssistanceRoute,
     MesEnquetesSurveyCadreJuridiqueRoute,
     MesEnquetesSurveyDocumentsRoute,
     MesEnquetesSurveyFaqRoute,
@@ -400,12 +427,15 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/$survey",
         "/accessibilite",
+        "/assistance",
         "/connexion",
         "/deconnexion",
         "/donnees-personnelles",
+        "/erreur",
         "/mentions-legales",
         "/mes-enquetes-old",
         "/mon-compte",
+        "/mot-de-passe-oublie",
         "/securite",
         "/mes-enquetes/$survey",
         "/mes-enquetes/"
@@ -420,6 +450,9 @@ export const routeTree = rootRoute.addChildren({
     "/accessibilite": {
       "filePath": "accessibilite.tsx"
     },
+    "/assistance": {
+      "filePath": "assistance.tsx"
+    },
     "/connexion": {
       "filePath": "connexion.tsx"
     },
@@ -428,6 +461,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/donnees-personnelles": {
       "filePath": "donnees-personnelles.tsx"
+    },
+    "/erreur": {
+      "filePath": "erreur.tsx"
     },
     "/mentions-legales": {
       "filePath": "mentions-legales.tsx"
@@ -438,13 +474,15 @@ export const routeTree = rootRoute.addChildren({
     "/mon-compte": {
       "filePath": "mon-compte.tsx"
     },
+    "/mot-de-passe-oublie": {
+      "filePath": "mot-de-passe-oublie.tsx"
+    },
     "/securite": {
       "filePath": "securite.tsx"
     },
     "/mes-enquetes/$survey": {
       "filePath": "mes-enquetes/$survey.tsx",
       "children": [
-        "/mes-enquetes/$survey/assistance",
         "/mes-enquetes/$survey/cadre-juridique",
         "/mes-enquetes/$survey/documents",
         "/mes-enquetes/$survey/faq",
@@ -461,10 +499,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/mes-enquetes/": {
       "filePath": "mes-enquetes/index.tsx"
-    },
-    "/mes-enquetes/$survey/assistance": {
-      "filePath": "mes-enquetes/$survey/assistance.tsx",
-      "parent": "/mes-enquetes/$survey"
     },
     "/mes-enquetes/$survey/cadre-juridique": {
       "filePath": "mes-enquetes/$survey/cadre-juridique.tsx",

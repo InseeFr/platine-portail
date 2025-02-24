@@ -1,23 +1,22 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import Alert from "@codegouvfr/react-dsfr/Alert";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Divider from "@mui/material/Divider";
 import { useTranslation } from "i18n/i18n";
 
 type Props = {
-  surveyId: string;
   onClickToGoBack: () => void;
 };
 
-export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) => {
+export const ForgotPasswordValidated = ({ onClickToGoBack }: Props) => {
   const { t } = useTranslation("ForgotPassword");
   return (
     <div>
       <Alert
         description={
-          <p className="fr-text--sm">
-            {surveyId === "eec" ? t("alertTextEEC") : t("alertText")}
+          <p className={fr.cx("fr-text--sm")}>
             <Button
-              className="fr-pl-1v fr-text--sm"
+              className={fr.cx("fr-pl-1v", "fr-text--sm")}
               style={{
                 padding: 0,
                 display: "inline",
@@ -26,10 +25,7 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
               }}
               priority="tertiary no outline"
               linkProps={{
-                to: "/mes-enquetes/$survey/contacter-assistance",
-                params: {
-                  survey: surveyId,
-                },
+                to: "/assistance",
                 search: {
                   "mot-de-passe-oublie": true,
                 },
@@ -42,15 +38,12 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
         severity="success"
         small
       />
-      <Divider orientation="horizontal" variant="fullWidth" className="fr-p-0 fr-my-3w" />
+      <Divider orientation="horizontal" variant="fullWidth" className={fr.cx("fr-p-0", "fr-my-3w")} />
       <Button
         style={{ width: "100%" }}
-        className="fr-grid-row fr-grid-row--center fr-mb-3w"
+        className={fr.cx("fr-grid-row", "fr-grid-row--center", "fr-mb-3w")}
         linkProps={{
-          to: "/mes-enquetes/$survey/login",
-          params: {
-            survey: surveyId,
-          },
+          to: "/mes-enquetes",
         }}
       >
         {t("goBackToConnexion")}
@@ -58,7 +51,7 @@ export const ForgotPasswordValidated = ({ surveyId, onClickToGoBack }: Props) =>
       <Button
         style={{ width: "100%" }}
         priority="secondary"
-        className="fr-grid-row fr-grid-row--center"
+        className={fr.cx("fr-grid-row", "fr-grid-row--center")}
         onClick={onClickToGoBack}
       >
         {t("modifyIdentifier")}
