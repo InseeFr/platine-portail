@@ -12,7 +12,7 @@ function Index() {
   const { t } = useTranslation("SurveyHomepage");
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
       <h3>{t("survey introduction")}</h3>
       <Markdown content={surveyData.content.description.body} />
     </section>

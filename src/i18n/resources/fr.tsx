@@ -46,6 +46,7 @@ export const translations: Translations<"fr"> = {
       "Retrouvez l’ensemble des enquêtes auxquelles vous avez répondu ou vous êtes invités à répondre.",
     "questionnaire count done": "Nombre de questionnaires : ",
     "questionnaire count doing": "Nombre de questionnaires en cours:",
+    "information link": "Informations sur l'enquête",
   },
   MyAccount: {
     "title my account": "Mon compte",

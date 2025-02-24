@@ -14,7 +14,7 @@ function DocumentsIndex() {
   const { t } = useTranslation("Documents");
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
       <h3>{homeTranslation("documents to the surveyed")}</h3>
       <div>
         <DocumentTile

@@ -25,7 +25,6 @@ export const translations: Translations<"en"> = {
     "ssp logo alt": "Public statistics",
     "security": "Security",
   },
-
   SurveyHomepage: {
     "title": "Welcome to your dashboard",
     "openNewWindow": "open in a new window",
@@ -45,6 +44,7 @@ export const translations: Translations<"en"> = {
     "about surveys": "Find all the surveys you have answered or are invited to answer",
     "questionnaire count done": "Number of questionnaires",
     "questionnaire count doing": "Number of remaining questionnaires",
+    "information link": "Survey information",
   },
   MyAccount: {
     "title my account": "My account",

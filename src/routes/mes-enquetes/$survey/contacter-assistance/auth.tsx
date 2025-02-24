@@ -24,7 +24,7 @@ function SupportPage() {
   }
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
+    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
       <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId.toString()} />
     </section>
   );
