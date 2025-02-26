@@ -2,7 +2,6 @@ import ArtWorkBackground from "@codegouvfr/react-dsfr/dsfr/artwork/background/ov
 import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
 import SearchSvg from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/search.svg";
 import { fr } from "@codegouvfr/react-dsfr";
-import { DSFRHide } from "components/commons/DSFRHide";
 
 export const SearchPictogram = () => {
   return (
