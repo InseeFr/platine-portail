@@ -1,6 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useState } from "react";
+import { QuestioningStatus } from "./QuestioningStatus";
+import { Download } from "@codegouvfr/react-dsfr/Download";
+import { Button } from "@codegouvfr/react-dsfr/Button";
 
 type Props = {
   title: string;
@@ -17,13 +20,43 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
     const newDirection = sortDirection === "asc" ? "desc" : "asc";
 
     const sorted = [...sortedQuestionings].sort((a, b) => {
-      if (a.identificationName < b.identificationName) return newDirection === "asc" ? -1 : 1;
-      if (a.identificationName > b.identificationName) return newDirection === "asc" ? 1 : -1;
+      if (a.surveyUnitIdentificationName < b.surveyUnitIdentificationName)
+        return newDirection === "asc" ? -1 : 1;
+      if (a.surveyUnitIdentificationName > b.surveyUnitIdentificationName)
+        return newDirection === "asc" ? 1 : -1;
       return 0;
     });
 
     setSortedQuestionings(sorted);
     setSortDirection(newDirection);
+  };
+
+  const getAction = (questioning: any) => {
+    if (questioning.deliveryUrl) {
+      return (
+        <Download
+          className={fr.cx("fr-m-0")}
+          details="TODO taille"
+          label={t("download deposit proof")}
+          linkProps={{
+            href: questioning.deliveryUrl,
+          }}
+        />
+      );
+    }
+
+    if (questioning.questioningAccessUrl && questioning.questioningStatus === "OPEN") {
+      return (
+        <Button
+          size="small"
+          linkProps={{
+            href: questioning.questioningAccessUrl,
+          }}
+        >
+          {t("goToSurvey")}
+        </Button>
+      );
+    }
   };
 
   return (
@@ -63,17 +96,19 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
                   {sortedQuestionings.map((questioning: any) => (
                     <tr
                       style={{ height: "70px" }}
-                      key={`${questioning.identificationCode}-${questioning.questioning}`}
+                      key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
                     >
                       {!hasSingleSurveyUnit && (
                         <>
-                          <td>{questioning.identificationCode}</td>
-                          <td>{questioning.identificationName}</td>
+                          <td>{questioning.surveyUnitIdentificationCode}</td>
+                          <td>{questioning.surveyUnitIdentificationName}</td>
                         </>
                       )}
-                      <td>{questioning.questioning}</td>
-                      <td>{questioning.status}</td>
-                      <td>TODO action</td>
+                      <td>{questioning.partitioningLabel}</td>
+                      <td>
+                        <QuestioningStatus translation={t} status={questioning.questioningStatus} />
+                      </td>
+                      <td>{getAction(questioning)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -96,6 +131,10 @@ const { i18n } = declareComponentKeys<
   | "action"
   | "goToSurvey"
   | "download deposit proof"
+  | "RECEIVED"
+  | "NOT_RECEIVED"
+  | "INCOMING"
+  | "OPEN"
 >()("SurveyTable");
 
 export type I18n = typeof i18n;

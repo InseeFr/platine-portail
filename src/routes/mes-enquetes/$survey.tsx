@@ -13,22 +13,42 @@ import { DSFRHide } from "components/commons/DSFRHide";
 // TODO: remove when get endpoint
 const data = [
   {
-    identificationCode: "SIREN 1",
-    identificationName: "Barilla",
-    questioning: "Questionnaire 1",
-    status: "CLOSED",
+    sourceId: "TIC",
+    surveyUnitIdentificationCode: "SIREN 1",
+    surveyUnitIdentificationName: "Barilla",
+    partitioningLabel: "Questionnaire 1",
+    questioningStatus: "RECEIVED",
+    questioningAccessUrl: "url",
+    deliveryUrl: "deliveryUrl",
+    questioningId: "id1",
   },
   {
-    identificationCode: "SIREN 2",
-    identificationName: "Panzani",
-    questioning: "Questionnaire 2",
-    status: "OPEN",
+    sourceId: "EEC",
+    surveyUnitIdentificationCode: "SIREN 2",
+    surveyUnitIdentificationName: "Panzani",
+    partitioningLabel: "Questionnaire 2",
+    questioningStatus: "NOT_RECEIVED",
+    questioningAccessUrl: "url",
+    deliveryUrl: "deliveryUrl",
+    questioningId: "id2",
   },
   {
-    identificationCode: "SIREN 2",
-    identificationName: "Panzani",
-    questioning: "Questionnaire 3",
-    status: "OPEN",
+    sourceId: "EEC",
+    surveyUnitIdentificationCode: "SIREN 2",
+    surveyUnitIdentificationName: "Panzani",
+    partitioningLabel: "Questionnaire 3",
+    questioningStatus: "INCOMING",
+    questioningAccessUrl: "url",
+    questioningId: "id3",
+  },
+  {
+    sourceId: "AUTO",
+    surveyUnitIdentificationCode: "SIREN 3",
+    surveyUnitIdentificationName: "Peugeot",
+    partitioningLabel: "Questionnaire 4",
+    questioningStatus: "OPEN",
+    questioningAccessUrl: "https://www.example.com",
+    questioningId: "id4",
   },
 ];
 
@@ -66,11 +86,11 @@ function Index() {
   const sectionTitle = getPageTitle(currentPath);
 
   const hasSingleSurveyUnit = data.every(
-    (current: any) => current.identificationCode === data[0].identificationCode,
+    (current: any) => current.surveyUnitIdentificationCode === data[0].surveyUnitIdentificationCode,
   );
 
   const questioningsSectionTitle = hasSingleSurveyUnit
-    ? `${surveyData.title} (${data[0].identificationCode})`
+    ? `${surveyData.title} (${data[0].surveyUnitIdentificationCode})`
     : surveyData.title;
 
   return (
@@ -98,7 +118,7 @@ function Index() {
             {data.map(questioning => (
               <QuestioningCard
                 questioning={questioning}
-                key={`${questioning.identificationCode}-${questioning.questioning}`}
+                key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
               />
             ))}
           </div>
