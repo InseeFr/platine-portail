@@ -18,7 +18,7 @@ const router = createRouter({
   context: {
     queryClient,
     getGenericData: () => content.generique,
-    getSpecificData: () => content.specifique,
+    getSurveys: () => content.specifique,
     getSurveyData: ({ surveyId }) =>
       content.specifique.find(s => s.id.toLowerCase() === surveyId.toLowerCase()),
     getTitleShort: ({ surveyId }) => {

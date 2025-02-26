@@ -1,10 +1,12 @@
 import { useTranslation } from "i18n";
-import Banner from "../../assets/banner.svg";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Card } from "@codegouvfr/react-dsfr/Card";
-import { List } from "@mui/material";
 import type { SurveyData } from "types/ContentSurvey";
-import { VITE_APP_URL } from "resources/configuration";
+import { BannerImage } from "components/commons/BannerImage";
+import { H2TitleWithText } from "components/commons/TitleWithText/H2TitleWithText";
+import { DSFRGrid } from "components/commons/DSFRGrid";
+import { SearchPictogram } from "assets/Pictograms/Search";
+import { DSFRHide } from "components/commons/DSFRHide";
 
 export const SurveysList = ({ surveys }: { surveys: SurveyData[] }) => {
   const { t } = useTranslation("SurveyHomepage");
@@ -12,25 +14,25 @@ export const SurveysList = ({ surveys }: { surveys: SurveyData[] }) => {
   return (
     <div>
       <div className="fr-container--fluid">
-        <img
-          src={Banner}
-          alt=""
-          role="presentation"
-          width={"100%"}
-          className={"fr-unhidden-md fr-hidden"}
-        />
+        <BannerImage />
       </div>
-      <div className={fr.cx("fr-container", "fr-py-5w")}>
-        <h2>{t("title")}</h2>
-        <List className="fr-grid-row">
+      <div className={fr.cx("fr-container", "fr-py-3w")}>
+        <DSFRGrid center middle gutters>
+          <DSFRHide hidden unhidden unhiddenScreenSize="lg">
+            <div className={fr.cx("fr-col-2")}>
+              <SearchPictogram />
+            </div>
+          </DSFRHide>
+          <div className={fr.cx("fr-col-md-12", "fr-col-md-10", "fr-col-lg-10")}>
+            <H2TitleWithText title={t("title")} text={t("about surveys")} />
+          </div>
+        </DSFRGrid>
+        <DSFRGrid gutters>
           {surveys.map(survey => (
-            <li className="fr-col-md-4 fr-col-12 fr-mb-3w" key={survey.id}>
+            <div className={fr.cx("fr-col-lg-3", "fr-col-md-6", "fr-col-sm-12")}>
               <Card
-                className="fr-mr-3w"
-                background
-                border
+                endDetail={t("questionnaire count done")}
                 enlargeLink
-                horizontal
                 linkProps={{
                   to: "/mes-enquetes/$survey/introduction",
                   params: {
@@ -38,13 +40,13 @@ export const SurveysList = ({ surveys }: { surveys: SurveyData[] }) => {
                   },
                   id: "content",
                 }}
-                endDetail={`${VITE_APP_URL}/mes-enquetes/${survey.id}`}
-                title={survey.titleShort}
-                titleAs="h5"
+                size="medium"
+                title={survey.title}
+                titleAs="h3"
               />
-            </li>
+            </div>
           ))}
-        </List>
+        </DSFRGrid>
       </div>
     </div>
   );

@@ -262,6 +262,9 @@ const { i18n } = declareComponentKeys<
   | "respond to survey"
   | "respond to survey detail"
   | "title"
+  | "about surveys"
+  | "questionnaire count done"
+  | "questionnaire count doing"
 >()("SurveyHomepage");
 
 export type I18n = typeof i18n;

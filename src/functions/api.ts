@@ -1,4 +1,3 @@
-import { VITE_API_URL, VITE_PORTAIL_URL } from "resources/configuration";
 import type { APIPaths, APIRequests, APIResponse } from "types/api";
 import type {
   APIPaths as APIPathsPortail,
@@ -70,14 +69,18 @@ export async function fetchPilotageAPI<
   Path extends APIPaths,
   Options extends APIRequests<Path> & { signal?: AbortSignal; headers?: Record<string, string> },
 >(path: Path, options: Options) {
-  return fetchWrapper<APIResponse<Path, Options["method"]>>(path, options, VITE_API_URL);
+  return fetchWrapper<APIResponse<Path, Options["method"]>>(path, options, import.meta.env.VITE_API_URL);
 }
 
 export async function fetchPortailAPI<
   Path extends APIPathsPortail,
   Options extends APIRequestsPortail<Path> & { signal?: AbortSignal; headers?: Record<string, string> },
 >(path: Path, options: Options) {
-  return fetchWrapper<APIResponsePortail<Path, Options["method"]>>(path, options, VITE_PORTAIL_URL);
+  return fetchWrapper<APIResponsePortail<Path, Options["method"]>>(
+    path,
+    options,
+    import.meta.env.VITE_PORTAIL_URL,
+  );
 }
 
 export class APIError extends Error {

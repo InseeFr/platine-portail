@@ -1,7 +1,7 @@
 import { useTranslation } from "i18n";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { InformationIcon } from "assets/Information";
-import { CommunityIcon } from "assets/Community";
+import { InformationPictogram } from "assets/Pictograms/Information";
+import { CommunityPictogram } from "assets/Pictograms/Community";
 import { SupportPageForm } from "./SupportPageForm";
 import { useFetchQueryPortailWithoutAuth } from "hooks/useFetchQuery";
 import { Loading } from "components/surveyHomepage/Loading";
@@ -31,14 +31,14 @@ export function SupportPage() {
         className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-mt-md-0", "fr-mt-2w")}
         style={{ "flexWrap": "nowrap" }}
       >
-        <InformationIcon />
+        <InformationPictogram />
         <h2>{t("support title")}</h2>
       </div>
       <div className="fr-grid-row fr-grid-row--middle fr-grid-row--between">
         <SupportPageForm sources={sources} />
 
         <div className={fr.cx("fr-grid-row", "fr-grid-row--right", "fr-col-md-5")}>
-          <CommunityIcon />
+          <CommunityPictogram />
         </div>
       </div>
     </section>

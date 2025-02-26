@@ -5,8 +5,8 @@ import { useTranslation } from "i18n";
 import { SurveysDatagrid, getColumns } from "./SurveysDatagrid";
 import CircularProgress from "@mui/material/CircularProgress";
 import { SurveyCard } from "./SurveyCard";
-import { SearchIcon } from "assets/Search";
 import { useFetchQueryPilotage } from "hooks/useFetchQuery";
+import { SearchPictogram } from "assets/Pictograms/Search";
 
 type Props = {
   className?: string;
@@ -23,7 +23,7 @@ export function MySurveys({ className }: Props) {
   return (
     <section className={cx(className)} id="content">
       <div className={fr.cx("fr-grid-row", "fr-grid-row--middle")} style={{ "flexWrap": "nowrap" }}>
-        <SearchIcon />
+        <SearchPictogram />
         <h1>{t("title my surveys")}</h1>
       </div>
       {isLoading ? (

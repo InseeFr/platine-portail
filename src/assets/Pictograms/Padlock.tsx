@@ -3,7 +3,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
 import Padlock from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/padlock.svg";
 
-export const PadlockIcon = () => {
+export const PadlockPictogram = () => {
   return (
     <svg
       className={fr.cx("fr-artwork", "fr-responsive-img")}
@@ -20,6 +20,27 @@ export const PadlockIcon = () => {
         href={`${ArtWorkBackground}#artwork-background`}
       ></use>
       <g transform="translate(40, 60)">
+        <use
+          className={fr.cx("fr-artwork-decorative")}
+          xlinkHref={`${Padlock}#artwork-decorative`}
+        ></use>
+        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Padlock}#artwork-minor`}></use>
+        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Padlock}#artwork-major`}></use>
+      </g>
+    </svg>
+  );
+};
+
+export const PadlockPictogramNoBackground = () => {
+  return (
+    <svg
+      className={fr.cx("fr-artwork", "fr-responsive-img", "fr-artwork--green-bourgeon")}
+      aria-hidden="true"
+      width="160"
+      height="200"
+      viewBox="0 0 160 200"
+    >
+      <g transform="translate(0 20) scale(2)">
         <use
           className={fr.cx("fr-artwork-decorative")}
           xlinkHref={`${Padlock}#artwork-decorative`}

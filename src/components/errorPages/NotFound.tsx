@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { NotFoundIcon } from "assets/NotFound";
+import { NotFoundPictogram } from "assets/Pictograms/NotFound";
 import { declareComponentKeys, useTranslation } from "i18n";
 import type { ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
@@ -50,7 +50,7 @@ export const ErrorPageDescription = ({ children, titlepage, title, errorText, te
             {children}
           </div>
           <div className={"fr-col-3 fr-hidden fr-unhidden-md fr-col-offset-1"}>
-            <NotFoundIcon />
+            <NotFoundPictogram />
           </div>
         </div>
       </section>

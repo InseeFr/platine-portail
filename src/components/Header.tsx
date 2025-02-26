@@ -3,7 +3,6 @@ import { Header as DsfrHeader } from "@codegouvfr/react-dsfr/Header";
 import logoInsee from "assets/logo-insee.png";
 import { useIsAuthenticated, useLogout } from "hooks/useAuth";
 import { declareComponentKeys, useTranslation } from "i18n";
-import { VITE_APP_URL } from "resources/configuration";
 import { tss } from "tss-react/dsfr";
 
 export function Header() {
@@ -51,7 +50,7 @@ export function Header() {
                   onClick: () =>
                     logout({
                       redirectTo: "specific url",
-                      url: `${VITE_APP_URL}/deconnexion`,
+                      url: `${import.meta.env.VITE_APP_URL}/deconnexion`,
                     }),
                 },
                 text: t("logout"),

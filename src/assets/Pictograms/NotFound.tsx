@@ -3,7 +3,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
 import Icon from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/technical-error.svg";
 
-export const NotFoundIcon = () => {
+export const NotFoundPictogram = () => {
   return (
     <svg
       className={fr.cx("fr-artwork", "fr-responsive-img")}

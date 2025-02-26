@@ -1,9 +1,9 @@
 import ArtWorkBackground from "@codegouvfr/react-dsfr/dsfr/artwork/background/ovoid.svg";
 import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
-import Information from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/information.svg";
+import Avatar from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/digital/avatar.svg";
 import { fr } from "@codegouvfr/react-dsfr";
 
-export const InformationIcon = () => {
+export const AvatarPictogram = () => {
   return (
     <svg
       className={fr.cx(
@@ -26,12 +26,9 @@ export const InformationIcon = () => {
         href={`${ArtWorkBackground}#artwork-background`}
       ></use>
       <g transform="translate(10, 20) scale(1.8)">
-        <use
-          className={fr.cx("fr-artwork-decorative")}
-          xlinkHref={`${Information}#artwork-decorative`}
-        ></use>
-        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Information}#artwork-minor`}></use>
-        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Information}#artwork-major`}></use>
+        <use className={fr.cx("fr-artwork-decorative")} xlinkHref={`${Avatar}#artwork-decorative`}></use>
+        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Avatar}#artwork-minor`}></use>
+        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Avatar}#artwork-major`}></use>
       </g>
     </svg>
   );

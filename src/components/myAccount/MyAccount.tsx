@@ -8,7 +8,7 @@ import { PostalAddressInformations } from "./PostalAddressInformations";
 import { useToggle } from "react-use";
 import { PersonalInformationsForm } from "./PersonalInformationsForm";
 import { PostalAddressInformationsForm } from "./PostalAddressInformationsForm";
-import { AvatarIcon } from "assets/Avatar";
+import { AvatarPictogram } from "assets/Pictograms/Avatar";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { type MouseEventHandler } from "react";
 
@@ -54,7 +54,7 @@ export function MyAccount({ contact, onSave }: Props) {
         className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-mt-md-0", "fr-mt-2w")}
         style={{ "flexWrap": "nowrap" }}
       >
-        <AvatarIcon />
+        <AvatarPictogram />
         <h1>{t("title my account")}</h1>
       </div>
       <section
