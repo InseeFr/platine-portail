@@ -35,7 +35,6 @@ export type ComponentKey =
   | import("components/Chatbot").I18n
   | import("components/homePage/HomePage").I18n
   | import("components/surveyHomepage/SurveyTable").I18n;
-  
 
 export type Translations<L extends Language> = GenericTranslations<
   ComponentKey,

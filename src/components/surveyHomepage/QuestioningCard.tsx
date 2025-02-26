@@ -14,6 +14,8 @@ export const QuestioningCard = ({ questioning }: Props) => {
   const { t } = useTranslation("SurveyTable");
   const { classes, cx } = useStyles();
 
+  const cardClass = questioning.deliveryUrl ? classes.cardWithDelivery : classes.card;
+
   const getAction = (questioning: any) => {
     if (questioning.deliveryUrl) {
       return (
@@ -53,7 +55,7 @@ export const QuestioningCard = ({ questioning }: Props) => {
 
   return (
     <Card
-      className={cx(classes.card, fr.cx("fr-mb-2w"))}
+      className={cx(cardClass, fr.cx("fr-mb-2w"))}
       start={<QuestioningStatus translation={t} status={questioning.questioningStatus} />}
       title={questioning.partitioningLabel}
       desc={
@@ -73,6 +75,11 @@ export const QuestioningCard = ({ questioning }: Props) => {
 
 const useStyles = tss.withName({ QuestioningCard }).create({
   card: {
+    ".fr-card__content": {
+      paddingBottom: 0,
+    },
+  },
+  cardWithDelivery: {
     ".fr-card__content": {
       paddingBottom: 0,
     },
