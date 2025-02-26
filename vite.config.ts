@@ -12,6 +12,10 @@ export default defineConfig({
     viteEnvs({
       declarationFile: ".env",
     }),
+
     TanStackRouterVite(),
   ],
+  build: {
+    assetsInlineLimit: 0,
+  },
 });
