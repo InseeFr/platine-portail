@@ -1,7 +1,7 @@
 import { declareComponentKeys, useTranslation } from "i18n/i18n";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { fr } from "@codegouvfr/react-dsfr";
-import { PadlockIcon } from "assets/Padlock";
+import { PadlockPictogram } from "assets/Pictograms/Padlock";
 import { useOidc } from "hooks/useAuth";
 
 export const Logout = () => {
@@ -33,7 +33,7 @@ export const Logout = () => {
           <Button onClick={onClick}>{t("reconnect")}</Button>
         </div>
         <div className={fr.cx("fr-col-3", "fr-hidden", "fr-unhidden-lg", "fr-col-offset-1")}>
-          <PadlockIcon />
+          <PadlockPictogram />
         </div>
       </div>
     </section>

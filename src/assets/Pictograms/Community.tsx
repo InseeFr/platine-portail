@@ -3,7 +3,7 @@ import ArtWork from "@codegouvfr/react-dsfr/dsfr/artwork/system.svg";
 import Community from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/community.svg";
 import { fr } from "@codegouvfr/react-dsfr";
 
-export const CommunityIcon = () => {
+export const CommunityPictogram = () => {
   return (
     <svg
       className={fr.cx(
@@ -26,6 +26,32 @@ export const CommunityIcon = () => {
         href={`${ArtWorkBackground}#artwork-background`}
       ></use>
       <g transform="translate(40, 60)">
+        <use
+          className={fr.cx("fr-artwork-decorative")}
+          xlinkHref={`${Community}#artwork-decorative`}
+        ></use>
+        <use className={fr.cx("fr-artwork-minor")} xlinkHref={`${Community}#artwork-minor`}></use>
+        <use className={fr.cx("fr-artwork-major")} xlinkHref={`${Community}#artwork-major`}></use>
+      </g>
+    </svg>
+  );
+};
+
+export const CommunityPictogramNoBackground = () => {
+  return (
+    <svg
+      className={fr.cx(
+        "fr-artwork",
+        "fr-responsive-img",
+        "fr-hidden",
+        "fr-unhidden-lg",
+        "fr-mr-3w",
+        "fr-artwork--green-bourgeon",
+      )}
+      aria-hidden="true"
+      viewBox="0 0 160 200"
+    >
+      <g transform="translate(0 20) scale(2)">
         <use
           className={fr.cx("fr-artwork-decorative")}
           xlinkHref={`${Community}#artwork-decorative`}

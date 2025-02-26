@@ -1,5 +1,5 @@
 import { declareComponentKeys, useTranslation } from "i18n";
-import { TitleWithText } from "./commons/TitleWithText";
+import { H3TitleWithText } from "./commons/TitleWithText/H3TitleWithText";
 import { FooterPageLayout } from "./commons/FooterPageLayout";
 
 export const Accessibility = () => {
@@ -11,12 +11,12 @@ export const Accessibility = () => {
       <p>{t("accessibilityPlan", {})}</p>
       <p>{t("accessibilityStatementLink", {})}</p>
 
-      <TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
-      <TitleWithText title={t("testResultsTitle")} text={t("testResultsText")} />
-      <TitleWithText title={t("nonAccessibleContentTitle")} text={t("nonAccessibleContentText")} />
-      <TitleWithText title={t("exemptionsTitle")} text={t("exemptionsText")} />
-      <TitleWithText title={t("nonApplicableContentTitle")} text={t("nonApplicableContentText")} />
-      <TitleWithText title={t("statementEstablishmentTitle")} text={t("statementEstablishmentText")} />
+      <H3TitleWithText title={t("complianceStatusTitle")} text={t("complianceStatusText")} />
+      <H3TitleWithText title={t("testResultsTitle")} text={t("testResultsText")} />
+      <H3TitleWithText title={t("nonAccessibleContentTitle")} text={t("nonAccessibleContentText")} />
+      <H3TitleWithText title={t("exemptionsTitle")} text={t("exemptionsText")} />
+      <H3TitleWithText title={t("nonApplicableContentTitle")} text={t("nonApplicableContentText")} />
+      <H3TitleWithText title={t("statementEstablishmentTitle")} text={t("statementEstablishmentText")} />
 
       <h3 className="fr-mb-2w">{t("technologiesUsedTitle")}</h3>
       <div className="fr-col fr-mb-2w">
@@ -28,14 +28,14 @@ export const Accessibility = () => {
         </ul>
       </div>
 
-      <TitleWithText title={t("testEnvironmentTitle")} text={t("testEnvironmentText")} />
-      <TitleWithText
+      <H3TitleWithText title={t("testEnvironmentTitle")} text={t("testEnvironmentText")} />
+      <H3TitleWithText
         title={t("accessibilityEvaluationToolsTitle")}
         text={t("accessibilityEvaluationToolsText")}
       />
-      <TitleWithText title={t("verifiedPagesTitle")} text={t("verifiedPagesText")} />
-      <TitleWithText title={t("feedbackAndContactTitle")} text={t("feedbackAndContactText")} />
-      <TitleWithText title={t("appealOptionsTitle")} text={t("appealOptionsText")} />
+      <H3TitleWithText title={t("verifiedPagesTitle")} text={t("verifiedPagesText")} />
+      <H3TitleWithText title={t("feedbackAndContactTitle")} text={t("feedbackAndContactText")} />
+      <H3TitleWithText title={t("appealOptionsTitle")} text={t("appealOptionsText")} />
       <div className="fr-col fr-mb-2w">
         <ul>
           <li>{t("appealOptionsStep1")}</li>

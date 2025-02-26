@@ -26,7 +26,7 @@ export const translations: Translations<"fr"> = {
     "security": "Securité",
   },
   SurveyHomepage: {
-    "title": "Sélectionnez votre enquête",
+    "title": "Bienvenue sur votre tableau de bord",
     "sideMenuTitle": "Menu latéral pour accéder aux informations de l'enquêtes",
     "surveyLink": "Voir l'enquête en détail",
     "openNewWindow": "ouvre une nouvelle fenêtre",
@@ -42,6 +42,10 @@ export const translations: Translations<"fr"> = {
     "respond to survey": "Répondre à l'enquête",
     "respond to survey detail":
       "Munissez vous de votre identifiant et de votre mot de passe pour répondre à l’enquête.",
+    "about surveys":
+      "Retrouvez l’ensemble des enquêtes auxquelles vous avez répondu ou vous êtes invités à répondre.",
+    "questionnaire count done": "Nombre de questionnaires : ",
+    "questionnaire count doing": "Nombre de questionnaires en cours:",
   },
   MySurveys: {
     "title my surveys": "Bienvenue sur votre tableau de bord",
@@ -433,6 +437,26 @@ export const translations: Translations<"fr"> = {
   Chatbot: {
     "title": "Portail des enquêtes",
   },
-
+  HomePage: {
+    "portal title": "Bienvenue sur le portail de réponses aux enquêtes de la statistique publique",
+    "portal description":
+      "L’Insee mène chaque année des enquêtes auprès des particuliers et des entreprises. En y répondant, vous rendez possible la production d’informations fiables, permettant ainsi d’éclairer le débat public.",
+    "authentication title":
+      "Vous avez reçu des identifiants par mail ou par courrier pour répondre à une enquête ?",
+    "authentication description":
+      "Vous avez été tiré au sort pour participer à une enquête et répondre en ligne. Munissez-vous de votre identifiant et de votre mot de passe pour vous connecter et répondre à l’enquête.",
+    "authentication button": "Se connecter",
+    "activities title": "Les activités de la statistique publique",
+    "activities description":
+      "L’Insee collecte, produit, analyse et diffuse des informations statistiques sur l’économie, la société et les territoires français.",
+    "activities collect": "Collecter",
+    "activities analyze": "Analyser",
+    "activities diffuse": "Diffuser",
+    "confidentiality title": "L’Insee est tenu au secret statistique",
+    "confidentiality description":
+      "Le secret statistique interdit strictement la communication de données individuelles ou susceptibles d’identifier les enquêtés. Il garantit la fiabilité des statistiques, que ces traitements proviennent d’enquêtes ou de bases de données.",
+    "learn more": "En savoir plus",
+    "page title": "Acceuil",
+  },
   /* spell-checker: enable */
 };

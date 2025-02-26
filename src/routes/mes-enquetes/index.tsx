@@ -9,8 +9,7 @@ export const Route = createFileRoute("/mes-enquetes/")({
   beforeLoad: async () => {
     await protectedLoader({ titleShort: "" });
   },
-  loader: ({ context }) =>
-    context.getSpecificData().filter(survey => survey.disabledOnWelcomePage !== true),
+  loader: ({ context }) => context.getSurveys().filter(survey => survey.disabledOnWelcomePage !== true),
 });
 
 function Index() {

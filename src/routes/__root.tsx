@@ -17,7 +17,7 @@ import type { QueryClient } from "@tanstack/react-query";
 type RouterContext = {
   queryClient: QueryClient;
   getTitleShort: (params: { surveyId: string }) => string | undefined;
-  getSpecificData: () => SurveyData[];
+  getSurveys: () => SurveyData[];
   getSurveyData: (params: { surveyId: string }) => SurveyData | undefined;
   getGenericData: () => GenericData;
 };

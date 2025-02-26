@@ -1,7 +1,7 @@
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { TitleWithText } from "./commons/TitleWithText";
+import { H3TitleWithText } from "./commons/TitleWithText/H3TitleWithText";
 
 export function LegalInformation() {
   const { t } = useTranslation("LegalInformation");
@@ -17,10 +17,10 @@ export function LegalInformation() {
         segments={[]}
       />
       <h2>{t("pageTitle")}</h2>
-      <TitleWithText title={t("servicePresentationTitle")} text={t("servicePresentationText")} />
-      <TitleWithText title={t("legalFrameworkTitle")} text={t("legalFrameworkText")} />
-      <TitleWithText title={t("cookiesTitle")} text={t("cookiesText")} />
-      <TitleWithText title={t("copyrightTitle")} text={t("copyrightText")} />
+      <H3TitleWithText title={t("servicePresentationTitle")} text={t("servicePresentationText")} />
+      <H3TitleWithText title={t("legalFrameworkTitle")} text={t("legalFrameworkText")} />
+      <H3TitleWithText title={t("cookiesTitle")} text={t("cookiesText")} />
+      <H3TitleWithText title={t("copyrightTitle")} text={t("copyrightText")} />
 
       <div className="fr-pb-3w">
         <h3 className="fr-mb-2w">{t("publisherInformationTitle")}</h3>

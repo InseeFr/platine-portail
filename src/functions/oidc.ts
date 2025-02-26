@@ -1,11 +1,5 @@
 import { createReactOidc } from "oidc-spa/react";
 import { createMockReactOidc } from "oidc-spa/mock/react";
-import {
-  VITE_APP_URL,
-  VITE_AUTH_TYPE,
-  VITE_OIDC_CLIENT_ID,
-  VITE_OIDC_ISSUER,
-} from "resources/configuration";
 
 type TokenInfo = {
   inseegroupedefaut: string[];
@@ -17,17 +11,17 @@ const guestUser: TokenInfo = {
   preferred_username: "guest",
 };
 
-const isOidc = VITE_AUTH_TYPE === "oidc";
+const isOidc = import.meta.env.VITE_AUTH_TYPE === "oidc";
 
 export const createAppOidc = () => {
   if (isOidc) {
     return createReactOidc<TokenInfo>({
-      issuerUri: VITE_OIDC_ISSUER,
-      clientId: VITE_OIDC_CLIENT_ID,
+      issuerUri: import.meta.env.VITE_OIDC_ISSUER,
+      clientId: import.meta.env.VITE_OIDC_CLIENT_ID,
       publicUrl: "/",
       autoLogoutParams: {
         redirectTo: "specific url",
-        url: `${VITE_APP_URL}/deconnexion`,
+        url: `${import.meta.env.VITE_APP_URL}/deconnexion`,
       },
     });
   }

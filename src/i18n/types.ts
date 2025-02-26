@@ -33,7 +33,8 @@ export type ComponentKey =
   | import("components/Accessibility").I18n
   | import("components/Security").I18n
   | import("components/PersonalData").I18n
-  | import("components/Chatbot").I18n;
+  | import("components/Chatbot").I18n
+  | import("components/homePage/HomePage").I18n;
 
 export type Translations<L extends Language> = GenericTranslations<
   ComponentKey,
