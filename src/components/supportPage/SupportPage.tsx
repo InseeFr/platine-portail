@@ -10,11 +10,14 @@ import { fr } from "@codegouvfr/react-dsfr";
 export function SupportPage() {
   const { t } = useTranslation("Support");
 
-  const { data: sources, isLoading } = useFetchQueryPortailWithoutAuth("/sources/ongoing");
+  const { data, isLoading } = useFetchQueryPortailWithoutAuth("/sources/ongoing");
 
   if (isLoading) {
     return <Loading />;
   }
+
+  const sources = data?.filter(source => source.id !== "MAINTENANCE");
+  sources?.push({ id: "EEC", label: "Enquête sur l'emploi, le chômage et l'inactivité" });
 
   return (
     <section className={fr.cx("fr-container", "fr-mb-6w")} id="content">
