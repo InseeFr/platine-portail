@@ -9,9 +9,26 @@ import { SurveyTable } from "components/surveyHomepage/SurveyTable";
 import { fr } from "@codegouvfr/react-dsfr";
 import { QuestioningCard } from "components/surveyHomepage/QuestioningCard";
 import { DSFRHide } from "components/commons/DSFRHide";
+import type { Status } from "components/surveyHomepage/QuestioningStatus";
 
 // TODO: remove when get endpoint
-const data = [
+
+const statusOrder: Record<Status, number> = {
+  OPEN: 1,
+  INCOMING: 2,
+  RECEIVED: 3,
+  NOT_RECEIVED: 4,
+};
+const data: {
+  sourceId: string;
+  surveyUnitIdentificationCode: string;
+  surveyUnitIdentificationName: string;
+  partitioningLabel: string;
+  questioningStatus: Status;
+  questioningAccessUrl?: string;
+  deliveryUrl?: string;
+  questioningId: string;
+}[] = [
   {
     sourceId: "TIC",
     surveyUnitIdentificationCode: "SIREN 1",
@@ -33,6 +50,15 @@ const data = [
     questioningId: "id2",
   },
   {
+    sourceId: "AUTO",
+    surveyUnitIdentificationCode: "SIREN 3",
+    surveyUnitIdentificationName: "Peugeot",
+    partitioningLabel: "Questionnaire 4",
+    questioningStatus: "OPEN",
+    questioningAccessUrl: "https://www.example.com",
+    questioningId: "id4",
+  },
+  {
     sourceId: "EEC",
     surveyUnitIdentificationCode: "SIREN 2",
     surveyUnitIdentificationName: "Panzani",
@@ -42,13 +68,13 @@ const data = [
     questioningId: "id3",
   },
   {
-    sourceId: "AUTO",
-    surveyUnitIdentificationCode: "SIREN 3",
-    surveyUnitIdentificationName: "Peugeot",
+    sourceId: "EEC",
+    surveyUnitIdentificationCode: "SIREN 6",
+    surveyUnitIdentificationName: "Barrila",
     partitioningLabel: "Questionnaire 4",
-    questioningStatus: "OPEN",
-    questioningAccessUrl: "https://www.example.com",
-    questioningId: "id4",
+    questioningStatus: "INCOMING",
+    questioningAccessUrl: "url",
+    questioningId: "id5",
   },
 ];
 
@@ -93,6 +119,16 @@ function Index() {
     ? `${surveyData.title} (${data[0].surveyUnitIdentificationCode})`
     : surveyData.title;
 
+  const questionings = [...data].sort((a, b) => {
+    if (statusOrder[a.questioningStatus] !== statusOrder[b.questioningStatus]) {
+      return statusOrder[a.questioningStatus] - statusOrder[b.questioningStatus];
+    }
+    if (a.surveyUnitIdentificationCode !== b.surveyUnitIdentificationCode) {
+      return a.surveyUnitIdentificationCode.localeCompare(b.surveyUnitIdentificationCode);
+    }
+    return a.partitioningLabel.localeCompare(b.partitioningLabel);
+  });
+
   return (
     <div>
       <Helmet>
@@ -108,17 +144,18 @@ function Index() {
         <DSFRHide hidden unhidden unhiddenScreenSize="md">
           <SurveyTable
             title={questioningsSectionTitle}
-            questionings={data}
+            questionings={questionings}
             hasSingleSurveyUnit={hasSingleSurveyUnit}
           />
         </DSFRHide>
         <DSFRHide hidden hiddenScreenSize="md">
-          <div className={fr.cx("fr-container")}>
+          <div className={fr.cx("fr-container")} id="cards">
             <h3>{`${t("respond to survey")} ${questioningsSectionTitle}`}</h3>
-            {data.map(questioning => (
+            {questionings.map(questioning => (
               <QuestioningCard
                 questioning={questioning}
                 key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
+                hasSingleSurveyUnit={hasSingleSurveyUnit}
               />
             ))}
           </div>

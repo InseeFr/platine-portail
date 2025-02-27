@@ -2,17 +2,9 @@ import { declareComponentKeys, useTranslation } from "i18n/i18n";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { fr } from "@codegouvfr/react-dsfr";
 import { PadlockPictogram } from "assets/Pictograms/Padlock";
-import { useOidc } from "oidc";
 
 export const Logout = () => {
   const { t } = useTranslation("Logout");
-  const { login } = useOidc();
-
-  const onClick = () => {
-    if (login) {
-      login({ doesCurrentHrefRequiresAuth: false });
-    }
-  };
 
   return (
     <section className={fr.cx("fr-container")}>
@@ -30,7 +22,13 @@ export const Logout = () => {
           <h1>{t("title")}</h1>
 
           <p className={fr.cx("fr-text--lead")}>{t("logout text")}</p>
-          <Button onClick={onClick}>{t("reconnect")}</Button>
+          <Button
+            linkProps={{
+              to: "/mes-enquetes",
+            }}
+          >
+            {t("reconnect")}
+          </Button>
         </div>
         <div className={fr.cx("fr-col-3", "fr-hidden", "fr-unhidden-lg", "fr-col-offset-1")}>
           <PadlockPictogram />

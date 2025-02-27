@@ -15,9 +15,23 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
   const { t } = useTranslation("SurveyTable");
   const [sortedQuestionings, setSortedQuestionings] = useState(questionings);
   const [sortDirection, setSortDirection] = useState("asc");
+  const [isSorted, setIsSorted] = useState(false);
+
+  const sortIcon = !isSorted
+    ? "fr-icon-arrow-up-down-line"
+    : sortDirection === "asc"
+      ? "fr-icon-arrow-up-line"
+      : "fr-icon-arrow-down-line";
 
   const handleSort = () => {
-    const newDirection = sortDirection === "asc" ? "desc" : "asc";
+    let newDirection = sortDirection;
+
+    if (!isSorted) {
+      newDirection = "asc";
+      setIsSorted(true);
+    } else {
+      newDirection = sortDirection === "asc" ? "desc" : "asc";
+    }
 
     const sorted = [...sortedQuestionings].sort((a, b) => {
       if (a.surveyUnitIdentificationName < b.surveyUnitIdentificationName)
@@ -32,7 +46,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
   };
 
   const getAction = (questioning: any) => {
-    if (questioning.deliveryUrl) {
+    if (questioning.deliveryUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <Download
           className={fr.cx("fr-m-0")}
@@ -53,7 +67,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
             href: questioning.questioningAccessUrl,
           }}
         >
-          {t("goToSurvey")}
+          {t("go to survey")}
         </Button>
       );
     }
@@ -80,7 +94,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
                             <p className={fr.cx("fr-col")}>{t("identification name")}</p>
                             <p
                               style={{ color: fr.colors.decisions.text.title.blueFrance.default }}
-                              className={fr.cx("fr-icon-arrow-up-down-line", "fr-icon--sm")}
+                              className={fr.cx(sortIcon, "fr-icon--sm")}
                               aria-label={t("sort")}
                             ></p>
                           </div>
@@ -129,7 +143,7 @@ const { i18n } = declareComponentKeys<
   | "questionings"
   | "status"
   | "action"
-  | "goToSurvey"
+  | "go to survey"
   | "download deposit proof"
   | "RECEIVED"
   | "NOT_RECEIVED"

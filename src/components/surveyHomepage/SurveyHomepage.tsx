@@ -29,11 +29,11 @@ export const SurveyHomepage = ({ survey }: Props) => {
         <h2 className={fr.cx("fr-mb-2w")}>{survey.title}</h2>
         <a
           className={fr.cx("fr-link")}
-          title={`${t("surveyLink")} - ${t("openNewWindow")}`}
+          title={`${t("survey link")} - ${t("open new window")}`}
           href={survey.content["enquete-en-detail"]["menu-link"]}
           target="_blank"
         >
-          {t("surveyLink")}
+          {t("survey link")}
         </a>
 
         <DSFRHide unhidden unhiddenScreenSize="md" hidden>
@@ -57,11 +57,20 @@ export const SurveyHomepage = ({ survey }: Props) => {
           <img src={Banner} alt="" role="presentation" width={"100%"} />
         </DSFRHide>
       </div>
-      <div className="fr-container--fluid">
-        <DSFRHide hiddenScreenSize="md" hidden>
+      <DSFRHide hiddenScreenSize="md" hidden>
+        <div className={fr.cx("fr-grid-row", "fr-grid-row--center", "fr-mt-3w", "fr-mb-2w")}>
+          <Tag
+            linkProps={{
+              href: "#cards",
+            }}
+          >
+            {t("respond to survey")}
+          </Tag>
+        </div>
+        <div className="fr-container--fluid">
           <img src={Banner} alt="" role="presentation" style={{ width: "100vw" }} />
-        </DSFRHide>
-      </div>
+        </div>
+      </DSFRHide>
       <DSFRHide hiddenScreenSize="md" hidden>
         <SideMenuCustom
           surveyId={survey.id}
@@ -172,7 +181,7 @@ const SideMenuCustom = ({
   return (
     <>
       <label className={fr.cx("fr-sr-only")} id={`${labelId}-title`}>
-        {t("sideMenuTitle")}
+        {t("side menu title")}
       </label>
       <SideMenu
         className={className}
@@ -203,10 +212,10 @@ const SideMenuCustom = ({
 
 const { i18n } = declareComponentKeys<
   | "survey introduction"
-  | "surveyLink"
-  | "openNewWindow"
+  | "survey link"
+  | "open new window"
   | "homepage"
-  | "sideMenuTitle"
+  | "side menu title"
   | "in this section"
   | "contact support"
   | "FAQ"

@@ -8,16 +8,17 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 
 type Props = {
   questioning: any;
+  hasSingleSurveyUnit: boolean;
 };
 
-export const QuestioningCard = ({ questioning }: Props) => {
+export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => {
   const { t } = useTranslation("SurveyTable");
   const { classes, cx } = useStyles();
 
   const cardClass = questioning.deliveryUrl ? classes.cardWithDelivery : classes.card;
 
   const getAction = (questioning: any) => {
-    if (questioning.deliveryUrl) {
+    if (questioning.deliveryUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <div>
           <hr style={{ padding: 1 }} />
@@ -47,7 +48,7 @@ export const QuestioningCard = ({ questioning }: Props) => {
             href: questioning.questioningAccessUrl,
           }}
         >
-          {t("goToSurvey")}
+          {t("go to survey")}
         </Button>
       );
     }
@@ -59,14 +60,16 @@ export const QuestioningCard = ({ questioning }: Props) => {
       start={<QuestioningStatus translation={t} status={questioning.questioningStatus} />}
       title={questioning.partitioningLabel}
       desc={
-        <div>
-          <p
-            className={fr.cx("fr-mb-3v")}
-          >{`${t("survey unit")} : ${questioning.surveyUnitIdentificationCode}`}</p>
-          <p
-            className={fr.cx("fr-mb-1v")}
-          >{`${t("identification name")} : ${questioning.surveyUnitIdentificationName}`}</p>
-        </div>
+        !hasSingleSurveyUnit && (
+          <div>
+            <p
+              className={fr.cx("fr-mb-3v")}
+            >{`${t("survey unit")} : ${questioning.surveyUnitIdentificationCode}`}</p>
+            <p
+              className={fr.cx("fr-mb-1v")}
+            >{`${t("identification name")} : ${questioning.surveyUnitIdentificationName}`}</p>
+          </div>
+        )
       }
       footer={getAction(questioning)}
     />
