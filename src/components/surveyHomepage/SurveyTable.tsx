@@ -4,6 +4,7 @@ import { useState } from "react";
 import { QuestioningStatus } from "./QuestioningStatus";
 import { Download } from "@codegouvfr/react-dsfr/Download";
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { QuestioningPagination } from "./QuestioningPagination";
 
 type Props = {
   title: string;
@@ -16,6 +17,18 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
   const [sortedQuestionings, setSortedQuestionings] = useState(questionings);
   const [sortDirection, setSortDirection] = useState("asc");
   const [isSorted, setIsSorted] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate the elements to be displayed on the current page
+  const indexOfLastItem = currentPage * 10;
+  const indexOfFirstItem = indexOfLastItem - 10;
+  const currentItems = sortedQuestionings.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(sortedQuestionings.length / 10);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   const sortIcon = !isSorted
     ? "fr-icon-arrow-up-down-line"
@@ -43,6 +56,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
 
     setSortedQuestionings(sorted);
     setSortDirection(newDirection);
+    setCurrentPage(1);
   };
 
   const getAction = (questioning: any) => {
@@ -107,7 +121,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedQuestionings.map((questioning: any) => (
+                  {currentItems.map((questioning: any) => (
                     <tr
                       style={{ height: "70px" }}
                       key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
@@ -131,6 +145,11 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
           </div>
         </div>
       </div>
+      <QuestioningPagination
+        totalPages={totalPages}
+        defaultPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
@@ -149,6 +168,7 @@ const { i18n } = declareComponentKeys<
   | "NOT_RECEIVED"
   | "INCOMING"
   | "OPEN"
+  | "pagination label"
 >()("SurveyTable");
 
 export type I18n = typeof i18n;

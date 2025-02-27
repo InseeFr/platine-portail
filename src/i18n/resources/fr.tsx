@@ -62,6 +62,7 @@ export const translations: Translations<"fr"> = {
     "NOT_RECEIVED": "TERMINÉ - NON RECU",
     "INCOMING": "À VENIR",
     "OPEN": "EN COURS",
+    "pagination label": "Résultats de recherche, page :",
   },
   MyAccount: {
     "title my account": "Mon compte",

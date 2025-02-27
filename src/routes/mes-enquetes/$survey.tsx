@@ -7,11 +7,9 @@ import { Chatbot } from "components/Chatbot";
 import { Loading } from "components/surveyHomepage/Loading";
 import { SurveyTable } from "components/surveyHomepage/SurveyTable";
 import { fr } from "@codegouvfr/react-dsfr";
-import { QuestioningCard } from "components/surveyHomepage/QuestioningCard";
 import { DSFRHide } from "components/commons/DSFRHide";
 import type { Status } from "components/surveyHomepage/QuestioningStatus";
-
-// TODO: remove when get endpoint
+import { QuestioningCardList } from "components/surveyHomepage/QuestioningCardList";
 
 const statusOrder: Record<Status, number> = {
   OPEN: 1,
@@ -19,6 +17,8 @@ const statusOrder: Record<Status, number> = {
   RECEIVED: 3,
   NOT_RECEIVED: 4,
 };
+
+// TODO: remove when get endpoint
 const data: {
   sourceId: string;
   surveyUnitIdentificationCode: string;
@@ -62,7 +62,7 @@ const data: {
     sourceId: "EEC",
     surveyUnitIdentificationCode: "SIREN 2",
     surveyUnitIdentificationName: "Panzani",
-    partitioningLabel: "Questionnaire 3",
+    partitioningLabel: "Questionnaire 5",
     questioningStatus: "INCOMING",
     questioningAccessUrl: "url",
     questioningId: "id3",
@@ -75,6 +75,24 @@ const data: {
     questioningStatus: "INCOMING",
     questioningAccessUrl: "url",
     questioningId: "id5",
+  },
+  {
+    sourceId: "EEC",
+    surveyUnitIdentificationCode: "SIREN 2",
+    surveyUnitIdentificationName: "Panzani",
+    partitioningLabel: "Questionnaire 3",
+    questioningStatus: "INCOMING",
+    questioningAccessUrl: "url",
+    questioningId: "id8",
+  },
+  {
+    sourceId: "EEC",
+    surveyUnitIdentificationCode: "SIREN 6",
+    surveyUnitIdentificationName: "Barrila",
+    partitioningLabel: "Questionnaire test",
+    questioningStatus: "INCOMING",
+    questioningAccessUrl: "url",
+    questioningId: "id9",
   },
 ];
 
@@ -149,16 +167,11 @@ function Index() {
           />
         </DSFRHide>
         <DSFRHide hidden hiddenScreenSize="md">
-          <div className={fr.cx("fr-container")} id="cards">
-            <h3>{`${t("respond to survey")} ${questioningsSectionTitle}`}</h3>
-            {questionings.map(questioning => (
-              <QuestioningCard
-                questioning={questioning}
-                key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
-                hasSingleSurveyUnit={hasSingleSurveyUnit}
-              />
-            ))}
-          </div>
+          <QuestioningCardList
+            questionings={questionings}
+            questioningsSectionTitle={questioningsSectionTitle}
+            hasSingleSurveyUnit={hasSingleSurveyUnit}
+          />
         </DSFRHide>
       </div>
       {surveyData.isSurveyOnline && <Chatbot />}
