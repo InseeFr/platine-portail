@@ -47,6 +47,7 @@ export const translations: Translations<"fr"> = {
     "questionnaire count done": "Nombre de questionnaires : ",
     "questionnaire count doing": "Nombre de questionnaires en cours:",
     "information link": "Informations sur l'enquête",
+    "for": "pour",
   },
   SurveyTable: {
     "respond to the survey": "Répondre à l'enquête",

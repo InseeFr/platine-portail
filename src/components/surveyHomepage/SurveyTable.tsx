@@ -1,20 +1,21 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useState } from "react";
-import { QuestioningStatus } from "./QuestioningStatus";
+import { QuestioningStatus, type Status } from "./QuestioningStatus";
 import { Download } from "@codegouvfr/react-dsfr/Download";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { QuestioningPagination } from "./QuestioningPagination";
+import type { APISchemas } from "types/apiPortail";
 
 type Props = {
   title: string;
-  questionings: any;
+  questionings: APISchemas["QuestionnaireDto"][];
   hasSingleSurveyUnit: boolean;
 };
 
 export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props) => {
   const { t } = useTranslation("SurveyTable");
-  const [sortedQuestionings, setSortedQuestionings] = useState(questionings);
+  const [sortedQuestionings, setSortedQuestionings] = useState(questionings ?? []);
   const [sortDirection, setSortDirection] = useState("asc");
   const [isSorted, setIsSorted] = useState(false);
 
@@ -46,12 +47,21 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
       newDirection = sortDirection === "asc" ? "desc" : "asc";
     }
 
-    const sorted = [...sortedQuestionings].sort((a, b) => {
-      if (a.surveyUnitIdentificationName < b.surveyUnitIdentificationName)
-        return newDirection === "asc" ? -1 : 1;
-      if (a.surveyUnitIdentificationName > b.surveyUnitIdentificationName)
-        return newDirection === "asc" ? 1 : -1;
-      return 0;
+    const sorted = [...sortedQuestionings].sort((questioningA, questioningB) => {
+      const identificationNameA = questioningA.surveyUnitIdentificationName;
+      const identificationNameB = questioningB.surveyUnitIdentificationName;
+
+      if (
+        (identificationNameA === "" && identificationNameB === "") ||
+        (identificationNameA == null && identificationNameB == null)
+      )
+        return 0;
+      if (identificationNameA == null || identificationNameA === "") return 1;
+      if (identificationNameB == null || identificationNameB === "") return -1;
+
+      return newDirection === "asc"
+        ? identificationNameA.toLowerCase().localeCompare(identificationNameB.toLowerCase())
+        : identificationNameB.toLowerCase().localeCompare(identificationNameA.toLowerCase());
     });
 
     setSortedQuestionings(sorted);
@@ -59,7 +69,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
     setCurrentPage(1);
   };
 
-  const getAction = (questioning: any) => {
+  const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
     if (questioning.deliveryUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <Download
@@ -121,24 +131,40 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
                   </tr>
                 </thead>
                 <tbody>
-                  {currentItems.map((questioning: any) => (
-                    <tr
-                      style={{ height: "70px" }}
-                      key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
-                    >
-                      {!hasSingleSurveyUnit && (
-                        <>
-                          <td>{questioning.surveyUnitIdentificationCode}</td>
-                          <td>{questioning.surveyUnitIdentificationName}</td>
-                        </>
-                      )}
-                      <td>{questioning.partitioningLabel}</td>
-                      <td>
-                        <QuestioningStatus translation={t} status={questioning.questioningStatus} />
-                      </td>
-                      <td>{getAction(questioning)}</td>
-                    </tr>
-                  ))}
+                  {currentItems.map(questioning => {
+                    const identificationCode =
+                      questioning.surveyUnitIdentificationCode &&
+                      questioning.surveyUnitIdentificationCode !== ""
+                        ? questioning.surveyUnitIdentificationCode
+                        : "N/A";
+
+                    const identificationName =
+                      questioning.surveyUnitIdentificationName &&
+                      questioning.surveyUnitIdentificationName !== ""
+                        ? questioning.surveyUnitIdentificationName
+                        : "N/A";
+                    return (
+                      <tr
+                        style={{ height: "70px" }}
+                        key={`${questioning.surveyUnitId}-${questioning.partitioningId}`}
+                      >
+                        {!hasSingleSurveyUnit && (
+                          <>
+                            <td>{identificationCode}</td>
+                            <td>{identificationName}</td>
+                          </>
+                        )}
+                        <td>{questioning.partitioningLabel ?? "N/A"}</td>
+                        <td>
+                          <QuestioningStatus
+                            translation={t}
+                            status={questioning.questioningStatus as Status}
+                          />
+                        </td>
+                        <td>{getAction(questioning)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

@@ -10,6 +10,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { DSFRHide } from "components/commons/DSFRHide";
 import type { Status } from "components/surveyHomepage/QuestioningStatus";
 import { QuestioningCardList } from "components/surveyHomepage/QuestioningCardList";
+import { useFetchQueryPortail } from "hooks/useFetchQuery";
 
 const statusOrder: Record<Status, number> = {
   OPEN: 1,
@@ -19,82 +20,82 @@ const statusOrder: Record<Status, number> = {
 };
 
 // TODO: remove when get endpoint
-const data: {
-  sourceId: string;
-  surveyUnitIdentificationCode: string;
-  surveyUnitIdentificationName: string;
-  partitioningLabel: string;
-  questioningStatus: Status;
-  questioningAccessUrl?: string;
-  deliveryUrl?: string;
-  questioningId: string;
-}[] = [
-  {
-    sourceId: "TIC",
-    surveyUnitIdentificationCode: "SIREN 1",
-    surveyUnitIdentificationName: "Barilla",
-    partitioningLabel: "Questionnaire 1",
-    questioningStatus: "RECEIVED",
-    questioningAccessUrl: "url",
-    deliveryUrl: "deliveryUrl",
-    questioningId: "id1",
-  },
-  {
-    sourceId: "EEC",
-    surveyUnitIdentificationCode: "SIREN 2",
-    surveyUnitIdentificationName: "Panzani",
-    partitioningLabel: "Questionnaire 2",
-    questioningStatus: "NOT_RECEIVED",
-    questioningAccessUrl: "url",
-    deliveryUrl: "deliveryUrl",
-    questioningId: "id2",
-  },
-  {
-    sourceId: "AUTO",
-    surveyUnitIdentificationCode: "SIREN 3",
-    surveyUnitIdentificationName: "Peugeot",
-    partitioningLabel: "Questionnaire 4",
-    questioningStatus: "OPEN",
-    questioningAccessUrl: "https://www.example.com",
-    questioningId: "id4",
-  },
-  {
-    sourceId: "EEC",
-    surveyUnitIdentificationCode: "SIREN 2",
-    surveyUnitIdentificationName: "Panzani",
-    partitioningLabel: "Questionnaire 5",
-    questioningStatus: "INCOMING",
-    questioningAccessUrl: "url",
-    questioningId: "id3",
-  },
-  {
-    sourceId: "EEC",
-    surveyUnitIdentificationCode: "SIREN 6",
-    surveyUnitIdentificationName: "Barrila",
-    partitioningLabel: "Questionnaire 4",
-    questioningStatus: "INCOMING",
-    questioningAccessUrl: "url",
-    questioningId: "id5",
-  },
-  {
-    sourceId: "EEC",
-    surveyUnitIdentificationCode: "SIREN 2",
-    surveyUnitIdentificationName: "Panzani",
-    partitioningLabel: "Questionnaire 3",
-    questioningStatus: "INCOMING",
-    questioningAccessUrl: "url",
-    questioningId: "id8",
-  },
-  {
-    sourceId: "EEC",
-    surveyUnitIdentificationCode: "SIREN 6",
-    surveyUnitIdentificationName: "Barrila",
-    partitioningLabel: "Questionnaire test",
-    questioningStatus: "INCOMING",
-    questioningAccessUrl: "url",
-    questioningId: "id9",
-  },
-];
+// const data: {
+//   sourceId: string;
+//   surveyUnitIdentificationCode: string;
+//   surveyUnitIdentificationName: string;
+//   partitioningLabel: string;
+//   questioningStatus: Status;
+//   questioningAccessUrl?: string;
+//   deliveryUrl?: string;
+//   questioningId: string;
+// }[] = [
+//   {
+//     sourceId: "TIC",
+//     surveyUnitIdentificationCode: "SIREN 1",
+//     surveyUnitIdentificationName: "Barilla",
+//     partitioningLabel: "Questionnaire 1",
+//     questioningStatus: "RECEIVED",
+//     questioningAccessUrl: "url",
+//     deliveryUrl: "deliveryUrl",
+//     questioningId: "id1",
+//   },
+//   {
+//     sourceId: "EEC",
+//     surveyUnitIdentificationCode: "SIREN 2",
+//     surveyUnitIdentificationName: "Panzani",
+//     partitioningLabel: "Questionnaire 2",
+//     questioningStatus: "NOT_RECEIVED",
+//     questioningAccessUrl: "url",
+//     deliveryUrl: "deliveryUrl",
+//     questioningId: "id2",
+//   },
+//   {
+//     sourceId: "AUTO",
+//     surveyUnitIdentificationCode: "SIREN 3",
+//     surveyUnitIdentificationName: "Peugeot",
+//     partitioningLabel: "Questionnaire 4",
+//     questioningStatus: "OPEN",
+//     questioningAccessUrl: "https://www.example.com",
+//     questioningId: "id4",
+//   },
+//   {
+//     sourceId: "EEC",
+//     surveyUnitIdentificationCode: "SIREN 2",
+//     surveyUnitIdentificationName: "Panzani",
+//     partitioningLabel: "Questionnaire 5",
+//     questioningStatus: "INCOMING",
+//     questioningAccessUrl: "url",
+//     questioningId: "id3",
+//   },
+//   {
+//     sourceId: "EEC",
+//     surveyUnitIdentificationCode: "SIREN 6",
+//     surveyUnitIdentificationName: "Barrila",
+//     partitioningLabel: "Questionnaire 4",
+//     questioningStatus: "INCOMING",
+//     questioningAccessUrl: "url",
+//     questioningId: "id5",
+//   },
+//   {
+//     sourceId: "EEC",
+//     surveyUnitIdentificationCode: "SIREN 2",
+//     surveyUnitIdentificationName: "Panzani",
+//     partitioningLabel: "Questionnaire 3",
+//     questioningStatus: "INCOMING",
+//     questioningAccessUrl: "url",
+//     questioningId: "id8",
+//   },
+//   {
+//     sourceId: "EEC",
+//     surveyUnitIdentificationCode: "SIREN 6",
+//     surveyUnitIdentificationName: "Barrila",
+//     partitioningLabel: "Questionnaire test",
+//     questioningStatus: "INCOMING",
+//     questioningAccessUrl: "url",
+//     questioningId: "id9",
+//   },
+// ];
 
 export const Route = createFileRoute("/mes-enquetes/$survey")({
   component: Index,
@@ -115,6 +116,12 @@ function Index() {
   const { surveyData } = Route.useLoaderData();
   const router = useRouter();
 
+  const { data, isLoading } = useFetchQueryPortail("/questionnaires");
+
+  if (isLoading || !data) {
+    return <Loading />;
+  }
+
   const currentPath = router.history.location.pathname;
 
   const hasNotSideMenu =
@@ -129,22 +136,50 @@ function Index() {
 
   const sectionTitle = getPageTitle(currentPath);
 
-  const hasSingleSurveyUnit = data.every(
-    (current: any) => current.surveyUnitIdentificationCode === data[0].surveyUnitIdentificationCode,
+  const hasSingleSurveyUnit = data.every(current => current.surveyUnitId === data[0].surveyUnitId);
+
+  const questioningWithIdentificationCode = data.find(
+    questioning =>
+      questioning.surveyUnitIdentificationCode !== "" &&
+      questioning.surveyUnitIdentificationCode != null,
   );
 
-  const questioningsSectionTitle = hasSingleSurveyUnit
-    ? `${surveyData.title} (${data[0].surveyUnitIdentificationCode})`
-    : surveyData.title;
+  const questioningsSectionTitle =
+    hasSingleSurveyUnit && questioningWithIdentificationCode
+      ? `${surveyData.title} ${t("for")} ${questioningWithIdentificationCode.surveyUnitIdentificationCode}`
+      : surveyData.title;
 
-  const questionings = [...data].sort((a, b) => {
-    if (statusOrder[a.questioningStatus] !== statusOrder[b.questioningStatus]) {
-      return statusOrder[a.questioningStatus] - statusOrder[b.questioningStatus];
+  const questionings = [...data].sort((questioningA, questioningB) => {
+    const statusA = questioningA.questioningStatus
+      ? statusOrder[questioningA.questioningStatus as Status]
+      : Infinity;
+    const statusB = questioningB.questioningStatus
+      ? statusOrder[questioningB.questioningStatus as Status]
+      : Infinity;
+
+    if (statusA !== statusB) {
+      return statusA - statusB;
     }
-    if (a.surveyUnitIdentificationCode !== b.surveyUnitIdentificationCode) {
-      return a.surveyUnitIdentificationCode.localeCompare(b.surveyUnitIdentificationCode);
+
+    const identificationCodeA = questioningA.surveyUnitIdentificationCode?.toLowerCase() ?? "";
+    const identificationCodeB = questioningB.surveyUnitIdentificationCode?.toLowerCase() ?? "";
+
+    if (identificationCodeA === "" && identificationCodeB === "") return 0;
+    if (identificationCodeA === "") return 1;
+    if (identificationCodeB === "") return -1;
+
+    if (identificationCodeA !== identificationCodeB) {
+      return identificationCodeA.localeCompare(identificationCodeB);
     }
-    return a.partitioningLabel.localeCompare(b.partitioningLabel);
+
+    const partitioningLabelA = questioningA.partitioningLabel?.toLowerCase() ?? "";
+    const partitioningLabelB = questioningB.partitioningLabel?.toLowerCase() ?? "";
+
+    if (partitioningLabelA === "" && partitioningLabelB === "") return 0;
+    if (partitioningLabelA === "") return 1;
+    if (partitioningLabelB === "") return -1;
+
+    return partitioningLabelA.localeCompare(partitioningLabelB);
   });
 
   return (

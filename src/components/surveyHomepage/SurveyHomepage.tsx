@@ -230,6 +230,7 @@ const { i18n } = declareComponentKeys<
   | "questionnaire count done"
   | "questionnaire count doing"
   | "information link"
+  | "for"
 >()("SurveyHomepage");
 
 export type I18n = typeof i18n;

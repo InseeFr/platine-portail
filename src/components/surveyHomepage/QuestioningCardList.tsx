@@ -3,9 +3,10 @@ import { QuestioningCard } from "./QuestioningCard";
 import { useTranslation } from "i18n";
 import { useState } from "react";
 import { QuestioningPagination } from "./QuestioningPagination";
+import type { APISchemas } from "types/apiPortail";
 
 type Props = {
-  questionings: any;
+  questionings: APISchemas["QuestionnaireDto"][];
   questioningsSectionTitle: string;
   hasSingleSurveyUnit: boolean;
 };
@@ -32,10 +33,10 @@ export const QuestioningCardList = ({
   return (
     <div className={fr.cx("fr-container")} id="cards">
       <h3>{`${t("respond to survey")} ${questioningsSectionTitle}`}</h3>
-      {currentItems.map((questioning: any) => (
+      {currentItems.map(questioning => (
         <QuestioningCard
           questioning={questioning}
-          key={`${questioning.surveyUnitIdentificationCode}-${questioning.partitioningLabel}`}
+          key={`${questioning.surveyUnitId}-${questioning.partitioningId}`}
           hasSingleSurveyUnit={hasSingleSurveyUnit}
         />
       ))}
