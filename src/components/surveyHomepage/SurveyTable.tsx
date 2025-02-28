@@ -70,19 +70,30 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
   };
 
   const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
-    if (questioning.deliveryUrl && questioning.questioningStatus === "RECEIVED") {
+    if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <Download
           className={fr.cx("fr-m-0")}
           details="TODO taille"
           label={t("download deposit proof")}
           linkProps={{
-            href: questioning.deliveryUrl,
+            href: questioning.depositProofUrl,
           }}
         />
       );
     }
-
+    if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
+      return (
+        <Button
+          size="small"
+          linkProps={{
+            href: questioning.questioningAccessUrl,
+          }}
+        >
+          {t("download deposit proof")}
+        </Button>
+      );
+    }
     if (questioning.questioningAccessUrl && questioning.questioningStatus === "OPEN") {
       return (
         <Button

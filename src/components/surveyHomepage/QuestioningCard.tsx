@@ -16,10 +16,10 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
   const { t } = useTranslation("SurveyTable");
   const { classes, cx } = useStyles();
 
-  const cardClass = questioning.deliveryUrl ? classes.cardWithDelivery : classes.card;
+  const cardClass = questioning.depositProofUrl ? classes.cardWithDelivery : classes.card;
 
   const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
-    if (questioning.deliveryUrl && questioning.questioningStatus === "RECEIVED") {
+    if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <div>
           <hr style={{ padding: 1 }} />
@@ -38,6 +38,19 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
             titleAs="h3"
           />
         </div>
+      );
+    }
+
+    if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
+      return (
+        <Button
+          size="small"
+          linkProps={{
+            href: questioning.questioningAccessUrl,
+          }}
+        >
+          {t("download deposit proof")}
+        </Button>
       );
     }
 
