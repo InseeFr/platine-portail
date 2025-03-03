@@ -182,11 +182,13 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
           </div>
         </div>
       </div>
-      <QuestioningPagination
-        totalPages={totalPages}
-        defaultPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+      {questionings.length > 10 && (
+        <QuestioningPagination
+          totalPages={totalPages}
+          defaultPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };

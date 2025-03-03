@@ -40,11 +40,13 @@ export const QuestioningCardList = ({
           hasSingleSurveyUnit={hasSingleSurveyUnit}
         />
       ))}
-      <QuestioningPagination
-        totalPages={totalPages}
-        defaultPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+      {questionings.length > 10 && (
+        <QuestioningPagination
+          totalPages={totalPages}
+          defaultPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };
