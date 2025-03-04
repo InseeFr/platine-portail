@@ -6,6 +6,8 @@ import { tss } from "tss-react/dsfr";
 import { QuestioningStatus, type Status } from "./QuestioningStatus";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import type { APISchemas } from "types/apiPortail";
+import { useEffect, useState } from "react";
+import { fetchFileInfo, getDetails } from "./SurveyTableRow";
 
 type Props = {
   questioning: APISchemas["QuestionnaireDto"];
@@ -16,7 +18,36 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
   const { t } = useTranslation("SurveyTable");
   const { classes, cx } = useStyles();
 
+  const [file, setFile] = useState<{
+    extension: string | undefined;
+    size: number | null;
+  }>({
+    extension: undefined,
+    size: null,
+  });
+
   const cardClass = questioning.depositProofUrl ? classes.cardWithDelivery : classes.card;
+
+  useEffect(() => {
+    const getFileInfo = async () => {
+      const { extension, size } = await fetchFileInfo(questioning.depositProofUrl);
+
+      setFile({ extension, size });
+    };
+
+    getFileInfo();
+  }, [questioning.depositProofUrl]);
+
+  const handleDownload = () => {
+    if (questioning.depositProofUrl) {
+      const link = document.createElement("a");
+      link.setAttribute("data-fr-assess-file", "bytes");
+      link.href = questioning.depositProofUrl;
+
+      link.download = `${t("dowloadLabel")}.${file.extension}}`;
+      link.click();
+    }
+  };
 
   const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
     if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
@@ -29,12 +60,17 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
             downloadButton
             small
             enlargeLinkOrButton
-            linkProps={{
-              href: "#",
-            }}
+            buttonProps={{ onClick: handleDownload }}
             orientation="horizontal"
             title={t("download deposit proof")}
-            detail="TODO DETAIL"
+            detail={
+              <p
+                style={{ "color": fr.colors.decisions.text.mention.grey.default }}
+                className="fr-text--xs"
+              >
+                {getDetails(file)}
+              </p>
+            }
             titleAs="h3"
           />
         </div>

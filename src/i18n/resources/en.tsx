@@ -62,6 +62,7 @@ export const translations: Translations<"en"> = {
     "INCOMING": "INCOMING",
     "OPEN": "OPEN",
     "pagination label": "Search results, page :",
+    "dowloadLabel": "deposit-proof",
   },
   MyAccount: {
     "title my account": "My account",

@@ -140,6 +140,7 @@ const { i18n } = declareComponentKeys<
   | "INCOMING"
   | "OPEN"
   | "pagination label"
+  | "dowloadLabel"
 >()("SurveyTable");
 
 export type I18n = typeof i18n;
