@@ -14,7 +14,6 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as SecuriteImport } from './routes/securite'
 import { Route as MotDePasseOublieImport } from './routes/mot-de-passe-oublie'
 import { Route as MonCompteImport } from './routes/mon-compte'
-import { Route as MesEnquetesOldImport } from './routes/mes-enquetes-old'
 import { Route as MentionsLegalesImport } from './routes/mentions-legales'
 import { Route as ErreurImport } from './routes/erreur'
 import { Route as DonneesPersonnellesImport } from './routes/donnees-personnelles'
@@ -53,11 +52,6 @@ const MotDePasseOublieRoute = MotDePasseOublieImport.update({
 
 const MonCompteRoute = MonCompteImport.update({
   path: '/mon-compte',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MesEnquetesOldRoute = MesEnquetesOldImport.update({
-  path: '/mes-enquetes-old',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -254,13 +248,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesImport
       parentRoute: typeof rootRoute
     }
-    '/mes-enquetes-old': {
-      id: '/mes-enquetes-old'
-      path: '/mes-enquetes-old'
-      fullPath: '/mes-enquetes-old'
-      preLoaderRoute: typeof MesEnquetesOldImport
-      parentRoute: typeof rootRoute
-    }
     '/mon-compte': {
       id: '/mon-compte'
       path: '/mon-compte'
@@ -395,7 +382,6 @@ export const routeTree = rootRoute.addChildren({
   DonneesPersonnellesRoute,
   ErreurRoute,
   MentionsLegalesRoute,
-  MesEnquetesOldRoute,
   MonCompteRoute,
   MotDePasseOublieRoute,
   SecuriteRoute,
@@ -433,7 +419,6 @@ export const routeTree = rootRoute.addChildren({
         "/donnees-personnelles",
         "/erreur",
         "/mentions-legales",
-        "/mes-enquetes-old",
         "/mon-compte",
         "/mot-de-passe-oublie",
         "/securite",
@@ -467,9 +452,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/mentions-legales": {
       "filePath": "mentions-legales.tsx"
-    },
-    "/mes-enquetes-old": {
-      "filePath": "mes-enquetes-old.tsx"
     },
     "/mon-compte": {
       "filePath": "mon-compte.tsx"

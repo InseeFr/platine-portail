@@ -1,11 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useState } from "react";
-import { QuestioningStatus, type Status } from "./QuestioningStatus";
-import { Download } from "@codegouvfr/react-dsfr/Download";
-import { Button } from "@codegouvfr/react-dsfr/Button";
 import { QuestioningPagination } from "./QuestioningPagination";
 import type { APISchemas } from "types/apiPortail";
+import { SurveyTableRow } from "./SurveyTableRow";
 
 type Props = {
   title: string;
@@ -69,45 +67,6 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
     setCurrentPage(1);
   };
 
-  const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
-    if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
-      return (
-        <Download
-          className={fr.cx("fr-m-0")}
-          details="TODO taille"
-          label={t("download deposit proof")}
-          linkProps={{
-            href: questioning.depositProofUrl,
-          }}
-        />
-      );
-    }
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
-      return (
-        <Button
-          size="small"
-          linkProps={{
-            href: questioning.questioningAccessUrl,
-          }}
-        >
-          {t("download deposit proof")}
-        </Button>
-      );
-    }
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "OPEN") {
-      return (
-        <Button
-          size="small"
-          linkProps={{
-            href: questioning.questioningAccessUrl,
-          }}
-        >
-          {t("go to survey")}
-        </Button>
-      );
-    }
-  };
-
   return (
     <div className={fr.cx("fr-container")} id="table">
       <div
@@ -142,40 +101,13 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
                   </tr>
                 </thead>
                 <tbody>
-                  {currentItems.map(questioning => {
-                    const identificationCode =
-                      questioning.surveyUnitIdentificationCode &&
-                      questioning.surveyUnitIdentificationCode !== ""
-                        ? questioning.surveyUnitIdentificationCode
-                        : "N/A";
-
-                    const identificationName =
-                      questioning.surveyUnitIdentificationName &&
-                      questioning.surveyUnitIdentificationName !== ""
-                        ? questioning.surveyUnitIdentificationName
-                        : "N/A";
-                    return (
-                      <tr
-                        style={{ height: "70px" }}
-                        key={`${questioning.surveyUnitId}-${questioning.partitioningId}`}
-                      >
-                        {!hasSingleSurveyUnit && (
-                          <>
-                            <td>{identificationCode}</td>
-                            <td>{identificationName}</td>
-                          </>
-                        )}
-                        <td>{questioning.partitioningLabel ?? "N/A"}</td>
-                        <td>
-                          <QuestioningStatus
-                            translation={t}
-                            status={questioning.questioningStatus as Status}
-                          />
-                        </td>
-                        <td>{getAction(questioning)}</td>
-                      </tr>
-                    );
-                  })}
+                  {currentItems.map(questioning => (
+                    <SurveyTableRow
+                      key={`${questioning.surveyUnitId}-${questioning.partitioningId}`}
+                      hasSingleSurveyUnit={hasSingleSurveyUnit}
+                      questioning={questioning}
+                    />
+                  ))}
                 </tbody>
               </table>
             </div>
