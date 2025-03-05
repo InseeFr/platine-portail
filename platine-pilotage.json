@@ -956,7 +956,7 @@
     },
     "/api/contacts/{id}": {
       "get": {
-        "tags": [   "],
+        "tags": [""],
         "summary": "Search for a contact by its id",
         "operationId": "getContact",
         "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
