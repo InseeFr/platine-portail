@@ -22,12 +22,8 @@ import type {
 import type {
   AddressDto,
   ApiError,
-  ContactDetailsDto,
   ContactDto,
-  ContactEventDto,
-  ContactPage,
   FindByIdParams,
-  GetContactsParams,
   GetMyQuestionnairesParams,
   MyQuestioningDto,
   MyQuestionnaireDto,
@@ -36,112 +32,9 @@ import type {
 } from "./model";
 
 import { customPortailFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
-
-/**
- * @summary Search for a contact by its id
- */
-export const getContact = (
-  id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<ContactDetailsDto>(
-    { url: `/api/contacts/${id}`, method: "GET", signal },
-    options,
-  );
-};
-
-export const getGetContactQueryKey = (id: string) => {
-  return [`/api/contacts/${id}`] as const;
-};
-
-export const getGetContactQueryOptions = <
-  TData = Awaited<ReturnType<typeof getContact>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetContactQueryKey(id);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getContact>>> = ({ signal }) =>
-    getContact(id, requestOptions, signal);
-
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getContact>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetContactQueryResult = NonNullable<Awaited<ReturnType<typeof getContact>>>;
-export type GetContactQueryError = ApiError;
-
-export function useGetContact<TData = Awaited<ReturnType<typeof getContact>>, TError = ApiError>(
-  id: string,
-  options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>> &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContact>>,
-          TError,
-          Awaited<ReturnType<typeof getContact>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContact<TData = Awaited<ReturnType<typeof getContact>>, TError = ApiError>(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>> &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContact>>,
-          TError,
-          Awaited<ReturnType<typeof getContact>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContact<TData = Awaited<ReturnType<typeof getContact>>, TError = ApiError>(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @summary Search for a contact by its id
- */
-
-export function useGetContact<TData = Awaited<ReturnType<typeof getContact>>, TError = ApiError>(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetContactQueryOptions(id, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
 
 /**
  * @summary Update or create a contact
@@ -162,7 +55,10 @@ export const putContact = (
   );
 };
 
-export const getPutContactMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
+export const getPutContactMutationOptions = <
+  TError = ErrorType<ApiError>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putContact>>,
     TError,
@@ -197,12 +93,12 @@ export const getPutContactMutationOptions = <TError = ApiError, TContext = unkno
 
 export type PutContactMutationResult = NonNullable<Awaited<ReturnType<typeof putContact>>>;
 export type PutContactMutationBody = ContactDto;
-export type PutContactMutationError = ApiError;
+export type PutContactMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Update or create a contact
  */
-export const usePutContact = <TError = ApiError, TContext = unknown>(options?: {
+export const usePutContact = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putContact>>,
     TError,
@@ -220,181 +116,6 @@ export const usePutContact = <TError = ApiError, TContext = unknown>(options?: {
 
   return useMutation(mutationOptions);
 };
-/**
- * @deprecated
- * @summary Delete a contact, its address, its contactEvents
- */
-export const deleteContact = (id: string, options?: SecondParameter<typeof customPortailFetch>) => {
-  return customPortailFetch<void>({ url: `/api/contacts/${id}`, method: "DELETE" }, options);
-};
-
-export const getDeleteContactMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteContact>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<Awaited<ReturnType<typeof deleteContact>>, TError, { id: string }, TContext> => {
-  const mutationKey = ["deleteContact"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof deleteContact>>,
-    { id: string }
-  > = props => {
-    const { id } = props ?? {};
-
-    return deleteContact(id, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type DeleteContactMutationResult = NonNullable<Awaited<ReturnType<typeof deleteContact>>>;
-
-export type DeleteContactMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Delete a contact, its address, its contactEvents
- */
-export const useDeleteContact = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteContact>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<Awaited<ReturnType<typeof deleteContact>>, TError, { id: string }, TContext> => {
-  const mutationOptions = getDeleteContactMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-/**
- * @deprecated
- * @summary Search for a contact address by the contact id
- */
-export const getContactAddress = (
-  id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<AddressDto>(
-    { url: `/api/contacts/${id}/address`, method: "GET", signal },
-    options,
-  );
-};
-
-export const getGetContactAddressQueryKey = (id: string) => {
-  return [`/api/contacts/${id}/address`] as const;
-};
-
-export const getGetContactAddressQueryOptions = <
-  TData = Awaited<ReturnType<typeof getContactAddress>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactAddress>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetContactAddressQueryKey(id);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getContactAddress>>> = ({ signal }) =>
-    getContactAddress(id, requestOptions, signal);
-
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getContactAddress>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetContactAddressQueryResult = NonNullable<Awaited<ReturnType<typeof getContactAddress>>>;
-export type GetContactAddressQueryError = ApiError;
-
-export function useGetContactAddress<
-  TData = Awaited<ReturnType<typeof getContactAddress>>,
-  TError = ApiError,
->(
-  id: string,
-  options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactAddress>>, TError, TData>> &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContactAddress>>,
-          TError,
-          Awaited<ReturnType<typeof getContactAddress>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContactAddress<
-  TData = Awaited<ReturnType<typeof getContactAddress>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactAddress>>, TError, TData>> &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContactAddress>>,
-          TError,
-          Awaited<ReturnType<typeof getContactAddress>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContactAddress<
-  TData = Awaited<ReturnType<typeof getContactAddress>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactAddress>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Search for a contact address by the contact id
- */
-
-export function useGetContactAddress<
-  TData = Awaited<ReturnType<typeof getContactAddress>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactAddress>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetContactAddressQueryOptions(id, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
 /**
  * @summary Update or create an address by the contact id
  */
@@ -414,7 +135,10 @@ export const putAddress = (
   );
 };
 
-export const getPutAddressMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
+export const getPutAddressMutationOptions = <
+  TError = ErrorType<ApiError>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putAddress>>,
     TError,
@@ -449,12 +173,12 @@ export const getPutAddressMutationOptions = <TError = ApiError, TContext = unkno
 
 export type PutAddressMutationResult = NonNullable<Awaited<ReturnType<typeof putAddress>>>;
 export type PutAddressMutationBody = AddressDto;
-export type PutAddressMutationError = ApiError;
+export type PutAddressMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Update or create an address by the contact id
  */
-export const usePutAddress = <TError = ApiError, TContext = unknown>(options?: {
+export const usePutAddress = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putAddress>>,
     TError,
@@ -472,314 +196,6 @@ export const usePutAddress = <TError = ApiError, TContext = unknown>(options?: {
 
   return useMutation(mutationOptions);
 };
-/**
- * @deprecated
- * @summary Create a contactEvent
- */
-export const postContactEvent = (
-  contactEventDto: ContactEventDto,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<ContactEventDto>(
-    {
-      url: `/api/contacts/contact-events`,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      data: contactEventDto,
-      signal,
-    },
-    options,
-  );
-};
-
-export const getPostContactEventMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postContactEvent>>,
-    TError,
-    { data: ContactEventDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof postContactEvent>>,
-  TError,
-  { data: ContactEventDto },
-  TContext
-> => {
-  const mutationKey = ["postContactEvent"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postContactEvent>>,
-    { data: ContactEventDto }
-  > = props => {
-    const { data } = props ?? {};
-
-    return postContactEvent(data, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type PostContactEventMutationResult = NonNullable<Awaited<ReturnType<typeof postContactEvent>>>;
-export type PostContactEventMutationBody = ContactEventDto;
-export type PostContactEventMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Create a contactEvent
- */
-export const usePostContactEvent = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postContactEvent>>,
-    TError,
-    { data: ContactEventDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof postContactEvent>>,
-  TError,
-  { data: ContactEventDto },
-  TContext
-> => {
-  const mutationOptions = getPostContactEventMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-/**
- * @deprecated
- * @summary Search for contacts, paginated
- */
-export const getContacts = (
-  params?: GetContactsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<ContactPage>(
-    { url: `/api/contacts`, method: "GET", params, signal },
-    options,
-  );
-};
-
-export const getGetContactsQueryKey = (params?: GetContactsParams) => {
-  return [`/api/contacts`, ...(params ? [params] : [])] as const;
-};
-
-export const getGetContactsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getContacts>>,
-  TError = ApiError,
->(
-  params?: GetContactsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetContactsQueryKey(params);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getContacts>>> = ({ signal }) =>
-    getContacts(params, requestOptions, signal);
-
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getContacts>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetContactsQueryResult = NonNullable<Awaited<ReturnType<typeof getContacts>>>;
-export type GetContactsQueryError = ApiError;
-
-export function useGetContacts<TData = Awaited<ReturnType<typeof getContacts>>, TError = ApiError>(
-  params: undefined | GetContactsParams,
-  options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContacts>>, TError, TData>> &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContacts>>,
-          TError,
-          Awaited<ReturnType<typeof getContacts>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContacts<TData = Awaited<ReturnType<typeof getContacts>>, TError = ApiError>(
-  params?: GetContactsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContacts>>, TError, TData>> &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContacts>>,
-          TError,
-          Awaited<ReturnType<typeof getContacts>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContacts<TData = Awaited<ReturnType<typeof getContacts>>, TError = ApiError>(
-  params?: GetContactsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Search for contacts, paginated
- */
-
-export function useGetContacts<TData = Awaited<ReturnType<typeof getContacts>>, TError = ApiError>(
-  params?: GetContactsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetContactsQueryOptions(params, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
-/**
- * @deprecated
- * @summary Search for contactEvents by the contact id
- */
-export const getContactContactEvents = (
-  id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<ContactEventDto[]>(
-    { url: `/api/contacts/${id}/contact-events`, method: "GET", signal },
-    options,
-  );
-};
-
-export const getGetContactContactEventsQueryKey = (id: string) => {
-  return [`/api/contacts/${id}/contact-events`] as const;
-};
-
-export const getGetContactContactEventsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getContactContactEvents>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactContactEvents>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetContactContactEventsQueryKey(id);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getContactContactEvents>>> = ({ signal }) =>
-    getContactContactEvents(id, requestOptions, signal);
-
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getContactContactEvents>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetContactContactEventsQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getContactContactEvents>>
->;
-export type GetContactContactEventsQueryError = ApiError;
-
-export function useGetContactContactEvents<
-  TData = Awaited<ReturnType<typeof getContactContactEvents>>,
-  TError = ApiError,
->(
-  id: string,
-  options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactContactEvents>>, TError, TData>> &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContactContactEvents>>,
-          TError,
-          Awaited<ReturnType<typeof getContactContactEvents>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContactContactEvents<
-  TData = Awaited<ReturnType<typeof getContactContactEvents>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getContactContactEvents>>, TError, TData>
-    > &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getContactContactEvents>>,
-          TError,
-          Awaited<ReturnType<typeof getContactContactEvents>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetContactContactEvents<
-  TData = Awaited<ReturnType<typeof getContactContactEvents>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactContactEvents>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Search for contactEvents by the contact id
- */
-
-export function useGetContactContactEvents<
-  TData = Awaited<ReturnType<typeof getContactContactEvents>>,
-  TError = ApiError,
->(
-  id: string,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContactContactEvents>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetContactContactEventsQueryOptions(id, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
 /**
  * @summary Multi-criteria search contacts
  */
@@ -800,7 +216,7 @@ export const getSearchContactsQueryKey = (params: SearchContactsParams) => {
 
 export const getSearchContactsQueryOptions = <
   TData = Awaited<ReturnType<typeof searchContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchContactsParams,
   options?: {
@@ -823,9 +239,12 @@ export const getSearchContactsQueryOptions = <
 };
 
 export type SearchContactsQueryResult = NonNullable<Awaited<ReturnType<typeof searchContacts>>>;
-export type SearchContactsQueryError = ApiError;
+export type SearchContactsQueryError = ErrorType<ApiError>;
 
-export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContacts>>, TError = ApiError>(
+export function useSearchContacts<
+  TData = Awaited<ReturnType<typeof searchContacts>>,
+  TError = ErrorType<ApiError>,
+>(
   params: SearchContactsParams,
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>> &
@@ -840,7 +259,10 @@ export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContac
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContacts>>, TError = ApiError>(
+export function useSearchContacts<
+  TData = Awaited<ReturnType<typeof searchContacts>>,
+  TError = ErrorType<ApiError>,
+>(
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>> &
@@ -855,7 +277,10 @@ export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContac
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContacts>>, TError = ApiError>(
+export function useSearchContacts<
+  TData = Awaited<ReturnType<typeof searchContacts>>,
+  TError = ErrorType<ApiError>,
+>(
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>>;
@@ -866,7 +291,10 @@ export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContac
  * @summary Multi-criteria search contacts
  */
 
-export function useSearchContacts<TData = Awaited<ReturnType<typeof searchContacts>>, TError = ApiError>(
+export function useSearchContacts<
+  TData = Awaited<ReturnType<typeof searchContacts>>,
+  TError = ErrorType<ApiError>,
+>(
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>>;
@@ -901,7 +329,7 @@ export const getGetMyQuestionnairesQueryKey = (params: GetMyQuestionnairesParams
 
 export const getGetMyQuestionnairesQueryOptions = <
   TData = Awaited<ReturnType<typeof getMyQuestionnaires>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetMyQuestionnairesParams,
   options?: {
@@ -926,11 +354,11 @@ export const getGetMyQuestionnairesQueryOptions = <
 export type GetMyQuestionnairesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getMyQuestionnaires>>
 >;
-export type GetMyQuestionnairesQueryError = ApiError;
+export type GetMyQuestionnairesQueryError = ErrorType<ApiError>;
 
 export function useGetMyQuestionnaires<
   TData = Awaited<ReturnType<typeof getMyQuestionnaires>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetMyQuestionnairesParams,
   options: {
@@ -948,7 +376,7 @@ export function useGetMyQuestionnaires<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetMyQuestionnaires<
   TData = Awaited<ReturnType<typeof getMyQuestionnaires>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetMyQuestionnairesParams,
   options?: {
@@ -966,7 +394,7 @@ export function useGetMyQuestionnaires<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetMyQuestionnaires<
   TData = Awaited<ReturnType<typeof getMyQuestionnaires>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetMyQuestionnairesParams,
   options?: {
@@ -977,7 +405,7 @@ export function useGetMyQuestionnaires<
 
 export function useGetMyQuestionnaires<
   TData = Awaited<ReturnType<typeof getMyQuestionnaires>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetMyQuestionnairesParams,
   options?: {
@@ -1011,7 +439,10 @@ export const getFindByIdQueryKey = (params: FindByIdParams) => {
   return [`/api/contacts/questionings`, ...(params ? [params] : [])] as const;
 };
 
-export const getFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof findById>>, TError = ApiError>(
+export const getFindByIdQueryOptions = <
+  TData = Awaited<ReturnType<typeof findById>>,
+  TError = ErrorType<ApiError>,
+>(
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
@@ -1033,9 +464,9 @@ export const getFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof findBy
 };
 
 export type FindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof findById>>>;
-export type FindByIdQueryError = ApiError;
+export type FindByIdQueryError = ErrorType<ApiError>;
 
-export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ApiError>(
+export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
   params: FindByIdParams,
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>> &
@@ -1050,7 +481,7 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ApiError>(
+export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>> &
@@ -1065,7 +496,7 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ApiError>(
+export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
@@ -1073,7 +504,7 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
-export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ApiError>(
+export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
@@ -1090,76 +521,3 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
 
   return query;
 }
-
-/**
- * @deprecated
- * @summary Delete a contact event
- */
-export const deleteContactEvent = (id: number, options?: SecondParameter<typeof customPortailFetch>) => {
-  return customPortailFetch<void>(
-    { url: `/api/contacts/contact-events/${id}`, method: "DELETE" },
-    options,
-  );
-};
-
-export const getDeleteContactEventMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteContactEvent>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof deleteContactEvent>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const mutationKey = ["deleteContactEvent"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof deleteContactEvent>>,
-    { id: number }
-  > = props => {
-    const { id } = props ?? {};
-
-    return deleteContactEvent(id, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type DeleteContactEventMutationResult = NonNullable<
-  Awaited<ReturnType<typeof deleteContactEvent>>
->;
-
-export type DeleteContactEventMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Delete a contact event
- */
-export const useDeleteContactEvent = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteContactEvent>>,
-    TError,
-    { id: number },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof deleteContactEvent>>,
-  TError,
-  { id: number },
-  TContext
-> => {
-  const mutationOptions = getDeleteContactEventMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};

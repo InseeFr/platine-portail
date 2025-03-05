@@ -20,6 +20,7 @@ import type {
 import type { HealthcheckDto } from "./model";
 
 import { customAiguillageFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -36,7 +37,7 @@ export const getHealthcheckQueryKey = () => {
 
 export const getHealthcheckQueryOptions = <
   TData = Awaited<ReturnType<typeof healthcheck>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof healthcheck>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -56,11 +57,11 @@ export const getHealthcheckQueryOptions = <
 };
 
 export type HealthcheckQueryResult = NonNullable<Awaited<ReturnType<typeof healthcheck>>>;
-export type HealthcheckQueryError = unknown;
+export type HealthcheckQueryError = ErrorType<unknown>;
 
 export function useHealthcheck<
   TData = Awaited<ReturnType<typeof healthcheck>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof healthcheck>>, TError, TData>> &
     Pick<
@@ -75,7 +76,7 @@ export function useHealthcheck<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useHealthcheck<
   TData = Awaited<ReturnType<typeof healthcheck>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof healthcheck>>, TError, TData>> &
     Pick<
@@ -90,7 +91,7 @@ export function useHealthcheck<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useHealthcheck<
   TData = Awaited<ReturnType<typeof healthcheck>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof healthcheck>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -98,7 +99,7 @@ export function useHealthcheck<
 
 export function useHealthcheck<
   TData = Awaited<ReturnType<typeof healthcheck>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof healthcheck>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;

@@ -20,6 +20,7 @@ import type {
 import type { Ligne, QuestionnaireDto, SurveyStatus } from "./model";
 
 import { customAiguillageFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -39,7 +40,7 @@ export const getGetListQuestionnairesQueryKey = () => {
 
 export const getGetListQuestionnairesQueryOptions = <
   TData = Awaited<ReturnType<typeof getListQuestionnaires>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getListQuestionnaires>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -61,11 +62,11 @@ export const getGetListQuestionnairesQueryOptions = <
 export type GetListQuestionnairesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getListQuestionnaires>>
 >;
-export type GetListQuestionnairesQueryError = unknown;
+export type GetListQuestionnairesQueryError = ErrorType<unknown>;
 
 export function useGetListQuestionnaires<
   TData = Awaited<ReturnType<typeof getListQuestionnaires>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getListQuestionnaires>>, TError, TData>> &
     Pick<
@@ -80,7 +81,7 @@ export function useGetListQuestionnaires<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetListQuestionnaires<
   TData = Awaited<ReturnType<typeof getListQuestionnaires>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getListQuestionnaires>>, TError, TData>> &
     Pick<
@@ -95,7 +96,7 @@ export function useGetListQuestionnaires<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetListQuestionnaires<
   TData = Awaited<ReturnType<typeof getListQuestionnaires>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getListQuestionnaires>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -103,7 +104,7 @@ export function useGetListQuestionnaires<
 
 export function useGetListQuestionnaires<
   TData = Awaited<ReturnType<typeof getListQuestionnaires>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getListQuestionnaires>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -132,7 +133,7 @@ export const getGetUrlRedirectionQueryKey = () => {
 
 export const getGetUrlRedirectionQueryOptions = <
   TData = Awaited<ReturnType<typeof getUrlRedirection>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getUrlRedirection>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -152,11 +153,11 @@ export const getGetUrlRedirectionQueryOptions = <
 };
 
 export type GetUrlRedirectionQueryResult = NonNullable<Awaited<ReturnType<typeof getUrlRedirection>>>;
-export type GetUrlRedirectionQueryError = unknown;
+export type GetUrlRedirectionQueryError = ErrorType<unknown>;
 
 export function useGetUrlRedirection<
   TData = Awaited<ReturnType<typeof getUrlRedirection>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getUrlRedirection>>, TError, TData>> &
     Pick<
@@ -171,7 +172,7 @@ export function useGetUrlRedirection<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetUrlRedirection<
   TData = Awaited<ReturnType<typeof getUrlRedirection>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getUrlRedirection>>, TError, TData>> &
     Pick<
@@ -186,7 +187,7 @@ export function useGetUrlRedirection<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetUrlRedirection<
   TData = Awaited<ReturnType<typeof getUrlRedirection>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getUrlRedirection>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -194,7 +195,7 @@ export function useGetUrlRedirection<
 
 export function useGetUrlRedirection<
   TData = Awaited<ReturnType<typeof getUrlRedirection>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getUrlRedirection>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -230,7 +231,7 @@ export const getIsSurveyOnlineQueryKey = (id: string) => {
 
 export const getIsSurveyOnlineQueryOptions = <
   TData = Awaited<ReturnType<typeof isSurveyOnline>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(
   id: string,
   options?: {
@@ -253,9 +254,12 @@ export const getIsSurveyOnlineQueryOptions = <
 };
 
 export type IsSurveyOnlineQueryResult = NonNullable<Awaited<ReturnType<typeof isSurveyOnline>>>;
-export type IsSurveyOnlineQueryError = unknown;
+export type IsSurveyOnlineQueryError = ErrorType<unknown>;
 
-export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnline>>, TError = unknown>(
+export function useIsSurveyOnline<
+  TData = Awaited<ReturnType<typeof isSurveyOnline>>,
+  TError = ErrorType<unknown>,
+>(
   id: string,
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof isSurveyOnline>>, TError, TData>> &
@@ -270,7 +274,10 @@ export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnli
     request?: SecondParameter<typeof customAiguillageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnline>>, TError = unknown>(
+export function useIsSurveyOnline<
+  TData = Awaited<ReturnType<typeof isSurveyOnline>>,
+  TError = ErrorType<unknown>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof isSurveyOnline>>, TError, TData>> &
@@ -285,7 +292,10 @@ export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnli
     request?: SecondParameter<typeof customAiguillageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnline>>, TError = unknown>(
+export function useIsSurveyOnline<
+  TData = Awaited<ReturnType<typeof isSurveyOnline>>,
+  TError = ErrorType<unknown>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof isSurveyOnline>>, TError, TData>>;
@@ -296,7 +306,10 @@ export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnli
  * @summary Vérifie si une enquête est ouverte ou fermée
  */
 
-export function useIsSurveyOnline<TData = Awaited<ReturnType<typeof isSurveyOnline>>, TError = unknown>(
+export function useIsSurveyOnline<
+  TData = Awaited<ReturnType<typeof isSurveyOnline>>,
+  TError = ErrorType<unknown>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof isSurveyOnline>>, TError, TData>>;

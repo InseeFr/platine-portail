@@ -29,6 +29,7 @@ import type {
 } from "./model";
 
 import { customAiguillageFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -46,7 +47,10 @@ export const reinitPassword = (
   );
 };
 
-export const getReinitPasswordMutationOptions = <TError = unknown, TContext = unknown>(options?: {
+export const getReinitPasswordMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof reinitPassword>>,
     TError,
@@ -81,12 +85,12 @@ export const getReinitPasswordMutationOptions = <TError = unknown, TContext = un
 
 export type ReinitPasswordMutationResult = NonNullable<Awaited<ReturnType<typeof reinitPassword>>>;
 
-export type ReinitPasswordMutationError = unknown;
+export type ReinitPasswordMutationError = ErrorType<unknown>;
 
 /**
  * @summary Reinit password
  */
-export const useReinitPassword = <TError = unknown, TContext = unknown>(options?: {
+export const useReinitPassword = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof reinitPassword>>,
     TError,
@@ -124,7 +128,10 @@ export const contactAssistance = (
   );
 };
 
-export const getContactAssistanceMutationOptions = <TError = unknown, TContext = unknown>(options?: {
+export const getContactAssistanceMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof contactAssistance>>,
     TError,
@@ -159,12 +166,12 @@ export const getContactAssistanceMutationOptions = <TError = unknown, TContext =
 
 export type ContactAssistanceMutationResult = NonNullable<Awaited<ReturnType<typeof contactAssistance>>>;
 export type ContactAssistanceMutationBody = MailAssistanceInputDto;
-export type ContactAssistanceMutationError = unknown;
+export type ContactAssistanceMutationError = ErrorType<unknown>;
 
 /**
  * @summary Send mail to assistance
  */
-export const useContactAssistance = <TError = unknown, TContext = unknown>(options?: {
+export const useContactAssistance = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof contactAssistance>>,
     TError,
@@ -198,7 +205,7 @@ export const getGetOpenSourcesQueryKey = () => {
 
 export const getGetOpenSourcesQueryOptions = <
   TData = Awaited<ReturnType<typeof getOpenSources>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getOpenSources>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -218,11 +225,11 @@ export const getGetOpenSourcesQueryOptions = <
 };
 
 export type GetOpenSourcesQueryResult = NonNullable<Awaited<ReturnType<typeof getOpenSources>>>;
-export type GetOpenSourcesQueryError = unknown;
+export type GetOpenSourcesQueryError = ErrorType<unknown>;
 
 export function useGetOpenSources<
   TData = Awaited<ReturnType<typeof getOpenSources>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getOpenSources>>, TError, TData>> &
     Pick<
@@ -237,7 +244,7 @@ export function useGetOpenSources<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetOpenSources<
   TData = Awaited<ReturnType<typeof getOpenSources>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getOpenSources>>, TError, TData>> &
     Pick<
@@ -252,7 +259,7 @@ export function useGetOpenSources<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetOpenSources<
   TData = Awaited<ReturnType<typeof getOpenSources>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getOpenSources>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -260,7 +267,7 @@ export function useGetOpenSources<
 
 export function useGetOpenSources<
   TData = Awaited<ReturnType<typeof getOpenSources>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getOpenSources>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;

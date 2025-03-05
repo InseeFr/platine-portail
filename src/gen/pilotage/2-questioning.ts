@@ -23,11 +23,8 @@ import type {
   ApiError,
   AssistanceDto,
   GetQuestioningIdParams,
-  GetSurveyUnitPartitioningsParams,
-  GetSurveyUnitsParams,
   PageSearchQuestioningDto,
   PostQuestioningEventParams,
-  QuestioningAccreditationDto,
   QuestioningCommentInputDto,
   QuestioningCommunicationDto,
   QuestioningDetailsDto,
@@ -42,12 +39,11 @@ import type {
   SurveyUnitCommentInputDto,
   SurveyUnitDetailsDto,
   SurveyUnitDto,
-  SurveyUnitPage,
-  SurveyUnitPartitioningDto,
   ValidatedQuestioningEventDto,
 } from "./model";
 
 import { customPortailFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -71,7 +67,7 @@ export const getFindSurveyUnitQueryKey = (id: string) => {
 
 export const getFindSurveyUnitQueryOptions = <
   TData = Awaited<ReturnType<typeof findSurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -94,9 +90,12 @@ export const getFindSurveyUnitQueryOptions = <
 };
 
 export type FindSurveyUnitQueryResult = NonNullable<Awaited<ReturnType<typeof findSurveyUnit>>>;
-export type FindSurveyUnitQueryError = ApiError;
+export type FindSurveyUnitQueryError = ErrorType<ApiError>;
 
-export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUnit>>, TError = ApiError>(
+export function useFindSurveyUnit<
+  TData = Awaited<ReturnType<typeof findSurveyUnit>>,
+  TError = ErrorType<ApiError>,
+>(
   id: string,
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>> &
@@ -111,7 +110,10 @@ export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUn
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUnit>>, TError = ApiError>(
+export function useFindSurveyUnit<
+  TData = Awaited<ReturnType<typeof findSurveyUnit>>,
+  TError = ErrorType<ApiError>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>> &
@@ -126,7 +128,10 @@ export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUn
     request?: SecondParameter<typeof customPortailFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUnit>>, TError = ApiError>(
+export function useFindSurveyUnit<
+  TData = Awaited<ReturnType<typeof findSurveyUnit>>,
+  TError = ErrorType<ApiError>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>>;
@@ -137,7 +142,10 @@ export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUn
  * @summary Search for a survey unit by its id
  */
 
-export function useFindSurveyUnit<TData = Awaited<ReturnType<typeof findSurveyUnit>>, TError = ApiError>(
+export function useFindSurveyUnit<
+  TData = Awaited<ReturnType<typeof findSurveyUnit>>,
+  TError = ErrorType<ApiError>,
+>(
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>>;
@@ -174,7 +182,10 @@ export const putSurveyUnit = (
   );
 };
 
-export const getPutSurveyUnitMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
+export const getPutSurveyUnitMutationOptions = <
+  TError = ErrorType<ApiError>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putSurveyUnit>>,
     TError,
@@ -209,12 +220,12 @@ export const getPutSurveyUnitMutationOptions = <TError = ApiError, TContext = un
 
 export type PutSurveyUnitMutationResult = NonNullable<Awaited<ReturnType<typeof putSurveyUnit>>>;
 export type PutSurveyUnitMutationBody = SurveyUnitDto;
-export type PutSurveyUnitMutationError = ApiError;
+export type PutSurveyUnitMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Create or update a survey unit
  */
-export const usePutSurveyUnit = <TError = ApiError, TContext = unknown>(options?: {
+export const usePutSurveyUnit = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof putSurveyUnit>>,
     TError,
@@ -229,153 +240,6 @@ export const usePutSurveyUnit = <TError = ApiError, TContext = unknown>(options?
   TContext
 > => {
   const mutationOptions = getPutSurveyUnitMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-/**
- * @deprecated
- * @summary Delete a survey unit by its id
- */
-export const deleteSurveyUnit = (id: string, options?: SecondParameter<typeof customPortailFetch>) => {
-  return customPortailFetch<void>({ url: `/api/survey-units/${id}`, method: "DELETE" }, options);
-};
-
-export const getDeleteSurveyUnitMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteSurveyUnit>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof deleteSurveyUnit>>,
-  TError,
-  { id: string },
-  TContext
-> => {
-  const mutationKey = ["deleteSurveyUnit"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof deleteSurveyUnit>>,
-    { id: string }
-  > = props => {
-    const { id } = props ?? {};
-
-    return deleteSurveyUnit(id, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type DeleteSurveyUnitMutationResult = NonNullable<Awaited<ReturnType<typeof deleteSurveyUnit>>>;
-
-export type DeleteSurveyUnitMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Delete a survey unit by its id
- */
-export const useDeleteSurveyUnit = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteSurveyUnit>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof deleteSurveyUnit>>,
-  TError,
-  { id: string },
-  TContext
-> => {
-  const mutationOptions = getDeleteSurveyUnitMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-/**
- * @deprecated
- * @summary Create or update questioning
- */
-export const postQuestioning = (
-  questioningDto: QuestioningDto,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<QuestioningDto>(
-    {
-      url: `/api/questionings`,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      data: questioningDto,
-      signal,
-    },
-    options,
-  );
-};
-
-export const getPostQuestioningMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postQuestioning>>,
-    TError,
-    { data: QuestioningDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof postQuestioning>>,
-  TError,
-  { data: QuestioningDto },
-  TContext
-> => {
-  const mutationKey = ["postQuestioning"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postQuestioning>>,
-    { data: QuestioningDto }
-  > = props => {
-    const { data } = props ?? {};
-
-    return postQuestioning(data, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type PostQuestioningMutationResult = NonNullable<Awaited<ReturnType<typeof postQuestioning>>>;
-export type PostQuestioningMutationBody = QuestioningDto;
-export type PostQuestioningMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Create or update questioning
- */
-export const usePostQuestioning = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postQuestioning>>,
-    TError,
-    { data: QuestioningDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof postQuestioning>>,
-  TError,
-  { data: QuestioningDto },
-  TContext
-> => {
-  const mutationOptions = getPostQuestioningMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
@@ -401,7 +265,7 @@ export const postSurveyUnitComment = (
 };
 
 export const getPostSurveyUnitCommentMutationOptions = <
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -440,12 +304,12 @@ export type PostSurveyUnitCommentMutationResult = NonNullable<
   Awaited<ReturnType<typeof postSurveyUnitComment>>
 >;
 export type PostSurveyUnitCommentMutationBody = SurveyUnitCommentInputDto;
-export type PostSurveyUnitCommentMutationError = ApiError;
+export type PostSurveyUnitCommentMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Create a survey unit comment
  */
-export const usePostSurveyUnitComment = <TError = ApiError, TContext = unknown>(options?: {
+export const usePostSurveyUnitComment = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof postSurveyUnitComment>>,
     TError,
@@ -460,222 +324,6 @@ export const usePostSurveyUnitComment = <TError = ApiError, TContext = unknown>(
   TContext
 > => {
   const mutationOptions = getPostSurveyUnitCommentMutationOptions(options);
-
-  return useMutation(mutationOptions);
-};
-/**
- * @deprecated
- * @summary Search for questioning accreditations by questioning id
- */
-export const getQuestioningAccreditation = (
-  id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<QuestioningAccreditationDto[]>(
-    { url: `/api/questionings/${id}/questioning-accreditations`, method: "GET", signal },
-    options,
-  );
-};
-
-export const getGetQuestioningAccreditationQueryKey = (id: number) => {
-  return [`/api/questionings/${id}/questioning-accreditations`] as const;
-};
-
-export const getGetQuestioningAccreditationQueryOptions = <
-  TData = Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-  TError = ApiError,
->(
-  id: number,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getQuestioningAccreditation>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetQuestioningAccreditationQueryKey(id);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getQuestioningAccreditation>>> = ({ signal }) =>
-    getQuestioningAccreditation(id, requestOptions, signal);
-
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetQuestioningAccreditationQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getQuestioningAccreditation>>
->;
-export type GetQuestioningAccreditationQueryError = ApiError;
-
-export function useGetQuestioningAccreditation<
-  TData = Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-  TError = ApiError,
->(
-  id: number,
-  options: {
-    query: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getQuestioningAccreditation>>, TError, TData>
-    > &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-          TError,
-          Awaited<ReturnType<typeof getQuestioningAccreditation>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetQuestioningAccreditation<
-  TData = Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-  TError = ApiError,
->(
-  id: number,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getQuestioningAccreditation>>, TError, TData>
-    > &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-          TError,
-          Awaited<ReturnType<typeof getQuestioningAccreditation>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetQuestioningAccreditation<
-  TData = Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-  TError = ApiError,
->(
-  id: number,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getQuestioningAccreditation>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Search for questioning accreditations by questioning id
- */
-
-export function useGetQuestioningAccreditation<
-  TData = Awaited<ReturnType<typeof getQuestioningAccreditation>>,
-  TError = ApiError,
->(
-  id: number,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getQuestioningAccreditation>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetQuestioningAccreditationQueryOptions(id, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
-/**
- * @deprecated
- * @summary Create or update a questioning accreditation for a questioning
- */
-export const postQuestioningAccreditation = (
-  id: number,
-  questioningAccreditationDto: QuestioningAccreditationDto,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<QuestioningAccreditationDto>(
-    {
-      url: `/api/questionings/${id}/questioning-accreditations`,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      data: questioningAccreditationDto,
-      signal,
-    },
-    options,
-  );
-};
-
-export const getPostQuestioningAccreditationMutationOptions = <
-  TError = ApiError,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postQuestioningAccreditation>>,
-    TError,
-    { id: number; data: QuestioningAccreditationDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof postQuestioningAccreditation>>,
-  TError,
-  { id: number; data: QuestioningAccreditationDto },
-  TContext
-> => {
-  const mutationKey = ["postQuestioningAccreditation"];
-  const { mutation: mutationOptions, request: requestOptions } = options
-    ? options.mutation && "mutationKey" in options.mutation && options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, request: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postQuestioningAccreditation>>,
-    { id: number; data: QuestioningAccreditationDto }
-  > = props => {
-    const { id, data } = props ?? {};
-
-    return postQuestioningAccreditation(id, data, requestOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type PostQuestioningAccreditationMutationResult = NonNullable<
-  Awaited<ReturnType<typeof postQuestioningAccreditation>>
->;
-export type PostQuestioningAccreditationMutationBody = QuestioningAccreditationDto;
-export type PostQuestioningAccreditationMutationError = ApiError;
-
-/**
- * @deprecated
- * @summary Create or update a questioning accreditation for a questioning
- */
-export const usePostQuestioningAccreditation = <TError = ApiError, TContext = unknown>(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postQuestioningAccreditation>>,
-    TError,
-    { id: number; data: QuestioningAccreditationDto },
-    TContext
-  >;
-  request?: SecondParameter<typeof customPortailFetch>;
-}): UseMutationResult<
-  Awaited<ReturnType<typeof postQuestioningAccreditation>>,
-  TError,
-  { id: number; data: QuestioningAccreditationDto },
-  TContext
-> => {
-  const mutationOptions = getPostQuestioningAccreditationMutationOptions(options);
 
   return useMutation(mutationOptions);
 };
@@ -701,7 +349,7 @@ export const postQuestioningComment = (
 };
 
 export const getPostQuestioningCommentMutationOptions = <
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -740,12 +388,12 @@ export type PostQuestioningCommentMutationResult = NonNullable<
   Awaited<ReturnType<typeof postQuestioningComment>>
 >;
 export type PostQuestioningCommentMutationBody = QuestioningCommentInputDto;
-export type PostQuestioningCommentMutationError = ApiError;
+export type PostQuestioningCommentMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Create a questioning comment
  */
-export const usePostQuestioningComment = <TError = ApiError, TContext = unknown>(options?: {
+export const usePostQuestioningComment = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof postQuestioningComment>>,
     TError,
@@ -784,7 +432,7 @@ export const postValintQuestioningEvent = (
 };
 
 export const getPostValintQuestioningEventMutationOptions = <
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -823,12 +471,15 @@ export type PostValintQuestioningEventMutationResult = NonNullable<
   Awaited<ReturnType<typeof postValintQuestioningEvent>>
 >;
 export type PostValintQuestioningEventMutationBody = ValidatedQuestioningEventDto;
-export type PostValintQuestioningEventMutationError = ApiError;
+export type PostValintQuestioningEventMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Create or update a questioning event
  */
-export const usePostValintQuestioningEvent = <TError = ApiError, TContext = unknown>(options?: {
+export const usePostValintQuestioningEvent = <
+  TError = ErrorType<ApiError>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof postValintQuestioningEvent>>,
     TError,
@@ -868,7 +519,10 @@ export const postQuestioningEvent = (
   );
 };
 
-export const getPostQuestioningEventMutationOptions = <TError = ApiError, TContext = unknown>(options?: {
+export const getPostQuestioningEventMutationOptions = <
+  TError = ErrorType<ApiError>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof postQuestioningEvent>>,
     TError,
@@ -905,12 +559,12 @@ export type PostQuestioningEventMutationResult = NonNullable<
   Awaited<ReturnType<typeof postQuestioningEvent>>
 >;
 export type PostQuestioningEventMutationBody = QuestioningEventDto;
-export type PostQuestioningEventMutationError = ApiError;
+export type PostQuestioningEventMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Create a questioning event
  */
-export const usePostQuestioningEvent = <TError = ApiError, TContext = unknown>(options?: {
+export const usePostQuestioningEvent = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof postQuestioningEvent>>,
     TError,
@@ -928,112 +582,6 @@ export const usePostQuestioningEvent = <TError = ApiError, TContext = unknown>(o
 
   return useMutation(mutationOptions);
 };
-/**
- * @deprecated
- * @summary Search for a survey units, paginated
- */
-export const getSurveyUnits = (
-  params?: GetSurveyUnitsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<SurveyUnitPage>(
-    { url: `/api/survey-units`, method: "GET", params, signal },
-    options,
-  );
-};
-
-export const getGetSurveyUnitsQueryKey = (params?: GetSurveyUnitsParams) => {
-  return [`/api/survey-units`, ...(params ? [params] : [])] as const;
-};
-
-export const getGetSurveyUnitsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getSurveyUnits>>,
-  TError = ApiError,
->(
-  params?: GetSurveyUnitsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetSurveyUnitsQueryKey(params);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getSurveyUnits>>> = ({ signal }) =>
-    getSurveyUnits(params, requestOptions, signal);
-
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getSurveyUnits>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetSurveyUnitsQueryResult = NonNullable<Awaited<ReturnType<typeof getSurveyUnits>>>;
-export type GetSurveyUnitsQueryError = ApiError;
-
-export function useGetSurveyUnits<TData = Awaited<ReturnType<typeof getSurveyUnits>>, TError = ApiError>(
-  params: undefined | GetSurveyUnitsParams,
-  options: {
-    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnits>>, TError, TData>> &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSurveyUnits>>,
-          TError,
-          Awaited<ReturnType<typeof getSurveyUnits>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetSurveyUnits<TData = Awaited<ReturnType<typeof getSurveyUnits>>, TError = ApiError>(
-  params?: GetSurveyUnitsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnits>>, TError, TData>> &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSurveyUnits>>,
-          TError,
-          Awaited<ReturnType<typeof getSurveyUnits>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetSurveyUnits<TData = Awaited<ReturnType<typeof getSurveyUnits>>, TError = ApiError>(
-  params?: GetSurveyUnitsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Search for a survey units, paginated
- */
-
-export function useGetSurveyUnits<TData = Awaited<ReturnType<typeof getSurveyUnits>>, TError = ApiError>(
-  params?: GetSurveyUnitsParams,
-  options?: {
-    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetSurveyUnitsQueryOptions(params, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
 /**
  * @summary Search for questionings by survey unit id
  */
@@ -1054,7 +602,7 @@ export const getGetQuestioningsBySurveyUnitQueryKey = (id: string) => {
 
 export const getGetQuestioningsBySurveyUnitQueryOptions = <
   TData = Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1081,11 +629,11 @@ export const getGetQuestioningsBySurveyUnitQueryOptions = <
 export type GetQuestioningsBySurveyUnitQueryResult = NonNullable<
   Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>
 >;
-export type GetQuestioningsBySurveyUnitQueryError = ApiError;
+export type GetQuestioningsBySurveyUnitQueryError = ErrorType<ApiError>;
 
 export function useGetQuestioningsBySurveyUnit<
   TData = Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options: {
@@ -1105,7 +653,7 @@ export function useGetQuestioningsBySurveyUnit<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningsBySurveyUnit<
   TData = Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1125,7 +673,7 @@ export function useGetQuestioningsBySurveyUnit<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningsBySurveyUnit<
   TData = Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1141,7 +689,7 @@ export function useGetQuestioningsBySurveyUnit<
 
 export function useGetQuestioningsBySurveyUnit<
   TData = Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1152,145 +700,6 @@ export function useGetQuestioningsBySurveyUnit<
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetQuestioningsBySurveyUnitQueryOptions(id, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: DataTag<QueryKey, TData>;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
-/**
- * @deprecated
- * @summary Get contacts authorised to respond to a survey for a survey unit
- */
-export const getSurveyUnitPartitionings = (
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
-  signal?: AbortSignal,
-) => {
-  return customPortailFetch<SurveyUnitPartitioningDto[]>(
-    { url: `/api/survey-units/${id}/partitionings`, method: "GET", params, signal },
-    options,
-  );
-};
-
-export const getGetSurveyUnitPartitioningsQueryKey = (
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-) => {
-  return [`/api/survey-units/${id}/partitionings`, ...(params ? [params] : [])] as const;
-};
-
-export const getGetSurveyUnitPartitioningsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-  TError = ApiError,
->(
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-) => {
-  const { query: queryOptions, request: requestOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetSurveyUnitPartitioningsQueryKey(id, params);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>> = ({ signal }) =>
-    getSurveyUnitPartitionings(id, params, requestOptions, signal);
-
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-    TError,
-    TData
-  > & { queryKey: DataTag<QueryKey, TData> };
-};
-
-export type GetSurveyUnitPartitioningsQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getSurveyUnitPartitionings>>
->;
-export type GetSurveyUnitPartitioningsQueryError = ApiError;
-
-export function useGetSurveyUnitPartitionings<
-  TData = Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-  TError = ApiError,
->(
-  id: string,
-  params: undefined | GetSurveyUnitPartitioningsParams,
-  options: {
-    query: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>, TError, TData>
-    > &
-      Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-          TError,
-          Awaited<ReturnType<typeof getSurveyUnitPartitionings>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetSurveyUnitPartitionings<
-  TData = Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-  TError = ApiError,
->(
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>, TError, TData>
-    > &
-      Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-          TError,
-          Awaited<ReturnType<typeof getSurveyUnitPartitionings>>
-        >,
-        "initialData"
-      >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useGetSurveyUnitPartitionings<
-  TData = Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-  TError = ApiError,
->(
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-/**
- * @deprecated
- * @summary Get contacts authorised to respond to a survey for a survey unit
- */
-
-export function useGetSurveyUnitPartitionings<
-  TData = Awaited<ReturnType<typeof getSurveyUnitPartitionings>>,
-  TError = ApiError,
->(
-  id: string,
-  params?: GetSurveyUnitPartitioningsParams,
-  options?: {
-    query?: Partial<
-      UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitPartitionings>>, TError, TData>
-    >;
-    request?: SecondParameter<typeof customPortailFetch>;
-  },
-): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
-  const queryOptions = getGetSurveyUnitPartitioningsQueryOptions(id, params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData>;
@@ -1321,7 +730,7 @@ export const getGetSurveyUnitContactsQueryKey = (id: string) => {
 
 export const getGetSurveyUnitContactsQueryOptions = <
   TData = Awaited<ReturnType<typeof getSurveyUnitContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1346,11 +755,11 @@ export const getGetSurveyUnitContactsQueryOptions = <
 export type GetSurveyUnitContactsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getSurveyUnitContacts>>
 >;
-export type GetSurveyUnitContactsQueryError = ApiError;
+export type GetSurveyUnitContactsQueryError = ErrorType<ApiError>;
 
 export function useGetSurveyUnitContacts<
   TData = Awaited<ReturnType<typeof getSurveyUnitContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options: {
@@ -1368,7 +777,7 @@ export function useGetSurveyUnitContacts<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetSurveyUnitContacts<
   TData = Awaited<ReturnType<typeof getSurveyUnitContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1386,7 +795,7 @@ export function useGetSurveyUnitContacts<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetSurveyUnitContacts<
   TData = Awaited<ReturnType<typeof getSurveyUnitContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1400,7 +809,7 @@ export function useGetSurveyUnitContacts<
 
 export function useGetSurveyUnitContacts<
   TData = Awaited<ReturnType<typeof getSurveyUnitContacts>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: string,
   options?: {
@@ -1439,7 +848,7 @@ export const getSearchSurveyUnitsQueryKey = (params: SearchSurveyUnitsParams) =>
 
 export const getSearchSurveyUnitsQueryOptions = <
   TData = Awaited<ReturnType<typeof searchSurveyUnits>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsParams,
   options?: {
@@ -1462,11 +871,11 @@ export const getSearchSurveyUnitsQueryOptions = <
 };
 
 export type SearchSurveyUnitsQueryResult = NonNullable<Awaited<ReturnType<typeof searchSurveyUnits>>>;
-export type SearchSurveyUnitsQueryError = ApiError;
+export type SearchSurveyUnitsQueryError = ErrorType<ApiError>;
 
 export function useSearchSurveyUnits<
   TData = Awaited<ReturnType<typeof searchSurveyUnits>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsParams,
   options: {
@@ -1484,7 +893,7 @@ export function useSearchSurveyUnits<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnits<
   TData = Awaited<ReturnType<typeof searchSurveyUnits>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsParams,
   options?: {
@@ -1502,7 +911,7 @@ export function useSearchSurveyUnits<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnits<
   TData = Awaited<ReturnType<typeof searchSurveyUnits>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsParams,
   options?: {
@@ -1516,7 +925,7 @@ export function useSearchSurveyUnits<
 
 export function useSearchSurveyUnits<
   TData = Awaited<ReturnType<typeof searchSurveyUnits>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsParams,
   options?: {
@@ -1555,7 +964,7 @@ export const getSearchSurveyUnitsByParamQueryKey = (params: SearchSurveyUnitsByP
 
 export const getSearchSurveyUnitsByParamQueryOptions = <
   TData = Awaited<ReturnType<typeof searchSurveyUnitsByParam>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsByParamParams,
   options?: {
@@ -1582,11 +991,11 @@ export const getSearchSurveyUnitsByParamQueryOptions = <
 export type SearchSurveyUnitsByParamQueryResult = NonNullable<
   Awaited<ReturnType<typeof searchSurveyUnitsByParam>>
 >;
-export type SearchSurveyUnitsByParamQueryError = ApiError;
+export type SearchSurveyUnitsByParamQueryError = ErrorType<ApiError>;
 
 export function useSearchSurveyUnitsByParam<
   TData = Awaited<ReturnType<typeof searchSurveyUnitsByParam>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsByParamParams,
   options: {
@@ -1606,7 +1015,7 @@ export function useSearchSurveyUnitsByParam<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnitsByParam<
   TData = Awaited<ReturnType<typeof searchSurveyUnitsByParam>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsByParamParams,
   options?: {
@@ -1626,7 +1035,7 @@ export function useSearchSurveyUnitsByParam<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnitsByParam<
   TData = Awaited<ReturnType<typeof searchSurveyUnitsByParam>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsByParamParams,
   options?: {
@@ -1642,7 +1051,7 @@ export function useSearchSurveyUnitsByParam<
 
 export function useSearchSurveyUnitsByParam<
   TData = Awaited<ReturnType<typeof searchSurveyUnitsByParam>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: SearchSurveyUnitsByParamParams,
   options?: {
@@ -1683,7 +1092,7 @@ export const getGetQuestioning1QueryKey = (id: number) => {
 
 export const getGetQuestioning1QueryOptions = <
   TData = Awaited<ReturnType<typeof getQuestioning1>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1706,11 +1115,11 @@ export const getGetQuestioning1QueryOptions = <
 };
 
 export type GetQuestioning1QueryResult = NonNullable<Awaited<ReturnType<typeof getQuestioning1>>>;
-export type GetQuestioning1QueryError = ApiError;
+export type GetQuestioning1QueryError = ErrorType<ApiError>;
 
 export function useGetQuestioning1<
   TData = Awaited<ReturnType<typeof getQuestioning1>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options: {
@@ -1728,7 +1137,7 @@ export function useGetQuestioning1<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioning1<
   TData = Awaited<ReturnType<typeof getQuestioning1>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1746,7 +1155,7 @@ export function useGetQuestioning1<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioning1<
   TData = Awaited<ReturnType<typeof getQuestioning1>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1760,7 +1169,7 @@ export function useGetQuestioning1<
 
 export function useGetQuestioning1<
   TData = Awaited<ReturnType<typeof getQuestioning1>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1799,7 +1208,7 @@ export const getFindQuestioningEventsByQuestioningQueryKey = (id: number) => {
 
 export const getFindQuestioningEventsByQuestioningQueryOptions = <
   TData = Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1827,11 +1236,11 @@ export const getFindQuestioningEventsByQuestioningQueryOptions = <
 export type FindQuestioningEventsByQuestioningQueryResult = NonNullable<
   Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>
 >;
-export type FindQuestioningEventsByQuestioningQueryError = ApiError;
+export type FindQuestioningEventsByQuestioningQueryError = ErrorType<ApiError>;
 
 export function useFindQuestioningEventsByQuestioning<
   TData = Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options: {
@@ -1851,7 +1260,7 @@ export function useFindQuestioningEventsByQuestioning<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningEventsByQuestioning<
   TData = Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1871,7 +1280,7 @@ export function useFindQuestioningEventsByQuestioning<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningEventsByQuestioning<
   TData = Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1887,7 +1296,7 @@ export function useFindQuestioningEventsByQuestioning<
 
 export function useFindQuestioningEventsByQuestioning<
   TData = Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1928,7 +1337,7 @@ export const getFindQuestioningCommunicationsByQuestioningIdQueryKey = (id: numb
 
 export const getFindQuestioningCommunicationsByQuestioningIdQueryOptions = <
   TData = Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -1960,11 +1369,11 @@ export const getFindQuestioningCommunicationsByQuestioningIdQueryOptions = <
 export type FindQuestioningCommunicationsByQuestioningIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>
 >;
-export type FindQuestioningCommunicationsByQuestioningIdQueryError = ApiError;
+export type FindQuestioningCommunicationsByQuestioningIdQueryError = ErrorType<ApiError>;
 
 export function useFindQuestioningCommunicationsByQuestioningId<
   TData = Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options: {
@@ -1988,7 +1397,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningCommunicationsByQuestioningId<
   TData = Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2012,7 +1421,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningCommunicationsByQuestioningId<
   TData = Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2032,7 +1441,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
 
 export function useFindQuestioningCommunicationsByQuestioningId<
   TData = Awaited<ReturnType<typeof findQuestioningCommunicationsByQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2077,7 +1486,7 @@ export const getSearchQuestioningsQueryKey = (params?: SearchQuestioningsParams)
 
 export const getSearchQuestioningsQueryOptions = <
   TData = Awaited<ReturnType<typeof searchQuestionings>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params?: SearchQuestioningsParams,
   options?: {
@@ -2100,11 +1509,11 @@ export const getSearchQuestioningsQueryOptions = <
 };
 
 export type SearchQuestioningsQueryResult = NonNullable<Awaited<ReturnType<typeof searchQuestionings>>>;
-export type SearchQuestioningsQueryError = ApiError;
+export type SearchQuestioningsQueryError = ErrorType<ApiError>;
 
 export function useSearchQuestionings<
   TData = Awaited<ReturnType<typeof searchQuestionings>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: undefined | SearchQuestioningsParams,
   options: {
@@ -2122,7 +1531,7 @@ export function useSearchQuestionings<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchQuestionings<
   TData = Awaited<ReturnType<typeof searchQuestionings>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params?: SearchQuestioningsParams,
   options?: {
@@ -2140,7 +1549,7 @@ export function useSearchQuestionings<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchQuestionings<
   TData = Awaited<ReturnType<typeof searchQuestionings>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params?: SearchQuestioningsParams,
   options?: {
@@ -2154,7 +1563,7 @@ export function useSearchQuestionings<
 
 export function useSearchQuestionings<
   TData = Awaited<ReturnType<typeof searchQuestionings>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params?: SearchQuestioningsParams,
   options?: {
@@ -2193,7 +1602,7 @@ export const getGetQuestioningIdQueryKey = (params: GetQuestioningIdParams) => {
 
 export const getGetQuestioningIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetQuestioningIdParams,
   options?: {
@@ -2216,11 +1625,11 @@ export const getGetQuestioningIdQueryOptions = <
 };
 
 export type GetQuestioningIdQueryResult = NonNullable<Awaited<ReturnType<typeof getQuestioningId>>>;
-export type GetQuestioningIdQueryError = ApiError;
+export type GetQuestioningIdQueryError = ErrorType<ApiError>;
 
 export function useGetQuestioningId<
   TData = Awaited<ReturnType<typeof getQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetQuestioningIdParams,
   options: {
@@ -2238,7 +1647,7 @@ export function useGetQuestioningId<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningId<
   TData = Awaited<ReturnType<typeof getQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetQuestioningIdParams,
   options?: {
@@ -2256,7 +1665,7 @@ export function useGetQuestioningId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningId<
   TData = Awaited<ReturnType<typeof getQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetQuestioningIdParams,
   options?: {
@@ -2270,7 +1679,7 @@ export function useGetQuestioningId<
 
 export function useGetQuestioningId<
   TData = Awaited<ReturnType<typeof getQuestioningId>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   params: GetQuestioningIdParams,
   options?: {
@@ -2309,7 +1718,7 @@ export const getGetAssistanceQuestioningQueryKey = (id: number) => {
 
 export const getGetAssistanceQuestioningQueryOptions = <
   TData = Awaited<ReturnType<typeof getAssistanceQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2336,11 +1745,11 @@ export const getGetAssistanceQuestioningQueryOptions = <
 export type GetAssistanceQuestioningQueryResult = NonNullable<
   Awaited<ReturnType<typeof getAssistanceQuestioning>>
 >;
-export type GetAssistanceQuestioningQueryError = ApiError;
+export type GetAssistanceQuestioningQueryError = ErrorType<ApiError>;
 
 export function useGetAssistanceQuestioning<
   TData = Awaited<ReturnType<typeof getAssistanceQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options: {
@@ -2360,7 +1769,7 @@ export function useGetAssistanceQuestioning<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetAssistanceQuestioning<
   TData = Awaited<ReturnType<typeof getAssistanceQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2380,7 +1789,7 @@ export function useGetAssistanceQuestioning<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetAssistanceQuestioning<
   TData = Awaited<ReturnType<typeof getAssistanceQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2396,7 +1805,7 @@ export function useGetAssistanceQuestioning<
 
 export function useGetAssistanceQuestioning<
   TData = Awaited<ReturnType<typeof getAssistanceQuestioning>>,
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
 >(
   id: number,
   options?: {
@@ -2431,7 +1840,7 @@ export const deleteQuestioningEvent = (
 };
 
 export const getDeleteQuestioningEventMutationOptions = <
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -2470,12 +1879,12 @@ export type DeleteQuestioningEventMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteQuestioningEvent>>
 >;
 
-export type DeleteQuestioningEventMutationError = ApiError;
+export type DeleteQuestioningEventMutationError = ErrorType<ApiError>;
 
 /**
  * @summary Delete a questioning event
  */
-export const useDeleteQuestioningEvent = <TError = ApiError, TContext = unknown>(options?: {
+export const useDeleteQuestioningEvent = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof deleteQuestioningEvent>>,
     TError,
@@ -2507,7 +1916,7 @@ export const deleteQuestioningEvent1 = (
 };
 
 export const getDeleteQuestioningEvent1MutationOptions = <
-  TError = ApiError,
+  TError = ErrorType<ApiError>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -2546,12 +1955,12 @@ export type DeleteQuestioningEvent1MutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteQuestioningEvent1>>
 >;
 
-export type DeleteQuestioningEvent1MutationError = ApiError;
+export type DeleteQuestioningEvent1MutationError = ErrorType<ApiError>;
 
 /**
  * @summary Delete a questioning event
  */
-export const useDeleteQuestioningEvent1 = <TError = ApiError, TContext = unknown>(options?: {
+export const useDeleteQuestioningEvent1 = <TError = ErrorType<ApiError>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof deleteQuestioningEvent1>>,
     TError,

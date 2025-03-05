@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
+import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "axios";
 import { getOidc } from "oidc";
 
 // Function to create a custom Axios instance
@@ -47,3 +47,5 @@ export const customAiguillageFetch = <T>(
 ): Promise<T> => {
   return axiosAiguillage({ ...config, ...options }).then(res => res.data);
 };
+
+export type ErrorType<Error> = AxiosError<Error>;

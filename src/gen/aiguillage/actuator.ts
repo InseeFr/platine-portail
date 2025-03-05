@@ -27,6 +27,7 @@ import type {
 } from "./model";
 
 import { customAiguillageFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -46,7 +47,7 @@ export const getLinksQueryKey = () => {
 
 export const getLinksQueryOptions = <
   TData = Awaited<ReturnType<typeof links>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof links>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -66,9 +67,12 @@ export const getLinksQueryOptions = <
 };
 
 export type LinksQueryResult = NonNullable<Awaited<ReturnType<typeof links>>>;
-export type LinksQueryError = unknown;
+export type LinksQueryError = ErrorType<unknown>;
 
-export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unknown>(options: {
+export function useLinks<
+  TData = Awaited<ReturnType<typeof links>>,
+  TError = ErrorType<unknown>,
+>(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof links>>, TError, TData>> &
     Pick<
       DefinedInitialDataOptions<
@@ -80,7 +84,10 @@ export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unk
     >;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unknown>(options?: {
+export function useLinks<
+  TData = Awaited<ReturnType<typeof links>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof links>>, TError, TData>> &
     Pick<
       UndefinedInitialDataOptions<
@@ -92,7 +99,10 @@ export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unk
     >;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unknown>(options?: {
+export function useLinks<
+  TData = Awaited<ReturnType<typeof links>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof links>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
@@ -100,7 +110,10 @@ export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unk
  * @summary Actuator root web endpoint
  */
 
-export function useLinks<TData = Awaited<ReturnType<typeof links>>, TError = unknown>(options?: {
+export function useLinks<
+  TData = Awaited<ReturnType<typeof links>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof links>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
@@ -134,7 +147,7 @@ export const getHealthQueryKey = () => {
 
 export const getHealthQueryOptions = <
   TData = Awaited<ReturnType<typeof health>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof health>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -154,9 +167,12 @@ export const getHealthQueryOptions = <
 };
 
 export type HealthQueryResult = NonNullable<Awaited<ReturnType<typeof health>>>;
-export type HealthQueryError = unknown;
+export type HealthQueryError = ErrorType<unknown>;
 
-export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = unknown>(options: {
+export function useHealth<
+  TData = Awaited<ReturnType<typeof health>>,
+  TError = ErrorType<unknown>,
+>(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof health>>, TError, TData>> &
     Pick<
       DefinedInitialDataOptions<
@@ -168,7 +184,10 @@ export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = u
     >;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = unknown>(options?: {
+export function useHealth<
+  TData = Awaited<ReturnType<typeof health>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof health>>, TError, TData>> &
     Pick<
       UndefinedInitialDataOptions<
@@ -180,7 +199,10 @@ export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = u
     >;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
-export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = unknown>(options?: {
+export function useHealth<
+  TData = Awaited<ReturnType<typeof health>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof health>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
@@ -188,7 +210,10 @@ export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = u
  * @summary Actuator web endpoint 'health'
  */
 
-export function useHealth<TData = Awaited<ReturnType<typeof health>>, TError = unknown>(options?: {
+export function useHealth<
+  TData = Awaited<ReturnType<typeof health>>,
+  TError = ErrorType<unknown>,
+>(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof health>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {

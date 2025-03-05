@@ -23,6 +23,7 @@ import type {
 import type { MailInput, MailOutput, MailUpdate } from "./model";
 
 import { customAiguillageFetch } from "../../functions/fetch";
+import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -42,7 +43,7 @@ export const getMailConsultationQueryKey = () => {
 
 export const getMailConsultationQueryOptions = <
   TData = Awaited<ReturnType<typeof mailConsultation>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultation>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -62,11 +63,11 @@ export const getMailConsultationQueryOptions = <
 };
 
 export type MailConsultationQueryResult = NonNullable<Awaited<ReturnType<typeof mailConsultation>>>;
-export type MailConsultationQueryError = unknown;
+export type MailConsultationQueryError = ErrorType<unknown>;
 
 export function useMailConsultation<
   TData = Awaited<ReturnType<typeof mailConsultation>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultation>>, TError, TData>> &
     Pick<
@@ -81,7 +82,7 @@ export function useMailConsultation<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useMailConsultation<
   TData = Awaited<ReturnType<typeof mailConsultation>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultation>>, TError, TData>> &
     Pick<
@@ -96,7 +97,7 @@ export function useMailConsultation<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useMailConsultation<
   TData = Awaited<ReturnType<typeof mailConsultation>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultation>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -107,7 +108,7 @@ export function useMailConsultation<
 
 export function useMailConsultation<
   TData = Awaited<ReturnType<typeof mailConsultation>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultation>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -141,7 +142,10 @@ export const mailModification = (
   );
 };
 
-export const getMailModificationMutationOptions = <TError = unknown, TContext = unknown>(options?: {
+export const getMailModificationMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof mailModification>>,
     TError,
@@ -176,12 +180,12 @@ export const getMailModificationMutationOptions = <TError = unknown, TContext = 
 
 export type MailModificationMutationResult = NonNullable<Awaited<ReturnType<typeof mailModification>>>;
 export type MailModificationMutationBody = MailInput;
-export type MailModificationMutationError = unknown;
+export type MailModificationMutationError = ErrorType<unknown>;
 
 /**
  * @summary Modification du mail du contact
  */
-export const useMailModification = <TError = unknown, TContext = unknown>(options?: {
+export const useMailModification = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof mailModification>>,
     TError,
@@ -215,7 +219,7 @@ export const getMailConsultationOldQueryKey = () => {
 
 export const getMailConsultationOldQueryOptions = <
   TData = Awaited<ReturnType<typeof mailConsultationOld>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultationOld>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -237,11 +241,11 @@ export const getMailConsultationOldQueryOptions = <
 export type MailConsultationOldQueryResult = NonNullable<
   Awaited<ReturnType<typeof mailConsultationOld>>
 >;
-export type MailConsultationOldQueryError = unknown;
+export type MailConsultationOldQueryError = ErrorType<unknown>;
 
 export function useMailConsultationOld<
   TData = Awaited<ReturnType<typeof mailConsultationOld>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options: {
   query: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultationOld>>, TError, TData>> &
     Pick<
@@ -256,7 +260,7 @@ export function useMailConsultationOld<
 }): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useMailConsultationOld<
   TData = Awaited<ReturnType<typeof mailConsultationOld>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultationOld>>, TError, TData>> &
     Pick<
@@ -271,7 +275,7 @@ export function useMailConsultationOld<
 }): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useMailConsultationOld<
   TData = Awaited<ReturnType<typeof mailConsultationOld>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultationOld>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -282,7 +286,7 @@ export function useMailConsultationOld<
 
 export function useMailConsultationOld<
   TData = Awaited<ReturnType<typeof mailConsultationOld>>,
-  TError = unknown,
+  TError = ErrorType<unknown>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof mailConsultationOld>>, TError, TData>>;
   request?: SecondParameter<typeof customAiguillageFetch>;
@@ -316,7 +320,10 @@ export const mailModificationOld = (
   );
 };
 
-export const getMailModificationOldMutationOptions = <TError = unknown, TContext = unknown>(options?: {
+export const getMailModificationOldMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof mailModificationOld>>,
     TError,
@@ -353,12 +360,12 @@ export type MailModificationOldMutationResult = NonNullable<
   Awaited<ReturnType<typeof mailModificationOld>>
 >;
 export type MailModificationOldMutationBody = string;
-export type MailModificationOldMutationError = unknown;
+export type MailModificationOldMutationError = ErrorType<unknown>;
 
 /**
  * @summary Modification du mail du contact
  */
-export const useMailModificationOld = <TError = unknown, TContext = unknown>(options?: {
+export const useMailModificationOld = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof mailModificationOld>>,
     TError,
