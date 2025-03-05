@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SurveysList } from "components/SurveyList/SurveyList";
-import { protectedLoader } from "hooks/useAuth";
 import { useTranslation } from "i18n";
+import { enforceLogin } from "oidc";
 import { Helmet } from "react-helmet-async";
 
 export const Route = createFileRoute("/mes-enquetes/")({
   component: Index,
   beforeLoad: async () => {
-    await protectedLoader({ titleShort: "" });
+    await enforceLogin({ titleShort: "" });
   },
   loader: ({ context }) => context.getSurveys().filter(survey => survey.disabledOnWelcomePage !== true),
 });

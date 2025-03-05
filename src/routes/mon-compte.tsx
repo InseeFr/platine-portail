@@ -1,34 +1,41 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { MyAccount } from "components/myAccount/MyAccount";
-import { useUser } from "hooks/useAuth";
-import { useFetchQueryPilotage } from "hooks/useFetchQuery";
+import { getGetContactQueryOptions } from "gen/pilotage/1-contacts";
 import { useTranslation } from "i18n";
+import { getOidc } from "oidc";
 import { Helmet } from "react-helmet-async";
 
-export const Route = createFileRoute("/mon-compte")({
+const route = createFileRoute("/mon-compte")({
   component: MyAccountIndex,
-  // TODO: use protectedLoader later
-  beforeLoad: async () => {
-    throw redirect({ to: "/" });
+  loader: async ({ context: { queryClient }, abortController }) => {
+    const oidc = await getOidc();
+
+    if (!oidc.isUserLoggedIn) {
+      await oidc.login({
+        doesCurrentHrefRequiresAuth: true,
+        extraQueryParams: { label: "Mon compte" },
+      });
+      //Never there
+      return;
+    }
+    //very strange to use a things inside token as id....
+    const contactPr = queryClient.ensureQueryData(
+      getGetContactQueryOptions(oidc.getDecodedIdToken().preferred_username.toUpperCase(), {
+        request: { signal: abortController.signal },
+      }),
+    );
+
+    return contactPr;
   },
 });
 
 function MyAccountIndex() {
   const { t } = useTranslation("Header");
-  const user = useUser();
 
-  const {
-    data: contact,
-    isLoading,
-    refetch,
-  } = useFetchQueryPilotage("/api/contacts/{id}", {
-    urlParams: {
-      id: user.preferred_username.toUpperCase(),
-    },
-  });
+  const contact = route.useLoaderData();
 
-  if (!contact || isLoading) {
+  if (!contact) {
     return;
   }
 
@@ -37,7 +44,7 @@ function MyAccountIndex() {
       <Helmet>
         <title>{`${t("my account")} - ${t("service tagline")}`}</title>
       </Helmet>
-      <MyAccount contact={contact} onSave={refetch} />
+      <MyAccount contact={contact} onSave={() => {}} />
     </div>
   );
 }

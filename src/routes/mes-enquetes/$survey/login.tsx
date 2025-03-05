@@ -1,14 +1,14 @@
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Login } from "components/Login";
-import { protectedLoader } from "hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "i18n/i18n";
+import { enforceLogin } from "oidc";
 
 export const Route = createFileRoute("/mes-enquetes/$survey/login")({
   component: LoginPage,
   beforeLoad: ({ params, context }) => {
     const titleShort = context.getTitleShort({ surveyId: params.survey });
-    protectedLoader({ titleShort });
+    enforceLogin({ titleShort });
   },
 });
 

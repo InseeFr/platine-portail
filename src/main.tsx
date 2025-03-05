@@ -6,7 +6,7 @@ import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { I18nFetchingSuspense } from "i18n";
 import { MuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui";
-import { AuthProvider } from "hooks/useAuth";
+import { OidcProvider } from "oidc";
 import { HelmetProvider } from "react-helmet-async";
 import { NotFound } from "components/errorPages/NotFound";
 import content from "resources/content.json";
@@ -52,11 +52,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <MuiDsfrThemeProvider>
-          <AuthProvider>
+          <OidcProvider>
             <I18nFetchingSuspense>
               <RouterProvider router={router} />
             </I18nFetchingSuspense>
-          </AuthProvider>
+          </OidcProvider>
         </MuiDsfrThemeProvider>
       </QueryClientProvider>
     </HelmetProvider>

@@ -1,12 +1,26 @@
-FROM nginx
-RUN rm -rf /usr/share/nginx/html/*
+# build environment
+FROM node:22-alpine as build
+WORKDIR /app
+COPY . .
+RUN yarn install --frozen-lockfile --network-timeout 1000000
+RUN yarn build
 
-ADD build /usr/share/nginx/html
+# production environment
+FROM nginxinc/nginx-unprivileged:1.27-alpine
+
+# Non root user
+ENV NGINX_USER_ID=101
+ENV NGINX_GROUP_ID=101
+ENV NGINX_USER=nginx
+
+
 RUN rm etc/nginx/conf.d/default.conf
-COPY nginx.conf etc/nginx/conf.d/
+COPY --chown=$NGINX_USER:$NGINX_USER --from=build /app/nginx.conf /etc/nginx/conf.d/nginx.conf
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod 755 /entrypoint.sh
-ENTRYPOINT [ "/entrypoint.sh" ]
+WORKDIR /usr/share/nginx/html
+COPY --chown=$NGINX_USER:$NGINX_USER --from=build /app/dist .
 
-CMD ["nginx", "-g", "daemon off;"]
+USER $NGINX_USER_ID
+EXPOSE 8080
+
+ENTRYPOINT sh -c "./vite-envs.sh && nginx -g 'daemon off;'"

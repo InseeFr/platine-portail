@@ -2,7 +2,7 @@ import { declareComponentKeys, useTranslation } from "i18n/i18n";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { fr } from "@codegouvfr/react-dsfr";
 import { PadlockPictogram } from "assets/Pictograms/Padlock";
-import { useOidc } from "hooks/useAuth";
+import { useOidc } from "oidc";
 
 export const Logout = () => {
   const { t } = useTranslation("Logout");
@@ -15,7 +15,7 @@ export const Logout = () => {
   };
 
   return (
-    <section className="fr-container">
+    <section className={fr.cx("fr-container")}>
       <div
         className={fr.cx(
           "fr-grid-row",

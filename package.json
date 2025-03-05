@@ -2,8 +2,9 @@
   "name": "platine-access",
   "version": "3.0.2",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@codegouvfr/react-dsfr": "^1.20.0",
+    "@codegouvfr/react-dsfr": "^1.20.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@hookform/resolvers": "^3.6.0",
@@ -13,8 +14,9 @@
     "@mui/x-data-grid": "^7.6.2",
     "@tanstack/react-query": "^5.37.1",
     "@tanstack/react-router": "^1.33.6",
+    "axios": "^1.8.1",
     "i18nifty": "^3.2.1",
-    "oidc-spa": "^4.6.2",
+    "oidc-spa": "^6.9.6",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",
@@ -25,7 +27,7 @@
     "tss-react": "^4.9.10",
     "vite-envs": "^4.3.0",
     "vite-tsconfig-paths": "^4.3.2",
-    "zod": "^3.23.8"
+    "zod": "^3.24.2"
   },
   "scripts": {
     "postinstall": "vite-envs update-types",
@@ -38,24 +40,11 @@
     "format:check": "npm run _format -- --list-different",
     "predev": "react-dsfr update-icons",
     "prebuild": "react-dsfr update-icons",
-    "openapi": "o2ts ./openApi.json src/types/api.ts"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "openapi": "orval --config ./orval.config.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@grafikart/o2ts": "^0.1.15",
     "@tanstack/router-devtools": "^1.33.6",
     "@tanstack/router-vite-plugin": "^1.32.17",
     "@types/react": "^18.3.11",
@@ -69,7 +58,7 @@
     "eslint-plugin-tss-unused-classes": "^1.0.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "orval": "^7.5.0",
+    "orval": "^7.6.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "vite": "^5.2.0"

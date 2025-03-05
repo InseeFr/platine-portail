@@ -1,5 +1,5 @@
-import { useOidc } from "hooks/useAuth";
 import { declareComponentKeys, useTranslation } from "i18n";
+import { useOidc } from "oidc";
 import { useState, useEffect } from "react";
 import { useStyles } from "tss";
 

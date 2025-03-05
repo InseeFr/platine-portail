@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Navigate, createFileRoute, useSearch } from "@tanstack/react-router";
 import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSupport";
-import { protectedLoader } from "hooks/useAuth";
+import { enforceLogin } from "oidc";
 import { z } from "zod";
 
 export const Route = createFileRoute("/mes-enquetes/$survey/contacter-assistance/auth")({
@@ -11,7 +11,7 @@ export const Route = createFileRoute("/mes-enquetes/$survey/contacter-assistance
   component: SupportPage,
   beforeLoad: ({ params, context }) => {
     const titleShort = context.getTitleShort({ surveyId: params.survey });
-    protectedLoader({ titleShort });
+    enforceLogin({ titleShort });
   },
 });
 

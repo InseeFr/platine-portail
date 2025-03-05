@@ -1,8 +1,8 @@
 import { Navigate, createFileRoute } from "@tanstack/react-router";
 
 import { Logout } from "components/Logout";
-import { useIsAuthenticated } from "hooks/useAuth";
 import { useTranslation } from "i18n";
+import { useOidc } from "oidc";
 import { Helmet } from "react-helmet-async";
 
 export const Route = createFileRoute("/deconnexion")({
@@ -10,11 +10,11 @@ export const Route = createFileRoute("/deconnexion")({
 });
 
 function LogoutIndex() {
-  const { isAuthenticated } = useIsAuthenticated();
+  const { isUserLoggedIn } = useOidc();
   const { t } = useTranslation("Logout");
   const { t: headerTranslation } = useTranslation("Header");
 
-  if (isAuthenticated) {
+  if (isUserLoggedIn) {
     return <Navigate to="/" />;
   }
 

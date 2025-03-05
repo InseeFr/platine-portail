@@ -1,15 +1,15 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Header as DsfrHeader } from "@codegouvfr/react-dsfr/Header";
 import logoInsee from "assets/logo-insee.png";
-import { useIsAuthenticated, useLogout } from "hooks/useAuth";
 import { declareComponentKeys, useTranslation } from "i18n";
+import { useOidc } from "oidc";
 import { tss } from "tss-react/dsfr";
 
 export function Header() {
   const { t } = useTranslation("Header");
-  const { isAuthenticated } = useIsAuthenticated();
+
   const { classes } = useStyles();
-  const logout = useLogout();
+  const { isUserLoggedIn, logout } = useOidc();
 
   return (
     <DsfrHeader
@@ -23,11 +23,11 @@ export function Header() {
       }
       id="header"
       homeLinkProps={{
-        to: isAuthenticated ? "/mes-enquetes" : "/",
+        to: isUserLoggedIn ? "/mes-enquetes" : "/",
         title: t("home link title"),
       }}
       quickAccessItems={
-        isAuthenticated && logout
+        isUserLoggedIn && logout
           ? [
               {
                 iconId: "fr-icon-customer-service-fill",
@@ -50,7 +50,7 @@ export function Header() {
                   onClick: () =>
                     logout({
                       redirectTo: "specific url",
-                      url: `${import.meta.env.VITE_APP_URL}/deconnexion`,
+                      url: "/deconnexion",
                     }),
                 },
                 text: t("logout"),

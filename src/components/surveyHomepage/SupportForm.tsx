@@ -2,12 +2,12 @@ import { declareComponentKeys, useTranslation } from "i18n";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Schema, z } from "zod";
 import { type UseFormRegister } from "react-hook-form";
-import { useIsAuthenticated } from "hooks/useAuth";
 import { useEffect, useRef } from "react";
 import { SupportFormPart } from "components/commons/SupportFormPart";
 import { MailObjectEnum } from "types/mailObjectEnum";
 import { DSFRHide } from "components/commons/DSFRHide";
 import { fr } from "@codegouvfr/react-dsfr";
+import { useOidc } from "oidc";
 
 type Props = {
   surveyId: string;
@@ -19,10 +19,10 @@ type Props = {
 
 export const SupportForm = ({ surveyId, isSuccess, errors, register, onSubmit }: Props) => {
   const { t } = useTranslation("SupportForm");
-  const { isAuthenticated } = useIsAuthenticated();
+  const { isUserLoggedIn } = useOidc();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const objectOptions = isAuthenticated
+  const objectOptions = isUserLoggedIn
     ? MailObjectEnum.filter(val =>
         ["affichageQuestionnaire", "comprehensionQuestionnaire", "autre"].includes(val),
       )
