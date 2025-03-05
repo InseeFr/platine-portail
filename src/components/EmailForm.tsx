@@ -1,4 +1,3 @@
-import { useFetchQueryPortail } from "hooks/useFetchQuery";
 import { useTranslation } from "i18n/i18n";
 import { declareComponentKeys } from "i18nifty";
 import { UnknownEmailForm } from "./UnknownEmailForm";
@@ -6,15 +5,18 @@ import { KnownEmailForm } from "./KnownEmailForm";
 import Divider from "@mui/material/Divider";
 import { Loading } from "./surveyHomepage/Loading";
 import { PageWithCardContainer } from "./commons/PageWithCardContainer";
+import { useMailConsultation } from "gen/aiguillage/user-account";
+import { useGetUrlRedirection } from "gen/aiguillage/access";
+import { fr } from "@codegouvfr/react-dsfr";
 
 export const EmailForm = ({ surveyId, titleShort }: { surveyId: string; titleShort: string }) => {
   const { t } = useTranslation("EmailForm");
 
-  const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
+  const { data: questioningUrlData, isLoading } = useGetUrlRedirection();
 
   const questioningUrl = questioningUrlData && questioningUrlData[0].url;
 
-  const { data: emailData, isLoading: isLoadingEmailData } = useFetchQueryPortail("/user/mail");
+  const { data: emailData, isLoading: isLoadingEmailData } = useMailConsultation();
 
   if (isLoading || isLoadingEmailData) {
     return <Loading />;
@@ -29,7 +31,7 @@ export const EmailForm = ({ surveyId, titleShort }: { surveyId: string; titleSho
       ) : (
         <KnownEmailForm questioningUrl={questioningUrl} surveyId={surveyId} email={emailData.mail!} />
       )}
-      <Divider orientation="horizontal" variant="fullWidth" className="fr-p-0 fr-my-3w" />
+      <Divider orientation="horizontal" variant="fullWidth" className={fr.cx("fr-p-0", "fr-my-3w")} />
       <p>{t("contactDetailsInformation")}</p>
       <p>{t("personalInformations")}</p>
       <a
