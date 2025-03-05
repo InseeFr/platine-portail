@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
+import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
 import { getOidc } from "oidc";
 
 // Function to create a custom Axios instance

@@ -4,14 +4,14 @@ import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
-import type { APISchemas } from "types/api";
 import { useForm } from "hooks/useForm";
 import { personnalInformationsSchema } from "types/schemas";
 import { useState } from "react";
-import { useFetchMutationPilotage } from "hooks/useFetchQuery";
+import type { ContactType } from "./MyAccount";
+import { usePutContact } from "gen/pilotage/1-contacts";
 
 type Props = {
-  contact: APISchemas["ContactDetailsDto"];
+  contact: ContactType;
   onClose: () => void;
   onSave: () => void;
 };
@@ -19,20 +19,18 @@ type Props = {
 export const PersonalInformationsForm = ({ contact, onClose, onSave }: Props) => {
   const { t: translationMyAccount } = useTranslation("MyAccount");
   const { t } = useTranslation("PersonalInformationsForm");
-  const [civility, setCivility] = useState<APISchemas["ContactDetailsDto"]["civility"]>(
-    contact.civility,
-  );
+  const [civility, setCivility] = useState<ContactType["civility"]>(contact.civility);
 
   const { register, errors, handleSubmit, reset, isDirty } = useForm(personnalInformationsSchema, {
     defaultValues: contact,
   });
 
-  const { mutateAsync, isPending } = useFetchMutationPilotage("/api/contacts/{id}", "put");
+  const { mutateAsync, isPending } = usePutContact();
 
   const onSubmit = handleSubmit(async data => {
     await mutateAsync({
-      body: { ...data, civility: civility, identifier: contact.identifier },
-      urlParams: { id: contact.identifier },
+      data: { ...data, civility: civility, identifier: contact.identifier! },
+      id: contact.identifier!,
     });
     onSave();
   });

@@ -8,12 +8,11 @@ import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { useTranslation } from "i18n";
 import { useEffect, useRef } from "react";
-import type { APISchemas } from "types/apiPortail";
 import { MailObjectEnum } from "types/mailObjectEnum";
 import { extendedSupportSchema } from "types/schemas";
 
 type Props = {
-  sources?: APISchemas["SourceOngoingDto"][];
+  sources?: { id: string; label: string }[];
 };
 
 export const SupportPageForm = ({ sources }: Props) => {

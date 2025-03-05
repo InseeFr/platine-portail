@@ -14,7 +14,6 @@ export type ComponentKey =
   | import("components/Footer").I18n
   | import("components/surveyHomepage/SurveyHomepage").I18n
   | import("components/myAccount/MyAccount").I18n
-  | import("components/mySurveys/MySurveys").I18n
   | import("components/myAccount/PersonalInformationsForm").I18n
   | import("components/myAccount/PostalAddressInformationsForm").I18n
   | import("components/AutoLogoutCountdown").I18n

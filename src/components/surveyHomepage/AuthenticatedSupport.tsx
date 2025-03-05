@@ -1,9 +1,10 @@
-import { useFetchMutationWithoutAuth, useFetchQueryPortail } from "hooks/useFetchQuery";
+import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { Loading } from "./Loading";
 import { SupportForm } from "./SupportForm";
 import { Navigate } from "@tanstack/react-router";
+import { useGetUrlRedirection } from "gen/aiguillage/access";
 
 export const AuthenticatedSupport = ({
   surveyId,
@@ -14,7 +15,7 @@ export const AuthenticatedSupport = ({
 }) => {
   const { register, handleSubmit, errors } = useForm(supportSchema);
 
-  const { data: questioningUrlData, isLoading } = useFetchQueryPortail("/questionnaires-url");
+  const { data: questioningUrlData, isLoading } = useGetUrlRedirection();
 
   const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
 

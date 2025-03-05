@@ -1,14 +1,14 @@
-import type { APISchemas } from "types/api";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useForm } from "hooks/useForm";
 import { addressSchema } from "types/schemas";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { useFetchMutationPilotage } from "hooks/useFetchQuery";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { fr } from "@codegouvfr/react-dsfr";
+import type { ContactType } from "./MyAccount";
+import { usePutContact } from "gen/pilotage/1-contacts";
 
 type Props = {
-  contact: APISchemas["ContactDetailsDto"];
+  contact: ContactType;
   onClose: () => void;
   onSave: () => void;
 };
@@ -21,12 +21,12 @@ export const PostalAddressInformationsForm = ({ contact, onClose, onSave }: Prop
     defaultValues: contact.address,
   });
 
-  const { mutateAsync, isPending } = useFetchMutationPilotage("/api/contacts/{id}", "put");
+  const { mutateAsync, isPending } = usePutContact();
 
   const onSubmit = handleSubmit(async data => {
     await mutateAsync({
-      body: { ...contact, address: { ...data } },
-      urlParams: { id: contact.identifier },
+      data: { ...contact, identifier: contact.identifier!, address: { ...data } },
+      id: contact.identifier!,
     });
     onSave();
   });

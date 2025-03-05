@@ -1,7 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useNavigate } from "@tanstack/react-router";
-import { useFetchMutationPortail } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { useTranslation } from "i18n/i18n";
 import { useEffect } from "react";
@@ -9,6 +8,7 @@ import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { unknownEmailForm } from "types/schemas";
 import { Schema, z } from "zod";
 import { TechnicalError } from "./errorPages/TechnicalError";
+import { useMailModificationOld } from "gen/aiguillage/user-account";
 
 export const UnknownEmailForm = ({
   questioningUrl,
@@ -22,9 +22,7 @@ export const UnknownEmailForm = ({
   const { t: supportFormTranslation } = useTranslation("SupportForm");
   const { register, errors, handleSubmit } = useForm(unknownEmailForm);
 
-  use
-
-  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/repondant/mail", "put");
+  const { mutateAsync, isSuccess, isError } = useMailModificationOld();
 
   useEffect(() => {
     if (isSuccess && questioningUrl) {
@@ -37,7 +35,7 @@ export const UnknownEmailForm = ({
 
   const onSubmit = handleSubmit(data => {
     mutateAsync({
-      body: data.mailaddress,
+      data: data.mailaddress,
     });
   });
 

@@ -1,8 +1,16 @@
-import type { APISchemas } from "types/api";
 import { declareComponentKeys, useTranslation } from "i18n";
 
 type Props = {
-  contact: APISchemas["ContactDetailsDto"];
+  contact: {
+    civility?: "Female" | "Male" | "Undefined";
+    lastName?: string;
+    firstName?: string;
+    function?: string;
+    email?: string;
+    phone?: string;
+    otherPhone?: string;
+    usualCompanyName?: string;
+  };
 };
 
 export const PersonalInformations = ({ contact }: Props) => {

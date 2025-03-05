@@ -1,9 +1,9 @@
-import { useFetchQueryPortail } from "hooks/useFetchQuery";
 import type { GenericData, SurveyData } from "types/ContentSurvey";
 import { Navigate } from "@tanstack/react-router";
 import { Loading } from "./surveyHomepage/Loading";
 import { TechnicalError } from "./errorPages/TechnicalError";
 import { ErrorPage } from "./errorPages/ErrorPages";
+import { useGetUrlRedirection } from "gen/aiguillage/access";
 
 export const Login = ({
   surveyData,
@@ -12,11 +12,7 @@ export const Login = ({
   surveyData: SurveyData;
   genericData: GenericData;
 }) => {
-  const {
-    data: questioningUrlData,
-    isLoading,
-    error,
-  } = useFetchQueryPortail("/questionnaires-url", {}, { refetchOnWindowFocus: false });
+  const { data: questioningUrlData, isLoading, error } = useGetUrlRedirection();
 
   if (isLoading) {
     return <Loading />;

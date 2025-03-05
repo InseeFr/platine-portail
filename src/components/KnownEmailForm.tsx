@@ -1,12 +1,12 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useNavigate } from "@tanstack/react-router";
-import { useFetchMutationPortail } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { useTranslation } from "i18n/i18n";
 import { useEffect } from "react";
 import { knownEmailForm } from "types/schemas";
 import { EmailInput } from "./UnknownEmailForm";
 import { TechnicalError } from "./errorPages/TechnicalError";
+import { useMailModificationOld } from "gen/aiguillage/user-account";
 
 export const KnownEmailForm = ({
   questioningUrl,
@@ -23,7 +23,7 @@ export const KnownEmailForm = ({
   });
   const navigate = useNavigate();
 
-  const { mutateAsync, isSuccess, isError } = useFetchMutationPortail("/repondant/mail", "put");
+  const { mutateAsync, isSuccess, isError } = useMailModificationOld();
 
   useEffect(() => {
     if (isSuccess && questioningUrl) {
@@ -37,7 +37,7 @@ export const KnownEmailForm = ({
   const onSubmit = handleSubmit(data => {
     if (email !== data.mailaddress) {
       mutateAsync({
-        body: data.mailaddress,
+        data: data.mailaddress,
       });
     } else {
       questioningUrl ? (window.location.href = questioningUrl) : navigate({ to: "/" });

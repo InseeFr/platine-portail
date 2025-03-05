@@ -1,7 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys } from "i18nifty/declareComponentKeys";
 import { useTranslation } from "i18n";
-import type { APISchemas } from "types/api";
 import { PersonalInformations } from "./PersonalInformations";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { PostalAddressInformations } from "./PostalAddressInformations";
@@ -12,8 +11,34 @@ import { AvatarPictogram } from "assets/Pictograms/Avatar";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { type MouseEventHandler } from "react";
 
+export type ContactType = {
+  identifier?: string;
+  civility?: "Female" | "Male" | "Undefined";
+  lastName?: string;
+  firstName?: string;
+  function?: string;
+  email?: string;
+  phone?: string;
+  otherPhone?: string;
+  usualCompanyName?: string;
+  address?: {
+    streetNumber?: string;
+    repetitionIndex?: string;
+    streetType?: string;
+    streetName?: string;
+    addressSupplement?: string;
+    cityName?: string;
+    zipCode?: string;
+    cedexCode?: string;
+    cedexName?: string;
+    specialDistribution?: string;
+    countryCode?: string;
+    countryName?: string;
+  };
+};
+
 type Props = {
-  contact: APISchemas["ContactDetailsDto"];
+  contact: ContactType;
   onSave: () => void;
 };
 
@@ -130,7 +155,7 @@ export function MyAccount({ contact, onSave }: Props) {
           />
         ) : (
           <div className="fr-grid-row">
-            <PostalAddressInformations contact={contact} />
+            <PostalAddressInformations address={contact.address} />
             <Button
               type="button"
               className={"fr-col-12 fr-hidden-sm  fr-grid-row--center "}
