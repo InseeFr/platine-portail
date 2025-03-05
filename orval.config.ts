@@ -2,7 +2,10 @@ import { defineConfig } from "orval";
 
 export default defineConfig({
   pilotage: {
-    input: "./platine-pilotage.json",
+    input: {
+      target: "./platine-pilotage.json",
+      filters: { tags: ["1 - Contacts", "2 - Questioning"] },
+    },
     output: {
       mode: "tags",
       target: "src/gen/pilotage/",
@@ -11,6 +14,7 @@ export default defineConfig({
       httpClient: "axios",
       prettier: true,
       override: {
+        useDeprecatedOperations: false,
         mutator: {
           path: "src/functions/fetch.ts",
           name: "customPortailFetch",
