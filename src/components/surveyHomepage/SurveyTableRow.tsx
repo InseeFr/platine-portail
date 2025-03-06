@@ -1,4 +1,3 @@
-import type { APISchemas } from "types/apiPortail";
 import { QuestioningStatus, type Status } from "./QuestioningStatus";
 import { useTranslation } from "i18n";
 import Download from "@codegouvfr/react-dsfr/Download";
@@ -6,8 +5,17 @@ import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useEffect, useState } from "react";
 
+type Questioning = {
+  surveyUnitIdentificationCode?: string;
+  surveyUnitIdentificationName?: string;
+  surveyUnitId?: string;
+  questioningStatus?: string;
+  questioningAccessUrl?: string;
+  depositProofUrl?: string;
+  partitioningLabel?: string;
+};
 type Props = {
-  questioning: APISchemas["QuestionnaireDto"];
+  questioning: Questioning;
   hasSingleSurveyUnit: boolean;
 };
 
@@ -66,7 +74,7 @@ export const SurveyTableRow = ({ questioning, hasSingleSurveyUnit }: Props) => {
     getFileInfo();
   }, [questioning.depositProofUrl]);
 
-  const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
+  const getAction = (questioning: Questioning) => {
     if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
       const details = getDetails(file);
 

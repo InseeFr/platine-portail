@@ -2,23 +2,24 @@ import { useTranslation } from "i18n/i18n";
 import { declareComponentKeys } from "i18nifty";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { useState } from "react";
-import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { forgotPasswordForm } from "types/schemas";
 import { TechnicalError } from "components/errorPages/TechnicalError";
 import { ForgotPasswordValidated } from "./ForgotPasswordValidated";
 import { PageWithCardContainer } from "components/commons/PageWithCardContainer";
+import { useReinitPassword } from "gen/aiguillage/assistance";
 
 export const ForgotPassword = () => {
   const { t } = useTranslation("ForgotPassword");
 
-  const { mutateAsync, isError, error } = useFetchMutationWithoutAuth("/reinit-password", "post");
+  // TODO: check if it still works (old without authentication)
+  const { mutateAsync, isError, error } = useReinitPassword();
 
   const [isSuccessPage, setIsSuccessPage] = useState(false);
   const { register, errors, handleSubmit } = useForm(forgotPasswordForm);
 
   const onSubmit = handleSubmit(data => {
-    mutateAsync({ query: { idec: data.idec } });
+    mutateAsync({ params: { idec: data.idec } });
     setIsSuccessPage(true);
   });
 

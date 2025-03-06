@@ -3,10 +3,20 @@ import { QuestioningCard } from "./QuestioningCard";
 import { useTranslation } from "i18n";
 import { useState } from "react";
 import { QuestioningPagination } from "./QuestioningPagination";
-import type { APISchemas } from "types/apiPortail";
 
 type Props = {
-  questionings: APISchemas["QuestionnaireDto"][];
+  questionings: {
+    sourceId?: string;
+    surveyUnitIdentificationCode?: string;
+    surveyUnitIdentificationName?: string;
+    surveyUnitId?: string;
+    questioningStatus?: string;
+    questioningAccessUrl?: string;
+    depositProofUrl?: string;
+    questioningId?: number;
+    partitioningLabel?: string;
+    partitioningId?: string;
+  }[];
   questioningsSectionTitle: string;
   hasSingleSurveyUnit: boolean;
 };

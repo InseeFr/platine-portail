@@ -5,12 +5,20 @@ import { useTranslation } from "i18n";
 import { tss } from "tss-react/dsfr";
 import { QuestioningStatus, type Status } from "./QuestioningStatus";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import type { APISchemas } from "types/apiPortail";
 import { useEffect, useState } from "react";
 import { fetchFileInfo, getDetails } from "./SurveyTableRow";
 
+export type Questioning = {
+  surveyUnitIdentificationCode?: string;
+  surveyUnitIdentificationName?: string;
+  questioningStatus?: string;
+  questioningAccessUrl?: string;
+  depositProofUrl?: string;
+  partitioningLabel?: string;
+};
+
 type Props = {
-  questioning: APISchemas["QuestionnaireDto"];
+  questioning: Questioning;
   hasSingleSurveyUnit: boolean;
 };
 
@@ -49,8 +57,16 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
     }
   };
 
-  const getAction = (questioning: APISchemas["QuestionnaireDto"]) => {
-    if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
+  const getAction = ({
+    depositProofUrl,
+    questioningStatus,
+    questioningAccessUrl,
+  }: {
+    depositProofUrl?: string;
+    questioningStatus?: string;
+    questioningAccessUrl?: string;
+  }) => {
+    if (depositProofUrl && questioningStatus === "RECEIVED") {
       return (
         <div>
           <hr style={{ padding: 1 }} />
@@ -77,12 +93,12 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
       );
     }
 
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
+    if (questioningAccessUrl && questioningStatus === "RECEIVED") {
       return (
         <Button
           size="small"
           linkProps={{
-            href: questioning.questioningAccessUrl,
+            href: questioningAccessUrl,
           }}
         >
           {t("download deposit proof")}
@@ -90,12 +106,12 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
       );
     }
 
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "OPEN") {
+    if (questioningAccessUrl && questioningStatus === "OPEN") {
       return (
         <Button
           size="small"
           linkProps={{
-            href: questioning.questioningAccessUrl,
+            href: questioningAccessUrl,
           }}
         >
           {t("go to survey")}
@@ -131,7 +147,11 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
           </div>
         )
       }
-      footer={getAction(questioning)}
+      footer={getAction({
+        depositProofUrl: questioning.depositProofUrl,
+        questioningStatus: questioning.questioningStatus,
+        questioningAccessUrl: questioning.questioningAccessUrl,
+      })}
     />
   );
 };

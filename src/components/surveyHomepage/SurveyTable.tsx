@@ -2,12 +2,24 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { useState } from "react";
 import { QuestioningPagination } from "./QuestioningPagination";
-import type { APISchemas } from "types/apiPortail";
 import { SurveyTableRow } from "./SurveyTableRow";
+
+type Questioning = {
+  sourceId?: string;
+  surveyUnitIdentificationCode?: string;
+  surveyUnitIdentificationName?: string;
+  surveyUnitId?: string;
+  questioningStatus?: string;
+  questioningAccessUrl?: string;
+  depositProofUrl?: string;
+  questioningId?: number;
+  partitioningLabel?: string;
+  partitioningId?: string;
+};
 
 type Props = {
   title: string;
-  questionings: APISchemas["QuestionnaireDto"][];
+  questionings: Questioning[];
   hasSingleSurveyUnit: boolean;
 };
 

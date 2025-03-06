@@ -5,7 +5,7 @@ export const Markdown = ({ content, className }: { content: string; className?: 
     <ReactMarkdown
       className={className}
       components={{
-        a: ({ node, ...props }) => (
+        a: ({ ...props }) => (
           <a
             {...props}
             className={`fr-link ${props.className || ""}`}
@@ -15,7 +15,7 @@ export const Markdown = ({ content, className }: { content: string; className?: 
             {props.children}
           </a>
         ),
-        p: ({ node, ...props }) => (
+        p: ({ ...props }) => (
           <p {...props} className={className}>
             {props.children}
           </p>

@@ -52,9 +52,7 @@
   "paths": {
     "/api/survey-unit/{id}": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get survey-unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getSurveyUnitById",
@@ -82,9 +80,7 @@
         }
       },
       "put": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Update survey-unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / ",
         "operationId": "updateSurveyUnitById",
@@ -115,9 +111,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Delete a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "deleteSurveyUnit",
@@ -138,9 +132,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Update survey-unit updated data/state-data",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "updateSurveyUnitDataStateDataById",
@@ -173,9 +165,7 @@
     },
     "/api/survey-unit/{id}/state-data": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get state-data for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getStateDataBySurveyUnit",
@@ -203,9 +193,7 @@
         }
       },
       "put": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Update state-data for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "setStateData",
@@ -238,9 +226,7 @@
     },
     "/api/survey-unit/{id}/personalization": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get personalization for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getPersonalizationBySurveyUnit",
@@ -268,9 +254,7 @@
         }
       },
       "put": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Update personalization for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "setPersonalization",
@@ -303,9 +287,7 @@
     },
     "/api/survey-unit/{id}/data": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get data for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getDataBySurveyUnit",
@@ -333,9 +315,7 @@
         }
       },
       "put": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Update data for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "updateData",
@@ -368,9 +348,7 @@
     },
     "/api/survey-units/state-data": {
       "post": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get state-data for all survey-units defined in request body ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getStateDataBySurveyUnits",
@@ -403,9 +381,7 @@
     },
     "/api/survey-units/questionnaire-model-id": {
       "post": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Search questionnaire ids linked to survey units",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getQuestionnaireModelIdBySurveyUnits",
@@ -438,9 +414,7 @@
     },
     "/api/survey-unit/{id}/temp-zone": {
       "post": {
-        "tags": [
-          "08. Survey units in temp Zone"
-        ],
+        "tags": ["08. Survey units in temp Zone"],
         "summary": "Create survey-unit to temp-zone",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / ",
         "operationId": "postSurveyUnitByIdInTempZone",
@@ -473,9 +447,7 @@
     },
     "/api/questionnaire-models": {
       "post": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Create a Questionnaire Model",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "createQuestionnaire",
@@ -498,9 +470,7 @@
     },
     "/api/paradata": {
       "post": {
-        "tags": [
-          "07. Paradata events"
-        ],
+        "tags": ["07. Paradata events"],
         "summary": "Create paradata event for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "addParadata",
@@ -523,9 +493,7 @@
     },
     "/api/nomenclature": {
       "post": {
-        "tags": [
-          "04. Nomenclatures"
-        ],
+        "tags": ["04. Nomenclatures"],
         "summary": "Create/update a nomenclature ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "postNomenclature",
@@ -548,9 +516,7 @@
     },
     "/api/create-dataset": {
       "post": {
-        "tags": [
-          "10. Create Data Set"
-        ],
+        "tags": ["10. Create Data Set"],
         "summary": "Create dataset",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "createDataSet",
@@ -563,9 +529,7 @@
     },
     "/api/campaigns": {
       "get": {
-        "tags": [
-          "02. Campaigns"
-        ],
+        "tags": ["02. Campaigns"],
         "summary": "Get campaign list for the current user",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getInterviewerCampaignList",
@@ -586,9 +550,7 @@
         }
       },
       "post": {
-        "tags": [
-          "02. Campaigns"
-        ],
+        "tags": ["02. Campaigns"],
         "summary": "Create a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "createCampaign",
@@ -612,9 +574,7 @@
     },
     "/api/campaign": {
       "post": {
-        "tags": [
-          "02. Campaigns"
-        ],
+        "tags": ["02. Campaigns"],
         "summary": "Create a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "createCampaignV2",
@@ -637,9 +597,7 @@
     },
     "/api/campaign/{id}/survey-unit": {
       "post": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Create/Update a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "createUpdateSurveyUnit",
@@ -672,9 +630,7 @@
     },
     "/api/campaign/xml/context": {
       "post": {
-        "tags": [
-          "01. Integrations"
-        ],
+        "tags": ["01. Integrations"],
         "summary": "Integrates the context of a campaign (XML Version - will be removed in a future version)",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "integrateXmlContext",
@@ -689,9 +645,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           }
@@ -713,9 +667,7 @@
     },
     "/api/campaign/context": {
       "post": {
-        "tags": [
-          "01. Integrations"
-        ],
+        "tags": ["01. Integrations"],
         "summary": "Integrates the context of a campaign (JSON version)",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "integrateContext",
@@ -730,9 +682,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           }
@@ -753,9 +703,7 @@
     },
     "/api/survey-units": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get all survey-units ids",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "getSurveyUnitIds",
@@ -778,9 +726,7 @@
     },
     "/api/survey-units/temp-zone": {
       "get": {
-        "tags": [
-          "08. Survey units in temp Zone"
-        ],
+        "tags": ["08. Survey units in temp Zone"],
         "summary": "GET all survey-units in temp-zone",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getSurveyUnitsInTempZone",
@@ -803,9 +749,7 @@
     },
     "/api/survey-units/interviewer": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get list of survey units linked to the current interviewer",
         "description": "Authorized roles: ADMIN / WEBCLIENT / INTERVIEWER / ",
         "operationId": "getInterviewerSurveyUnits",
@@ -828,9 +772,7 @@
     },
     "/api/survey-unit/{id}/metadata": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get survey-unit metadata",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getSurveyUnitMetadataById",
@@ -860,9 +802,7 @@
     },
     "/api/survey-unit/{id}/deposit-proof": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get deposit proof for a survey unit",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "generateDepositProof",
@@ -893,9 +833,7 @@
     },
     "/api/questionnaire/{id}": {
       "get": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Get questionnnaire",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getQuestionnaireValue",
@@ -926,9 +864,7 @@
     },
     "/api/questionnaire/{id}/required-nomenclatures": {
       "get": {
-        "tags": [
-          "04. Nomenclatures"
-        ],
+        "tags": ["04. Nomenclatures"],
         "summary": "Get list of required nomenclature for a questionnaire",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getListRequiredNomenclatureByQuestionnaireId",
@@ -961,9 +897,7 @@
     },
     "/api/questionnaire/{id}/metadata": {
       "get": {
-        "tags": [
-          "05. Metadata"
-        ],
+        "tags": ["05. Metadata"],
         "summary": "Get metadata for a questionnaire ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getMetadataByQuestionnaireId",
@@ -993,9 +927,7 @@
     },
     "/api/questionnaire/{id}/data": {
       "get": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Get questionnnaire data",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getQuestionnaireData",
@@ -1025,9 +957,7 @@
     },
     "/api/nomenclatures": {
       "get": {
-        "tags": [
-          "04. Nomenclatures"
-        ],
+        "tags": ["04. Nomenclatures"],
         "summary": "Get all nomenclatures Ids ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getNomenclaturesId",
@@ -1050,9 +980,7 @@
     },
     "/api/nomenclature/{id}": {
       "get": {
-        "tags": [
-          "04. Nomenclatures"
-        ],
+        "tags": ["04. Nomenclatures"],
         "summary": "Get Nomenclature",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getNomenclatureById",
@@ -1082,9 +1010,7 @@
     },
     "/api/healthcheck": {
       "get": {
-        "tags": [
-          "09. HealthCheck"
-        ],
+        "tags": ["09. HealthCheck"],
         "summary": "Healthcheck, check if api is alive",
         "operationId": "healthCheck",
         "responses": {
@@ -1096,9 +1022,7 @@
     },
     "/api/campaign/{id}/survey-units": {
       "get": {
-        "tags": [
-          "06. Survey units"
-        ],
+        "tags": ["06. Survey units"],
         "summary": "Get list of survey units for a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getListSurveyUnitByCampaign",
@@ -1131,9 +1055,7 @@
     },
     "/api/campaign/{id}/required-nomenclatures": {
       "get": {
-        "tags": [
-          "04. Nomenclatures"
-        ],
+        "tags": ["04. Nomenclatures"],
         "summary": "Get list of required nomenclatures for a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getListRequiredNomenclature",
@@ -1166,9 +1088,7 @@
     },
     "/api/campaign/{id}/questionnaires": {
       "get": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Get questionnaire list for a campaign ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getQuestionnaireDatasByCampaignId",
@@ -1201,9 +1121,7 @@
     },
     "/api/campaign/{id}/questionnaire-id": {
       "get": {
-        "tags": [
-          "03. Questionnaires"
-        ],
+        "tags": ["03. Questionnaires"],
         "summary": "Get list of questionnaire ids for a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / ",
         "operationId": "getQuestionnaireIdsByCampaignId",
@@ -1236,9 +1154,7 @@
     },
     "/api/campaign/{id}/metadata": {
       "get": {
-        "tags": [
-          "05. Metadata"
-        ],
+        "tags": ["05. Metadata"],
         "summary": "Get metadata for a campaign ",
         "description": "Authorized roles: ADMIN / WEBCLIENT / REVIEWER / REVIEWER_ALTERNATIVE / INTERVIEWER / SURVEY_UNIT / ",
         "operationId": "getMetadataByCampaignId",
@@ -1268,9 +1184,7 @@
     },
     "/api/admin/campaigns": {
       "get": {
-        "tags": [
-          "02. Campaigns"
-        ],
+        "tags": ["02. Campaigns"],
         "summary": "Get list of all campaigns",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "getListCampaign",
@@ -1293,9 +1207,7 @@
     },
     "/api/campaign/{id}": {
       "delete": {
-        "tags": [
-          "02. Campaigns"
-        ],
+        "tags": ["02. Campaigns"],
         "summary": "Delete a campaign",
         "description": "Authorized roles: ADMIN / WEBCLIENT / ",
         "operationId": "deleteCampaignById",
@@ -1332,13 +1244,7 @@
         "properties": {
           "state": {
             "type": "string",
-            "enum": [
-              "INIT",
-              "COMPLETED",
-              "VALIDATED",
-              "TOEXTRACT",
-              "EXTRACTED"
-            ]
+            "enum": ["INIT", "COMPLETED", "VALIDATED", "TOEXTRACT", "EXTRACTED"]
           },
           "date": {
             "type": "integer",
@@ -1348,10 +1254,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "currentPage",
-          "date"
-        ]
+        "required": ["currentPage", "date"]
       },
       "SurveyUnitUpdate": {
         "type": "object",
@@ -1376,13 +1279,7 @@
         "properties": {
           "state": {
             "type": "string",
-            "enum": [
-              "INIT",
-              "COMPLETED",
-              "VALIDATED",
-              "TOEXTRACT",
-              "EXTRACTED"
-            ]
+            "enum": ["INIT", "COMPLETED", "VALIDATED", "TOEXTRACT", "EXTRACTED"]
           },
           "date": {
             "type": "integer",
@@ -1392,24 +1289,14 @@
             "type": "string"
           }
         },
-        "required": [
-          "currentPage",
-          "date",
-          "state"
-        ]
+        "required": ["currentPage", "date", "state"]
       },
       "StateData": {
         "type": "object",
         "properties": {
           "state": {
             "type": "string",
-            "enum": [
-              "INIT",
-              "COMPLETED",
-              "VALIDATED",
-              "TOEXTRACT",
-              "EXTRACTED"
-            ]
+            "enum": ["INIT", "COMPLETED", "VALIDATED", "TOEXTRACT", "EXTRACTED"]
           },
           "date": {
             "type": "integer",
@@ -1481,10 +1368,7 @@
             "uniqueItems": true
           }
         },
-        "required": [
-          "label",
-          "value"
-        ]
+        "required": ["label", "value"]
       },
       "NomenclatureCreation": {
         "type": "object",
@@ -1499,10 +1383,7 @@
             "$ref": "schema.nomenclature.json"
           }
         },
-        "required": [
-          "label",
-          "value"
-        ]
+        "required": ["label", "value"]
       },
       "CampaignCreation": {
         "type": "object",
@@ -1524,10 +1405,7 @@
             "$ref": "#/components/schemas/MetadataCreation"
           }
         },
-        "required": [
-          "label",
-          "questionnaireIds"
-        ]
+        "required": ["label", "questionnaireIds"]
       },
       "MetadataCreation": {
         "type": "object",
@@ -1537,9 +1415,7 @@
             "$ref": "schema.metadata.json"
           }
         },
-        "required": [
-          "value"
-        ]
+        "required": ["value"]
       },
       "CampaignCreationV2": {
         "type": "object",
@@ -1562,10 +1438,7 @@
             "$ref": "schema.metadata.json"
           }
         },
-        "required": [
-          "label",
-          "questionnaireIds"
-        ]
+        "required": ["label", "questionnaireIds"]
       },
       "SurveyUnitCreation": {
         "type": "object",
@@ -1590,12 +1463,7 @@
             "$ref": "#/components/schemas/StateDataUpdate"
           }
         },
-        "required": [
-          "comment",
-          "data",
-          "personalization",
-          "questionnaireId"
-        ]
+        "required": ["comment", "data", "personalization", "questionnaireId"]
       },
       "IntegrationResultUnit": {
         "type": "object",
@@ -1605,11 +1473,7 @@
           },
           "status": {
             "type": "string",
-            "enum": [
-              "CREATED",
-              "UPDATED",
-              "ERROR"
-            ]
+            "enum": ["CREATED", "UPDATED", "ERROR"]
           },
           "cause": {
             "type": "string"
@@ -1647,9 +1511,7 @@
             "$ref": "#/components/schemas/StateDataUpdate"
           }
         },
-        "required": [
-          "stateData"
-        ]
+        "required": ["stateData"]
       },
       "SurveyUnitTempZone": {
         "type": "object",
@@ -1684,10 +1546,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "label",
-          "url"
-        ]
+        "required": ["label", "url"]
       },
       "Logos": {
         "type": "object",
@@ -1702,9 +1561,7 @@
             }
           }
         },
-        "required": [
-          "main"
-        ]
+        "required": ["main"]
       },
       "MetadataVariable": {
         "type": "object",
@@ -1714,20 +1571,14 @@
           },
           "value": {}
         },
-        "required": [
-          "name",
-          "value"
-        ]
+        "required": ["name", "value"]
       },
       "SurveyUnitMetadata": {
         "type": "object",
         "properties": {
           "context": {
             "type": "string",
-            "enum": [
-              "household",
-              "business"
-            ]
+            "enum": ["household", "business"]
           },
           "personalization": {
             "$ref": "schema.personalization.json"
@@ -1748,11 +1599,7 @@
             "$ref": "#/components/schemas/Logos"
           }
         },
-        "required": [
-          "context",
-          "label",
-          "objectives"
-        ]
+        "required": ["context", "label", "objectives"]
       },
       "QuestionnaireModelValue": {
         "type": "object",

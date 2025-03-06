@@ -6,7 +6,7 @@ import { useTranslation } from "i18n";
 import { getOidc } from "oidc";
 import { Helmet } from "react-helmet-async";
 
-const route = createFileRoute("/mon-compte")({
+export const Route = createFileRoute("/mon-compte")({
   component: MyAccountIndex,
   loader: async ({ context: { queryClient }, abortController }) => {
     const oidc = await getOidc();
@@ -33,7 +33,7 @@ const route = createFileRoute("/mon-compte")({
 function MyAccountIndex() {
   const { t } = useTranslation("Header");
 
-  const contact = route.useLoaderData();
+  const contact = Route.useLoaderData();
 
   if (!contact) {
     return;

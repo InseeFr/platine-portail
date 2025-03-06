@@ -1,10 +1,10 @@
-import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { Loading } from "./Loading";
 import { SupportForm } from "./SupportForm";
 import { Navigate } from "@tanstack/react-router";
 import { useGetUrlRedirection } from "gen/aiguillage/access";
+import { useContactAssistance } from "gen/aiguillage/assistance";
 
 export const AuthenticatedSupport = ({
   surveyId,
@@ -17,7 +17,8 @@ export const AuthenticatedSupport = ({
 
   const { data: questioningUrlData, isLoading } = useGetUrlRedirection();
 
-  const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
+  // TODO: check if it still works (old without authentication)
+  const { mutateAsync, isSuccess, isError } = useContactAssistance();
 
   if (!questioningUrlData || isLoading) {
     return <Loading />;
@@ -31,7 +32,7 @@ export const AuthenticatedSupport = ({
 
   const onSubmit = handleSubmit(data =>
     mutateAsync({
-      body: {
+      data: {
         auth: true,
         idec: data.idec,
         idue: questioningUrlData[0].idUE,
@@ -41,7 +42,8 @@ export const AuthenticatedSupport = ({
         name: `${data.firstName} ${data.lastName}`,
         phonenumber: data.phonenumber,
         survey: surveyId,
-        mailobjet: data.mailObjet,
+        // TODO: remove "any" when schema is corrected
+        mailobjet: data.mailObjet as any,
       },
     }),
   );

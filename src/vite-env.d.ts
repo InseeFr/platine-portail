@@ -9,6 +9,7 @@ type ImportMetaEnv = {
   VITE_AUTH_TYPE: string
   VITE_PORTAIL_URL: string
   VITE_APP_URL: string
+  VITE_QUESTIONNAIRE_API_URL: string
   BASE_URL: string
   MODE: string
   DEV: boolean

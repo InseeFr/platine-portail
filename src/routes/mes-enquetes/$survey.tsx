@@ -10,7 +10,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { DSFRHide } from "components/commons/DSFRHide";
 import type { Status } from "components/surveyHomepage/QuestioningStatus";
 import { QuestioningCardList } from "components/surveyHomepage/QuestioningCardList";
-import { useFetchQueryPortail } from "hooks/useFetchQuery";
+import { useGetListQuestionnaires } from "gen/aiguillage/access";
 
 const statusOrder: Record<Status, number> = {
   OPEN: 1,
@@ -38,7 +38,8 @@ function Index() {
   const { surveyData } = Route.useLoaderData();
   const router = useRouter();
 
-  const { data, isLoading } = useFetchQueryPortail("/questionnaires");
+  // TODO: check if it still works (old without authentication)
+  const { data, isLoading } = useGetListQuestionnaires();
 
   if (isLoading) {
     return <Loading />;
