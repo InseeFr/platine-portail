@@ -3,7 +3,7 @@ import { defineConfig } from "orval";
 export default defineConfig({
   pilotage: {
     input: {
-      target: "./platine-pilotage.json",
+      target: "./openApi/pilotage/api-docs.json",
       filters: { tags: ["1 - Contacts", "2 - Questioning"] },
     },
     output: {
@@ -23,7 +23,7 @@ export default defineConfig({
     },
   },
   aiguillage: {
-    input: "./platine-aiguillage.json",
+    input: "./openApi/aiguillage/api-docs.json",
     output: {
       mode: "tags",
       target: "src/gen/aiguillage/",
@@ -35,6 +35,26 @@ export default defineConfig({
         mutator: {
           path: "src/functions/fetch.ts",
           name: "customAiguillageFetch",
+        },
+      },
+    },
+  },
+  questionnaire: {
+    input: {
+      target: "./openApi/questionnaire/api-docs.json",
+      filters: { tags: ["TODO"] },
+    },
+    output: {
+      mode: "tags",
+      target: "src/gen/questionnaire/",
+      schemas: "./src/gen/questionnaire/model",
+      client: "react-query",
+      httpClient: "axios",
+      prettier: true,
+      override: {
+        mutator: {
+          path: "src/functions/fetch.ts",
+          name: "TO MODIFY",
         },
       },
     },
