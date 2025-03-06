@@ -40,7 +40,7 @@ function Index() {
 
   const { data, isLoading } = useFetchQueryPortail("/questionnaires");
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -58,9 +58,27 @@ function Index() {
 
   const sectionTitle = getPageTitle(currentPath);
 
-  const hasSingleSurveyUnit = data.every(current => current.surveyUnitId === data[0].surveyUnitId);
+  if (!data) {
+    return (
+      <div>
+        <Helmet>
+          <title>{`${t(sectionTitle)} - ${surveyData.titleShort} - ${headerTranslation("service tagline")}`}</title>
+        </Helmet>
+        <SurveyHomepage survey={surveyData} />
+        {surveyData.isSurveyOnline && <Chatbot />}
+      </div>
+    );
+  }
 
-  const questioningWithIdentificationCode = data.find(
+  const questioningsFilteredBySource = data.filter(
+    questioning => questioning.sourceId?.toLowerCase() === surveyData.id.toLowerCase(),
+  );
+
+  const hasSingleSurveyUnit = questioningsFilteredBySource.every(
+    current => current.surveyUnitId === questioningsFilteredBySource[0].surveyUnitId,
+  );
+
+  const questioningWithIdentificationCode = questioningsFilteredBySource.find(
     questioning =>
       questioning.surveyUnitIdentificationCode !== "" &&
       questioning.surveyUnitIdentificationCode != null,
@@ -71,7 +89,7 @@ function Index() {
       ? `${surveyData.title} ${t("for")} ${questioningWithIdentificationCode.surveyUnitIdentificationCode}`
       : surveyData.title;
 
-  const questionings = [...data].sort((questioningA, questioningB) => {
+  const questionings = [...questioningsFilteredBySource].sort((questioningA, questioningB) => {
     const statusA = questioningA.questioningStatus
       ? statusOrder[questioningA.questioningStatus as Status]
       : Infinity;
