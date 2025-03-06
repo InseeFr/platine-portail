@@ -4,11 +4,10 @@
  * platine-management-api
  * OpenAPI spec version: 3.7.2
  */
+import type { JsonNode } from "./jsonNode";
 
-export interface QuestioningCommunicationDto {
-  id?: number;
+export interface QuestioningEventInputDto {
   questioningId?: number;
   date?: string;
-  type?: string;
-  status?: string;
+  payload?: JsonNode;
 }

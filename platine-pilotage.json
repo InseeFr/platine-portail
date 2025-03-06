@@ -1,6 +1,6 @@
 {
   "openapi": "3.1.0",
-  "info": { "title": "platine-management-api", "version": "3.7.1" },
+  "info": { "title": "platine-management-api", "version": "3.7.2" },
   "servers": [
     {
       "url": "https://api-pilotage-enquetes.developpement3.insee.fr",
@@ -273,14 +273,14 @@
             "description": "Bad request",
             "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/SurveyUnitDto" } }
             }
           },
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/SurveyUnitDto" } }
             }
@@ -607,16 +607,16 @@
             "description": "Bad request",
             "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
           },
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/QuestioningWebclientDto" }
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/QuestioningWebclientDto" }
@@ -721,14 +721,14 @@
             "description": "Bad request",
             "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/PartitioningDto" } }
             }
           },
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/PartitioningDto" } }
             }
@@ -939,14 +939,14 @@
             "description": "Bad request",
             "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
           },
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/MetadataDto" } }
             }
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/MetadataDto" } }
             }
@@ -956,7 +956,7 @@
     },
     "/api/contacts/{id}": {
       "get": {
-        "tags": [""],
+        "tags": ["1 - Contacts"],
         "summary": "Search for a contact by its id",
         "operationId": "getContact",
         "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
@@ -1149,7 +1149,59 @@
         "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
         "requestBody": {
           "content": {
-            "application/json": { "schema": { "$ref": "#/components/schemas/CampaignDto" } }
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CampaignDto" },
+              "examples": {
+                "LUNATIC_NORMAL campaign": {
+                  "description": "LUNATIC_NORMAL campaign",
+                  "value": {
+                    "id": "string",
+                    "surveyId": "string",
+                    "year": 2025,
+                    "campaignWording": "string",
+                    "period": "string",
+                    "sensitivity": false,
+                    "dataCollectionTarget": "LUNATIC_NORMAL"
+                  }
+                },
+                "LUNATIC_SENSITIVE campaign": {
+                  "description": "LUNATIC_SENSITIVE campaign",
+                  "value": {
+                    "id": "string",
+                    "surveyId": "string",
+                    "year": 2025,
+                    "campaignWording": "string",
+                    "period": "string",
+                    "sensitivity": true,
+                    "dataCollectionTarget": "LUNATIC_SENSITIVE"
+                  }
+                },
+                "ORBEON1 campaign": {
+                  "description": "ORBEON1 campaign",
+                  "value": {
+                    "id": "string",
+                    "surveyId": "string",
+                    "year": 2025,
+                    "campaignWording": "string",
+                    "period": "string",
+                    "sensitivity": false,
+                    "dataCollectionTarget": "XFORM1"
+                  }
+                },
+                "ORBEON2 campaign": {
+                  "description": "ORBEON2 campaign",
+                  "value": {
+                    "id": "string",
+                    "surveyId": "string",
+                    "year": 2025,
+                    "campaignWording": "string",
+                    "period": "string",
+                    "sensitivity": false,
+                    "dataCollectionTarget": "XFORM2"
+                  }
+                }
+              }
+            }
           },
           "required": true
         },
@@ -1170,14 +1222,14 @@
             "description": "Bad request",
             "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/CampaignDto" } }
             }
           },
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/CampaignDto" } }
             }
@@ -1574,51 +1626,6 @@
         }
       }
     },
-    "/api/questionings/valint-event": {
-      "post": {
-        "tags": ["2 - Questioning"],
-        "summary": "Create or update a questioning event",
-        "operationId": "postValintQuestioningEvent",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ValidatedQuestioningEventDto" }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "500": {
-            "description": "Internal Server Error",
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
-          },
-          "404": {
-            "description": "Questioning not found",
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
-          },
-          "200": {
-            "description": "Updated",
-            "content": {
-              "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventDto" } }
-            }
-          },
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventDto" } }
-            }
-          }
-        }
-      }
-    },
     "/api/questionings/questioning-events": {
       "post": {
         "tags": ["2 - Questioning"],
@@ -1658,6 +1665,52 @@
           },
           "201": {
             "description": "Created",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventDto" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/questionings/questioning-events/{eventType}": {
+      "post": {
+        "tags": ["2 - Questioning"],
+        "summary": "Create a questioning event",
+        "operationId": "createQuestioningEvent",
+        "parameters": [
+          { "name": "eventType", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventInputDto" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Internal Server Error",
+            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
+          },
+          "404": {
+            "description": "Questioning not found",
+            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": { "*/*": { "schema": { "$ref": "#/components/schemas/ApiError" } } }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventDto" } }
+            }
+          },
+          "200": {
+            "description": "Updated",
             "content": {
               "application/json": { "schema": { "$ref": "#/components/schemas/QuestioningEventDto" } }
             }
@@ -4618,14 +4671,6 @@
         "type": "object",
         "properties": { "comment": { "type": "string" }, "author": { "type": "string" } }
       },
-      "ValidatedQuestioningEventDto": {
-        "type": "object",
-        "properties": {
-          "questioningId": { "type": "integer", "format": "int64" },
-          "date": { "type": "string", "format": "date-time" },
-          "payload": { "$ref": "#/components/schemas/JsonNode" }
-        }
-      },
       "QuestioningEventDto": {
         "type": "object",
         "properties": {
@@ -4633,6 +4678,14 @@
           "questioningId": { "type": "integer", "format": "int64" },
           "eventDate": { "type": "string", "format": "date-time" },
           "type": { "type": "string" },
+          "payload": { "$ref": "#/components/schemas/JsonNode" }
+        }
+      },
+      "QuestioningEventInputDto": {
+        "type": "object",
+        "properties": {
+          "questioningId": { "type": "integer", "format": "int64" },
+          "date": { "type": "string", "format": "date-time" },
           "payload": { "$ref": "#/components/schemas/JsonNode" }
         }
       },
@@ -5216,8 +5269,8 @@
         "properties": {
           "surveyUnitId": { "type": "string" },
           "questioningId": { "type": "integer", "format": "int64" },
-          "campaignId": { "type": "string" },
           "surveyUnitIdentificationCode": { "type": "string" },
+          "campaignId": { "type": "string" },
           "listContactIdentifiers": { "type": "array", "items": { "type": "string" } },
           "lastEvent": { "type": "string" },
           "lastCommunication": { "type": "string" },
@@ -5576,10 +5629,10 @@
       "SearchContactDto": {
         "type": "object",
         "properties": {
+          "identifier": { "type": "string" },
           "email": { "type": "string" },
           "firstName": { "type": "string" },
-          "lastName": { "type": "string" },
-          "identifier": { "type": "string" }
+          "lastName": { "type": "string" }
         }
       },
       "MyQuestionnaireDto": {
