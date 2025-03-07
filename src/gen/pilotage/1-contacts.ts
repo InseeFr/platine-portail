@@ -32,7 +32,7 @@ import type {
   SearchContactsParams,
 } from "./model";
 
-import { customPortailFetch } from "../../functions/fetch";
+import { customPilotageFetch } from "../../functions/fetch";
 import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -42,10 +42,10 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
  */
 export const getContact = (
   id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<ContactDetailsDto>(
+  return customPilotageFetch<ContactDetailsDto>(
     { url: `/api/contacts/${id}`, method: "GET", signal },
     options,
   );
@@ -62,7 +62,7 @@ export const getGetContactQueryOptions = <
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -97,7 +97,7 @@ export function useGetContact<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetContact<
@@ -115,7 +115,7 @@ export function useGetContact<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetContact<
@@ -125,7 +125,7 @@ export function useGetContact<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -139,7 +139,7 @@ export function useGetContact<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getContact>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetContactQueryOptions(id, options);
@@ -159,9 +159,9 @@ export function useGetContact<
 export const putContact = (
   id: string,
   contactDto: ContactDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
 ) => {
-  return customPortailFetch<ContactDto>(
+  return customPilotageFetch<ContactDto>(
     {
       url: `/api/contacts/${id}`,
       method: "PUT",
@@ -182,7 +182,7 @@ export const getPutContactMutationOptions = <
     { id: string; data: ContactDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putContact>>,
   TError,
@@ -222,7 +222,7 @@ export const usePutContact = <TError = ErrorType<ApiError>, TContext = unknown>(
     { id: string; data: ContactDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof putContact>>,
   TError,
@@ -239,9 +239,9 @@ export const usePutContact = <TError = ErrorType<ApiError>, TContext = unknown>(
 export const putAddress = (
   id: string,
   addressDto: AddressDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
 ) => {
-  return customPortailFetch<AddressDto>(
+  return customPilotageFetch<AddressDto>(
     {
       url: `/api/contacts/${id}/address`,
       method: "PUT",
@@ -262,7 +262,7 @@ export const getPutAddressMutationOptions = <
     { id: string; data: AddressDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putAddress>>,
   TError,
@@ -302,7 +302,7 @@ export const usePutAddress = <TError = ErrorType<ApiError>, TContext = unknown>(
     { id: string; data: AddressDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof putAddress>>,
   TError,
@@ -318,10 +318,10 @@ export const usePutAddress = <TError = ErrorType<ApiError>, TContext = unknown>(
  */
 export const searchContacts = (
   params: SearchContactsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SearchContactDto[]>(
+  return customPilotageFetch<SearchContactDto[]>(
     { url: `/api/contacts/search`, method: "GET", params, signal },
     options,
   );
@@ -338,7 +338,7 @@ export const getSearchContactsQueryOptions = <
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -373,7 +373,7 @@ export function useSearchContacts<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchContacts<
@@ -391,7 +391,7 @@ export function useSearchContacts<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchContacts<
@@ -401,7 +401,7 @@ export function useSearchContacts<
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -415,7 +415,7 @@ export function useSearchContacts<
   params: SearchContactsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getSearchContactsQueryOptions(params, options);
@@ -431,10 +431,10 @@ export function useSearchContacts<
 
 export const getMyQuestionnaires = (
   params: GetMyQuestionnairesParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<MyQuestionnaireDto[]>(
+  return customPilotageFetch<MyQuestionnaireDto[]>(
     { url: `/api/contacts/questionnaires`, method: "GET", params, signal },
     options,
   );
@@ -451,7 +451,7 @@ export const getGetMyQuestionnairesQueryOptions = <
   params: GetMyQuestionnairesParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyQuestionnaires>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -488,7 +488,7 @@ export function useGetMyQuestionnaires<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetMyQuestionnaires<
@@ -506,7 +506,7 @@ export function useGetMyQuestionnaires<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetMyQuestionnaires<
@@ -516,7 +516,7 @@ export function useGetMyQuestionnaires<
   params: GetMyQuestionnairesParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyQuestionnaires>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -527,7 +527,7 @@ export function useGetMyQuestionnaires<
   params: GetMyQuestionnairesParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyQuestionnaires>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetMyQuestionnairesQueryOptions(params, options);
@@ -543,10 +543,10 @@ export function useGetMyQuestionnaires<
 
 export const findById = (
   params: FindByIdParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<MyQuestioningDto[]>(
+  return customPilotageFetch<MyQuestioningDto[]>(
     { url: `/api/contacts/questionings`, method: "GET", params, signal },
     options,
   );
@@ -563,7 +563,7 @@ export const getFindByIdQueryOptions = <
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -595,7 +595,7 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
@@ -610,14 +610,14 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError = ErrorType<ApiError>>(
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 
@@ -625,7 +625,7 @@ export function useFindById<TData = Awaited<ReturnType<typeof findById>>, TError
   params: FindByIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findById>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getFindByIdQueryOptions(params, options);

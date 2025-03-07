@@ -6,7 +6,7 @@ import { tss } from "tss-react/dsfr";
 import { QuestioningStatus, type Status } from "./QuestioningStatus";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { useEffect, useState } from "react";
-import { fetchFileInfo, getDetails } from "./SurveyTableRow";
+import { fetchFileInfo, getDetails, handleDownload, type FileType } from "functions/fileHandling";
 
 export type Questioning = {
   surveyUnitIdentificationCode?: string;
@@ -26,47 +26,34 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
   const { t } = useTranslation("SurveyTable");
   const { classes, cx } = useStyles();
 
-  const [file, setFile] = useState<{
-    extension: string | undefined;
-    size: number | null;
-  }>({
-    extension: undefined,
-    size: null,
-  });
+  const [file, setFile] = useState<FileType>();
 
   const cardClass = questioning.depositProofUrl ? classes.cardWithDelivery : classes.card;
 
   useEffect(() => {
     const getFileInfo = async () => {
-      const { extension, size } = await fetchFileInfo(questioning.depositProofUrl);
+      const file = await fetchFileInfo(questioning.depositProofUrl);
 
-      setFile({ extension, size });
+      setFile(file);
     };
 
     getFileInfo();
+
+    return () => {
+      if (file?.url) {
+        URL.revokeObjectURL(file.url);
+      }
+    };
   }, [questioning.depositProofUrl]);
 
-  const handleDownload = () => {
-    if (questioning.depositProofUrl) {
-      const link = document.createElement("a");
-      link.setAttribute("data-fr-assess-file", "bytes");
-      link.href = questioning.depositProofUrl;
-
-      link.download = `${t("dowloadLabel")}.${file.extension}}`;
-      link.click();
-    }
-  };
-
   const getAction = ({
-    depositProofUrl,
     questioningStatus,
     questioningAccessUrl,
   }: {
-    depositProofUrl?: string;
     questioningStatus?: string;
     questioningAccessUrl?: string;
   }) => {
-    if (depositProofUrl && questioningStatus === "RECEIVED") {
+    if (file) {
       return (
         <div>
           <hr style={{ padding: 1 }} />
@@ -76,7 +63,9 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
             downloadButton
             small
             enlargeLinkOrButton
-            buttonProps={{ onClick: handleDownload }}
+            buttonProps={{
+              onClick: () => handleDownload(file),
+            }}
             orientation="horizontal"
             title={t("download deposit proof")}
             detail={
@@ -148,7 +137,6 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
         )
       }
       footer={getAction({
-        depositProofUrl: questioning.depositProofUrl,
         questioningStatus: questioning.questioningStatus,
         questioningAccessUrl: questioning.questioningAccessUrl,
       })}

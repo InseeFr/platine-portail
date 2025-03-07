@@ -4,6 +4,7 @@ import Download from "@codegouvfr/react-dsfr/Download";
 import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useEffect, useState } from "react";
+import { fetchFileInfo, getDetails, type FileType } from "functions/fileHandling";
 
 type Questioning = {
   surveyUnitIdentificationCode?: string;
@@ -19,63 +20,29 @@ type Props = {
   hasSingleSurveyUnit: boolean;
 };
 
-export const fetchFileInfo = async (depositProofUrl: string | undefined) => {
-  if (depositProofUrl) {
-    try {
-      const response = await fetch(depositProofUrl, {
-        method: "HEAD",
-      });
-
-      if (response.ok) {
-        const size = response.headers.get("Content-Length");
-        const extension = depositProofUrl.split(".").pop();
-
-        return { extension: extension, size: size ? parseInt(size) : null };
-      } else {
-        console.error("Error retrieving file information");
-        return { extension: undefined, size: null };
-      }
-    } catch (error) {
-      console.error("Error : ", error);
-      return { extension: undefined, size: null };
-    }
-  }
-  return { extension: undefined, size: null };
-};
-
-export const getDetails = (file: { extension: string | undefined; size: number | null }) => {
-  if (file.extension && file.size) {
-    return `${file.extension.toLocaleUpperCase()} -  ${(file.size / 1024).toFixed(0)} Ko`;
-  }
-  if (file.extension) {
-    return file.extension;
-  }
-  return file.size ? `${(file.size / 1024).toFixed(0)} Ko` : "";
-};
-
 export const SurveyTableRow = ({ questioning, hasSingleSurveyUnit }: Props) => {
   const { t } = useTranslation("SurveyTable");
 
-  const [file, setFile] = useState<{
-    extension: string | undefined;
-    size: number | null;
-  }>({
-    extension: undefined,
-    size: null,
-  });
+  const [file, setFile] = useState<FileType>();
 
   useEffect(() => {
     const getFileInfo = async () => {
-      const { extension, size } = await fetchFileInfo(questioning.depositProofUrl);
+      const file = await fetchFileInfo(questioning.depositProofUrl);
 
-      setFile({ extension, size });
+      setFile(file);
     };
 
     getFileInfo();
+
+    return () => {
+      if (file?.url) {
+        URL.revokeObjectURL(file.url);
+      }
+    };
   }, [questioning.depositProofUrl]);
 
   const getAction = (questioning: Questioning) => {
-    if (questioning.depositProofUrl && questioning.questioningStatus === "RECEIVED") {
+    if (file) {
       const details = getDetails(file);
 
       return (
@@ -84,11 +51,12 @@ export const SurveyTableRow = ({ questioning, hasSingleSurveyUnit }: Props) => {
           details={details}
           label={t("download deposit proof")}
           linkProps={{
-            href: questioning.depositProofUrl,
+            href: file.url ?? "#",
           }}
         />
       );
     }
+
     if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
       return (
         <Button

@@ -42,7 +42,7 @@ import type {
   SurveyUnitDto,
 } from "./model";
 
-import { customPortailFetch } from "../../functions/fetch";
+import { customPilotageFetch } from "../../functions/fetch";
 import type { ErrorType } from "../../functions/fetch";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -52,10 +52,10 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
  */
 export const findSurveyUnit = (
   id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SurveyUnitDetailsDto>(
+  return customPilotageFetch<SurveyUnitDetailsDto>(
     { url: `/api/survey-units/${id}`, method: "GET", signal },
     options,
   );
@@ -72,7 +72,7 @@ export const getFindSurveyUnitQueryOptions = <
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -107,7 +107,7 @@ export function useFindSurveyUnit<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindSurveyUnit<
@@ -125,7 +125,7 @@ export function useFindSurveyUnit<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindSurveyUnit<
@@ -135,7 +135,7 @@ export function useFindSurveyUnit<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -149,7 +149,7 @@ export function useFindSurveyUnit<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof findSurveyUnit>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getFindSurveyUnitQueryOptions(id, options);
@@ -169,9 +169,9 @@ export function useFindSurveyUnit<
 export const putSurveyUnit = (
   id: string,
   surveyUnitDto: SurveyUnitDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
 ) => {
-  return customPortailFetch<SurveyUnitDto>(
+  return customPilotageFetch<SurveyUnitDto>(
     {
       url: `/api/survey-units/${id}`,
       method: "PUT",
@@ -192,7 +192,7 @@ export const getPutSurveyUnitMutationOptions = <
     { id: string; data: SurveyUnitDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putSurveyUnit>>,
   TError,
@@ -232,7 +232,7 @@ export const usePutSurveyUnit = <TError = ErrorType<ApiError>, TContext = unknow
     { id: string; data: SurveyUnitDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof putSurveyUnit>>,
   TError,
@@ -249,10 +249,10 @@ export const usePutSurveyUnit = <TError = ErrorType<ApiError>, TContext = unknow
 export const postSurveyUnitComment = (
   id: string,
   surveyUnitCommentInputDto: SurveyUnitCommentInputDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SurveyUnitCommentInputDto>(
+  return customPilotageFetch<SurveyUnitCommentInputDto>(
     {
       url: `/api/survey-units/${id}/comment`,
       method: "POST",
@@ -274,7 +274,7 @@ export const getPostSurveyUnitCommentMutationOptions = <
     { id: string; data: SurveyUnitCommentInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postSurveyUnitComment>>,
   TError,
@@ -316,7 +316,7 @@ export const usePostSurveyUnitComment = <TError = ErrorType<ApiError>, TContext 
     { id: string; data: SurveyUnitCommentInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof postSurveyUnitComment>>,
   TError,
@@ -333,10 +333,10 @@ export const usePostSurveyUnitComment = <TError = ErrorType<ApiError>, TContext 
 export const postQuestioningComment = (
   id: number,
   questioningCommentInputDto: QuestioningCommentInputDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningCommentInputDto>(
+  return customPilotageFetch<QuestioningCommentInputDto>(
     {
       url: `/api/questionings/${id}/comment`,
       method: "POST",
@@ -358,7 +358,7 @@ export const getPostQuestioningCommentMutationOptions = <
     { id: number; data: QuestioningCommentInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postQuestioningComment>>,
   TError,
@@ -400,7 +400,7 @@ export const usePostQuestioningComment = <TError = ErrorType<ApiError>, TContext
     { id: number; data: QuestioningCommentInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof postQuestioningComment>>,
   TError,
@@ -417,10 +417,10 @@ export const usePostQuestioningComment = <TError = ErrorType<ApiError>, TContext
 export const postQuestioningEvent = (
   questioningEventDto: QuestioningEventDto,
   params: PostQuestioningEventParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningEventDto>(
+  return customPilotageFetch<QuestioningEventDto>(
     {
       url: `/api/questionings/questioning-events`,
       method: "POST",
@@ -443,7 +443,7 @@ export const getPostQuestioningEventMutationOptions = <
     { data: QuestioningEventDto; params: PostQuestioningEventParams },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postQuestioningEvent>>,
   TError,
@@ -485,7 +485,7 @@ export const usePostQuestioningEvent = <TError = ErrorType<ApiError>, TContext =
     { data: QuestioningEventDto; params: PostQuestioningEventParams },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof postQuestioningEvent>>,
   TError,
@@ -502,10 +502,10 @@ export const usePostQuestioningEvent = <TError = ErrorType<ApiError>, TContext =
 export const createQuestioningEvent = (
   eventType: string,
   questioningEventInputDto: QuestioningEventInputDto,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningEventDto>(
+  return customPilotageFetch<QuestioningEventDto>(
     {
       url: `/api/questionings/questioning-events/${eventType}`,
       method: "POST",
@@ -527,7 +527,7 @@ export const getCreateQuestioningEventMutationOptions = <
     { eventType: string; data: QuestioningEventInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof createQuestioningEvent>>,
   TError,
@@ -569,7 +569,7 @@ export const useCreateQuestioningEvent = <TError = ErrorType<ApiError>, TContext
     { eventType: string; data: QuestioningEventInputDto },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof createQuestioningEvent>>,
   TError,
@@ -585,10 +585,10 @@ export const useCreateQuestioningEvent = <TError = ErrorType<ApiError>, TContext
  */
 export const getQuestioningsBySurveyUnit = (
   id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningDto[]>(
+  return customPilotageFetch<QuestioningDto[]>(
     { url: `/api/survey-units/${id}/questionings`, method: "GET", signal },
     options,
   );
@@ -607,7 +607,7 @@ export const getGetQuestioningsBySurveyUnitQueryOptions = <
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -646,7 +646,7 @@ export function useGetQuestioningsBySurveyUnit<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningsBySurveyUnit<
@@ -666,7 +666,7 @@ export function useGetQuestioningsBySurveyUnit<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningsBySurveyUnit<
@@ -678,7 +678,7 @@ export function useGetQuestioningsBySurveyUnit<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -694,7 +694,7 @@ export function useGetQuestioningsBySurveyUnit<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getQuestioningsBySurveyUnit>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetQuestioningsBySurveyUnitQueryOptions(id, options);
@@ -713,10 +713,10 @@ export function useGetQuestioningsBySurveyUnit<
  */
 export const getSurveyUnitContacts = (
   id: string,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SearchSurveyUnitContactDto[]>(
+  return customPilotageFetch<SearchSurveyUnitContactDto[]>(
     { url: `/api/survey-units/${id}/contacts`, method: "GET", signal },
     options,
   );
@@ -733,7 +733,7 @@ export const getGetSurveyUnitContactsQueryOptions = <
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -770,7 +770,7 @@ export function useGetSurveyUnitContacts<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetSurveyUnitContacts<
@@ -788,7 +788,7 @@ export function useGetSurveyUnitContacts<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetSurveyUnitContacts<
@@ -798,7 +798,7 @@ export function useGetSurveyUnitContacts<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -812,7 +812,7 @@ export function useGetSurveyUnitContacts<
   id: string,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getSurveyUnitContacts>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetSurveyUnitContactsQueryOptions(id, options);
@@ -831,10 +831,10 @@ export function useGetSurveyUnitContacts<
  */
 export const searchSurveyUnits = (
   params: SearchSurveyUnitsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SearchSurveyUnitDto[]>(
+  return customPilotageFetch<SearchSurveyUnitDto[]>(
     { url: `/api/survey-units/search`, method: "GET", params, signal },
     options,
   );
@@ -851,7 +851,7 @@ export const getSearchSurveyUnitsQueryOptions = <
   params: SearchSurveyUnitsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -886,7 +886,7 @@ export function useSearchSurveyUnits<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnits<
@@ -904,7 +904,7 @@ export function useSearchSurveyUnits<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnits<
@@ -914,7 +914,7 @@ export function useSearchSurveyUnits<
   params: SearchSurveyUnitsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -928,7 +928,7 @@ export function useSearchSurveyUnits<
   params: SearchSurveyUnitsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnits>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getSearchSurveyUnitsQueryOptions(params, options);
@@ -947,10 +947,10 @@ export function useSearchSurveyUnits<
  */
 export const searchSurveyUnitsByParam = (
   params: SearchSurveyUnitsByParamParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<SearchSurveyUnitDto[]>(
+  return customPilotageFetch<SearchSurveyUnitDto[]>(
     { url: `/api/survey-units/search/V2`, method: "GET", params, signal },
     options,
   );
@@ -969,7 +969,7 @@ export const getSearchSurveyUnitsByParamQueryOptions = <
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnitsByParam>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1008,7 +1008,7 @@ export function useSearchSurveyUnitsByParam<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnitsByParam<
@@ -1028,7 +1028,7 @@ export function useSearchSurveyUnitsByParam<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchSurveyUnitsByParam<
@@ -1040,7 +1040,7 @@ export function useSearchSurveyUnitsByParam<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnitsByParam>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1056,7 +1056,7 @@ export function useSearchSurveyUnitsByParam<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof searchSurveyUnitsByParam>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getSearchSurveyUnitsByParamQueryOptions(params, options);
@@ -1075,10 +1075,10 @@ export function useSearchSurveyUnitsByParam<
  */
 export const getQuestioning1 = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningDetailsDto>(
+  return customPilotageFetch<QuestioningDetailsDto>(
     { url: `/api/questionings/${id}`, method: "GET", signal },
     options,
   );
@@ -1095,7 +1095,7 @@ export const getGetQuestioning1QueryOptions = <
   id: number,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioning1>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1130,7 +1130,7 @@ export function useGetQuestioning1<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioning1<
@@ -1148,7 +1148,7 @@ export function useGetQuestioning1<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioning1<
@@ -1158,7 +1158,7 @@ export function useGetQuestioning1<
   id: number,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioning1>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1172,7 +1172,7 @@ export function useGetQuestioning1<
   id: number,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioning1>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetQuestioning1QueryOptions(id, options);
@@ -1191,10 +1191,10 @@ export function useGetQuestioning1<
  */
 export const findQuestioningEventsByQuestioning = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningEventDto[]>(
+  return customPilotageFetch<QuestioningEventDto[]>(
     { url: `/api/questionings/${id}/questioning-events`, method: "GET", signal },
     options,
   );
@@ -1213,7 +1213,7 @@ export const getFindQuestioningEventsByQuestioningQueryOptions = <
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1253,7 +1253,7 @@ export function useFindQuestioningEventsByQuestioning<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningEventsByQuestioning<
@@ -1273,7 +1273,7 @@ export function useFindQuestioningEventsByQuestioning<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningEventsByQuestioning<
@@ -1285,7 +1285,7 @@ export function useFindQuestioningEventsByQuestioning<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1301,7 +1301,7 @@ export function useFindQuestioningEventsByQuestioning<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof findQuestioningEventsByQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getFindQuestioningEventsByQuestioningQueryOptions(id, options);
@@ -1320,10 +1320,10 @@ export function useFindQuestioningEventsByQuestioning<
  */
 export const findQuestioningCommunicationsByQuestioningId = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningCommunicationDto[]>(
+  return customPilotageFetch<QuestioningCommunicationDto[]>(
     { url: `/api/questionings/${id}/questioning-communications`, method: "GET", signal },
     options,
   );
@@ -1346,7 +1346,7 @@ export const getFindQuestioningCommunicationsByQuestioningIdQueryOptions = <
         TData
       >
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1390,7 +1390,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningCommunicationsByQuestioningId<
@@ -1414,7 +1414,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useFindQuestioningCommunicationsByQuestioningId<
@@ -1430,7 +1430,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
         TData
       >
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1450,7 +1450,7 @@ export function useFindQuestioningCommunicationsByQuestioningId<
         TData
       >
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getFindQuestioningCommunicationsByQuestioningIdQueryOptions(id, options);
@@ -1469,10 +1469,10 @@ export function useFindQuestioningCommunicationsByQuestioningId<
  */
 export const searchQuestionings = (
   params?: SearchQuestioningsParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<PageSearchQuestioningDto>(
+  return customPilotageFetch<PageSearchQuestioningDto>(
     { url: `/api/questionings/search`, method: "GET", params, signal },
     options,
   );
@@ -1489,7 +1489,7 @@ export const getSearchQuestioningsQueryOptions = <
   params?: SearchQuestioningsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchQuestionings>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1524,7 +1524,7 @@ export function useSearchQuestionings<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchQuestionings<
@@ -1542,7 +1542,7 @@ export function useSearchQuestionings<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useSearchQuestionings<
@@ -1552,7 +1552,7 @@ export function useSearchQuestionings<
   params?: SearchQuestioningsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchQuestionings>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1566,7 +1566,7 @@ export function useSearchQuestionings<
   params?: SearchQuestioningsParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof searchQuestionings>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getSearchQuestioningsQueryOptions(params, options);
@@ -1585,10 +1585,10 @@ export function useSearchQuestionings<
  */
 export const getQuestioningId = (
   params: GetQuestioningIdParams,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<QuestioningIdDto>(
+  return customPilotageFetch<QuestioningIdDto>(
     { url: `/api/questionings/id`, method: "GET", params, signal },
     options,
   );
@@ -1605,7 +1605,7 @@ export const getGetQuestioningIdQueryOptions = <
   params: GetQuestioningIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioningId>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1640,7 +1640,7 @@ export function useGetQuestioningId<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningId<
@@ -1658,7 +1658,7 @@ export function useGetQuestioningId<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetQuestioningId<
@@ -1668,7 +1668,7 @@ export function useGetQuestioningId<
   params: GetQuestioningIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioningId>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1682,7 +1682,7 @@ export function useGetQuestioningId<
   params: GetQuestioningIdParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestioningId>>, TError, TData>>;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetQuestioningIdQueryOptions(params, options);
@@ -1701,10 +1701,10 @@ export function useGetQuestioningId<
  */
 export const getAssistanceQuestioning = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
   signal?: AbortSignal,
 ) => {
-  return customPortailFetch<AssistanceDto>(
+  return customPilotageFetch<AssistanceDto>(
     { url: `/api/questioning/${id}/assistance`, method: "GET", signal },
     options,
   );
@@ -1723,7 +1723,7 @@ export const getGetAssistanceQuestioningQueryOptions = <
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getAssistanceQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
@@ -1762,7 +1762,7 @@ export function useGetAssistanceQuestioning<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetAssistanceQuestioning<
@@ -1782,7 +1782,7 @@ export function useGetAssistanceQuestioning<
         >,
         "initialData"
       >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 export function useGetAssistanceQuestioning<
@@ -1794,7 +1794,7 @@ export function useGetAssistanceQuestioning<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getAssistanceQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> };
 /**
@@ -1810,7 +1810,7 @@ export function useGetAssistanceQuestioning<
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getAssistanceQuestioning>>, TError, TData>
     >;
-    request?: SecondParameter<typeof customPortailFetch>;
+    request?: SecondParameter<typeof customPilotageFetch>;
   },
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData> } {
   const queryOptions = getGetAssistanceQuestioningQueryOptions(id, options);
@@ -1829,9 +1829,9 @@ export function useGetAssistanceQuestioning<
  */
 export const deleteQuestioningEvent = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
 ) => {
-  return customPortailFetch<unknown>(
+  return customPilotageFetch<unknown>(
     { url: `/api/moog/management-monitoring-infos/${id}`, method: "DELETE" },
     options,
   );
@@ -1847,7 +1847,7 @@ export const getDeleteQuestioningEventMutationOptions = <
     { id: number },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteQuestioningEvent>>,
   TError,
@@ -1889,7 +1889,7 @@ export const useDeleteQuestioningEvent = <TError = ErrorType<ApiError>, TContext
     { id: number },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof deleteQuestioningEvent>>,
   TError,
@@ -1905,9 +1905,9 @@ export const useDeleteQuestioningEvent = <TError = ErrorType<ApiError>, TContext
  */
 export const deleteQuestioningEvent1 = (
   id: number,
-  options?: SecondParameter<typeof customPortailFetch>,
+  options?: SecondParameter<typeof customPilotageFetch>,
 ) => {
-  return customPortailFetch<unknown>(
+  return customPilotageFetch<unknown>(
     { url: `/api/questionings/questioning-events/${id}`, method: "DELETE" },
     options,
   );
@@ -1923,7 +1923,7 @@ export const getDeleteQuestioningEvent1MutationOptions = <
     { id: number },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteQuestioningEvent1>>,
   TError,
@@ -1965,7 +1965,7 @@ export const useDeleteQuestioningEvent1 = <TError = ErrorType<ApiError>, TContex
     { id: number },
     TContext
   >;
-  request?: SecondParameter<typeof customPortailFetch>;
+  request?: SecondParameter<typeof customPilotageFetch>;
 }): UseMutationResult<
   Awaited<ReturnType<typeof deleteQuestioningEvent1>>,
   TError,
