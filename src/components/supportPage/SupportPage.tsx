@@ -3,14 +3,15 @@ import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { InformationPictogram } from "assets/Pictograms/Information";
 import { CommunityPictogram } from "assets/Pictograms/Community";
 import { SupportPageForm } from "./SupportPageForm";
-import { useFetchQueryPortailWithoutAuth } from "hooks/useFetchQuery";
 import { Loading } from "components/surveyHomepage/Loading";
 import { fr } from "@codegouvfr/react-dsfr";
+import { useGetOpenSources } from "gen/aiguillage/assistance";
 
 export function SupportPage() {
   const { t } = useTranslation("Support");
 
-  const { data, isLoading } = useFetchQueryPortailWithoutAuth("/sources/ongoing");
+  // TODO: check if it still works (old without authentication)
+  const { data, isLoading } = useGetOpenSources();
 
   if (isLoading) {
     return <Loading />;

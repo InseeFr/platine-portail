@@ -4,7 +4,7 @@ import { Select } from "@codegouvfr/react-dsfr/SelectNext";
 import { Navigate, useSearch } from "@tanstack/react-router";
 import { DSFRHide } from "components/commons/DSFRHide";
 import { SupportFormPart } from "components/commons/SupportFormPart";
-import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
+import { useContactAssistance } from "gen/aiguillage/assistance";
 import { useForm } from "hooks/useForm";
 import { useTranslation } from "i18n";
 import { useEffect, useRef } from "react";
@@ -12,7 +12,7 @@ import { MailObjectEnum } from "types/mailObjectEnum";
 import { extendedSupportSchema } from "types/schemas";
 
 type Props = {
-  sources?: { id: string; label: string }[];
+  sources?: { id?: string; label?: string }[];
 };
 
 export const SupportPageForm = ({ sources }: Props) => {
@@ -24,7 +24,9 @@ export const SupportPageForm = ({ sources }: Props) => {
   const { register, handleSubmit, errors } = useForm(extendedSupportSchema, {
     defaultValues: defaultValues,
   });
-  const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
+
+  // TODO: check if it still works (old without authentication)
+  const { mutateAsync, isSuccess, isError } = useContactAssistance();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -60,7 +62,7 @@ export const SupportPageForm = ({ sources }: Props) => {
 
   const onSubmit = handleSubmit(data =>
     mutateAsync({
-      body: {
+      data: {
         auth: false,
         idec: data.idec,
         idue: undefined,

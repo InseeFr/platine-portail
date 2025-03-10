@@ -1,13 +1,14 @@
 import { useForm } from "hooks/useForm";
 import { supportSchema } from "types/schemas";
 import { SupportForm } from "./SupportForm";
-import { useFetchMutationWithoutAuth } from "hooks/useFetchQuery";
 import { Navigate } from "@tanstack/react-router";
+import { useContactAssistance } from "gen/aiguillage/assistance";
 
 export const OfflineSupport = ({ surveyId }: { surveyId: string }) => {
   const { register, handleSubmit, errors } = useForm(supportSchema);
 
-  const { mutateAsync, isSuccess, isError } = useFetchMutationWithoutAuth("/e-mail", "post");
+  // TODO: check if it still works (old without authentication)
+  const { mutateAsync, isSuccess, isError } = useContactAssistance();
 
   if (isError) {
     return (
@@ -17,7 +18,7 @@ export const OfflineSupport = ({ surveyId }: { surveyId: string }) => {
 
   const onSubmit = handleSubmit(data =>
     mutateAsync({
-      body: {
+      data: {
         auth: false,
         idec: data.idec,
         idue: undefined,

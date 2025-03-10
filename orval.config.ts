@@ -17,7 +17,7 @@ export default defineConfig({
         useDeprecatedOperations: false,
         mutator: {
           path: "src/functions/fetch.ts",
-          name: "customPortailFetch",
+          name: "customPilotageFetch",
         },
       },
     },

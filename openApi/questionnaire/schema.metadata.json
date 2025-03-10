@@ -5,10 +5,7 @@
   "properties": {
     "inseeContext": {
       "type": "string",
-      "enum": [
-        "household",
-        "business"
-      ]
+      "enum": ["household", "business"]
     },
     "variables": {
       "type": "array",
@@ -21,21 +18,14 @@
   "$defs": {
     "variable": {
       "type": "object",
-      "required": [
-        "name",
-        "value"
-      ],
+      "required": ["name", "value"],
       "additionalProperties": false,
       "properties": {
         "name": {
           "type": "string"
         },
         "value": {
-          "type": [
-            "string",
-            "boolean",
-            "number"
-          ]
+          "type": ["string", "boolean", "number"]
         }
       }
     }

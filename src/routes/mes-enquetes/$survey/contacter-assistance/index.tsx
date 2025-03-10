@@ -1,5 +1,5 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { createFileRoute } from "@tanstack/react-router";
+import { DSFRCol } from "components/commons/DSFRCol";
 import { OfflineSupport } from "components/surveyHomepage/OfflineSupport";
 
 export const Route = createFileRoute("/mes-enquetes/$survey/contacter-assistance/")({
@@ -10,8 +10,8 @@ function SupportIndex() {
   const { survey } = Route.useParams();
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-6", "fr-pr-md-4w")}>
+    <DSFRCol col="12" colMd="8" className="fr-pl-md-3w">
       <OfflineSupport surveyId={survey} />
-    </section>
+    </DSFRCol>
   );
 }

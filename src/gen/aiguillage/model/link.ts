@@ -3,7 +3,7 @@
  * Do not edit manually.
  * platine-aiguillage-api
  * Java version: 21
- * OpenAPI spec version: 2.7.0
+ * OpenAPI spec version: 2.7.1
  */
 
 export interface Link {

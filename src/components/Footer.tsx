@@ -5,6 +5,8 @@ import sspLogo from "assets/logo-ssp.jpg";
 import { declareComponentKeys, useTranslation } from "i18n";
 import { Follow } from "@codegouvfr/react-dsfr/Follow";
 import { useEffect } from "react";
+import { fr } from "@codegouvfr/react-dsfr";
+import packageInfo from "../../package.json";
 
 export function Footer({ className }: Readonly<{ className?: string }>) {
   const { t } = useTranslation("Footer");
@@ -65,6 +67,9 @@ export function Footer({ className }: Readonly<{ className?: string }>) {
             },
           },
           headerFooterDisplayItem,
+          <span key={"app-versions"} className={fr.cx("fr-footer__bottom-link")}>
+            Version : {packageInfo.version}
+          </span>,
         ]}
         partnersLogos={{
           main: {

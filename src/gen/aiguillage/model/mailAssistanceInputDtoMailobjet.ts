@@ -3,7 +3,7 @@
  * Do not edit manually.
  * platine-aiguillage-api
  * Java version: 21
- * OpenAPI spec version: 2.7.0
+ * OpenAPI spec version: 2.7.1
  */
 
 export type MailAssistanceInputDtoMailobjet =
@@ -11,9 +11,9 @@ export type MailAssistanceInputDtoMailobjet =
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const MailAssistanceInputDtoMailobjet = {
-  Affichage_du_questionnaire: "Affichage du questionnaire",
-  Comprehension_du_questionnaire: "Comprehension du questionnaire",
-  Autre: "Autre",
-  "Perte_d'identifiant": "Perte d'identifiant",
-  Perte_de_mot_de_passe: "Perte de mot de passe",
+  affichageQuestionnaire: "affichageQuestionnaire",
+  comprehensionQuestionnaire: "comprehensionQuestionnaire",
+  autre: "autre",
+  perteIdentifiant: "perteIdentifiant",
+  perteMotDePasse: "perteMotDePasse",
 } as const;

@@ -7,7 +7,7 @@
       "name": "Plateformes de collecte",
       "email": "service-numerique-plateforme-collecte@insee.fr"
     },
-    "version": "2.7.0"
+    "version": "2.7.1"
   },
   "servers": [
     { "url": "https://api-enquetes.developpement3.insee.fr", "description": "Generated server url" }
@@ -349,11 +349,11 @@
           "mailobjet": {
             "type": "string",
             "enum": [
-              "Affichage du questionnaire",
-              "Comprehension du questionnaire",
-              "Autre",
-              "Perte d'identifiant",
-              "Perte de mot de passe"
+              "affichageQuestionnaire",
+              "comprehensionQuestionnaire",
+              "autre",
+              "perteIdentifiant",
+              "perteMotDePasse"
             ]
           }
         }

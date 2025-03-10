@@ -5,6 +5,19 @@ import { Helmet } from "react-helmet-async";
 import { getPageTitle } from "functions/getPageTitle";
 import { Chatbot } from "components/Chatbot";
 import { Loading } from "components/surveyHomepage/Loading";
+import { SurveyTable } from "components/surveyHomepage/SurveyTable";
+import { fr } from "@codegouvfr/react-dsfr";
+import { DSFRHide } from "components/commons/DSFRHide";
+import type { Status } from "components/surveyHomepage/QuestioningStatus";
+import { QuestioningCardList } from "components/surveyHomepage/QuestioningCardList";
+import { useGetListQuestionnaires } from "gen/aiguillage/access";
+
+const statusOrder: Record<Status, number> = {
+  OPEN: 1,
+  INCOMING: 2,
+  RECEIVED: 3,
+  NOT_RECEIVED: 4,
+};
 
 export const Route = createFileRoute("/mes-enquetes/$survey")({
   component: Index,
@@ -25,6 +38,13 @@ function Index() {
   const { surveyData } = Route.useLoaderData();
   const router = useRouter();
 
+  // TODO: check if it still works (old without authentication)
+  const { data, isLoading } = useGetListQuestionnaires();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   const currentPath = router.history.location.pathname;
 
   const hasNotSideMenu =
@@ -39,12 +59,97 @@ function Index() {
 
   const sectionTitle = getPageTitle(currentPath);
 
+  if (!data) {
+    return (
+      <div>
+        <Helmet>
+          <title>{`${t(sectionTitle)} - ${surveyData.titleShort} - ${headerTranslation("service tagline")}`}</title>
+        </Helmet>
+        <SurveyHomepage survey={surveyData} />
+        {surveyData.isSurveyOnline && <Chatbot />}
+      </div>
+    );
+  }
+
+  const questioningsFilteredBySource = data.filter(
+    questioning => questioning.sourceId?.toLowerCase() === surveyData.id.toLowerCase(),
+  );
+
+  const hasSingleSurveyUnit = questioningsFilteredBySource.every(
+    current => current.surveyUnitId === questioningsFilteredBySource[0].surveyUnitId,
+  );
+
+  const questioningWithIdentificationCode = questioningsFilteredBySource.find(
+    questioning =>
+      questioning.surveyUnitIdentificationCode !== "" &&
+      questioning.surveyUnitIdentificationCode != null,
+  );
+
+  const questioningsSectionTitle =
+    hasSingleSurveyUnit && questioningWithIdentificationCode
+      ? `${surveyData.title} ${t("for")} ${questioningWithIdentificationCode.surveyUnitIdentificationCode}`
+      : surveyData.title;
+
+  const questionings = [...questioningsFilteredBySource].sort((questioningA, questioningB) => {
+    const statusA = questioningA.questioningStatus
+      ? statusOrder[questioningA.questioningStatus as Status]
+      : Infinity;
+    const statusB = questioningB.questioningStatus
+      ? statusOrder[questioningB.questioningStatus as Status]
+      : Infinity;
+
+    if (statusA !== statusB) {
+      return statusA - statusB;
+    }
+
+    const identificationCodeA = questioningA.surveyUnitIdentificationCode?.toLowerCase() ?? "";
+    const identificationCodeB = questioningB.surveyUnitIdentificationCode?.toLowerCase() ?? "";
+
+    if (identificationCodeA === "" && identificationCodeB === "") return 0;
+    if (identificationCodeA === "") return 1;
+    if (identificationCodeB === "") return -1;
+
+    if (identificationCodeA !== identificationCodeB) {
+      return identificationCodeA.localeCompare(identificationCodeB);
+    }
+
+    const partitioningLabelA = questioningA.partitioningLabel?.toLowerCase() ?? "";
+    const partitioningLabelB = questioningB.partitioningLabel?.toLowerCase() ?? "";
+
+    if (partitioningLabelA === "" && partitioningLabelB === "") return 0;
+    if (partitioningLabelA === "") return 1;
+    if (partitioningLabelB === "") return -1;
+
+    return partitioningLabelA.localeCompare(partitioningLabelB);
+  });
+
   return (
     <div>
       <Helmet>
         <title>{`${t(sectionTitle)} - ${surveyData.titleShort} - ${headerTranslation("service tagline")}`}</title>
       </Helmet>
       <SurveyHomepage survey={surveyData} />
+      <div
+        className={fr.cx("fr-container--fluid", "fr-pt-3w")}
+        style={{
+          backgroundColor: fr.colors.decisions.background.alt.grey.default,
+        }}
+      >
+        <DSFRHide hidden unhidden unhiddenScreenSize="md">
+          <SurveyTable
+            title={questioningsSectionTitle}
+            questionings={questionings}
+            hasSingleSurveyUnit={hasSingleSurveyUnit}
+          />
+        </DSFRHide>
+        <DSFRHide hidden hiddenScreenSize="md">
+          <QuestioningCardList
+            questionings={questionings}
+            questioningsSectionTitle={questioningsSectionTitle}
+            hasSingleSurveyUnit={hasSingleSurveyUnit}
+          />
+        </DSFRHide>
+      </div>
       {surveyData.isSurveyOnline && <Chatbot />}
     </div>
   );
