@@ -2,7 +2,7 @@ import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import type { ComponentKey } from "i18n/types";
 import type { TranslationFunction } from "i18nifty/typeUtils/TranslationFunction";
 
-export const status = ["RECEIVED", "NOT_RECEIVED", "INCOMING", "OPEN"] as const;
+const status = ["RECEIVED", "NOT_RECEIVED", "INCOMING", "OPEN"] as const;
 export type Status = (typeof status)[number];
 
 export const QuestioningStatus = ({

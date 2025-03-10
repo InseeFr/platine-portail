@@ -57,7 +57,10 @@ export const SurveyTableRow = ({ questioning, hasSingleSurveyUnit }: Props) => {
       );
     }
 
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "RECEIVED") {
+    if (
+      questioning.questioningAccessUrl &&
+      (questioning.questioningStatus === "RECEIVED" || questioning.questioningStatus === "OPEN")
+    ) {
       return (
         <Button
           size="small"
@@ -65,33 +68,21 @@ export const SurveyTableRow = ({ questioning, hasSingleSurveyUnit }: Props) => {
             href: questioning.questioningAccessUrl,
           }}
         >
-          {t("download deposit proof")}
-        </Button>
-      );
-    }
-    if (questioning.questioningAccessUrl && questioning.questioningStatus === "OPEN") {
-      return (
-        <Button
-          size="small"
-          linkProps={{
-            href: questioning.questioningAccessUrl,
-          }}
-        >
-          {t("go to survey")}
+          {questioning.questioningStatus === "RECEIVED"
+            ? t("download deposit proof")
+            : t("go to survey")}
         </Button>
       );
     }
   };
 
-  const identificationCode =
-    questioning.surveyUnitIdentificationCode && questioning.surveyUnitIdentificationCode !== ""
-      ? questioning.surveyUnitIdentificationCode
-      : "N/A";
+  const identificationCode = questioning.surveyUnitIdentificationCode
+    ? questioning.surveyUnitIdentificationCode
+    : "N/A";
 
-  const identificationName =
-    questioning.surveyUnitIdentificationName && questioning.surveyUnitIdentificationName !== ""
-      ? questioning.surveyUnitIdentificationName
-      : "N/A";
+  const identificationName = questioning.surveyUnitIdentificationName
+    ? questioning.surveyUnitIdentificationName
+    : "N/A";
   return (
     <tr style={{ height: "70px" }}>
       {!hasSingleSurveyUnit && (

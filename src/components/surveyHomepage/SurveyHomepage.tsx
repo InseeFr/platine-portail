@@ -7,6 +7,7 @@ import type { SurveyData } from "types/ContentSurvey";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { fr } from "@codegouvfr/react-dsfr";
 import { DSFRHide } from "components/commons/DSFRHide";
+import { DSFRContainer } from "components/commons/DSFRContainer";
 
 type Props = {
   survey: SurveyData;
@@ -17,7 +18,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
 
   return (
     <>
-      <div className={fr.cx("fr-container", "fr-mt-3w")}>
+      <DSFRContainer className="fr-mt-3w">
         <Breadcrumb
           currentPageLabel={survey.titleShort}
           homeLinkProps={{
@@ -56,7 +57,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
           </div>
           <img src={Banner} alt="" role="presentation" width={"100%"} />
         </DSFRHide>
-      </div>
+      </DSFRContainer>
       <DSFRHide hiddenScreenSize="md" hidden>
         <div className={fr.cx("fr-grid-row", "fr-grid-row--center", "fr-mt-3w", "fr-mb-2w")}>
           <Tag
@@ -67,9 +68,9 @@ export const SurveyHomepage = ({ survey }: Props) => {
             {t("respond to survey")}
           </Tag>
         </div>
-        <div className="fr-container--fluid">
+        <DSFRContainer fluid>
           <img src={Banner} alt="" role="presentation" style={{ width: "100vw" }} />
-        </div>
+        </DSFRContainer>
       </DSFRHide>
       <DSFRHide hiddenScreenSize="md" hidden>
         <SideMenuCustom
@@ -79,7 +80,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
           labelId="mobileSideMenu"
         />
       </DSFRHide>
-      <div className={fr.cx("fr-container")}>
+      <DSFRContainer>
         <div
           id="content"
           className={fr.cx("fr-grid-row", "fr-col-offset-md-1", "fr-py-md-7w", "fr-py-2w")}
@@ -92,7 +93,7 @@ export const SurveyHomepage = ({ survey }: Props) => {
           />
           <Outlet />
         </div>
-      </div>
+      </DSFRContainer>
     </>
   );
 };

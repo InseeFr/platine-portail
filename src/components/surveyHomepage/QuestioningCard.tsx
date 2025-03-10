@@ -82,7 +82,7 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
       );
     }
 
-    if (questioningAccessUrl && questioningStatus === "RECEIVED") {
+    if (questioningAccessUrl && (questioningStatus === "RECEIVED" || questioningStatus === "OPEN")) {
       return (
         <Button
           size="small"
@@ -90,20 +90,9 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
             href: questioningAccessUrl,
           }}
         >
-          {t("download deposit proof")}
-        </Button>
-      );
-    }
-
-    if (questioningAccessUrl && questioningStatus === "OPEN") {
-      return (
-        <Button
-          size="small"
-          linkProps={{
-            href: questioningAccessUrl,
-          }}
-        >
-          {t("go to survey")}
+          {questioning.questioningStatus === "RECEIVED"
+            ? t("download deposit proof")
+            : t("go to survey")}
         </Button>
       );
     }
@@ -121,18 +110,16 @@ export const QuestioningCard = ({ questioning, hasSingleSurveyUnit }: Props) => 
       desc={
         !hasSingleSurveyUnit && (
           <div>
-            {questioning.surveyUnitIdentificationCode &&
-              questioning.surveyUnitIdentificationCode !== "" && (
-                <p
-                  className={fr.cx("fr-mb-3v")}
-                >{`${t("survey unit")} : ${questioning.surveyUnitIdentificationCode}`}</p>
-              )}
-            {questioning.surveyUnitIdentificationName &&
-              questioning.surveyUnitIdentificationName !== "" && (
-                <p
-                  className={fr.cx("fr-mb-1v")}
-                >{`${t("identification name")} : ${questioning.surveyUnitIdentificationName}`}</p>
-              )}
+            {questioning.surveyUnitIdentificationCode && (
+              <p
+                className={fr.cx("fr-mb-3v")}
+              >{`${t("survey unit")} : ${questioning.surveyUnitIdentificationCode}`}</p>
+            )}
+            {questioning.surveyUnitIdentificationName && (
+              <p
+                className={fr.cx("fr-mb-1v")}
+              >{`${t("identification name")} : ${questioning.surveyUnitIdentificationName}`}</p>
+            )}
           </div>
         )
       }

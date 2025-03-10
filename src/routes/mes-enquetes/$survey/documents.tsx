@@ -1,5 +1,5 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { createFileRoute } from "@tanstack/react-router";
+import { DSFRCol } from "components/commons/DSFRCol";
 import { DocumentTile } from "components/surveyHomepage/DocumentTile";
 import { declareComponentKeys, useTranslation } from "i18n/i18n";
 
@@ -14,7 +14,7 @@ function DocumentsIndex() {
   const { t } = useTranslation("Documents");
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
+    <DSFRCol col="12" colMd="8" className="fr-pl-md-3w">
       <h3>{homeTranslation("documents to the surveyed")}</h3>
       <div>
         <DocumentTile
@@ -66,7 +66,7 @@ function DocumentsIndex() {
           pictogramUrl={"/static/img/document.svg"}
         />
       </div>
-    </section>
+    </DSFRCol>
   );
 }
 

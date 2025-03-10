@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Pagination from "@codegouvfr/react-dsfr/Pagination";
+import { DSFRGrid } from "components/commons/DSFRGrid";
 import { useTranslation } from "i18n";
 
 type Props = {
@@ -12,7 +13,7 @@ export const QuestioningPagination = ({ totalPages, defaultPage, onPageChange }:
   const { t } = useTranslation("SurveyTable");
 
   return (
-    <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
+    <DSFRGrid center>
       <Pagination
         showFirstLast
         count={totalPages}
@@ -28,6 +29,6 @@ export const QuestioningPagination = ({ totalPages, defaultPage, onPageChange }:
         })}
         className={fr.cx("fr-mt-1w")}
       />
-    </div>
+    </DSFRGrid>
   );
 };

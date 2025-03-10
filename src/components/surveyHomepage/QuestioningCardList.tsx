@@ -1,8 +1,8 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { QuestioningCard } from "./QuestioningCard";
 import { useTranslation } from "i18n";
 import { useState } from "react";
 import { QuestioningPagination } from "./QuestioningPagination";
+import { DSFRContainer } from "components/commons/DSFRContainer";
 
 type Props = {
   questionings: {
@@ -41,7 +41,7 @@ export const QuestioningCardList = ({
   };
 
   return (
-    <div className={fr.cx("fr-container")} id="cards">
+    <DSFRContainer id="cards">
       <h3>{`${t("respond to survey")} ${questioningsSectionTitle}`}</h3>
       {currentItems.map(questioning => (
         <QuestioningCard
@@ -57,6 +57,6 @@ export const QuestioningCardList = ({
           onPageChange={handlePageChange}
         />
       )}
-    </div>
+    </DSFRContainer>
   );
 };

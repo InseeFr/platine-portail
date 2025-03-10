@@ -1,5 +1,5 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { Navigate, createFileRoute, useSearch } from "@tanstack/react-router";
+import { DSFRCol } from "components/commons/DSFRCol";
 import { AuthenticatedSupport } from "components/surveyHomepage/AuthenticatedSupport";
 import { enforceLogin } from "oidc";
 import { z } from "zod";
@@ -24,8 +24,8 @@ function SupportPage() {
   }
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
+    <DSFRCol col="12" colMd="8" className="fr-pl-md-3w">
       <AuthenticatedSupport surveyId={survey} questioningId={search.questioningId.toString()} />
-    </section>
+    </DSFRCol>
   );
 }

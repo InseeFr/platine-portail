@@ -1,6 +1,6 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { createFileRoute, useLoaderData } from "@tanstack/react-router";
 import { Markdown } from "components/Markdown";
+import { DSFRCol } from "components/commons/DSFRCol";
 import { useTranslation } from "i18n";
 
 export const Route = createFileRoute("/mes-enquetes/$survey/introduction")({
@@ -12,9 +12,9 @@ function Index() {
   const { t } = useTranslation("SurveyHomepage");
 
   return (
-    <section className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pl-md-3w")}>
+    <DSFRCol col="12" colMd="8" className="fr-pl-md-3w">
       <h3>{t("survey introduction")}</h3>
       <Markdown content={surveyData.content.description.body} />
-    </section>
+    </DSFRCol>
   );
 }

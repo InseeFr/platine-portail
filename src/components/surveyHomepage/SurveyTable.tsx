@@ -3,6 +3,7 @@ import { declareComponentKeys, useTranslation } from "i18n";
 import { useState } from "react";
 import { QuestioningPagination } from "./QuestioningPagination";
 import { SurveyTableRow } from "./SurveyTableRow";
+import { DSFRContainer } from "components/commons/DSFRContainer";
 
 type Questioning = {
   sourceId?: string;
@@ -80,7 +81,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
   };
 
   return (
-    <div className={fr.cx("fr-container")} id="table">
+    <DSFRContainer id="table">
       <div
         className={fr.cx("fr-table--lg", "fr-table", "fr-col-offset-md-1", "fr-col-md-10")}
         id="table-lg-component"
@@ -133,7 +134,7 @@ export const SurveyTable = ({ title, questionings, hasSingleSurveyUnit }: Props)
           onPageChange={handlePageChange}
         />
       )}
-    </div>
+    </DSFRContainer>
   );
 };
 
