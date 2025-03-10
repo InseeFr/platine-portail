@@ -42,8 +42,7 @@ export const AuthenticatedSupport = ({
         name: `${data.firstName} ${data.lastName}`,
         phonenumber: data.phonenumber,
         survey: surveyId,
-        // TODO: remove "any" when schema is corrected
-        mailobjet: data.mailObjet as any,
+        mailobjet: data.mailObjet,
       },
     }),
   );

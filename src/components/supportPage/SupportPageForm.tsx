@@ -72,8 +72,7 @@ export const SupportPageForm = ({ sources }: Props) => {
         name: `${data.firstName} ${data.lastName}`,
         phonenumber: data.phonenumber,
         survey: data.survey,
-        // TODO: remove "any" when schema is corrected
-        mailobjet: data.mailObjet as any,
+        mailobjet: data.mailObjet,
       },
     }),
   );
