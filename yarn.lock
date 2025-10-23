@@ -3335,14 +3335,14 @@ eventemitter3@^5.0.1:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-5.0.1.tgz#53f5ffd0a492ac800721bb42c66b841de96423c4"
   integrity sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==
 
-evt@^2.5.7:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/evt/-/evt-2.5.7.tgz#55c5f8ff910f4b7531bfac91e963d4cb3231f253"
-  integrity sha512-dr7Wd16ry5F8WNU1xXLKpFpO3HsoAGg8zC48e08vDdzMzGWCP9/QFGt1PQptEEDh8SwYP3EL8M+d/Gb0kgUp6g==
+evt@^2.5.9:
+  version "2.5.9"
+  resolved "https://registry.yarnpkg.com/evt/-/evt-2.5.9.tgz#cd270e50ce1e7c586bf86242c054dd958d06a5c4"
+  integrity sha512-GpjX476FSlttEGWHT8BdVMoI8wGXQGbEOtKcP4E+kggg+yJzXBZN2n4x7TS/zPBJ1DZqWI+rguZZApjjzQ0HpA==
   dependencies:
     minimal-polyfills "^2.2.3"
     run-exclusive "^2.2.19"
-    tsafe "^1.6.6"
+    tsafe "^1.8.5"
 
 execa@^5.1.1:
   version "5.1.1"
@@ -3888,12 +3888,12 @@ hyphenate-style-name@^1.0.3:
   integrity sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==
 
 i18nifty@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/i18nifty/-/i18nifty-3.2.1.tgz#ee27e76cfdb8591d26ac980063567fac75a19c11"
-  integrity sha512-/exQ7rch7erPczJVy8gL+BD7TT24FfLFUvpLV1QW23tDB+tatq4/BN6j2V6nvADtn5GCFkhmWBe8ZzavDjQ3fQ==
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/i18nifty/-/i18nifty-3.2.6.tgz#eb4caf4df2dfd6b02fdff100695563c9983cb9b6"
+  integrity sha512-5u3orvOrzpOwzBXegvuHBMeiSWvCjUcVzZKp9Iw2826GeqJ0F/0XoRlScbcG6wZ9i8b6h3ZuWYRb0Svx/uL8mQ==
   dependencies:
-    powerhooks "^1.0.9"
-    tsafe "^1.6.5"
+    powerhooks "^2.0.1"
+    tsafe "^1.8.5"
 
 ignore@^5.2.0:
   version "5.2.0"
@@ -4717,7 +4717,7 @@ mdurl@^2.0.0:
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-2.0.0.tgz#80676ec0433025dd3e17ee983d0fe8de5a2237e0"
   integrity sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==
 
-memoizee@^0.4.15:
+memoizee@^0.4.17:
   version "0.4.17"
   resolved "https://registry.yarnpkg.com/memoizee/-/memoizee-0.4.17.tgz#942a5f8acee281fa6fb9c620bddc57e3b7382949"
   integrity sha512-DGqD7Hjpi/1or4F/aYAspXKNm5Yili0QDAFAY4QYvpqpgiY6+1jOfqpmByzjxbWd/T9mChbCArXAbDAsTm5oXA==
@@ -5453,14 +5453,14 @@ postcss@^8.4.38:
     picocolors "^1.0.0"
     source-map-js "^1.2.0"
 
-powerhooks@^1.0.9:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/powerhooks/-/powerhooks-1.0.10.tgz#9d532b23294cba69d5872d859bdf843b91cb9c41"
-  integrity sha512-fJmKSVJk9Bkotl9rK1ryVPSqhY4xOZKxM6deyTaMbICK8jHh/CQztN2mNTxlKu6vkJBIFj1cRd/7N6slh3uM6w==
+powerhooks@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/powerhooks/-/powerhooks-2.0.1.tgz#ca2c9b72c934d91ec2fc74afa476b787bed726ea"
+  integrity sha512-G4oStGCXGHBexDEAlRfrYRESgticY6oOOtkz9AEwmUt6uItZwNqoDELWyZiEoHjOrwuLDMd6+S0IHj9lBLz9dA==
   dependencies:
-    evt "^2.5.7"
-    memoizee "^0.4.15"
-    tsafe "^1.6.6"
+    evt "^2.5.9"
+    memoizee "^0.4.17"
+    tsafe "^1.8.5"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -6342,9 +6342,9 @@ tsafe@^1.6.5, tsafe@^1.6.6:
   integrity sha512-gzkapsdbMNwBnTIjgO758GujLCj031IgHK/PKr2mrmkCSJMhSOR5FeOuSxKLMUoYc0vAA4RGEYYbjt/v6afD3g==
 
 tsafe@^1.8.5:
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.8.5.tgz#cdf9fa3111974ac480d7ee519f8241815e5d22ea"
-  integrity sha512-LFWTWQrW6rwSY+IBNFl2ridGfUzVsPwrZ26T4KUJww/py8rzaQ/SY+MIz6YROozpUCaRcuISqagmlwub9YT9kw==
+  version "1.8.12"
+  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.8.12.tgz#68a410b4b7687ef497b1c85904b1215532335c3e"
+  integrity sha512-nFRqW0ttu/2o6XTXsHiVZWJBCOaxhVqZLg7dgs3coZNsCMPXPfwz+zPHAQA+70fNnVJLAPg1EgGIqK9Q84tvAw==
 
 tsconfck@^2.0.1:
   version "2.1.2"
