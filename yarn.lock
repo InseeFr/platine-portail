@@ -409,9 +409,9 @@
     to-fast-properties "^2.0.0"
 
 "@codegouvfr/react-dsfr@^1.20.0":
-  version "1.20.0"
-  resolved "https://registry.npmjs.org/@codegouvfr/react-dsfr/-/react-dsfr-1.20.0.tgz#a2bf6a59be02682e7e2ab9b881f68095b00ad877"
-  integrity sha512-7JqcqPnPrzKhoOAT0WshiyaG/hZkfuHTFjoqSmhlQ1wMEJ/HztcZV1mnbVZ/3CYLtStjohFI6QLpJ/FPXujqSw==
+  version "1.35.0"
+  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-1.35.0.tgz#beb1d60d870359592de7c418dd113b30b9e1e283"
+  integrity sha512-m6sWK/0MVi1JR63ZxHqHyc50rlESSv3XQLaAWs5XONj3fmIohgxzoPTZDbMPgnK4sm3ioW+iOmsltIO7SfbCoQ==
   dependencies:
     tsafe "^1.8.5"
     yargs-parser "^21.1.1"
@@ -6342,9 +6342,9 @@ tsafe@^1.6.5, tsafe@^1.6.6:
   integrity sha512-gzkapsdbMNwBnTIjgO758GujLCj031IgHK/PKr2mrmkCSJMhSOR5FeOuSxKLMUoYc0vAA4RGEYYbjt/v6afD3g==
 
 tsafe@^1.8.5:
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.8.5.tgz#cdf9fa3111974ac480d7ee519f8241815e5d22ea"
-  integrity sha512-LFWTWQrW6rwSY+IBNFl2ridGfUzVsPwrZ26T4KUJww/py8rzaQ/SY+MIz6YROozpUCaRcuISqagmlwub9YT9kw==
+  version "1.8.12"
+  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.8.12.tgz#68a410b4b7687ef497b1c85904b1215532335c3e"
+  integrity sha512-nFRqW0ttu/2o6XTXsHiVZWJBCOaxhVqZLg7dgs3coZNsCMPXPfwz+zPHAQA+70fNnVJLAPg1EgGIqK9Q84tvAw==
 
 tsconfck@^2.0.1:
   version "2.1.2"
